@@ -3,10 +3,12 @@ import { useState } from "react";
 
 export default function SignupPage() {
   const [form, setForm] = useState({ email: "", password: "", username: "" });
+  const [accepted, setAccepted] = useState(false);
   const [msg, setMsg] = useState("");
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (!accepted) { setMsg("Please accept the Terms to continue (21 §4 — IP deal must be known before joining)."); return; }
     setMsg("Creating…");
     try {
       const res = await fetch("/api/v1/auth/signup", {
@@ -36,6 +38,10 @@ export default function SignupPage() {
           value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} required />
         <input className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3" placeholder="Password (10+ chars)" type="password"
           value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
+        <label className="flex items-start gap-2 text-xs text-white/60">
+          <input type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} className="mt-0.5" />
+          <span>I agree to the <a href="/terms" className="underline">Terms</a> — Klyro is a venue, not a party to project IP/equity (21 §4).</span>
+        </label>
         <button className="w-full rounded-lg bg-indigo-600 px-4 py-3 font-medium hover:bg-indigo-500">Sign up</button>
       </form>
       {msg && <p className="mt-4 text-sm text-white/70">{msg}</p>}

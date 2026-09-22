@@ -137,7 +137,13 @@ exports.Prisma.UserScalarFieldEnum = {
   isVerifiedEmail: 'isVerifiedEmail',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  onboardingEntryPoint: 'onboardingEntryPoint',
+  onboardingIntent: 'onboardingIntent',
+  onboardingStep: 'onboardingStep',
+  onboardingCompletedAt: 'onboardingCompletedAt',
+  acceptedTermsAt: 'acceptedTermsAt',
+  community: 'community'
 };
 
 exports.Prisma.UsernameHistoryScalarFieldEnum = {
@@ -194,7 +200,10 @@ exports.Prisma.ProjectScalarFieldEnum = {
   commitmentLevel: 'commitmentLevel',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  completedAt: 'completedAt'
+  completedAt: 'completedAt',
+  ipModel: 'ipModel',
+  openSourceLicense: 'openSourceLicense',
+  ipSummary: 'ipSummary'
 };
 
 exports.Prisma.RoleScalarFieldEnum = {
@@ -216,9 +225,30 @@ exports.Prisma.TeamMemberScalarFieldEnum = {
   leftAt: 'leftAt'
 };
 
+exports.Prisma.PlatformAdminScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  role: 'role',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AnalyticsEventScalarFieldEnum = {
+  id: 'id',
+  event: 'event',
+  userId: 'userId',
+  projectId: 'projectId',
+  props: 'props',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -230,9 +260,29 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
 exports.UserStatus = exports.$Enums.UserStatus = {
   ACTIVE: 'ACTIVE',
   DEACTIVATED: 'DEACTIVATED'
+};
+
+exports.OnboardingEntryPoint = exports.$Enums.OnboardingEntryPoint = {
+  ORGANIC: 'ORGANIC',
+  PROJECT_INVITE: 'PROJECT_INVITE',
+  GROUP_INVITE: 'GROUP_INVITE',
+  OAUTH: 'OAUTH',
+  REFERRAL: 'REFERRAL'
+};
+
+exports.OnboardingIntent = exports.$Enums.OnboardingIntent = {
+  START: 'START',
+  JOIN: 'JOIN',
+  BOTH: 'BOTH'
 };
 
 exports.SkillLevel = exports.$Enums.SkillLevel = {
@@ -256,6 +306,13 @@ exports.Visibility = exports.$Enums.Visibility = {
   PRIVATE: 'PRIVATE'
 };
 
+exports.IpModel = exports.$Enums.IpModel = {
+  OWNER_RETAINED: 'OWNER_RETAINED',
+  OPEN_SOURCE: 'OPEN_SOURCE',
+  SHARED_EQUITY: 'SHARED_EQUITY',
+  PORTFOLIO_ONLY: 'PORTFOLIO_ONLY'
+};
+
 exports.PermissionLevel = exports.$Enums.PermissionLevel = {
   OWNER: 'OWNER',
   MAINTAINER: 'MAINTAINER',
@@ -269,6 +326,12 @@ exports.MemberStatus = exports.$Enums.MemberStatus = {
   REMOVED: 'REMOVED'
 };
 
+exports.PlatformAdminRole = exports.$Enums.PlatformAdminRole = {
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  TRUST_SAFETY: 'TRUST_SAFETY',
+  SUPPORT: 'SUPPORT'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   UsernameHistory: 'UsernameHistory',
@@ -278,7 +341,9 @@ exports.Prisma.ModelName = {
   SkillOnUser: 'SkillOnUser',
   Project: 'Project',
   Role: 'Role',
-  TeamMember: 'TeamMember'
+  TeamMember: 'TeamMember',
+  PlatformAdmin: 'PlatformAdmin',
+  AnalyticsEvent: 'AnalyticsEvent'
 };
 
 /**

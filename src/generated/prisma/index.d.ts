@@ -58,6 +58,16 @@ export type Role = $Result.DefaultSelection<Prisma.$RolePayload>
  * 
  */
 export type TeamMember = $Result.DefaultSelection<Prisma.$TeamMemberPayload>
+/**
+ * Model PlatformAdmin
+ * 
+ */
+export type PlatformAdmin = $Result.DefaultSelection<Prisma.$PlatformAdminPayload>
+/**
+ * Model AnalyticsEvent
+ * 
+ */
+export type AnalyticsEvent = $Result.DefaultSelection<Prisma.$AnalyticsEventPayload>
 
 /**
  * Enums
@@ -119,6 +129,45 @@ export const SkillLevel: {
 
 export type SkillLevel = (typeof SkillLevel)[keyof typeof SkillLevel]
 
+
+export const OnboardingEntryPoint: {
+  ORGANIC: 'ORGANIC',
+  PROJECT_INVITE: 'PROJECT_INVITE',
+  GROUP_INVITE: 'GROUP_INVITE',
+  OAUTH: 'OAUTH',
+  REFERRAL: 'REFERRAL'
+};
+
+export type OnboardingEntryPoint = (typeof OnboardingEntryPoint)[keyof typeof OnboardingEntryPoint]
+
+
+export const OnboardingIntent: {
+  START: 'START',
+  JOIN: 'JOIN',
+  BOTH: 'BOTH'
+};
+
+export type OnboardingIntent = (typeof OnboardingIntent)[keyof typeof OnboardingIntent]
+
+
+export const IpModel: {
+  OWNER_RETAINED: 'OWNER_RETAINED',
+  OPEN_SOURCE: 'OPEN_SOURCE',
+  SHARED_EQUITY: 'SHARED_EQUITY',
+  PORTFOLIO_ONLY: 'PORTFOLIO_ONLY'
+};
+
+export type IpModel = (typeof IpModel)[keyof typeof IpModel]
+
+
+export const PlatformAdminRole: {
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  TRUST_SAFETY: 'TRUST_SAFETY',
+  SUPPORT: 'SUPPORT'
+};
+
+export type PlatformAdminRole = (typeof PlatformAdminRole)[keyof typeof PlatformAdminRole]
+
 }
 
 export type UserStatus = $Enums.UserStatus
@@ -144,6 +193,22 @@ export const MemberStatus: typeof $Enums.MemberStatus
 export type SkillLevel = $Enums.SkillLevel
 
 export const SkillLevel: typeof $Enums.SkillLevel
+
+export type OnboardingEntryPoint = $Enums.OnboardingEntryPoint
+
+export const OnboardingEntryPoint: typeof $Enums.OnboardingEntryPoint
+
+export type OnboardingIntent = $Enums.OnboardingIntent
+
+export const OnboardingIntent: typeof $Enums.OnboardingIntent
+
+export type IpModel = $Enums.IpModel
+
+export const IpModel: typeof $Enums.IpModel
+
+export type PlatformAdminRole = $Enums.PlatformAdminRole
+
+export const PlatformAdminRole: typeof $Enums.PlatformAdminRole
 
 /**
  * ##  Prisma Client ʲˢ
@@ -352,6 +417,26 @@ export class PrismaClient<
     * ```
     */
   get teamMember(): Prisma.TeamMemberDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.platformAdmin`: Exposes CRUD operations for the **PlatformAdmin** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlatformAdmins
+    * const platformAdmins = await prisma.platformAdmin.findMany()
+    * ```
+    */
+  get platformAdmin(): Prisma.PlatformAdminDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.analyticsEvent`: Exposes CRUD operations for the **AnalyticsEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AnalyticsEvents
+    * const analyticsEvents = await prisma.analyticsEvent.findMany()
+    * ```
+    */
+  get analyticsEvent(): Prisma.AnalyticsEventDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -801,7 +886,9 @@ export namespace Prisma {
     SkillOnUser: 'SkillOnUser',
     Project: 'Project',
     Role: 'Role',
-    TeamMember: 'TeamMember'
+    TeamMember: 'TeamMember',
+    PlatformAdmin: 'PlatformAdmin',
+    AnalyticsEvent: 'AnalyticsEvent'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -820,7 +907,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember"
+      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "platformAdmin" | "analyticsEvent"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1490,6 +1577,154 @@ export namespace Prisma {
           }
         }
       }
+      PlatformAdmin: {
+        payload: Prisma.$PlatformAdminPayload<ExtArgs>
+        fields: Prisma.PlatformAdminFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlatformAdminFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlatformAdminFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload>
+          }
+          findFirst: {
+            args: Prisma.PlatformAdminFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlatformAdminFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload>
+          }
+          findMany: {
+            args: Prisma.PlatformAdminFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload>[]
+          }
+          create: {
+            args: Prisma.PlatformAdminCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload>
+          }
+          createMany: {
+            args: Prisma.PlatformAdminCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PlatformAdminCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload>[]
+          }
+          delete: {
+            args: Prisma.PlatformAdminDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload>
+          }
+          update: {
+            args: Prisma.PlatformAdminUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlatformAdminDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlatformAdminUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PlatformAdminUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload>[]
+          }
+          upsert: {
+            args: Prisma.PlatformAdminUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlatformAdminPayload>
+          }
+          aggregate: {
+            args: Prisma.PlatformAdminAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePlatformAdmin>
+          }
+          groupBy: {
+            args: Prisma.PlatformAdminGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PlatformAdminGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlatformAdminCountArgs<ExtArgs>
+            result: $Utils.Optional<PlatformAdminCountAggregateOutputType> | number
+          }
+        }
+      }
+      AnalyticsEvent: {
+        payload: Prisma.$AnalyticsEventPayload<ExtArgs>
+        fields: Prisma.AnalyticsEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AnalyticsEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AnalyticsEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload>
+          }
+          findFirst: {
+            args: Prisma.AnalyticsEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AnalyticsEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload>
+          }
+          findMany: {
+            args: Prisma.AnalyticsEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload>[]
+          }
+          create: {
+            args: Prisma.AnalyticsEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload>
+          }
+          createMany: {
+            args: Prisma.AnalyticsEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AnalyticsEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload>[]
+          }
+          delete: {
+            args: Prisma.AnalyticsEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload>
+          }
+          update: {
+            args: Prisma.AnalyticsEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.AnalyticsEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AnalyticsEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AnalyticsEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.AnalyticsEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnalyticsEventPayload>
+          }
+          aggregate: {
+            args: Prisma.AnalyticsEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnalyticsEvent>
+          }
+          groupBy: {
+            args: Prisma.AnalyticsEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnalyticsEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AnalyticsEventCountArgs<ExtArgs>
+            result: $Utils.Optional<AnalyticsEventCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1595,6 +1830,8 @@ export namespace Prisma {
     project?: ProjectOmit
     role?: RoleOmit
     teamMember?: TeamMemberOmit
+    platformAdmin?: PlatformAdminOmit
+    analyticsEvent?: AnalyticsEventOmit
   }
 
   /* Types for Logging */
@@ -1858,8 +2095,18 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserAvgAggregateOutputType = {
+    onboardingStep: number | null
+  }
+
+  export type UserSumAggregateOutputType = {
+    onboardingStep: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -1879,6 +2126,12 @@ export namespace Prisma {
     status: $Enums.UserStatus | null
     createdAt: Date | null
     updatedAt: Date | null
+    onboardingEntryPoint: $Enums.OnboardingEntryPoint | null
+    onboardingIntent: $Enums.OnboardingIntent | null
+    onboardingStep: number | null
+    onboardingCompletedAt: Date | null
+    acceptedTermsAt: Date | null
+    community: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1898,6 +2151,12 @@ export namespace Prisma {
     status: $Enums.UserStatus | null
     createdAt: Date | null
     updatedAt: Date | null
+    onboardingEntryPoint: $Enums.OnboardingEntryPoint | null
+    onboardingIntent: $Enums.OnboardingIntent | null
+    onboardingStep: number | null
+    onboardingCompletedAt: Date | null
+    acceptedTermsAt: Date | null
+    community: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1917,9 +2176,23 @@ export namespace Prisma {
     status: number
     createdAt: number
     updatedAt: number
+    onboardingEntryPoint: number
+    onboardingIntent: number
+    onboardingStep: number
+    onboardingCompletedAt: number
+    acceptedTermsAt: number
+    community: number
     _all: number
   }
 
+
+  export type UserAvgAggregateInputType = {
+    onboardingStep?: true
+  }
+
+  export type UserSumAggregateInputType = {
+    onboardingStep?: true
+  }
 
   export type UserMinAggregateInputType = {
     id?: true
@@ -1938,6 +2211,12 @@ export namespace Prisma {
     status?: true
     createdAt?: true
     updatedAt?: true
+    onboardingEntryPoint?: true
+    onboardingIntent?: true
+    onboardingStep?: true
+    onboardingCompletedAt?: true
+    acceptedTermsAt?: true
+    community?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1957,6 +2236,12 @@ export namespace Prisma {
     status?: true
     createdAt?: true
     updatedAt?: true
+    onboardingEntryPoint?: true
+    onboardingIntent?: true
+    onboardingStep?: true
+    onboardingCompletedAt?: true
+    acceptedTermsAt?: true
+    community?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1976,6 +2261,12 @@ export namespace Prisma {
     status?: true
     createdAt?: true
     updatedAt?: true
+    onboardingEntryPoint?: true
+    onboardingIntent?: true
+    onboardingStep?: true
+    onboardingCompletedAt?: true
+    acceptedTermsAt?: true
+    community?: true
     _all?: true
   }
 
@@ -2017,6 +2308,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: UserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -2047,6 +2350,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
+    _avg?: UserAvgAggregateInputType
+    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
@@ -2068,7 +2373,15 @@ export namespace Prisma {
     status: $Enums.UserStatus
     createdAt: Date
     updatedAt: Date
+    onboardingEntryPoint: $Enums.OnboardingEntryPoint | null
+    onboardingIntent: $Enums.OnboardingIntent | null
+    onboardingStep: number
+    onboardingCompletedAt: Date | null
+    acceptedTermsAt: Date | null
+    community: string | null
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -2104,12 +2417,19 @@ export namespace Prisma {
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    onboardingEntryPoint?: boolean
+    onboardingIntent?: boolean
+    onboardingStep?: boolean
+    onboardingCompletedAt?: boolean
+    acceptedTermsAt?: boolean
+    community?: boolean
     oauthAccounts?: boolean | User$oauthAccountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     skills?: boolean | User$skillsArgs<ExtArgs>
     projectsOwned?: boolean | User$projectsOwnedArgs<ExtArgs>
     memberships?: boolean | User$membershipsArgs<ExtArgs>
     usernameHistory?: boolean | User$usernameHistoryArgs<ExtArgs>
+    platformAdmin?: boolean | User$platformAdminArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2130,6 +2450,12 @@ export namespace Prisma {
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    onboardingEntryPoint?: boolean
+    onboardingIntent?: boolean
+    onboardingStep?: boolean
+    onboardingCompletedAt?: boolean
+    acceptedTermsAt?: boolean
+    community?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2149,6 +2475,12 @@ export namespace Prisma {
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    onboardingEntryPoint?: boolean
+    onboardingIntent?: boolean
+    onboardingStep?: boolean
+    onboardingCompletedAt?: boolean
+    acceptedTermsAt?: boolean
+    community?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -2168,9 +2500,15 @@ export namespace Prisma {
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    onboardingEntryPoint?: boolean
+    onboardingIntent?: boolean
+    onboardingStep?: boolean
+    onboardingCompletedAt?: boolean
+    acceptedTermsAt?: boolean
+    community?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "emailVerifiedAt" | "username" | "passwordHash" | "displayName" | "avatarUrl" | "bio" | "about" | "location" | "websiteUrl" | "githubUsername" | "isVerifiedEmail" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "emailVerifiedAt" | "username" | "passwordHash" | "displayName" | "avatarUrl" | "bio" | "about" | "location" | "websiteUrl" | "githubUsername" | "isVerifiedEmail" | "status" | "createdAt" | "updatedAt" | "onboardingEntryPoint" | "onboardingIntent" | "onboardingStep" | "onboardingCompletedAt" | "acceptedTermsAt" | "community", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     oauthAccounts?: boolean | User$oauthAccountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
@@ -2178,6 +2516,7 @@ export namespace Prisma {
     projectsOwned?: boolean | User$projectsOwnedArgs<ExtArgs>
     memberships?: boolean | User$membershipsArgs<ExtArgs>
     usernameHistory?: boolean | User$usernameHistoryArgs<ExtArgs>
+    platformAdmin?: boolean | User$platformAdminArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2192,6 +2531,7 @@ export namespace Prisma {
       projectsOwned: Prisma.$ProjectPayload<ExtArgs>[]
       memberships: Prisma.$TeamMemberPayload<ExtArgs>[]
       usernameHistory: Prisma.$UsernameHistoryPayload<ExtArgs>[]
+      platformAdmin: Prisma.$PlatformAdminPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2210,6 +2550,12 @@ export namespace Prisma {
       status: $Enums.UserStatus
       createdAt: Date
       updatedAt: Date
+      onboardingEntryPoint: $Enums.OnboardingEntryPoint | null
+      onboardingIntent: $Enums.OnboardingIntent | null
+      onboardingStep: number
+      onboardingCompletedAt: Date | null
+      acceptedTermsAt: Date | null
+      community: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2610,6 +2956,7 @@ export namespace Prisma {
     projectsOwned<T extends User$projectsOwnedArgs<ExtArgs> = {}>(args?: Subset<T, User$projectsOwnedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     memberships<T extends User$membershipsArgs<ExtArgs> = {}>(args?: Subset<T, User$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     usernameHistory<T extends User$usernameHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$usernameHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsernameHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    platformAdmin<T extends User$platformAdminArgs<ExtArgs> = {}>(args?: Subset<T, User$platformAdminArgs<ExtArgs>>): Prisma__PlatformAdminClient<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2655,6 +3002,12 @@ export namespace Prisma {
     readonly status: FieldRef<"User", 'UserStatus'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly onboardingEntryPoint: FieldRef<"User", 'OnboardingEntryPoint'>
+    readonly onboardingIntent: FieldRef<"User", 'OnboardingIntent'>
+    readonly onboardingStep: FieldRef<"User", 'Int'>
+    readonly onboardingCompletedAt: FieldRef<"User", 'DateTime'>
+    readonly acceptedTermsAt: FieldRef<"User", 'DateTime'>
+    readonly community: FieldRef<"User", 'String'>
   }
     
 
@@ -3184,6 +3537,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UsernameHistoryScalarFieldEnum | UsernameHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * User.platformAdmin
+   */
+  export type User$platformAdminArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+    where?: PlatformAdminWhereInput
   }
 
   /**
@@ -8527,6 +8899,9 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     completedAt: Date | null
+    ipModel: $Enums.IpModel | null
+    openSourceLicense: string | null
+    ipSummary: string | null
   }
 
   export type ProjectMaxAggregateOutputType = {
@@ -8544,6 +8919,9 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     completedAt: Date | null
+    ipModel: $Enums.IpModel | null
+    openSourceLicense: string | null
+    ipSummary: string | null
   }
 
   export type ProjectCountAggregateOutputType = {
@@ -8562,6 +8940,9 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     completedAt: number
+    ipModel: number
+    openSourceLicense: number
+    ipSummary: number
     _all: number
   }
 
@@ -8581,6 +8962,9 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     completedAt?: true
+    ipModel?: true
+    openSourceLicense?: true
+    ipSummary?: true
   }
 
   export type ProjectMaxAggregateInputType = {
@@ -8598,6 +8982,9 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     completedAt?: true
+    ipModel?: true
+    openSourceLicense?: true
+    ipSummary?: true
   }
 
   export type ProjectCountAggregateInputType = {
@@ -8616,6 +9003,9 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     completedAt?: true
+    ipModel?: true
+    openSourceLicense?: true
+    ipSummary?: true
     _all?: true
   }
 
@@ -8707,6 +9097,9 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     completedAt: Date | null
+    ipModel: $Enums.IpModel
+    openSourceLicense: string | null
+    ipSummary: string | null
     _count: ProjectCountAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
     _max: ProjectMaxAggregateOutputType | null
@@ -8742,6 +9135,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     completedAt?: boolean
+    ipModel?: boolean
+    openSourceLicense?: boolean
+    ipSummary?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
     roles?: boolean | Project$rolesArgs<ExtArgs>
     members?: boolean | Project$membersArgs<ExtArgs>
@@ -8764,6 +9160,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     completedAt?: boolean
+    ipModel?: boolean
+    openSourceLicense?: boolean
+    ipSummary?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -8783,6 +9182,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     completedAt?: boolean
+    ipModel?: boolean
+    openSourceLicense?: boolean
+    ipSummary?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -8802,9 +9204,12 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     completedAt?: boolean
+    ipModel?: boolean
+    openSourceLicense?: boolean
+    ipSummary?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ownerId" | "slug" | "title" | "tagline" | "description" | "category" | "status" | "visibility" | "coverImageUrl" | "techStack" | "commitmentLevel" | "createdAt" | "updatedAt" | "completedAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ownerId" | "slug" | "title" | "tagline" | "description" | "category" | "status" | "visibility" | "coverImageUrl" | "techStack" | "commitmentLevel" | "createdAt" | "updatedAt" | "completedAt" | "ipModel" | "openSourceLicense" | "ipSummary", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     owner?: boolean | UserDefaultArgs<ExtArgs>
     roles?: boolean | Project$rolesArgs<ExtArgs>
@@ -8841,6 +9246,9 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       completedAt: Date | null
+      ipModel: $Enums.IpModel
+      openSourceLicense: string | null
+      ipSummary: string | null
     }, ExtArgs["result"]["project"]>
     composites: {}
   }
@@ -9282,6 +9690,9 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Project", 'DateTime'>
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
     readonly completedAt: FieldRef<"Project", 'DateTime'>
+    readonly ipModel: FieldRef<"Project", 'IpModel'>
+    readonly openSourceLicense: FieldRef<"Project", 'String'>
+    readonly ipSummary: FieldRef<"Project", 'String'>
   }
     
 
@@ -11946,6 +12357,2055 @@ export namespace Prisma {
 
 
   /**
+   * Model PlatformAdmin
+   */
+
+  export type AggregatePlatformAdmin = {
+    _count: PlatformAdminCountAggregateOutputType | null
+    _min: PlatformAdminMinAggregateOutputType | null
+    _max: PlatformAdminMaxAggregateOutputType | null
+  }
+
+  export type PlatformAdminMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    role: $Enums.PlatformAdminRole | null
+    createdAt: Date | null
+  }
+
+  export type PlatformAdminMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    role: $Enums.PlatformAdminRole | null
+    createdAt: Date | null
+  }
+
+  export type PlatformAdminCountAggregateOutputType = {
+    id: number
+    userId: number
+    role: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type PlatformAdminMinAggregateInputType = {
+    id?: true
+    userId?: true
+    role?: true
+    createdAt?: true
+  }
+
+  export type PlatformAdminMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    role?: true
+    createdAt?: true
+  }
+
+  export type PlatformAdminCountAggregateInputType = {
+    id?: true
+    userId?: true
+    role?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type PlatformAdminAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlatformAdmin to aggregate.
+     */
+    where?: PlatformAdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlatformAdmins to fetch.
+     */
+    orderBy?: PlatformAdminOrderByWithRelationInput | PlatformAdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlatformAdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlatformAdmins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlatformAdmins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlatformAdmins
+    **/
+    _count?: true | PlatformAdminCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlatformAdminMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlatformAdminMaxAggregateInputType
+  }
+
+  export type GetPlatformAdminAggregateType<T extends PlatformAdminAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlatformAdmin]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlatformAdmin[P]>
+      : GetScalarType<T[P], AggregatePlatformAdmin[P]>
+  }
+
+
+
+
+  export type PlatformAdminGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlatformAdminWhereInput
+    orderBy?: PlatformAdminOrderByWithAggregationInput | PlatformAdminOrderByWithAggregationInput[]
+    by: PlatformAdminScalarFieldEnum[] | PlatformAdminScalarFieldEnum
+    having?: PlatformAdminScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlatformAdminCountAggregateInputType | true
+    _min?: PlatformAdminMinAggregateInputType
+    _max?: PlatformAdminMaxAggregateInputType
+  }
+
+  export type PlatformAdminGroupByOutputType = {
+    id: string
+    userId: string
+    role: $Enums.PlatformAdminRole
+    createdAt: Date
+    _count: PlatformAdminCountAggregateOutputType | null
+    _min: PlatformAdminMinAggregateOutputType | null
+    _max: PlatformAdminMaxAggregateOutputType | null
+  }
+
+  type GetPlatformAdminGroupByPayload<T extends PlatformAdminGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlatformAdminGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlatformAdminGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlatformAdminGroupByOutputType[P]>
+            : GetScalarType<T[P], PlatformAdminGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlatformAdminSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    role?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["platformAdmin"]>
+
+  export type PlatformAdminSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    role?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["platformAdmin"]>
+
+  export type PlatformAdminSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    role?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["platformAdmin"]>
+
+  export type PlatformAdminSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    role?: boolean
+    createdAt?: boolean
+  }
+
+  export type PlatformAdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "role" | "createdAt", ExtArgs["result"]["platformAdmin"]>
+  export type PlatformAdminInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PlatformAdminIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PlatformAdminIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $PlatformAdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlatformAdmin"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      role: $Enums.PlatformAdminRole
+      createdAt: Date
+    }, ExtArgs["result"]["platformAdmin"]>
+    composites: {}
+  }
+
+  type PlatformAdminGetPayload<S extends boolean | null | undefined | PlatformAdminDefaultArgs> = $Result.GetResult<Prisma.$PlatformAdminPayload, S>
+
+  type PlatformAdminCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PlatformAdminFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PlatformAdminCountAggregateInputType | true
+    }
+
+  export interface PlatformAdminDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlatformAdmin'], meta: { name: 'PlatformAdmin' } }
+    /**
+     * Find zero or one PlatformAdmin that matches the filter.
+     * @param {PlatformAdminFindUniqueArgs} args - Arguments to find a PlatformAdmin
+     * @example
+     * // Get one PlatformAdmin
+     * const platformAdmin = await prisma.platformAdmin.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PlatformAdminFindUniqueArgs>(args: SelectSubset<T, PlatformAdminFindUniqueArgs<ExtArgs>>): Prisma__PlatformAdminClient<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PlatformAdmin that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PlatformAdminFindUniqueOrThrowArgs} args - Arguments to find a PlatformAdmin
+     * @example
+     * // Get one PlatformAdmin
+     * const platformAdmin = await prisma.platformAdmin.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PlatformAdminFindUniqueOrThrowArgs>(args: SelectSubset<T, PlatformAdminFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlatformAdminClient<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PlatformAdmin that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlatformAdminFindFirstArgs} args - Arguments to find a PlatformAdmin
+     * @example
+     * // Get one PlatformAdmin
+     * const platformAdmin = await prisma.platformAdmin.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PlatformAdminFindFirstArgs>(args?: SelectSubset<T, PlatformAdminFindFirstArgs<ExtArgs>>): Prisma__PlatformAdminClient<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PlatformAdmin that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlatformAdminFindFirstOrThrowArgs} args - Arguments to find a PlatformAdmin
+     * @example
+     * // Get one PlatformAdmin
+     * const platformAdmin = await prisma.platformAdmin.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PlatformAdminFindFirstOrThrowArgs>(args?: SelectSubset<T, PlatformAdminFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlatformAdminClient<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PlatformAdmins that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlatformAdminFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlatformAdmins
+     * const platformAdmins = await prisma.platformAdmin.findMany()
+     * 
+     * // Get first 10 PlatformAdmins
+     * const platformAdmins = await prisma.platformAdmin.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const platformAdminWithIdOnly = await prisma.platformAdmin.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PlatformAdminFindManyArgs>(args?: SelectSubset<T, PlatformAdminFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PlatformAdmin.
+     * @param {PlatformAdminCreateArgs} args - Arguments to create a PlatformAdmin.
+     * @example
+     * // Create one PlatformAdmin
+     * const PlatformAdmin = await prisma.platformAdmin.create({
+     *   data: {
+     *     // ... data to create a PlatformAdmin
+     *   }
+     * })
+     * 
+     */
+    create<T extends PlatformAdminCreateArgs>(args: SelectSubset<T, PlatformAdminCreateArgs<ExtArgs>>): Prisma__PlatformAdminClient<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PlatformAdmins.
+     * @param {PlatformAdminCreateManyArgs} args - Arguments to create many PlatformAdmins.
+     * @example
+     * // Create many PlatformAdmins
+     * const platformAdmin = await prisma.platformAdmin.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PlatformAdminCreateManyArgs>(args?: SelectSubset<T, PlatformAdminCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PlatformAdmins and returns the data saved in the database.
+     * @param {PlatformAdminCreateManyAndReturnArgs} args - Arguments to create many PlatformAdmins.
+     * @example
+     * // Create many PlatformAdmins
+     * const platformAdmin = await prisma.platformAdmin.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PlatformAdmins and only return the `id`
+     * const platformAdminWithIdOnly = await prisma.platformAdmin.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PlatformAdminCreateManyAndReturnArgs>(args?: SelectSubset<T, PlatformAdminCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PlatformAdmin.
+     * @param {PlatformAdminDeleteArgs} args - Arguments to delete one PlatformAdmin.
+     * @example
+     * // Delete one PlatformAdmin
+     * const PlatformAdmin = await prisma.platformAdmin.delete({
+     *   where: {
+     *     // ... filter to delete one PlatformAdmin
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PlatformAdminDeleteArgs>(args: SelectSubset<T, PlatformAdminDeleteArgs<ExtArgs>>): Prisma__PlatformAdminClient<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PlatformAdmin.
+     * @param {PlatformAdminUpdateArgs} args - Arguments to update one PlatformAdmin.
+     * @example
+     * // Update one PlatformAdmin
+     * const platformAdmin = await prisma.platformAdmin.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PlatformAdminUpdateArgs>(args: SelectSubset<T, PlatformAdminUpdateArgs<ExtArgs>>): Prisma__PlatformAdminClient<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PlatformAdmins.
+     * @param {PlatformAdminDeleteManyArgs} args - Arguments to filter PlatformAdmins to delete.
+     * @example
+     * // Delete a few PlatformAdmins
+     * const { count } = await prisma.platformAdmin.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PlatformAdminDeleteManyArgs>(args?: SelectSubset<T, PlatformAdminDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlatformAdmins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlatformAdminUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlatformAdmins
+     * const platformAdmin = await prisma.platformAdmin.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PlatformAdminUpdateManyArgs>(args: SelectSubset<T, PlatformAdminUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlatformAdmins and returns the data updated in the database.
+     * @param {PlatformAdminUpdateManyAndReturnArgs} args - Arguments to update many PlatformAdmins.
+     * @example
+     * // Update many PlatformAdmins
+     * const platformAdmin = await prisma.platformAdmin.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PlatformAdmins and only return the `id`
+     * const platformAdminWithIdOnly = await prisma.platformAdmin.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PlatformAdminUpdateManyAndReturnArgs>(args: SelectSubset<T, PlatformAdminUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PlatformAdmin.
+     * @param {PlatformAdminUpsertArgs} args - Arguments to update or create a PlatformAdmin.
+     * @example
+     * // Update or create a PlatformAdmin
+     * const platformAdmin = await prisma.platformAdmin.upsert({
+     *   create: {
+     *     // ... data to create a PlatformAdmin
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlatformAdmin we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PlatformAdminUpsertArgs>(args: SelectSubset<T, PlatformAdminUpsertArgs<ExtArgs>>): Prisma__PlatformAdminClient<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PlatformAdmins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlatformAdminCountArgs} args - Arguments to filter PlatformAdmins to count.
+     * @example
+     * // Count the number of PlatformAdmins
+     * const count = await prisma.platformAdmin.count({
+     *   where: {
+     *     // ... the filter for the PlatformAdmins we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlatformAdminCountArgs>(
+      args?: Subset<T, PlatformAdminCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlatformAdminCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlatformAdmin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlatformAdminAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlatformAdminAggregateArgs>(args: Subset<T, PlatformAdminAggregateArgs>): Prisma.PrismaPromise<GetPlatformAdminAggregateType<T>>
+
+    /**
+     * Group by PlatformAdmin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlatformAdminGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlatformAdminGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlatformAdminGroupByArgs['orderBy'] }
+        : { orderBy?: PlatformAdminGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlatformAdminGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlatformAdminGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlatformAdmin model
+   */
+  readonly fields: PlatformAdminFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlatformAdmin.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlatformAdminClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PlatformAdmin model
+   */
+  interface PlatformAdminFieldRefs {
+    readonly id: FieldRef<"PlatformAdmin", 'String'>
+    readonly userId: FieldRef<"PlatformAdmin", 'String'>
+    readonly role: FieldRef<"PlatformAdmin", 'PlatformAdminRole'>
+    readonly createdAt: FieldRef<"PlatformAdmin", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PlatformAdmin findUnique
+   */
+  export type PlatformAdminFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+    /**
+     * Filter, which PlatformAdmin to fetch.
+     */
+    where: PlatformAdminWhereUniqueInput
+  }
+
+  /**
+   * PlatformAdmin findUniqueOrThrow
+   */
+  export type PlatformAdminFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+    /**
+     * Filter, which PlatformAdmin to fetch.
+     */
+    where: PlatformAdminWhereUniqueInput
+  }
+
+  /**
+   * PlatformAdmin findFirst
+   */
+  export type PlatformAdminFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+    /**
+     * Filter, which PlatformAdmin to fetch.
+     */
+    where?: PlatformAdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlatformAdmins to fetch.
+     */
+    orderBy?: PlatformAdminOrderByWithRelationInput | PlatformAdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlatformAdmins.
+     */
+    cursor?: PlatformAdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlatformAdmins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlatformAdmins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlatformAdmins.
+     */
+    distinct?: PlatformAdminScalarFieldEnum | PlatformAdminScalarFieldEnum[]
+  }
+
+  /**
+   * PlatformAdmin findFirstOrThrow
+   */
+  export type PlatformAdminFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+    /**
+     * Filter, which PlatformAdmin to fetch.
+     */
+    where?: PlatformAdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlatformAdmins to fetch.
+     */
+    orderBy?: PlatformAdminOrderByWithRelationInput | PlatformAdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlatformAdmins.
+     */
+    cursor?: PlatformAdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlatformAdmins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlatformAdmins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlatformAdmins.
+     */
+    distinct?: PlatformAdminScalarFieldEnum | PlatformAdminScalarFieldEnum[]
+  }
+
+  /**
+   * PlatformAdmin findMany
+   */
+  export type PlatformAdminFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+    /**
+     * Filter, which PlatformAdmins to fetch.
+     */
+    where?: PlatformAdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlatformAdmins to fetch.
+     */
+    orderBy?: PlatformAdminOrderByWithRelationInput | PlatformAdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlatformAdmins.
+     */
+    cursor?: PlatformAdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlatformAdmins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlatformAdmins.
+     */
+    skip?: number
+    distinct?: PlatformAdminScalarFieldEnum | PlatformAdminScalarFieldEnum[]
+  }
+
+  /**
+   * PlatformAdmin create
+   */
+  export type PlatformAdminCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PlatformAdmin.
+     */
+    data: XOR<PlatformAdminCreateInput, PlatformAdminUncheckedCreateInput>
+  }
+
+  /**
+   * PlatformAdmin createMany
+   */
+  export type PlatformAdminCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlatformAdmins.
+     */
+    data: PlatformAdminCreateManyInput | PlatformAdminCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PlatformAdmin createManyAndReturn
+   */
+  export type PlatformAdminCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * The data used to create many PlatformAdmins.
+     */
+    data: PlatformAdminCreateManyInput | PlatformAdminCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PlatformAdmin update
+   */
+  export type PlatformAdminUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PlatformAdmin.
+     */
+    data: XOR<PlatformAdminUpdateInput, PlatformAdminUncheckedUpdateInput>
+    /**
+     * Choose, which PlatformAdmin to update.
+     */
+    where: PlatformAdminWhereUniqueInput
+  }
+
+  /**
+   * PlatformAdmin updateMany
+   */
+  export type PlatformAdminUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlatformAdmins.
+     */
+    data: XOR<PlatformAdminUpdateManyMutationInput, PlatformAdminUncheckedUpdateManyInput>
+    /**
+     * Filter which PlatformAdmins to update
+     */
+    where?: PlatformAdminWhereInput
+    /**
+     * Limit how many PlatformAdmins to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PlatformAdmin updateManyAndReturn
+   */
+  export type PlatformAdminUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * The data used to update PlatformAdmins.
+     */
+    data: XOR<PlatformAdminUpdateManyMutationInput, PlatformAdminUncheckedUpdateManyInput>
+    /**
+     * Filter which PlatformAdmins to update
+     */
+    where?: PlatformAdminWhereInput
+    /**
+     * Limit how many PlatformAdmins to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PlatformAdmin upsert
+   */
+  export type PlatformAdminUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PlatformAdmin to update in case it exists.
+     */
+    where: PlatformAdminWhereUniqueInput
+    /**
+     * In case the PlatformAdmin found by the `where` argument doesn't exist, create a new PlatformAdmin with this data.
+     */
+    create: XOR<PlatformAdminCreateInput, PlatformAdminUncheckedCreateInput>
+    /**
+     * In case the PlatformAdmin was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlatformAdminUpdateInput, PlatformAdminUncheckedUpdateInput>
+  }
+
+  /**
+   * PlatformAdmin delete
+   */
+  export type PlatformAdminDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+    /**
+     * Filter which PlatformAdmin to delete.
+     */
+    where: PlatformAdminWhereUniqueInput
+  }
+
+  /**
+   * PlatformAdmin deleteMany
+   */
+  export type PlatformAdminDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlatformAdmins to delete
+     */
+    where?: PlatformAdminWhereInput
+    /**
+     * Limit how many PlatformAdmins to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PlatformAdmin without action
+   */
+  export type PlatformAdminDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlatformAdmin
+     */
+    select?: PlatformAdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlatformAdmin
+     */
+    omit?: PlatformAdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlatformAdminInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AnalyticsEvent
+   */
+
+  export type AggregateAnalyticsEvent = {
+    _count: AnalyticsEventCountAggregateOutputType | null
+    _min: AnalyticsEventMinAggregateOutputType | null
+    _max: AnalyticsEventMaxAggregateOutputType | null
+  }
+
+  export type AnalyticsEventMinAggregateOutputType = {
+    id: string | null
+    event: string | null
+    userId: string | null
+    projectId: string | null
+    createdAt: Date | null
+  }
+
+  export type AnalyticsEventMaxAggregateOutputType = {
+    id: string | null
+    event: string | null
+    userId: string | null
+    projectId: string | null
+    createdAt: Date | null
+  }
+
+  export type AnalyticsEventCountAggregateOutputType = {
+    id: number
+    event: number
+    userId: number
+    projectId: number
+    props: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AnalyticsEventMinAggregateInputType = {
+    id?: true
+    event?: true
+    userId?: true
+    projectId?: true
+    createdAt?: true
+  }
+
+  export type AnalyticsEventMaxAggregateInputType = {
+    id?: true
+    event?: true
+    userId?: true
+    projectId?: true
+    createdAt?: true
+  }
+
+  export type AnalyticsEventCountAggregateInputType = {
+    id?: true
+    event?: true
+    userId?: true
+    projectId?: true
+    props?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AnalyticsEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnalyticsEvent to aggregate.
+     */
+    where?: AnalyticsEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnalyticsEvents to fetch.
+     */
+    orderBy?: AnalyticsEventOrderByWithRelationInput | AnalyticsEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AnalyticsEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnalyticsEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnalyticsEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AnalyticsEvents
+    **/
+    _count?: true | AnalyticsEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnalyticsEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnalyticsEventMaxAggregateInputType
+  }
+
+  export type GetAnalyticsEventAggregateType<T extends AnalyticsEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnalyticsEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnalyticsEvent[P]>
+      : GetScalarType<T[P], AggregateAnalyticsEvent[P]>
+  }
+
+
+
+
+  export type AnalyticsEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnalyticsEventWhereInput
+    orderBy?: AnalyticsEventOrderByWithAggregationInput | AnalyticsEventOrderByWithAggregationInput[]
+    by: AnalyticsEventScalarFieldEnum[] | AnalyticsEventScalarFieldEnum
+    having?: AnalyticsEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnalyticsEventCountAggregateInputType | true
+    _min?: AnalyticsEventMinAggregateInputType
+    _max?: AnalyticsEventMaxAggregateInputType
+  }
+
+  export type AnalyticsEventGroupByOutputType = {
+    id: string
+    event: string
+    userId: string | null
+    projectId: string | null
+    props: JsonValue | null
+    createdAt: Date
+    _count: AnalyticsEventCountAggregateOutputType | null
+    _min: AnalyticsEventMinAggregateOutputType | null
+    _max: AnalyticsEventMaxAggregateOutputType | null
+  }
+
+  type GetAnalyticsEventGroupByPayload<T extends AnalyticsEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnalyticsEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnalyticsEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnalyticsEventGroupByOutputType[P]>
+            : GetScalarType<T[P], AnalyticsEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AnalyticsEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    event?: boolean
+    userId?: boolean
+    projectId?: boolean
+    props?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["analyticsEvent"]>
+
+  export type AnalyticsEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    event?: boolean
+    userId?: boolean
+    projectId?: boolean
+    props?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["analyticsEvent"]>
+
+  export type AnalyticsEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    event?: boolean
+    userId?: boolean
+    projectId?: boolean
+    props?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["analyticsEvent"]>
+
+  export type AnalyticsEventSelectScalar = {
+    id?: boolean
+    event?: boolean
+    userId?: boolean
+    projectId?: boolean
+    props?: boolean
+    createdAt?: boolean
+  }
+
+  export type AnalyticsEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "event" | "userId" | "projectId" | "props" | "createdAt", ExtArgs["result"]["analyticsEvent"]>
+
+  export type $AnalyticsEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AnalyticsEvent"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      event: string
+      userId: string | null
+      projectId: string | null
+      props: Prisma.JsonValue | null
+      createdAt: Date
+    }, ExtArgs["result"]["analyticsEvent"]>
+    composites: {}
+  }
+
+  type AnalyticsEventGetPayload<S extends boolean | null | undefined | AnalyticsEventDefaultArgs> = $Result.GetResult<Prisma.$AnalyticsEventPayload, S>
+
+  type AnalyticsEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AnalyticsEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AnalyticsEventCountAggregateInputType | true
+    }
+
+  export interface AnalyticsEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AnalyticsEvent'], meta: { name: 'AnalyticsEvent' } }
+    /**
+     * Find zero or one AnalyticsEvent that matches the filter.
+     * @param {AnalyticsEventFindUniqueArgs} args - Arguments to find a AnalyticsEvent
+     * @example
+     * // Get one AnalyticsEvent
+     * const analyticsEvent = await prisma.analyticsEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AnalyticsEventFindUniqueArgs>(args: SelectSubset<T, AnalyticsEventFindUniqueArgs<ExtArgs>>): Prisma__AnalyticsEventClient<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AnalyticsEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AnalyticsEventFindUniqueOrThrowArgs} args - Arguments to find a AnalyticsEvent
+     * @example
+     * // Get one AnalyticsEvent
+     * const analyticsEvent = await prisma.analyticsEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AnalyticsEventFindUniqueOrThrowArgs>(args: SelectSubset<T, AnalyticsEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AnalyticsEventClient<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnalyticsEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsEventFindFirstArgs} args - Arguments to find a AnalyticsEvent
+     * @example
+     * // Get one AnalyticsEvent
+     * const analyticsEvent = await prisma.analyticsEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AnalyticsEventFindFirstArgs>(args?: SelectSubset<T, AnalyticsEventFindFirstArgs<ExtArgs>>): Prisma__AnalyticsEventClient<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnalyticsEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsEventFindFirstOrThrowArgs} args - Arguments to find a AnalyticsEvent
+     * @example
+     * // Get one AnalyticsEvent
+     * const analyticsEvent = await prisma.analyticsEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AnalyticsEventFindFirstOrThrowArgs>(args?: SelectSubset<T, AnalyticsEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__AnalyticsEventClient<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AnalyticsEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AnalyticsEvents
+     * const analyticsEvents = await prisma.analyticsEvent.findMany()
+     * 
+     * // Get first 10 AnalyticsEvents
+     * const analyticsEvents = await prisma.analyticsEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const analyticsEventWithIdOnly = await prisma.analyticsEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AnalyticsEventFindManyArgs>(args?: SelectSubset<T, AnalyticsEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AnalyticsEvent.
+     * @param {AnalyticsEventCreateArgs} args - Arguments to create a AnalyticsEvent.
+     * @example
+     * // Create one AnalyticsEvent
+     * const AnalyticsEvent = await prisma.analyticsEvent.create({
+     *   data: {
+     *     // ... data to create a AnalyticsEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends AnalyticsEventCreateArgs>(args: SelectSubset<T, AnalyticsEventCreateArgs<ExtArgs>>): Prisma__AnalyticsEventClient<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AnalyticsEvents.
+     * @param {AnalyticsEventCreateManyArgs} args - Arguments to create many AnalyticsEvents.
+     * @example
+     * // Create many AnalyticsEvents
+     * const analyticsEvent = await prisma.analyticsEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AnalyticsEventCreateManyArgs>(args?: SelectSubset<T, AnalyticsEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AnalyticsEvents and returns the data saved in the database.
+     * @param {AnalyticsEventCreateManyAndReturnArgs} args - Arguments to create many AnalyticsEvents.
+     * @example
+     * // Create many AnalyticsEvents
+     * const analyticsEvent = await prisma.analyticsEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AnalyticsEvents and only return the `id`
+     * const analyticsEventWithIdOnly = await prisma.analyticsEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AnalyticsEventCreateManyAndReturnArgs>(args?: SelectSubset<T, AnalyticsEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AnalyticsEvent.
+     * @param {AnalyticsEventDeleteArgs} args - Arguments to delete one AnalyticsEvent.
+     * @example
+     * // Delete one AnalyticsEvent
+     * const AnalyticsEvent = await prisma.analyticsEvent.delete({
+     *   where: {
+     *     // ... filter to delete one AnalyticsEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AnalyticsEventDeleteArgs>(args: SelectSubset<T, AnalyticsEventDeleteArgs<ExtArgs>>): Prisma__AnalyticsEventClient<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AnalyticsEvent.
+     * @param {AnalyticsEventUpdateArgs} args - Arguments to update one AnalyticsEvent.
+     * @example
+     * // Update one AnalyticsEvent
+     * const analyticsEvent = await prisma.analyticsEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AnalyticsEventUpdateArgs>(args: SelectSubset<T, AnalyticsEventUpdateArgs<ExtArgs>>): Prisma__AnalyticsEventClient<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AnalyticsEvents.
+     * @param {AnalyticsEventDeleteManyArgs} args - Arguments to filter AnalyticsEvents to delete.
+     * @example
+     * // Delete a few AnalyticsEvents
+     * const { count } = await prisma.analyticsEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AnalyticsEventDeleteManyArgs>(args?: SelectSubset<T, AnalyticsEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnalyticsEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AnalyticsEvents
+     * const analyticsEvent = await prisma.analyticsEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AnalyticsEventUpdateManyArgs>(args: SelectSubset<T, AnalyticsEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnalyticsEvents and returns the data updated in the database.
+     * @param {AnalyticsEventUpdateManyAndReturnArgs} args - Arguments to update many AnalyticsEvents.
+     * @example
+     * // Update many AnalyticsEvents
+     * const analyticsEvent = await prisma.analyticsEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AnalyticsEvents and only return the `id`
+     * const analyticsEventWithIdOnly = await prisma.analyticsEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AnalyticsEventUpdateManyAndReturnArgs>(args: SelectSubset<T, AnalyticsEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AnalyticsEvent.
+     * @param {AnalyticsEventUpsertArgs} args - Arguments to update or create a AnalyticsEvent.
+     * @example
+     * // Update or create a AnalyticsEvent
+     * const analyticsEvent = await prisma.analyticsEvent.upsert({
+     *   create: {
+     *     // ... data to create a AnalyticsEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AnalyticsEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AnalyticsEventUpsertArgs>(args: SelectSubset<T, AnalyticsEventUpsertArgs<ExtArgs>>): Prisma__AnalyticsEventClient<$Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AnalyticsEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsEventCountArgs} args - Arguments to filter AnalyticsEvents to count.
+     * @example
+     * // Count the number of AnalyticsEvents
+     * const count = await prisma.analyticsEvent.count({
+     *   where: {
+     *     // ... the filter for the AnalyticsEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends AnalyticsEventCountArgs>(
+      args?: Subset<T, AnalyticsEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnalyticsEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AnalyticsEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnalyticsEventAggregateArgs>(args: Subset<T, AnalyticsEventAggregateArgs>): Prisma.PrismaPromise<GetAnalyticsEventAggregateType<T>>
+
+    /**
+     * Group by AnalyticsEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnalyticsEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AnalyticsEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AnalyticsEventGroupByArgs['orderBy'] }
+        : { orderBy?: AnalyticsEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AnalyticsEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnalyticsEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AnalyticsEvent model
+   */
+  readonly fields: AnalyticsEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AnalyticsEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AnalyticsEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AnalyticsEvent model
+   */
+  interface AnalyticsEventFieldRefs {
+    readonly id: FieldRef<"AnalyticsEvent", 'String'>
+    readonly event: FieldRef<"AnalyticsEvent", 'String'>
+    readonly userId: FieldRef<"AnalyticsEvent", 'String'>
+    readonly projectId: FieldRef<"AnalyticsEvent", 'String'>
+    readonly props: FieldRef<"AnalyticsEvent", 'Json'>
+    readonly createdAt: FieldRef<"AnalyticsEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AnalyticsEvent findUnique
+   */
+  export type AnalyticsEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * Filter, which AnalyticsEvent to fetch.
+     */
+    where: AnalyticsEventWhereUniqueInput
+  }
+
+  /**
+   * AnalyticsEvent findUniqueOrThrow
+   */
+  export type AnalyticsEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * Filter, which AnalyticsEvent to fetch.
+     */
+    where: AnalyticsEventWhereUniqueInput
+  }
+
+  /**
+   * AnalyticsEvent findFirst
+   */
+  export type AnalyticsEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * Filter, which AnalyticsEvent to fetch.
+     */
+    where?: AnalyticsEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnalyticsEvents to fetch.
+     */
+    orderBy?: AnalyticsEventOrderByWithRelationInput | AnalyticsEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnalyticsEvents.
+     */
+    cursor?: AnalyticsEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnalyticsEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnalyticsEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnalyticsEvents.
+     */
+    distinct?: AnalyticsEventScalarFieldEnum | AnalyticsEventScalarFieldEnum[]
+  }
+
+  /**
+   * AnalyticsEvent findFirstOrThrow
+   */
+  export type AnalyticsEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * Filter, which AnalyticsEvent to fetch.
+     */
+    where?: AnalyticsEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnalyticsEvents to fetch.
+     */
+    orderBy?: AnalyticsEventOrderByWithRelationInput | AnalyticsEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnalyticsEvents.
+     */
+    cursor?: AnalyticsEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnalyticsEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnalyticsEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnalyticsEvents.
+     */
+    distinct?: AnalyticsEventScalarFieldEnum | AnalyticsEventScalarFieldEnum[]
+  }
+
+  /**
+   * AnalyticsEvent findMany
+   */
+  export type AnalyticsEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * Filter, which AnalyticsEvents to fetch.
+     */
+    where?: AnalyticsEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnalyticsEvents to fetch.
+     */
+    orderBy?: AnalyticsEventOrderByWithRelationInput | AnalyticsEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AnalyticsEvents.
+     */
+    cursor?: AnalyticsEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnalyticsEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnalyticsEvents.
+     */
+    skip?: number
+    distinct?: AnalyticsEventScalarFieldEnum | AnalyticsEventScalarFieldEnum[]
+  }
+
+  /**
+   * AnalyticsEvent create
+   */
+  export type AnalyticsEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AnalyticsEvent.
+     */
+    data: XOR<AnalyticsEventCreateInput, AnalyticsEventUncheckedCreateInput>
+  }
+
+  /**
+   * AnalyticsEvent createMany
+   */
+  export type AnalyticsEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AnalyticsEvents.
+     */
+    data: AnalyticsEventCreateManyInput | AnalyticsEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AnalyticsEvent createManyAndReturn
+   */
+  export type AnalyticsEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many AnalyticsEvents.
+     */
+    data: AnalyticsEventCreateManyInput | AnalyticsEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AnalyticsEvent update
+   */
+  export type AnalyticsEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AnalyticsEvent.
+     */
+    data: XOR<AnalyticsEventUpdateInput, AnalyticsEventUncheckedUpdateInput>
+    /**
+     * Choose, which AnalyticsEvent to update.
+     */
+    where: AnalyticsEventWhereUniqueInput
+  }
+
+  /**
+   * AnalyticsEvent updateMany
+   */
+  export type AnalyticsEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AnalyticsEvents.
+     */
+    data: XOR<AnalyticsEventUpdateManyMutationInput, AnalyticsEventUncheckedUpdateManyInput>
+    /**
+     * Filter which AnalyticsEvents to update
+     */
+    where?: AnalyticsEventWhereInput
+    /**
+     * Limit how many AnalyticsEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnalyticsEvent updateManyAndReturn
+   */
+  export type AnalyticsEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * The data used to update AnalyticsEvents.
+     */
+    data: XOR<AnalyticsEventUpdateManyMutationInput, AnalyticsEventUncheckedUpdateManyInput>
+    /**
+     * Filter which AnalyticsEvents to update
+     */
+    where?: AnalyticsEventWhereInput
+    /**
+     * Limit how many AnalyticsEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnalyticsEvent upsert
+   */
+  export type AnalyticsEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AnalyticsEvent to update in case it exists.
+     */
+    where: AnalyticsEventWhereUniqueInput
+    /**
+     * In case the AnalyticsEvent found by the `where` argument doesn't exist, create a new AnalyticsEvent with this data.
+     */
+    create: XOR<AnalyticsEventCreateInput, AnalyticsEventUncheckedCreateInput>
+    /**
+     * In case the AnalyticsEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AnalyticsEventUpdateInput, AnalyticsEventUncheckedUpdateInput>
+  }
+
+  /**
+   * AnalyticsEvent delete
+   */
+  export type AnalyticsEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+    /**
+     * Filter which AnalyticsEvent to delete.
+     */
+    where: AnalyticsEventWhereUniqueInput
+  }
+
+  /**
+   * AnalyticsEvent deleteMany
+   */
+  export type AnalyticsEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnalyticsEvents to delete
+     */
+    where?: AnalyticsEventWhereInput
+    /**
+     * Limit how many AnalyticsEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnalyticsEvent without action
+   */
+  export type AnalyticsEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnalyticsEvent
+     */
+    select?: AnalyticsEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnalyticsEvent
+     */
+    omit?: AnalyticsEventOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -11975,7 +14435,13 @@ export namespace Prisma {
     isVerifiedEmail: 'isVerifiedEmail',
     status: 'status',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    onboardingEntryPoint: 'onboardingEntryPoint',
+    onboardingIntent: 'onboardingIntent',
+    onboardingStep: 'onboardingStep',
+    onboardingCompletedAt: 'onboardingCompletedAt',
+    acceptedTermsAt: 'acceptedTermsAt',
+    community: 'community'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -12050,7 +14516,10 @@ export namespace Prisma {
     commitmentLevel: 'commitmentLevel',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    completedAt: 'completedAt'
+    completedAt: 'completedAt',
+    ipModel: 'ipModel',
+    openSourceLicense: 'openSourceLicense',
+    ipSummary: 'ipSummary'
   };
 
   export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
@@ -12081,12 +14550,42 @@ export namespace Prisma {
   export type TeamMemberScalarFieldEnum = (typeof TeamMemberScalarFieldEnum)[keyof typeof TeamMemberScalarFieldEnum]
 
 
+  export const PlatformAdminScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    role: 'role',
+    createdAt: 'createdAt'
+  };
+
+  export type PlatformAdminScalarFieldEnum = (typeof PlatformAdminScalarFieldEnum)[keyof typeof PlatformAdminScalarFieldEnum]
+
+
+  export const AnalyticsEventScalarFieldEnum: {
+    id: 'id',
+    event: 'event',
+    userId: 'userId',
+    projectId: 'projectId',
+    props: 'props',
+    createdAt: 'createdAt'
+  };
+
+  export type AnalyticsEventScalarFieldEnum = (typeof AnalyticsEventScalarFieldEnum)[keyof typeof AnalyticsEventScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -12103,6 +14602,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -12160,6 +14668,48 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'OnboardingEntryPoint'
+   */
+  export type EnumOnboardingEntryPointFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnboardingEntryPoint'>
+    
+
+
+  /**
+   * Reference to a field of type 'OnboardingEntryPoint[]'
+   */
+  export type ListEnumOnboardingEntryPointFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnboardingEntryPoint[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'OnboardingIntent'
+   */
+  export type EnumOnboardingIntentFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnboardingIntent'>
+    
+
+
+  /**
+   * Reference to a field of type 'OnboardingIntent[]'
+   */
+  export type ListEnumOnboardingIntentFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnboardingIntent[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'SkillLevel'
    */
   export type EnumSkillLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SkillLevel'>
@@ -12202,6 +14752,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'IpModel'
+   */
+  export type EnumIpModelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IpModel'>
+    
+
+
+  /**
+   * Reference to a field of type 'IpModel[]'
+   */
+  export type ListEnumIpModelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IpModel[]'>
+    
+
+
+  /**
    * Reference to a field of type 'PermissionLevel'
    */
   export type EnumPermissionLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PermissionLevel'>
@@ -12230,16 +14794,44 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'PlatformAdminRole'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type EnumPlatformAdminRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlatformAdminRole'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'PlatformAdminRole[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListEnumPlatformAdminRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlatformAdminRole[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -12266,12 +14858,19 @@ export namespace Prisma {
     status?: EnumUserStatusFilter<"User"> | $Enums.UserStatus
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    onboardingEntryPoint?: EnumOnboardingEntryPointNullableFilter<"User"> | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: EnumOnboardingIntentNullableFilter<"User"> | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFilter<"User"> | number
+    onboardingCompletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    acceptedTermsAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    community?: StringNullableFilter<"User"> | string | null
     oauthAccounts?: OAuthAccountListRelationFilter
     sessions?: SessionListRelationFilter
     skills?: SkillOnUserListRelationFilter
     projectsOwned?: ProjectListRelationFilter
     memberships?: TeamMemberListRelationFilter
     usernameHistory?: UsernameHistoryListRelationFilter
+    platformAdmin?: XOR<PlatformAdminNullableScalarRelationFilter, PlatformAdminWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -12291,12 +14890,19 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    onboardingEntryPoint?: SortOrderInput | SortOrder
+    onboardingIntent?: SortOrderInput | SortOrder
+    onboardingStep?: SortOrder
+    onboardingCompletedAt?: SortOrderInput | SortOrder
+    acceptedTermsAt?: SortOrderInput | SortOrder
+    community?: SortOrderInput | SortOrder
     oauthAccounts?: OAuthAccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
     skills?: SkillOnUserOrderByRelationAggregateInput
     projectsOwned?: ProjectOrderByRelationAggregateInput
     memberships?: TeamMemberOrderByRelationAggregateInput
     usernameHistory?: UsernameHistoryOrderByRelationAggregateInput
+    platformAdmin?: PlatformAdminOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -12319,12 +14925,19 @@ export namespace Prisma {
     status?: EnumUserStatusFilter<"User"> | $Enums.UserStatus
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    onboardingEntryPoint?: EnumOnboardingEntryPointNullableFilter<"User"> | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: EnumOnboardingIntentNullableFilter<"User"> | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFilter<"User"> | number
+    onboardingCompletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    acceptedTermsAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    community?: StringNullableFilter<"User"> | string | null
     oauthAccounts?: OAuthAccountListRelationFilter
     sessions?: SessionListRelationFilter
     skills?: SkillOnUserListRelationFilter
     projectsOwned?: ProjectListRelationFilter
     memberships?: TeamMemberListRelationFilter
     usernameHistory?: UsernameHistoryListRelationFilter
+    platformAdmin?: XOR<PlatformAdminNullableScalarRelationFilter, PlatformAdminWhereInput> | null
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -12344,9 +14957,17 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    onboardingEntryPoint?: SortOrderInput | SortOrder
+    onboardingIntent?: SortOrderInput | SortOrder
+    onboardingStep?: SortOrder
+    onboardingCompletedAt?: SortOrderInput | SortOrder
+    acceptedTermsAt?: SortOrderInput | SortOrder
+    community?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
+    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
+    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
@@ -12369,6 +14990,12 @@ export namespace Prisma {
     status?: EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    onboardingEntryPoint?: EnumOnboardingEntryPointNullableWithAggregatesFilter<"User"> | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: EnumOnboardingIntentNullableWithAggregatesFilter<"User"> | $Enums.OnboardingIntent | null
+    onboardingStep?: IntWithAggregatesFilter<"User"> | number
+    onboardingCompletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    acceptedTermsAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    community?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type UsernameHistoryWhereInput = {
@@ -12665,6 +15292,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     completedAt?: DateTimeNullableFilter<"Project"> | Date | string | null
+    ipModel?: EnumIpModelFilter<"Project"> | $Enums.IpModel
+    openSourceLicense?: StringNullableFilter<"Project"> | string | null
+    ipSummary?: StringNullableFilter<"Project"> | string | null
     owner?: XOR<UserScalarRelationFilter, UserWhereInput>
     roles?: RoleListRelationFilter
     members?: TeamMemberListRelationFilter
@@ -12686,6 +15316,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     completedAt?: SortOrderInput | SortOrder
+    ipModel?: SortOrder
+    openSourceLicense?: SortOrderInput | SortOrder
+    ipSummary?: SortOrderInput | SortOrder
     owner?: UserOrderByWithRelationInput
     roles?: RoleOrderByRelationAggregateInput
     members?: TeamMemberOrderByRelationAggregateInput
@@ -12710,6 +15343,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     completedAt?: DateTimeNullableFilter<"Project"> | Date | string | null
+    ipModel?: EnumIpModelFilter<"Project"> | $Enums.IpModel
+    openSourceLicense?: StringNullableFilter<"Project"> | string | null
+    ipSummary?: StringNullableFilter<"Project"> | string | null
     owner?: XOR<UserScalarRelationFilter, UserWhereInput>
     roles?: RoleListRelationFilter
     members?: TeamMemberListRelationFilter
@@ -12731,6 +15367,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     completedAt?: SortOrderInput | SortOrder
+    ipModel?: SortOrder
+    openSourceLicense?: SortOrderInput | SortOrder
+    ipSummary?: SortOrderInput | SortOrder
     _count?: ProjectCountOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
     _min?: ProjectMinOrderByAggregateInput
@@ -12755,6 +15394,9 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     completedAt?: DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+    ipModel?: EnumIpModelWithAggregatesFilter<"Project"> | $Enums.IpModel
+    openSourceLicense?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    ipSummary?: StringNullableWithAggregatesFilter<"Project"> | string | null
   }
 
   export type RoleWhereInput = {
@@ -12892,6 +15534,113 @@ export namespace Prisma {
     leftAt?: DateTimeNullableWithAggregatesFilter<"TeamMember"> | Date | string | null
   }
 
+  export type PlatformAdminWhereInput = {
+    AND?: PlatformAdminWhereInput | PlatformAdminWhereInput[]
+    OR?: PlatformAdminWhereInput[]
+    NOT?: PlatformAdminWhereInput | PlatformAdminWhereInput[]
+    id?: StringFilter<"PlatformAdmin"> | string
+    userId?: StringFilter<"PlatformAdmin"> | string
+    role?: EnumPlatformAdminRoleFilter<"PlatformAdmin"> | $Enums.PlatformAdminRole
+    createdAt?: DateTimeFilter<"PlatformAdmin"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type PlatformAdminOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type PlatformAdminWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: PlatformAdminWhereInput | PlatformAdminWhereInput[]
+    OR?: PlatformAdminWhereInput[]
+    NOT?: PlatformAdminWhereInput | PlatformAdminWhereInput[]
+    role?: EnumPlatformAdminRoleFilter<"PlatformAdmin"> | $Enums.PlatformAdminRole
+    createdAt?: DateTimeFilter<"PlatformAdmin"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type PlatformAdminOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    _count?: PlatformAdminCountOrderByAggregateInput
+    _max?: PlatformAdminMaxOrderByAggregateInput
+    _min?: PlatformAdminMinOrderByAggregateInput
+  }
+
+  export type PlatformAdminScalarWhereWithAggregatesInput = {
+    AND?: PlatformAdminScalarWhereWithAggregatesInput | PlatformAdminScalarWhereWithAggregatesInput[]
+    OR?: PlatformAdminScalarWhereWithAggregatesInput[]
+    NOT?: PlatformAdminScalarWhereWithAggregatesInput | PlatformAdminScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PlatformAdmin"> | string
+    userId?: StringWithAggregatesFilter<"PlatformAdmin"> | string
+    role?: EnumPlatformAdminRoleWithAggregatesFilter<"PlatformAdmin"> | $Enums.PlatformAdminRole
+    createdAt?: DateTimeWithAggregatesFilter<"PlatformAdmin"> | Date | string
+  }
+
+  export type AnalyticsEventWhereInput = {
+    AND?: AnalyticsEventWhereInput | AnalyticsEventWhereInput[]
+    OR?: AnalyticsEventWhereInput[]
+    NOT?: AnalyticsEventWhereInput | AnalyticsEventWhereInput[]
+    id?: StringFilter<"AnalyticsEvent"> | string
+    event?: StringFilter<"AnalyticsEvent"> | string
+    userId?: StringNullableFilter<"AnalyticsEvent"> | string | null
+    projectId?: StringNullableFilter<"AnalyticsEvent"> | string | null
+    props?: JsonNullableFilter<"AnalyticsEvent">
+    createdAt?: DateTimeFilter<"AnalyticsEvent"> | Date | string
+  }
+
+  export type AnalyticsEventOrderByWithRelationInput = {
+    id?: SortOrder
+    event?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    projectId?: SortOrderInput | SortOrder
+    props?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AnalyticsEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AnalyticsEventWhereInput | AnalyticsEventWhereInput[]
+    OR?: AnalyticsEventWhereInput[]
+    NOT?: AnalyticsEventWhereInput | AnalyticsEventWhereInput[]
+    event?: StringFilter<"AnalyticsEvent"> | string
+    userId?: StringNullableFilter<"AnalyticsEvent"> | string | null
+    projectId?: StringNullableFilter<"AnalyticsEvent"> | string | null
+    props?: JsonNullableFilter<"AnalyticsEvent">
+    createdAt?: DateTimeFilter<"AnalyticsEvent"> | Date | string
+  }, "id">
+
+  export type AnalyticsEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    event?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    projectId?: SortOrderInput | SortOrder
+    props?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: AnalyticsEventCountOrderByAggregateInput
+    _max?: AnalyticsEventMaxOrderByAggregateInput
+    _min?: AnalyticsEventMinOrderByAggregateInput
+  }
+
+  export type AnalyticsEventScalarWhereWithAggregatesInput = {
+    AND?: AnalyticsEventScalarWhereWithAggregatesInput | AnalyticsEventScalarWhereWithAggregatesInput[]
+    OR?: AnalyticsEventScalarWhereWithAggregatesInput[]
+    NOT?: AnalyticsEventScalarWhereWithAggregatesInput | AnalyticsEventScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AnalyticsEvent"> | string
+    event?: StringWithAggregatesFilter<"AnalyticsEvent"> | string
+    userId?: StringNullableWithAggregatesFilter<"AnalyticsEvent"> | string | null
+    projectId?: StringNullableWithAggregatesFilter<"AnalyticsEvent"> | string | null
+    props?: JsonNullableWithAggregatesFilter<"AnalyticsEvent">
+    createdAt?: DateTimeWithAggregatesFilter<"AnalyticsEvent"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -12909,12 +15658,19 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     skills?: SkillOnUserCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
     memberships?: TeamMemberCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -12934,12 +15690,19 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -12959,12 +15722,19 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
     memberships?: TeamMemberUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -12984,12 +15754,19 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -13009,6 +15786,12 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -13028,6 +15811,12 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -13047,6 +15836,12 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UsernameHistoryCreateInput = {
@@ -13336,6 +16131,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
     owner: UserCreateNestedOneWithoutProjectsOwnedInput
     roles?: RoleCreateNestedManyWithoutProjectInput
     members?: TeamMemberCreateNestedManyWithoutProjectInput
@@ -13357,6 +16155,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
     roles?: RoleUncheckedCreateNestedManyWithoutProjectInput
     members?: TeamMemberUncheckedCreateNestedManyWithoutProjectInput
   }
@@ -13376,6 +16177,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
     owner?: UserUpdateOneRequiredWithoutProjectsOwnedNestedInput
     roles?: RoleUpdateManyWithoutProjectNestedInput
     members?: TeamMemberUpdateManyWithoutProjectNestedInput
@@ -13397,6 +16201,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
     roles?: RoleUncheckedUpdateManyWithoutProjectNestedInput
     members?: TeamMemberUncheckedUpdateManyWithoutProjectNestedInput
   }
@@ -13417,6 +16224,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
   }
 
   export type ProjectUpdateManyMutationInput = {
@@ -13434,6 +16244,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProjectUncheckedUpdateManyInput = {
@@ -13452,6 +16265,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RoleCreateInput = {
@@ -13587,6 +16403,117 @@ export namespace Prisma {
     leftAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type PlatformAdminCreateInput = {
+    id?: string
+    role: $Enums.PlatformAdminRole
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutPlatformAdminInput
+  }
+
+  export type PlatformAdminUncheckedCreateInput = {
+    id?: string
+    userId: string
+    role: $Enums.PlatformAdminRole
+    createdAt?: Date | string
+  }
+
+  export type PlatformAdminUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumPlatformAdminRoleFieldUpdateOperationsInput | $Enums.PlatformAdminRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutPlatformAdminNestedInput
+  }
+
+  export type PlatformAdminUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: EnumPlatformAdminRoleFieldUpdateOperationsInput | $Enums.PlatformAdminRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlatformAdminCreateManyInput = {
+    id?: string
+    userId: string
+    role: $Enums.PlatformAdminRole
+    createdAt?: Date | string
+  }
+
+  export type PlatformAdminUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumPlatformAdminRoleFieldUpdateOperationsInput | $Enums.PlatformAdminRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlatformAdminUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    role?: EnumPlatformAdminRoleFieldUpdateOperationsInput | $Enums.PlatformAdminRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnalyticsEventCreateInput = {
+    id?: string
+    event: string
+    userId?: string | null
+    projectId?: string | null
+    props?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AnalyticsEventUncheckedCreateInput = {
+    id?: string
+    event: string
+    userId?: string | null
+    projectId?: string | null
+    props?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AnalyticsEventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    event?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    props?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnalyticsEventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    event?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    props?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnalyticsEventCreateManyInput = {
+    id?: string
+    event: string
+    userId?: string | null
+    projectId?: string | null
+    props?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type AnalyticsEventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    event?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    props?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnalyticsEventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    event?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    props?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -13651,6 +16578,31 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type EnumOnboardingEntryPointNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingEntryPoint | EnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    in?: $Enums.OnboardingEntryPoint[] | ListEnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.OnboardingEntryPoint[] | ListEnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOnboardingEntryPointNullableFilter<$PrismaModel> | $Enums.OnboardingEntryPoint | null
+  }
+
+  export type EnumOnboardingIntentNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingIntent | EnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    in?: $Enums.OnboardingIntent[] | ListEnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.OnboardingIntent[] | ListEnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOnboardingIntentNullableFilter<$PrismaModel> | $Enums.OnboardingIntent | null
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type OAuthAccountListRelationFilter = {
     every?: OAuthAccountWhereInput
     some?: OAuthAccountWhereInput
@@ -13685,6 +16637,11 @@ export namespace Prisma {
     every?: UsernameHistoryWhereInput
     some?: UsernameHistoryWhereInput
     none?: UsernameHistoryWhereInput
+  }
+
+  export type PlatformAdminNullableScalarRelationFilter = {
+    is?: PlatformAdminWhereInput | null
+    isNot?: PlatformAdminWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -13733,6 +16690,16 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    onboardingEntryPoint?: SortOrder
+    onboardingIntent?: SortOrder
+    onboardingStep?: SortOrder
+    onboardingCompletedAt?: SortOrder
+    acceptedTermsAt?: SortOrder
+    community?: SortOrder
+  }
+
+  export type UserAvgOrderByAggregateInput = {
+    onboardingStep?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -13752,6 +16719,12 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    onboardingEntryPoint?: SortOrder
+    onboardingIntent?: SortOrder
+    onboardingStep?: SortOrder
+    onboardingCompletedAt?: SortOrder
+    acceptedTermsAt?: SortOrder
+    community?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -13771,6 +16744,16 @@ export namespace Prisma {
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    onboardingEntryPoint?: SortOrder
+    onboardingIntent?: SortOrder
+    onboardingStep?: SortOrder
+    onboardingCompletedAt?: SortOrder
+    acceptedTermsAt?: SortOrder
+    community?: SortOrder
+  }
+
+  export type UserSumOrderByAggregateInput = {
+    onboardingStep?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -13853,6 +16836,42 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type EnumOnboardingEntryPointNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingEntryPoint | EnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    in?: $Enums.OnboardingEntryPoint[] | ListEnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.OnboardingEntryPoint[] | ListEnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOnboardingEntryPointNullableWithAggregatesFilter<$PrismaModel> | $Enums.OnboardingEntryPoint | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumOnboardingEntryPointNullableFilter<$PrismaModel>
+    _max?: NestedEnumOnboardingEntryPointNullableFilter<$PrismaModel>
+  }
+
+  export type EnumOnboardingIntentNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingIntent | EnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    in?: $Enums.OnboardingIntent[] | ListEnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.OnboardingIntent[] | ListEnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOnboardingIntentNullableWithAggregatesFilter<$PrismaModel> | $Enums.OnboardingIntent | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumOnboardingIntentNullableFilter<$PrismaModel>
+    _max?: NestedEnumOnboardingIntentNullableFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type UserScalarRelationFilter = {
@@ -14031,6 +17050,13 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type EnumIpModelFilter<$PrismaModel = never> = {
+    equals?: $Enums.IpModel | EnumIpModelFieldRefInput<$PrismaModel>
+    in?: $Enums.IpModel[] | ListEnumIpModelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.IpModel[] | ListEnumIpModelFieldRefInput<$PrismaModel>
+    not?: NestedEnumIpModelFilter<$PrismaModel> | $Enums.IpModel
+  }
+
   export type RoleListRelationFilter = {
     every?: RoleWhereInput
     some?: RoleWhereInput
@@ -14057,6 +17083,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     completedAt?: SortOrder
+    ipModel?: SortOrder
+    openSourceLicense?: SortOrder
+    ipSummary?: SortOrder
   }
 
   export type ProjectMaxOrderByAggregateInput = {
@@ -14074,6 +17103,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     completedAt?: SortOrder
+    ipModel?: SortOrder
+    openSourceLicense?: SortOrder
+    ipSummary?: SortOrder
   }
 
   export type ProjectMinOrderByAggregateInput = {
@@ -14091,6 +17123,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     completedAt?: SortOrder
+    ipModel?: SortOrder
+    openSourceLicense?: SortOrder
+    ipSummary?: SortOrder
   }
 
   export type EnumProjectStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -14111,6 +17146,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumVisibilityFilter<$PrismaModel>
     _max?: NestedEnumVisibilityFilter<$PrismaModel>
+  }
+
+  export type EnumIpModelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.IpModel | EnumIpModelFieldRefInput<$PrismaModel>
+    in?: $Enums.IpModel[] | ListEnumIpModelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.IpModel[] | ListEnumIpModelFieldRefInput<$PrismaModel>
+    not?: NestedEnumIpModelWithAggregatesFilter<$PrismaModel> | $Enums.IpModel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumIpModelFilter<$PrismaModel>
+    _max?: NestedEnumIpModelFilter<$PrismaModel>
   }
 
   export type EnumPermissionLevelFilter<$PrismaModel = never> = {
@@ -14219,6 +17264,118 @@ export namespace Prisma {
     _max?: NestedEnumMemberStatusFilter<$PrismaModel>
   }
 
+  export type EnumPlatformAdminRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.PlatformAdminRole | EnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.PlatformAdminRole[] | ListEnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PlatformAdminRole[] | ListEnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumPlatformAdminRoleFilter<$PrismaModel> | $Enums.PlatformAdminRole
+  }
+
+  export type PlatformAdminCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PlatformAdminMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type PlatformAdminMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumPlatformAdminRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PlatformAdminRole | EnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.PlatformAdminRole[] | ListEnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PlatformAdminRole[] | ListEnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumPlatformAdminRoleWithAggregatesFilter<$PrismaModel> | $Enums.PlatformAdminRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPlatformAdminRoleFilter<$PrismaModel>
+    _max?: NestedEnumPlatformAdminRoleFilter<$PrismaModel>
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type AnalyticsEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    event?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    props?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AnalyticsEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    event?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AnalyticsEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    event?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
   export type OAuthAccountCreateNestedManyWithoutUserInput = {
     create?: XOR<OAuthAccountCreateWithoutUserInput, OAuthAccountUncheckedCreateWithoutUserInput> | OAuthAccountCreateWithoutUserInput[] | OAuthAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OAuthAccountCreateOrConnectWithoutUserInput | OAuthAccountCreateOrConnectWithoutUserInput[]
@@ -14259,6 +17416,12 @@ export namespace Prisma {
     connectOrCreate?: UsernameHistoryCreateOrConnectWithoutUserInput | UsernameHistoryCreateOrConnectWithoutUserInput[]
     createMany?: UsernameHistoryCreateManyUserInputEnvelope
     connect?: UsernameHistoryWhereUniqueInput | UsernameHistoryWhereUniqueInput[]
+  }
+
+  export type PlatformAdminCreateNestedOneWithoutUserInput = {
+    create?: XOR<PlatformAdminCreateWithoutUserInput, PlatformAdminUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PlatformAdminCreateOrConnectWithoutUserInput
+    connect?: PlatformAdminWhereUniqueInput
   }
 
   export type OAuthAccountUncheckedCreateNestedManyWithoutUserInput = {
@@ -14303,6 +17466,12 @@ export namespace Prisma {
     connect?: UsernameHistoryWhereUniqueInput | UsernameHistoryWhereUniqueInput[]
   }
 
+  export type PlatformAdminUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<PlatformAdminCreateWithoutUserInput, PlatformAdminUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PlatformAdminCreateOrConnectWithoutUserInput
+    connect?: PlatformAdminWhereUniqueInput
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -14325,6 +17494,22 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type NullableEnumOnboardingEntryPointFieldUpdateOperationsInput = {
+    set?: $Enums.OnboardingEntryPoint | null
+  }
+
+  export type NullableEnumOnboardingIntentFieldUpdateOperationsInput = {
+    set?: $Enums.OnboardingIntent | null
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type OAuthAccountUpdateManyWithoutUserNestedInput = {
@@ -14411,6 +17596,16 @@ export namespace Prisma {
     deleteMany?: UsernameHistoryScalarWhereInput | UsernameHistoryScalarWhereInput[]
   }
 
+  export type PlatformAdminUpdateOneWithoutUserNestedInput = {
+    create?: XOR<PlatformAdminCreateWithoutUserInput, PlatformAdminUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PlatformAdminCreateOrConnectWithoutUserInput
+    upsert?: PlatformAdminUpsertWithoutUserInput
+    disconnect?: PlatformAdminWhereInput | boolean
+    delete?: PlatformAdminWhereInput | boolean
+    connect?: PlatformAdminWhereUniqueInput
+    update?: XOR<XOR<PlatformAdminUpdateToOneWithWhereWithoutUserInput, PlatformAdminUpdateWithoutUserInput>, PlatformAdminUncheckedUpdateWithoutUserInput>
+  }
+
   export type OAuthAccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<OAuthAccountCreateWithoutUserInput, OAuthAccountUncheckedCreateWithoutUserInput> | OAuthAccountCreateWithoutUserInput[] | OAuthAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OAuthAccountCreateOrConnectWithoutUserInput | OAuthAccountCreateOrConnectWithoutUserInput[]
@@ -14493,6 +17688,16 @@ export namespace Prisma {
     update?: UsernameHistoryUpdateWithWhereUniqueWithoutUserInput | UsernameHistoryUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: UsernameHistoryUpdateManyWithWhereWithoutUserInput | UsernameHistoryUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: UsernameHistoryScalarWhereInput | UsernameHistoryScalarWhereInput[]
+  }
+
+  export type PlatformAdminUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<PlatformAdminCreateWithoutUserInput, PlatformAdminUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PlatformAdminCreateOrConnectWithoutUserInput
+    upsert?: PlatformAdminUpsertWithoutUserInput
+    disconnect?: PlatformAdminWhereInput | boolean
+    delete?: PlatformAdminWhereInput | boolean
+    connect?: PlatformAdminWhereUniqueInput
+    update?: XOR<XOR<PlatformAdminUpdateToOneWithWhereWithoutUserInput, PlatformAdminUpdateWithoutUserInput>, PlatformAdminUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutUsernameHistoryInput = {
@@ -14660,6 +17865,10 @@ export namespace Prisma {
   export type ProjectUpdatetechStackInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type EnumIpModelFieldUpdateOperationsInput = {
+    set?: $Enums.IpModel
   }
 
   export type UserUpdateOneRequiredWithoutProjectsOwnedNestedInput = {
@@ -14832,6 +18041,24 @@ export namespace Prisma {
     update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutMembersInput, RoleUpdateWithoutMembersInput>, RoleUncheckedUpdateWithoutMembersInput>
   }
 
+  export type UserCreateNestedOneWithoutPlatformAdminInput = {
+    create?: XOR<UserCreateWithoutPlatformAdminInput, UserUncheckedCreateWithoutPlatformAdminInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPlatformAdminInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumPlatformAdminRoleFieldUpdateOperationsInput = {
+    set?: $Enums.PlatformAdminRole
+  }
+
+  export type UserUpdateOneRequiredWithoutPlatformAdminNestedInput = {
+    create?: XOR<UserCreateWithoutPlatformAdminInput, UserUncheckedCreateWithoutPlatformAdminInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPlatformAdminInput
+    upsert?: UserUpsertWithoutPlatformAdminInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPlatformAdminInput, UserUpdateWithoutPlatformAdminInput>, UserUncheckedUpdateWithoutPlatformAdminInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -14894,6 +18121,31 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedEnumOnboardingEntryPointNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingEntryPoint | EnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    in?: $Enums.OnboardingEntryPoint[] | ListEnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.OnboardingEntryPoint[] | ListEnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOnboardingEntryPointNullableFilter<$PrismaModel> | $Enums.OnboardingEntryPoint | null
+  }
+
+  export type NestedEnumOnboardingIntentNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingIntent | EnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    in?: $Enums.OnboardingIntent[] | ListEnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.OnboardingIntent[] | ListEnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOnboardingIntentNullableFilter<$PrismaModel> | $Enums.OnboardingIntent | null
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -14909,17 +18161,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -14996,6 +18237,53 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumOnboardingEntryPointNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingEntryPoint | EnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    in?: $Enums.OnboardingEntryPoint[] | ListEnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.OnboardingEntryPoint[] | ListEnumOnboardingEntryPointFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOnboardingEntryPointNullableWithAggregatesFilter<$PrismaModel> | $Enums.OnboardingEntryPoint | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumOnboardingEntryPointNullableFilter<$PrismaModel>
+    _max?: NestedEnumOnboardingEntryPointNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumOnboardingIntentNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingIntent | EnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    in?: $Enums.OnboardingIntent[] | ListEnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.OnboardingIntent[] | ListEnumOnboardingIntentFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumOnboardingIntentNullableWithAggregatesFilter<$PrismaModel> | $Enums.OnboardingIntent | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumOnboardingIntentNullableFilter<$PrismaModel>
+    _max?: NestedEnumOnboardingIntentNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type NestedEnumSkillLevelFilter<$PrismaModel = never> = {
     equals?: $Enums.SkillLevel | EnumSkillLevelFieldRefInput<$PrismaModel>
     in?: $Enums.SkillLevel[] | ListEnumSkillLevelFieldRefInput<$PrismaModel>
@@ -15027,6 +18315,13 @@ export namespace Prisma {
     not?: NestedEnumVisibilityFilter<$PrismaModel> | $Enums.Visibility
   }
 
+  export type NestedEnumIpModelFilter<$PrismaModel = never> = {
+    equals?: $Enums.IpModel | EnumIpModelFieldRefInput<$PrismaModel>
+    in?: $Enums.IpModel[] | ListEnumIpModelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.IpModel[] | ListEnumIpModelFieldRefInput<$PrismaModel>
+    not?: NestedEnumIpModelFilter<$PrismaModel> | $Enums.IpModel
+  }
+
   export type NestedEnumProjectStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.ProjectStatus | EnumProjectStatusFieldRefInput<$PrismaModel>
     in?: $Enums.ProjectStatus[] | ListEnumProjectStatusFieldRefInput<$PrismaModel>
@@ -15045,6 +18340,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumVisibilityFilter<$PrismaModel>
     _max?: NestedEnumVisibilityFilter<$PrismaModel>
+  }
+
+  export type NestedEnumIpModelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.IpModel | EnumIpModelFieldRefInput<$PrismaModel>
+    in?: $Enums.IpModel[] | ListEnumIpModelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.IpModel[] | ListEnumIpModelFieldRefInput<$PrismaModel>
+    not?: NestedEnumIpModelWithAggregatesFilter<$PrismaModel> | $Enums.IpModel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumIpModelFilter<$PrismaModel>
+    _max?: NestedEnumIpModelFilter<$PrismaModel>
   }
 
   export type NestedEnumPermissionLevelFilter<$PrismaModel = never> = {
@@ -15079,6 +18384,46 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumMemberStatusFilter<$PrismaModel>
     _max?: NestedEnumMemberStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPlatformAdminRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.PlatformAdminRole | EnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.PlatformAdminRole[] | ListEnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PlatformAdminRole[] | ListEnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumPlatformAdminRoleFilter<$PrismaModel> | $Enums.PlatformAdminRole
+  }
+
+  export type NestedEnumPlatformAdminRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PlatformAdminRole | EnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.PlatformAdminRole[] | ListEnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PlatformAdminRole[] | ListEnumPlatformAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumPlatformAdminRoleWithAggregatesFilter<$PrismaModel> | $Enums.PlatformAdminRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPlatformAdminRoleFilter<$PrismaModel>
+    _max?: NestedEnumPlatformAdminRoleFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type OAuthAccountCreateWithoutUserInput = {
@@ -15172,6 +18517,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
     roles?: RoleCreateNestedManyWithoutProjectInput
     members?: TeamMemberCreateNestedManyWithoutProjectInput
   }
@@ -15191,6 +18539,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
     roles?: RoleUncheckedCreateNestedManyWithoutProjectInput
     members?: TeamMemberUncheckedCreateNestedManyWithoutProjectInput
   }
@@ -15253,6 +18604,23 @@ export namespace Prisma {
   export type UsernameHistoryCreateManyUserInputEnvelope = {
     data: UsernameHistoryCreateManyUserInput | UsernameHistoryCreateManyUserInput[]
     skipDuplicates?: boolean
+  }
+
+  export type PlatformAdminCreateWithoutUserInput = {
+    id?: string
+    role: $Enums.PlatformAdminRole
+    createdAt?: Date | string
+  }
+
+  export type PlatformAdminUncheckedCreateWithoutUserInput = {
+    id?: string
+    role: $Enums.PlatformAdminRole
+    createdAt?: Date | string
+  }
+
+  export type PlatformAdminCreateOrConnectWithoutUserInput = {
+    where: PlatformAdminWhereUniqueInput
+    create: XOR<PlatformAdminCreateWithoutUserInput, PlatformAdminUncheckedCreateWithoutUserInput>
   }
 
   export type OAuthAccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -15373,6 +18741,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     completedAt?: DateTimeNullableFilter<"Project"> | Date | string | null
+    ipModel?: EnumIpModelFilter<"Project"> | $Enums.IpModel
+    openSourceLicense?: StringNullableFilter<"Project"> | string | null
+    ipSummary?: StringNullableFilter<"Project"> | string | null
   }
 
   export type TeamMemberUpsertWithWhereUniqueWithoutUserInput = {
@@ -15430,6 +18801,29 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"UsernameHistory"> | Date | string
   }
 
+  export type PlatformAdminUpsertWithoutUserInput = {
+    update: XOR<PlatformAdminUpdateWithoutUserInput, PlatformAdminUncheckedUpdateWithoutUserInput>
+    create: XOR<PlatformAdminCreateWithoutUserInput, PlatformAdminUncheckedCreateWithoutUserInput>
+    where?: PlatformAdminWhereInput
+  }
+
+  export type PlatformAdminUpdateToOneWithWhereWithoutUserInput = {
+    where?: PlatformAdminWhereInput
+    data: XOR<PlatformAdminUpdateWithoutUserInput, PlatformAdminUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PlatformAdminUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumPlatformAdminRoleFieldUpdateOperationsInput | $Enums.PlatformAdminRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlatformAdminUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: EnumPlatformAdminRoleFieldUpdateOperationsInput | $Enums.PlatformAdminRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateWithoutUsernameHistoryInput = {
     id?: string
     email: string
@@ -15447,11 +18841,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     skills?: SkillOnUserCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
     memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUsernameHistoryInput = {
@@ -15471,11 +18872,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUsernameHistoryInput = {
@@ -15511,11 +18919,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
     memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUsernameHistoryInput = {
@@ -15535,11 +18950,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutOauthAccountsInput = {
@@ -15559,11 +18981,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     sessions?: SessionCreateNestedManyWithoutUserInput
     skills?: SkillOnUserCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
     memberships?: TeamMemberCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOauthAccountsInput = {
@@ -15583,11 +19012,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOauthAccountsInput = {
@@ -15623,11 +19059,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     sessions?: SessionUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
     memberships?: TeamMemberUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOauthAccountsInput = {
@@ -15647,11 +19090,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -15671,11 +19121,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
     skills?: SkillOnUserCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
     memberships?: TeamMemberCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -15695,11 +19152,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
     skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -15735,11 +19199,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
     memberships?: TeamMemberUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -15759,11 +19230,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type SkillOnUserCreateWithoutSkillInput = {
@@ -15819,11 +19297,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
     memberships?: TeamMemberCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSkillsInput = {
@@ -15843,11 +19328,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSkillsInput = {
@@ -15900,11 +19392,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
     memberships?: TeamMemberUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSkillsInput = {
@@ -15924,11 +19423,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type SkillUpsertWithoutUsersInput = {
@@ -15971,11 +19477,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     skills?: SkillOnUserCreateNestedManyWithoutUserInput
     memberships?: TeamMemberCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectsOwnedInput = {
@@ -15995,11 +19508,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
     memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectsOwnedInput = {
@@ -16091,11 +19611,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUpdateManyWithoutUserNestedInput
     memberships?: TeamMemberUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectsOwnedInput = {
@@ -16115,11 +19642,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
     memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type RoleUpsertWithWhereUniqueWithoutProjectInput = {
@@ -16181,6 +19715,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
     owner: UserCreateNestedOneWithoutProjectsOwnedInput
     members?: TeamMemberCreateNestedManyWithoutProjectInput
   }
@@ -16201,6 +19738,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
     members?: TeamMemberUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -16263,6 +19803,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
     owner?: UserUpdateOneRequiredWithoutProjectsOwnedNestedInput
     members?: TeamMemberUpdateManyWithoutProjectNestedInput
   }
@@ -16283,6 +19826,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
     members?: TeamMemberUncheckedUpdateManyWithoutProjectNestedInput
   }
 
@@ -16317,6 +19863,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
     owner: UserCreateNestedOneWithoutProjectsOwnedInput
     roles?: RoleCreateNestedManyWithoutProjectInput
   }
@@ -16337,6 +19886,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
     roles?: RoleUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -16362,11 +19914,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     skills?: SkillOnUserCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -16386,11 +19945,18 @@ export namespace Prisma {
     status?: $Enums.UserStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
     oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
     projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -16447,6 +20013,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
     owner?: UserUpdateOneRequiredWithoutProjectsOwnedNestedInput
     roles?: RoleUpdateManyWithoutProjectNestedInput
   }
@@ -16467,6 +20036,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
     roles?: RoleUncheckedUpdateManyWithoutProjectNestedInput
   }
 
@@ -16498,11 +20070,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -16522,11 +20101,18 @@ export namespace Prisma {
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
     oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
     projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type RoleUpsertWithoutMembersInput = {
@@ -16556,6 +20142,146 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     isOpen?: BoolFieldUpdateOperationsInput | boolean
     permissionLevel?: EnumPermissionLevelFieldUpdateOperationsInput | $Enums.PermissionLevel
+  }
+
+  export type UserCreateWithoutPlatformAdminInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPlatformAdminInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPlatformAdminInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPlatformAdminInput, UserUncheckedCreateWithoutPlatformAdminInput>
+  }
+
+  export type UserUpsertWithoutPlatformAdminInput = {
+    update: XOR<UserUpdateWithoutPlatformAdminInput, UserUncheckedUpdateWithoutPlatformAdminInput>
+    create: XOR<UserCreateWithoutPlatformAdminInput, UserUncheckedCreateWithoutPlatformAdminInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPlatformAdminInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPlatformAdminInput, UserUncheckedUpdateWithoutPlatformAdminInput>
+  }
+
+  export type UserUpdateWithoutPlatformAdminInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPlatformAdminInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OAuthAccountCreateManyUserInput = {
@@ -16596,6 +20322,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
   }
 
   export type TeamMemberCreateManyUserInput = {
@@ -16697,6 +20426,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
     roles?: RoleUpdateManyWithoutProjectNestedInput
     members?: TeamMemberUpdateManyWithoutProjectNestedInput
   }
@@ -16716,6 +20448,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
     roles?: RoleUncheckedUpdateManyWithoutProjectNestedInput
     members?: TeamMemberUncheckedUpdateManyWithoutProjectNestedInput
   }
@@ -16735,6 +20470,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TeamMemberUpdateWithoutUserInput = {

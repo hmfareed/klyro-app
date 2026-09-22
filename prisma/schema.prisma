@@ -52,6 +52,36 @@ enum SkillLevel {
   EXPERT
 }
 
+// 30-onboarding: entry branch + intent + resumable progress (server-persisted).
+enum OnboardingEntryPoint {
+  ORGANIC
+  PROJECT_INVITE
+  GROUP_INVITE
+  OAUTH
+  REFERRAL
+}
+
+enum OnboardingIntent {
+  START
+  JOIN
+  BOTH
+}
+
+// 21-legal: IP model selected at project creation, shown to applicants.
+enum IpModel {
+  OWNER_RETAINED
+  OPEN_SOURCE
+  SHARED_EQUITY
+  PORTFOLIO_ONLY
+}
+
+// 22-admin: platform-level roles, distinct from project PermissionLevel.
+enum PlatformAdminRole {
+  SUPER_ADMIN
+  TRUST_SAFETY
+  SUPPORT
+}
+
 model User {
   id              String    @id @default(cuid())
   email           String    @unique
@@ -70,12 +100,23 @@ model User {
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 
+  // 30 §6: resumable onboarding — valid permanent state is "activated but sparse".
+  onboardingEntryPoint  OnboardingEntryPoint?
+  onboardingIntent      OnboardingIntent?
+  onboardingStep        Int                 @default(3) // 3=username … 7=intent, 8=done
+  onboardingCompletedAt DateTime?
+  // 21 §4: ToS acceptance (minimal ToS required from first real project).
+  acceptedTermsAt       DateTime?
+  // 29 §4: lightweight community affiliation (school/bootcamp/club, self-reported).
+  community             String?
+
   oauthAccounts OAuthAccount[]
   sessions      Session[]
   skills        SkillOnUser[]
   projectsOwned Project[]      @relation("ProjectOwner")
   memberships   TeamMember[]
   usernameHistory UsernameHistory[]
+  platformAdmin PlatformAdmin?
 
   @@index([username])
 }
@@ -153,6 +194,11 @@ model Project {
   updatedAt       DateTime      @updatedAt
   completedAt     DateTime?
 
+  // 21 §2: required at creation, shown on public page next to open roles.
+  ipModel         IpModel  @default(PORTFOLIO_ONLY)
+  openSourceLicense String? // MIT | Apache-2.0 | GPL-3.0 — never free-text (21 §2)
+  ipSummary       String?  @db.VarChar(280)
+
   roles   Role[]
   members TeamMember[]
 
@@ -186,5 +232,30 @@ model TeamMember {
   leftAt    DateTime?
 
   @@unique([projectId, userId])
+  @@index([userId])
+}
+
+// 22-admin: small explicit table — never conflated with project PermissionLevel.
+model PlatformAdmin {
+  id        String            @id @default(cuid())
+  userId    String            @unique
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      PlatformAdminRole
+  createdAt DateTime          @default(now())
+
+  @@index([role])
+}
+
+// 24-analytics: server-side business-action events (ad-blocker-proof).
+// Client onboarding_* transitions also land here via POST /api/v1/analytics.
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  event     String
+  userId    String?
+  projectId String?
+  props     Json?
+  createdAt DateTime @default(now())
+
+  @@index([event, createdAt])
   @@index([userId])
 }
