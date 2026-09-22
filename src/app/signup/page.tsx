@@ -8,16 +8,21 @@ export default function SignupPage() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setMsg("Creating…");
-    const res = await fetch("/api/v1/auth/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    const data = await res.json();
-    if (!res.ok) setMsg(data.error?.message ?? "Signup failed");
-    else {
-      setMsg("Account created. Check server console / Mailhog :8025 for the verify link, then continue to onboarding.");
-      window.location.href = "/onboarding";
+    try {
+      const res = await fetch("/api/v1/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+        signal: AbortSignal.timeout(20000),
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok) setMsg(data?.error?.message ?? `Signup failed (HTTP ${res.status}). Check the server console.`);
+      else {
+        setMsg("Account created. Check server console / Mailhog :8025 for the verify link, then continue to onboarding.");
+        window.location.href = "/onboarding";
+      }
+    } catch {
+      setMsg("Signup request failed or timed out. Is the dev server running? Check the server console for [klyro] errors.");
     }
   }
 

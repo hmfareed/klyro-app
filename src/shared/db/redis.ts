@@ -9,6 +9,11 @@ export function getRedis(): Redis {
   redis = new Redis(process.env.REDIS_URL ?? "redis://localhost:6379", {
     maxRetriesPerRequest: null,
     enableReadyCheck: false,
+    // Don't crash / spam unhandled 'error' events when Redis is down (dev with no services).
+    retryStrategy: (times) => Math.min(times * 200, 2000),
+  });
+  redis.on("error", () => {
+    // Swallowed: callers (rate-limit, queue) fail-open with warnings.
   });
   return redis;
 }

@@ -8,14 +8,19 @@ export default function LoginPage() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setMsg("Signing in…");
-    const res = await fetch("/api/v1/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    const data = await res.json();
-    if (!res.ok) setMsg(data.error?.message ?? "Login failed");
-    else window.location.href = "/";
+    try {
+      const res = await fetch("/api/v1/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+        signal: AbortSignal.timeout(20000),
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok) setMsg(data?.error?.message ?? `Login failed (HTTP ${res.status}). Check the server console.`);
+      else window.location.href = "/";
+    } catch {
+      setMsg("Login request failed or timed out. Is the dev server running? Check the server console for [klyro] errors.");
+    }
   }
 
   return (

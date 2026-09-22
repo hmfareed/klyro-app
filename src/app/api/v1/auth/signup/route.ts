@@ -14,9 +14,10 @@ import { enqueueVerificationEmail } from "@/server/queue";
 // token -> queue verify email -> session (pre-verification, restricted access
 // enforced by callers checking isVerifiedEmail) -> resend limits 1/60s, 5/hr.
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for") ?? "unknown";
-  const rl = await slidingWindow(`rl:signup:${ip}`, 10, 3600);
-  if (!rl.allowed) return apiError("RATE_LIMITED", "Too many signup attempts. Try again later.", null, 429);
+  try {
+    const ip = req.headers.get("x-forwarded-for") ?? "unknown";
+    const rl = await slidingWindow(`rl:signup:${ip}`, 10, 3600);
+    if (!rl.allowed) return apiError("RATE_LIMITED", "Too many signup attempts. Try again later.", null, 429);
 
   let body: unknown;
   try {
@@ -60,5 +61,9 @@ export async function POST(req: Request) {
   await enqueueVerificationEmail(user.email, `${base}/api/v1/auth/verify?token=${token}`);
   await createSession(user.id, { userAgent: req.headers.get("user-agent") ?? undefined, ip });
 
-  return apiOk({ user, verificationSent: true }, 201);
+    return apiOk({ user, verificationSent: true }, 201);
+  } catch (err) {
+    console.error("[klyro] signup failed:", (err as Error).message);
+    return apiError("SERVER_ERROR", "Signup failed. Please try again.", null, 500);
+  }
 }
