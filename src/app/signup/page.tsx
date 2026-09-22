@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function SignupPage() {
   const [form, setForm] = useState({ email: "", password: "", username: "" });
+  const [showPassword, setShowPassword] = useState(false);
   const [accepted, setAccepted] = useState(false);
   const [msg, setMsg] = useState("");
 
@@ -36,8 +37,15 @@ export default function SignupPage() {
           value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
         <input className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3" placeholder="Username (3-39, letters/numbers/hyphens)"
           value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} required />
-        <input className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3" placeholder="Password (10+ chars)" type="password"
-          value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
+        <div className="relative">
+          <input className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 pr-16" placeholder="Password (10+ chars)" type={showPassword ? "text" : "password"}
+            value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
+          <button type="button" onClick={() => setShowPassword((v) => !v)} aria-pressed={showPassword}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+            className="absolute inset-y-0 right-2 px-3 text-sm text-white/60 hover:text-white">
+            {showPassword ? "Hide" : "Show"}
+          </button>
+        </div>
         <label className="flex items-start gap-2 text-xs text-white/60">
           <input type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} className="mt-0.5" />
           <span>I agree to the <a href="/terms" className="underline">Terms</a> — Klyro is a venue, not a party to project IP/equity (21 §4).</span>
