@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Klyro — Build. Collaborate. Ship.",
   description: "Post a project, recruit by role, build together, walk away with a verified contribution record.",
+  icons: { icon: "/klyro-mark.png" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

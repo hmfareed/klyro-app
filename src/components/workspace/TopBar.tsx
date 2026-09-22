@@ -1,14 +1,12 @@
 "use client";
 import { Bell, CalendarDays, LayoutGrid, Search, Users } from "lucide-react";
+import { BrandLockup } from "@/components/Brand";
 import { workspace } from "@/mock/workspace";
 
 export function TopBar() {
   return (
     <header className="flex h-16 items-center gap-4 border-b border-white/10 bg-[#0b1226] px-4">
-      <div className="flex items-center gap-2">
-        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-lg font-black text-white">K</span>
-        <span className="text-lg font-bold text-white">Klyro</span>
-      </div>
+      <BrandLockup />
 
       <div className="mx-auto flex w-full max-w-xl items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-400">
         <Search size={16} />
