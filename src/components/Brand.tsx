@@ -19,11 +19,11 @@ export function BrandMark({ size = 32, className = "" }: { size?: number; classN
   );
 }
 
-export function BrandLockup({ markSize = 32 }: { markSize?: number }) {
+export function BrandLockup({ markSize = 32, tone = "dark" }: { markSize?: number; tone?: "dark" | "light" }) {
   return (
     <span className="flex items-center gap-2">
       <BrandMark size={markSize} />
-      <span className="text-lg font-bold tracking-tight text-white">Klyro</span>
+      <span className={`text-lg font-bold tracking-tight ${tone === "dark" ? "text-white" : "text-slate-900"}`}>Klyro</span>
     </span>
   );
 }
