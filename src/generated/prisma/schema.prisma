@@ -1,0 +1,190 @@
+// Klyro — Phase 0 Prisma schema (First Architecture 02 + 03).
+// Single source of truth per docs: if a feature doc disagrees, this file wins.
+// Phase 0 scope (17-roadmap): User/Project/Role/TeamMember + auth/session/skills.
+// Later phases append: Milestone/Task/GitHub/Discussions/FileAsset/ContributionRecord (see First Architecture 02).
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserStatus {
+  ACTIVE
+  DEACTIVATED
+}
+
+enum ProjectStatus {
+  RECRUITING
+  IN_PROGRESS
+  PAUSED
+  COMPLETED
+  ARCHIVED
+}
+
+enum Visibility {
+  PUBLIC
+  UNLISTED
+  PRIVATE
+}
+
+enum PermissionLevel {
+  OWNER
+  MAINTAINER
+  CONTRIBUTOR
+  VIEWER
+}
+
+enum MemberStatus {
+  ACTIVE
+  LEFT
+  REMOVED
+}
+
+enum SkillLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+model User {
+  id              String     @id @default(cuid())
+  email           String     @unique
+  emailVerifiedAt DateTime?
+  username        String     @unique
+  passwordHash    String?
+  displayName     String?
+  avatarUrl       String?
+  bio             String?    @db.VarChar(160)
+  about           String?    @db.Text
+  location        String?
+  websiteUrl      String?
+  githubUsername  String?
+  isVerifiedEmail Boolean    @default(false)
+  status          UserStatus @default(ACTIVE)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  oauthAccounts   OAuthAccount[]
+  sessions        Session[]
+  skills          SkillOnUser[]
+  projectsOwned   Project[]         @relation("ProjectOwner")
+  memberships     TeamMember[]
+  usernameHistory UsernameHistory[]
+
+  @@index([username])
+}
+
+model UsernameHistory {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  username  String
+  createdAt DateTime @default(now())
+
+  @@index([username])
+  @@index([userId])
+}
+
+model OAuthAccount {
+  id             String  @id @default(cuid())
+  userId         String
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider       String // github | google
+  providerUserId String
+  accessToken    String  @db.Text // encrypted at app layer (KMS envelope per 12)
+  refreshToken   String? @db.Text
+  scope          String?
+
+  @@unique([provider, providerUserId])
+  @@index([userId])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String   @unique // sha256 of opaque token; token itself never stored
+  userAgent String?
+  ip        String?
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Skill {
+  id       String        @id @default(cuid())
+  name     String        @unique
+  category String // engineering | design | writing | product | marketing
+  users    SkillOnUser[]
+}
+
+model SkillOnUser {
+  userId  String
+  skillId String
+  level   SkillLevel @default(INTERMEDIATE)
+  user    User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skill   Skill      @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@id([userId, skillId])
+}
+
+model Project {
+  id              String        @id @default(cuid())
+  ownerId         String
+  owner           User          @relation("ProjectOwner", fields: [ownerId], references: [id], onDelete: Restrict)
+  slug            String        @unique
+  title           String
+  tagline         String        @db.VarChar(160)
+  description     String        @db.Text
+  category        String
+  status          ProjectStatus @default(RECRUITING)
+  visibility      Visibility    @default(PUBLIC)
+  coverImageUrl   String?
+  techStack       String[]
+  commitmentLevel String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  completedAt     DateTime?
+
+  roles   Role[]
+  members TeamMember[]
+
+  @@index([ownerId])
+  @@index([status, visibility])
+}
+
+model Role {
+  id              String          @id @default(cuid())
+  projectId       String
+  project         Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title           String
+  description     String?         @db.Text
+  isOpen          Boolean         @default(true)
+  permissionLevel PermissionLevel @default(CONTRIBUTOR)
+  members         TeamMember[]
+
+  @@index([projectId])
+}
+
+model TeamMember {
+  id        String       @id @default(cuid())
+  projectId String
+  project   Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  roleId    String
+  role      Role         @relation(fields: [roleId], references: [id], onDelete: Restrict)
+  status    MemberStatus @default(ACTIVE)
+  joinedAt  DateTime     @default(now())
+  leftAt    DateTime?
+
+  @@unique([projectId, userId])
+  @@index([userId])
+}
