@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-// 23-design-system: defined tokens only — no one-off hex in components.
+/* 23-design-system: defined tokens only — no one-off hex in components. */
 :root {
   --background: #ffffff;
   --foreground: #171717;

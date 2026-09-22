@@ -125,11 +125,13 @@ function OnboardingWizard() {
   }
 
   async function finish(silent = false) {
+    // Techspace home is /repositories (workspace group). Landing "/" is
+    // marketing only — authenticated users always land in the techspace.
     // §5: non-organic skips intent — land where they came from.
-    let dest = "/";
-    if (entry === "project" || entry === "group") dest = next || "/";
-    else if (entry === "referral") dest = ref ? `/u/${ref}` : "/";
-    else if (intent === "start") dest = "/projects/new";
+    let dest = "/repositories";
+    if (entry === "project" || entry === "group") dest = next || "/repositories";
+    else if (entry === "referral") dest = ref ? `/u/${ref}` : "/repositories";
+    else if (intent === "start") dest = "/repositories";
     if (!silent) {
       setSaving(true);
       try {

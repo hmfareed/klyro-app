@@ -17,7 +17,7 @@ export default function LoginPage() {
       });
       const data = await res.json().catch(() => null);
       if (!res.ok) setMsg(data?.error?.message ?? `Login failed (HTTP ${res.status}). Check the server console.`);
-      else window.location.href = "/";
+      else window.location.href = "/repositories";
     } catch {
       setMsg("Login request failed or timed out. Is the dev server running? Check the server console for [klyro] errors.");
     }
