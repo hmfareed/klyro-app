@@ -26,7 +26,8 @@ export async function POST(req: Request) {
     return apiOk({ id: user.id, username: user.username, isVerifiedEmail: user.isVerifiedEmail });
   } catch (err) {
     console.error("[klyro] login failed:", (err as Error).message);
-    return apiError("SERVER_ERROR", "Login failed. Please try again.", null, 500);
+    const detail = process.env.NODE_ENV === "production" ? "Please try again." : `(${(err as Error).message})`;
+    return apiError("SERVER_ERROR", `Login failed. ${detail}`, null, 500);
   }
 }
 

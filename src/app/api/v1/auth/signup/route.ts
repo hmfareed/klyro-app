@@ -64,6 +64,7 @@ export async function POST(req: Request) {
     return apiOk({ user, verificationSent: true }, 201);
   } catch (err) {
     console.error("[klyro] signup failed:", (err as Error).message);
-    return apiError("SERVER_ERROR", "Signup failed. Please try again.", null, 500);
+    const detail = process.env.NODE_ENV === "production" ? "Please try again." : `(${(err as Error).message})`;
+    return apiError("SERVER_ERROR", `Signup failed. ${detail}`, null, 500);
   }
 }

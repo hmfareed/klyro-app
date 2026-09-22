@@ -17,7 +17,12 @@ export async function enqueueVerificationEmail(to: string, verifyUrl: string) {
   // Dev fallback: also log URL so signup works with no worker running.
   if (process.env.NODE_ENV !== "production") console.log(`[klyro] verify ${to}: ${verifyUrl}`);
   try {
-    await getEmailQueue().add("verify-email", { to, verifyUrl }, { attempts: 5, backoff: { type: "exponential", delay: 10_000 } });
+    // Fail-open with timeout: BullMQ .add() waits for Redis readiness, which
+    // hangs when Redis is down. Never let email queuing block signup.
+    await Promise.race([
+      getEmailQueue().add("verify-email", { to, verifyUrl }, { attempts: 5, backoff: { type: "exponential", delay: 10_000 } }),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error("queue-timeout")), 3000)),
+    ]);
   } catch (err) {
     console.warn("[klyro] queue unavailable, verify via console log above:", (err as Error).message);
   }
