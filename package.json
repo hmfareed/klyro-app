@@ -13,6 +13,8 @@
     "worker": "tsx worker/index.ts"
   },
   "dependencies": {
+    "@neon/config": "^1.7.2",
+    "@neon/env": "^1.4.3",
     "@node-rs/argon2": "^2.2.1",
     "@prisma/client": "^6.19.3",
     "bullmq": "^6.3.8",
