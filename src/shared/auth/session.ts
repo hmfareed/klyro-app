@@ -38,13 +38,25 @@ export async function getSessionUserId(): Promise<string | null> {
   const store = await cookies();
   const token = store.get(COOKIE)?.value;
   if (!token) return null;
-  const session = await prisma.session.findUnique({ where: { tokenHash: hashToken(token) } });
+  // Fail closed (deny) when the DB is unreachable: treat as unauthenticated
+  // instead of throwing a 500 into every route (Rules §2, §46 offline handling).
+  let session;
+  try {
+    session = await prisma.session.findUnique({ where: { tokenHash: hashToken(token) } });
+  } catch (err) {
+    console.error("[auth] session lookup failed — db unreachable?", (err as Error)?.message ?? err);
+    return null;
+  }
   if (!session || session.expiresAt.getTime() < Date.now()) return null;
   // Sliding renewal: extend up to absolute cap (createdAt + 90d).
   const cap = session.createdAt.getTime() + ABSOLUTE_MS;
   const next = new Date(Math.min(Date.now() + SLIDING_MS, cap));
   if (next.getTime() - session.expiresAt.getTime() > 24 * 3600 * 1000) {
-    await prisma.session.update({ where: { id: session.id }, data: { expiresAt: next } });
+    try {
+      await prisma.session.update({ where: { id: session.id }, data: { expiresAt: next } });
+    } catch (err) {
+      console.error("[auth] session renewal failed — db unreachable?", (err as Error)?.message ?? err);
+    }
   }
   return session.userId;
 }
