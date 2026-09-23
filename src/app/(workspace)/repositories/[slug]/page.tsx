@@ -1,6 +1,7 @@
 "use client";
 
-import { use, useEffect, useState, useCallback } from "react";
+import { Suspense, use, useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import {
   Code,
   CheckSquare,
@@ -52,28 +53,49 @@ interface ProjectDetail {
   };
 }
 
-export default function RepoWorkspacePage({ params }: { params: Promise<{ slug: string }> }) {
+type TabType = "code" | "tasks" | "discussions" | "milestones" | "applications" | "records";
+const VALID_TABS: TabType[] = ["code", "tasks", "discussions", "milestones", "applications", "records"];
+
+function RepoWorkspaceContent({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const tabFromQuery = searchParams.get("tab") as TabType | null;
+
   const [project, setProject] = useState<ProjectDetail | null>(null);
   const [viewer, setViewer] = useState<{ isOwner: boolean; isMember: boolean } | null>(null);
-  const [activeTab, setActiveTab] = useState<"code" | "tasks" | "discussions" | "milestones" | "applications" | "records">("code");
+  const [localTab, setLocalTab] = useState<TabType>("code");
   const [loading, setLoading] = useState(true);
 
-  const fetchProject = useCallback(() => {
+  // Derived active tab: query param wins if valid, otherwise local state
+  const activeTab: TabType = tabFromQuery && VALID_TABS.includes(tabFromQuery) ? tabFromQuery : localTab;
+
+  const switchTab = (tab: TabType) => {
+    setLocalTab(tab);
+    router.replace(`/repositories/${slug}?tab=${tab}`, { scroll: false });
+  };
+
+  useEffect(() => {
+    let ignore = false;
     fetch(`/api/v1/projects/${slug}`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.success && data.data) {
+        if (!ignore && data.success && data.data) {
           setProject(data.data.project);
           setViewer(data.data.viewer);
         }
       })
-      .finally(() => setLoading(false));
-  }, [slug]);
+      .catch((err) => {
+        console.error("Failed to load project:", err);
+      })
+      .finally(() => {
+        if (!ignore) setLoading(false);
+      });
 
-  useEffect(() => {
-    fetchProject();
-  }, [fetchProject]);
+    return () => {
+      ignore = true;
+    };
+  }, [slug]);
 
   if (loading) {
     return (
@@ -161,7 +183,7 @@ export default function RepoWorkspacePage({ params }: { params: Promise<{ slug: 
             return (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as typeof activeTab)}
+                onClick={() => switchTab(tab.id as TabType)}
                 className={`flex items-center gap-2 border-b-2 px-3.5 py-2.5 text-xs font-semibold transition-colors whitespace-nowrap ${
                   active
                     ? "border-indigo-500 text-white"
@@ -219,5 +241,19 @@ export default function RepoWorkspacePage({ params }: { params: Promise<{ slug: 
         )}
       </div>
     </div>
+  );
+}
+
+export default function RepoWorkspacePage(props: { params: Promise<{ slug: string }> }) {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex flex-1 items-center justify-center p-8 bg-[#0a0f24]">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
+        </div>
+      }
+    >
+      <RepoWorkspaceContent {...props} />
+    </Suspense>
   );
 }

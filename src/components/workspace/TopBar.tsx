@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import { BrandLockup } from "@/components/Brand";
 import { NotificationBell } from "@/components/workspace/NotificationBell";
+import { openCreateProjectModal } from "@/components/workspace/WorkspaceCreateProjectModal";
 import Link from "next/link";
 
 type Me = { username: string; displayName: string | null };
@@ -37,15 +38,16 @@ export function TopBar() {
           href="/projects"
           className="hidden sm:inline-flex text-xs font-semibold text-slate-400 hover:text-white px-2 py-1 transition-colors"
         >
-          Explore Projects
+          Explore Directory
         </Link>
         <NotificationBell />
-        <Link
-          href="/projects/new"
-          className="hidden sm:inline-flex items-center gap-1 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-500 transition-colors"
+        <button
+          type="button"
+          onClick={openCreateProjectModal}
+          className="hidden sm:inline-flex items-center gap-1 rounded-lg bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-indigo-500 transition-colors shadow-sm"
         >
           + New Project
-        </Link>
+        </button>
         <div className="flex items-center gap-2 border-l border-white/10 pl-3">
           <Link href={me ? `/u/${me.username}` : "#"} className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-xs font-bold text-white">
