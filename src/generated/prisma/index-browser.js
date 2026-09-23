@@ -402,7 +402,13 @@ exports.Prisma.RepositoryScalarFieldEnum = {
   defaultBranch: 'defaultBranch',
   gitStoragePath: 'gitStoragePath',
   archived: 'archived',
+  archivedAt: 'archivedAt',
   disabled: 'disabled',
+  status: 'status',
+  deletedAt: 'deletedAt',
+  deletionScheduledAt: 'deletionScheduledAt',
+  purgeAt: 'purgeAt',
+  restoredAt: 'restoredAt',
   forkedFromId: 'forkedFromId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -551,6 +557,19 @@ exports.Prisma.RepositoryActionRunScalarFieldEnum = {
   durationMs: 'durationMs',
   startedAt: 'startedAt',
   completedAt: 'completedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RepositoryAuditEventScalarFieldEnum = {
+  id: 'id',
+  repositoryId: 'repositoryId',
+  actorId: 'actorId',
+  action: 'action',
+  previousValue: 'previousValue',
+  newValue: 'newValue',
+  metadata: 'metadata',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
   createdAt: 'createdAt'
 };
 
@@ -747,7 +766,8 @@ exports.Prisma.ModelName = {
   RepositoryRelease: 'RepositoryRelease',
   RepositoryWebhook: 'RepositoryWebhook',
   RepositoryWebhookDelivery: 'RepositoryWebhookDelivery',
-  RepositoryActionRun: 'RepositoryActionRun'
+  RepositoryActionRun: 'RepositoryActionRun',
+  RepositoryAuditEvent: 'RepositoryAuditEvent'
 };
 
 /**

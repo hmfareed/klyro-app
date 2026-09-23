@@ -21,7 +21,7 @@ export function getRepoStoragePath(repoId: string): string {
 /**
  * Helper to run git command on a bare repository
  */
-async function runGit(
+export async function runGit(
   storagePath: string,
   args: string[],
   options: { env?: Record<string, string>; input?: Buffer | string; maxBuffer?: number } = {}

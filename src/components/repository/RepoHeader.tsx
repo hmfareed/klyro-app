@@ -17,6 +17,9 @@ import {
   Check,
   Download,
   Terminal,
+  Archive,
+  AlertTriangle,
+  RotateCcw,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -28,6 +31,7 @@ interface RepoHeaderProps {
   onStarToggle: () => void;
   onWatchToggle: () => void;
   onFork: () => void;
+  onRestore?: () => void;
 }
 
 export function RepoHeader({
@@ -38,10 +42,29 @@ export function RepoHeader({
   onStarToggle,
   onWatchToggle,
   onFork,
+  onRestore,
 }: RepoHeaderProps) {
   const [showCodeMenu, setShowCodeMenu] = useState(false);
   const [cloneMode, setCloneMode] = useState<"https" | "ssh">("https");
   const [copied, setCopied] = useState(false);
+  const [restoring, setRestoring] = useState(false);
+
+  const handleRestore = async () => {
+    setRestoring(true);
+    try {
+      const res = await fetch(`/api/v1/repositories/${repository.owner.username}/${repository.slug}/restore`, {
+        method: "POST",
+      });
+      if (res.ok && onRestore) {
+        onRestore();
+      }
+    } catch {} finally {
+      setRestoring(false);
+    }
+  };
+
+  const purgeTime = repository.purgeAt ? new Date(repository.purgeAt).getTime() : Date.now() + 30 * 24 * 60 * 60 * 1000;
+  const daysRemaining = Math.max(0, Math.ceil((purgeTime - Date.now()) / (1000 * 60 * 60 * 24)));
 
   const appUrl = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
   const httpsUrl = `${appUrl}/repositories/${repository.owner.username}/${repository.slug}.git`;
@@ -65,11 +88,45 @@ export function RepoHeader({
 
   return (
     <div className="border-b border-white/10 bg-[#090d1f] px-6 pt-5 pb-0">
+      {/* 1. Deletion Pending Alert Banner */}
+      {repository.status === "DELETION_PENDING" && (
+        <div className="mb-4 rounded-xl border border-red-500/40 bg-red-950/40 px-4 py-2.5 flex items-center justify-between text-xs text-red-200">
+          <div className="flex items-center gap-2">
+            <AlertTriangle size={16} className="text-red-400 shrink-0" />
+            <span>
+              <strong>Repository scheduled for deletion.</strong> It will be permanently purged in{" "}
+              <strong>{daysRemaining} day{daysRemaining === 1 ? "" : "s"}</strong>
+              {repository.purgeAt ? ` (${new Date(repository.purgeAt).toLocaleDateString()})` : ""}. Only owners can view this repository.
+            </span>
+          </div>
+          {viewer.canAdmin && (
+            <button
+              onClick={handleRestore}
+              disabled={restoring}
+              className="inline-flex items-center gap-1 rounded-lg bg-red-600 px-3 py-1 font-semibold text-white hover:bg-red-500 disabled:opacity-50 shrink-0 ml-4 cursor-pointer"
+            >
+              <RotateCcw size={12} />
+              {restoring ? "Restoring…" : "Restore repository"}
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* 2. Archived Banner */}
+      {repository.archived && repository.status !== "DELETION_PENDING" && (
+        <div className="mb-4 rounded-xl border border-amber-500/40 bg-amber-950/30 px-4 py-2.5 flex items-center gap-2 text-xs text-amber-200">
+          <Archive size={15} className="text-amber-400 shrink-0" />
+          <span>
+            <strong>This repository has been archived by the owner.</strong> It is now read-only. Pushes, new issues, and pull request changes are disabled.
+          </span>
+        </div>
+      )}
+
       {/* Top Identity & Action Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4">
         <div>
           {/* Breadcrumb path */}
-          <div className="flex items-center gap-2 text-sm text-slate-400 mb-1">
+          <div className="flex items-center gap-2 text-sm text-slate-400 mb-1 flex-wrap">
             <span className="hover:text-white transition-colors">{repository.owner.username}</span>
             <span>/</span>
             <span className="font-bold text-base text-white">{repository.name}</span>
@@ -77,6 +134,18 @@ export function RepoHeader({
               {repository.visibility === "PRIVATE" ? <Lock size={10} /> : <Globe size={10} />}
               {repository.visibility}
             </span>
+
+            {repository.archived && (
+              <span className="flex items-center gap-1 rounded-md border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
+                <Archive size={10} /> Archived
+              </span>
+            )}
+
+            {repository.status === "DELETION_PENDING" && (
+              <span className="flex items-center gap-1 rounded-md border border-red-500/40 bg-red-500/10 px-2 py-0.5 text-[10px] font-semibold text-red-300">
+                <AlertTriangle size={10} /> Pending Deletion
+              </span>
+            )}
           </div>
 
           {repository.forkedFrom && (

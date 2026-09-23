@@ -231,6 +231,7 @@ function RepositoryShell({ params }: RepoDashboardProps) {
         onStarToggle={handleStarToggle}
         onWatchToggle={handleWatchToggle}
         onFork={handleFork}
+        onRestore={loadRepository}
       />
 
       {/* Main Tab View */}

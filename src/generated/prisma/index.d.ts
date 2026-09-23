@@ -208,6 +208,11 @@ export type RepositoryWebhookDelivery = $Result.DefaultSelection<Prisma.$Reposit
  * 
  */
 export type RepositoryActionRun = $Result.DefaultSelection<Prisma.$RepositoryActionRunPayload>
+/**
+ * Model RepositoryAuditEvent
+ * 
+ */
+export type RepositoryAuditEvent = $Result.DefaultSelection<Prisma.$RepositoryAuditEventPayload>
 
 /**
  * Enums
@@ -951,6 +956,16 @@ export class PrismaClient<
     * ```
     */
   get repositoryActionRun(): Prisma.RepositoryActionRunDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.repositoryAuditEvent`: Exposes CRUD operations for the **RepositoryAuditEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RepositoryAuditEvents
+    * const repositoryAuditEvents = await prisma.repositoryAuditEvent.findMany()
+    * ```
+    */
+  get repositoryAuditEvent(): Prisma.RepositoryAuditEventDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1430,7 +1445,8 @@ export namespace Prisma {
     RepositoryRelease: 'RepositoryRelease',
     RepositoryWebhook: 'RepositoryWebhook',
     RepositoryWebhookDelivery: 'RepositoryWebhookDelivery',
-    RepositoryActionRun: 'RepositoryActionRun'
+    RepositoryActionRun: 'RepositoryActionRun',
+    RepositoryAuditEvent: 'RepositoryAuditEvent'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1449,7 +1465,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "application" | "milestone" | "task" | "taskAssignee" | "discussionThread" | "discussionComment" | "fileAsset" | "contributionRecord" | "notification" | "platformAdmin" | "analyticsEvent" | "activityEvent" | "projectFollower" | "projectStar" | "release" | "projectUpdate" | "repository" | "repositoryStar" | "repositoryWatcher" | "repositoryCollaborator" | "branchProtectionRule" | "repositoryIssue" | "repositoryIssueComment" | "pullRequest" | "pullRequestReview" | "pullRequestComment" | "repositoryRelease" | "repositoryWebhook" | "repositoryWebhookDelivery" | "repositoryActionRun"
+      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "application" | "milestone" | "task" | "taskAssignee" | "discussionThread" | "discussionComment" | "fileAsset" | "contributionRecord" | "notification" | "platformAdmin" | "analyticsEvent" | "activityEvent" | "projectFollower" | "projectStar" | "release" | "projectUpdate" | "repository" | "repositoryStar" | "repositoryWatcher" | "repositoryCollaborator" | "branchProtectionRule" | "repositoryIssue" | "repositoryIssueComment" | "pullRequest" | "pullRequestReview" | "pullRequestComment" | "repositoryRelease" | "repositoryWebhook" | "repositoryWebhookDelivery" | "repositoryActionRun" | "repositoryAuditEvent"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4339,6 +4355,80 @@ export namespace Prisma {
           }
         }
       }
+      RepositoryAuditEvent: {
+        payload: Prisma.$RepositoryAuditEventPayload<ExtArgs>
+        fields: Prisma.RepositoryAuditEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RepositoryAuditEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RepositoryAuditEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload>
+          }
+          findFirst: {
+            args: Prisma.RepositoryAuditEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RepositoryAuditEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload>
+          }
+          findMany: {
+            args: Prisma.RepositoryAuditEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload>[]
+          }
+          create: {
+            args: Prisma.RepositoryAuditEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload>
+          }
+          createMany: {
+            args: Prisma.RepositoryAuditEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RepositoryAuditEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload>[]
+          }
+          delete: {
+            args: Prisma.RepositoryAuditEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload>
+          }
+          update: {
+            args: Prisma.RepositoryAuditEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.RepositoryAuditEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RepositoryAuditEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RepositoryAuditEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.RepositoryAuditEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryAuditEventPayload>
+          }
+          aggregate: {
+            args: Prisma.RepositoryAuditEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRepositoryAuditEvent>
+          }
+          groupBy: {
+            args: Prisma.RepositoryAuditEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RepositoryAuditEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RepositoryAuditEventCountArgs<ExtArgs>
+            result: $Utils.Optional<RepositoryAuditEventCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4474,6 +4564,7 @@ export namespace Prisma {
     repositoryWebhook?: RepositoryWebhookOmit
     repositoryWebhookDelivery?: RepositoryWebhookDeliveryOmit
     repositoryActionRun?: RepositoryActionRunOmit
+    repositoryAuditEvent?: RepositoryAuditEventOmit
   }
 
   /* Types for Logging */
@@ -4584,6 +4675,7 @@ export namespace Prisma {
     pullRequestReviews: number
     pullRequestComments: number
     repositoryReleases: number
+    repositoryAuditEvents: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4617,6 +4709,7 @@ export namespace Prisma {
     pullRequestReviews?: boolean | UserCountOutputTypeCountPullRequestReviewsArgs
     pullRequestComments?: boolean | UserCountOutputTypeCountPullRequestCommentsArgs
     repositoryReleases?: boolean | UserCountOutputTypeCountRepositoryReleasesArgs
+    repositoryAuditEvents?: boolean | UserCountOutputTypeCountRepositoryAuditEventsArgs
   }
 
   // Custom InputTypes
@@ -4838,6 +4931,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountRepositoryReleasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RepositoryReleaseWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRepositoryAuditEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepositoryAuditEventWhereInput
   }
 
 
@@ -5177,6 +5277,7 @@ export namespace Prisma {
     releases: number
     webhooks: number
     actionRuns: number
+    auditEvents: number
   }
 
   export type RepositoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5190,6 +5291,7 @@ export namespace Prisma {
     releases?: boolean | RepositoryCountOutputTypeCountReleasesArgs
     webhooks?: boolean | RepositoryCountOutputTypeCountWebhooksArgs
     actionRuns?: boolean | RepositoryCountOutputTypeCountActionRunsArgs
+    auditEvents?: boolean | RepositoryCountOutputTypeCountAuditEventsArgs
   }
 
   // Custom InputTypes
@@ -5271,6 +5373,13 @@ export namespace Prisma {
    */
   export type RepositoryCountOutputTypeCountActionRunsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RepositoryActionRunWhereInput
+  }
+
+  /**
+   * RepositoryCountOutputType without action
+   */
+  export type RepositoryCountOutputTypeCountAuditEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepositoryAuditEventWhereInput
   }
 
 
@@ -5745,6 +5854,7 @@ export namespace Prisma {
     pullRequestReviews?: boolean | User$pullRequestReviewsArgs<ExtArgs>
     pullRequestComments?: boolean | User$pullRequestCommentsArgs<ExtArgs>
     repositoryReleases?: boolean | User$repositoryReleasesArgs<ExtArgs>
+    repositoryAuditEvents?: boolean | User$repositoryAuditEventsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -5856,6 +5966,7 @@ export namespace Prisma {
     pullRequestReviews?: boolean | User$pullRequestReviewsArgs<ExtArgs>
     pullRequestComments?: boolean | User$pullRequestCommentsArgs<ExtArgs>
     repositoryReleases?: boolean | User$repositoryReleasesArgs<ExtArgs>
+    repositoryAuditEvents?: boolean | User$repositoryAuditEventsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5895,6 +6006,7 @@ export namespace Prisma {
       pullRequestReviews: Prisma.$PullRequestReviewPayload<ExtArgs>[]
       pullRequestComments: Prisma.$PullRequestCommentPayload<ExtArgs>[]
       repositoryReleases: Prisma.$RepositoryReleasePayload<ExtArgs>[]
+      repositoryAuditEvents: Prisma.$RepositoryAuditEventPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6344,6 +6456,7 @@ export namespace Prisma {
     pullRequestReviews<T extends User$pullRequestReviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$pullRequestReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pullRequestComments<T extends User$pullRequestCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$pullRequestCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     repositoryReleases<T extends User$repositoryReleasesArgs<ExtArgs> = {}>(args?: Subset<T, User$repositoryReleasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    repositoryAuditEvents<T extends User$repositoryAuditEventsArgs<ExtArgs> = {}>(args?: Subset<T, User$repositoryAuditEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7519,6 +7632,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RepositoryReleaseScalarFieldEnum | RepositoryReleaseScalarFieldEnum[]
+  }
+
+  /**
+   * User.repositoryAuditEvents
+   */
+  export type User$repositoryAuditEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    where?: RepositoryAuditEventWhereInput
+    orderBy?: RepositoryAuditEventOrderByWithRelationInput | RepositoryAuditEventOrderByWithRelationInput[]
+    cursor?: RepositoryAuditEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepositoryAuditEventScalarFieldEnum | RepositoryAuditEventScalarFieldEnum[]
   }
 
   /**
@@ -34417,7 +34554,13 @@ export namespace Prisma {
     defaultBranch: string | null
     gitStoragePath: string | null
     archived: boolean | null
+    archivedAt: Date | null
     disabled: boolean | null
+    status: string | null
+    deletedAt: Date | null
+    deletionScheduledAt: Date | null
+    purgeAt: Date | null
+    restoredAt: Date | null
     forkedFromId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -34435,7 +34578,13 @@ export namespace Prisma {
     defaultBranch: string | null
     gitStoragePath: string | null
     archived: boolean | null
+    archivedAt: Date | null
     disabled: boolean | null
+    status: string | null
+    deletedAt: Date | null
+    deletionScheduledAt: Date | null
+    purgeAt: Date | null
+    restoredAt: Date | null
     forkedFromId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -34453,7 +34602,13 @@ export namespace Prisma {
     defaultBranch: number
     gitStoragePath: number
     archived: number
+    archivedAt: number
     disabled: number
+    status: number
+    deletedAt: number
+    deletionScheduledAt: number
+    purgeAt: number
+    restoredAt: number
     forkedFromId: number
     createdAt: number
     updatedAt: number
@@ -34473,7 +34628,13 @@ export namespace Prisma {
     defaultBranch?: true
     gitStoragePath?: true
     archived?: true
+    archivedAt?: true
     disabled?: true
+    status?: true
+    deletedAt?: true
+    deletionScheduledAt?: true
+    purgeAt?: true
+    restoredAt?: true
     forkedFromId?: true
     createdAt?: true
     updatedAt?: true
@@ -34491,7 +34652,13 @@ export namespace Prisma {
     defaultBranch?: true
     gitStoragePath?: true
     archived?: true
+    archivedAt?: true
     disabled?: true
+    status?: true
+    deletedAt?: true
+    deletionScheduledAt?: true
+    purgeAt?: true
+    restoredAt?: true
     forkedFromId?: true
     createdAt?: true
     updatedAt?: true
@@ -34509,7 +34676,13 @@ export namespace Prisma {
     defaultBranch?: true
     gitStoragePath?: true
     archived?: true
+    archivedAt?: true
     disabled?: true
+    status?: true
+    deletedAt?: true
+    deletionScheduledAt?: true
+    purgeAt?: true
+    restoredAt?: true
     forkedFromId?: true
     createdAt?: true
     updatedAt?: true
@@ -34600,7 +34773,13 @@ export namespace Prisma {
     defaultBranch: string
     gitStoragePath: string
     archived: boolean
+    archivedAt: Date | null
     disabled: boolean
+    status: string
+    deletedAt: Date | null
+    deletionScheduledAt: Date | null
+    purgeAt: Date | null
+    restoredAt: Date | null
     forkedFromId: string | null
     createdAt: Date
     updatedAt: Date
@@ -34635,7 +34814,13 @@ export namespace Prisma {
     defaultBranch?: boolean
     gitStoragePath?: boolean
     archived?: boolean
+    archivedAt?: boolean
     disabled?: boolean
+    status?: boolean
+    deletedAt?: boolean
+    deletionScheduledAt?: boolean
+    purgeAt?: boolean
+    restoredAt?: boolean
     forkedFromId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -34652,6 +34837,7 @@ export namespace Prisma {
     releases?: boolean | Repository$releasesArgs<ExtArgs>
     webhooks?: boolean | Repository$webhooksArgs<ExtArgs>
     actionRuns?: boolean | Repository$actionRunsArgs<ExtArgs>
+    auditEvents?: boolean | Repository$auditEventsArgs<ExtArgs>
     _count?: boolean | RepositoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["repository"]>
 
@@ -34667,7 +34853,13 @@ export namespace Prisma {
     defaultBranch?: boolean
     gitStoragePath?: boolean
     archived?: boolean
+    archivedAt?: boolean
     disabled?: boolean
+    status?: boolean
+    deletedAt?: boolean
+    deletionScheduledAt?: boolean
+    purgeAt?: boolean
+    restoredAt?: boolean
     forkedFromId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -34688,7 +34880,13 @@ export namespace Prisma {
     defaultBranch?: boolean
     gitStoragePath?: boolean
     archived?: boolean
+    archivedAt?: boolean
     disabled?: boolean
+    status?: boolean
+    deletedAt?: boolean
+    deletionScheduledAt?: boolean
+    purgeAt?: boolean
+    restoredAt?: boolean
     forkedFromId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -34709,13 +34907,19 @@ export namespace Prisma {
     defaultBranch?: boolean
     gitStoragePath?: boolean
     archived?: boolean
+    archivedAt?: boolean
     disabled?: boolean
+    status?: boolean
+    deletedAt?: boolean
+    deletionScheduledAt?: boolean
+    purgeAt?: boolean
+    restoredAt?: boolean
     forkedFromId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type RepositoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "workspaceId" | "projectId" | "ownerId" | "name" | "slug" | "description" | "visibility" | "defaultBranch" | "gitStoragePath" | "archived" | "disabled" | "forkedFromId" | "createdAt" | "updatedAt", ExtArgs["result"]["repository"]>
+  export type RepositoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "workspaceId" | "projectId" | "ownerId" | "name" | "slug" | "description" | "visibility" | "defaultBranch" | "gitStoragePath" | "archived" | "archivedAt" | "disabled" | "status" | "deletedAt" | "deletionScheduledAt" | "purgeAt" | "restoredAt" | "forkedFromId" | "createdAt" | "updatedAt", ExtArgs["result"]["repository"]>
   export type RepositoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     owner?: boolean | UserDefaultArgs<ExtArgs>
     project?: boolean | Repository$projectArgs<ExtArgs>
@@ -34730,6 +34934,7 @@ export namespace Prisma {
     releases?: boolean | Repository$releasesArgs<ExtArgs>
     webhooks?: boolean | Repository$webhooksArgs<ExtArgs>
     actionRuns?: boolean | Repository$actionRunsArgs<ExtArgs>
+    auditEvents?: boolean | Repository$auditEventsArgs<ExtArgs>
     _count?: boolean | RepositoryCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RepositoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -34759,6 +34964,7 @@ export namespace Prisma {
       releases: Prisma.$RepositoryReleasePayload<ExtArgs>[]
       webhooks: Prisma.$RepositoryWebhookPayload<ExtArgs>[]
       actionRuns: Prisma.$RepositoryActionRunPayload<ExtArgs>[]
+      auditEvents: Prisma.$RepositoryAuditEventPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -34772,7 +34978,13 @@ export namespace Prisma {
       defaultBranch: string
       gitStoragePath: string
       archived: boolean
+      archivedAt: Date | null
       disabled: boolean
+      status: string
+      deletedAt: Date | null
+      deletionScheduledAt: Date | null
+      purgeAt: Date | null
+      restoredAt: Date | null
       forkedFromId: string | null
       createdAt: Date
       updatedAt: Date
@@ -35183,6 +35395,7 @@ export namespace Prisma {
     releases<T extends Repository$releasesArgs<ExtArgs> = {}>(args?: Subset<T, Repository$releasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     webhooks<T extends Repository$webhooksArgs<ExtArgs> = {}>(args?: Subset<T, Repository$webhooksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryWebhookPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     actionRuns<T extends Repository$actionRunsArgs<ExtArgs> = {}>(args?: Subset<T, Repository$actionRunsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryActionRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    auditEvents<T extends Repository$auditEventsArgs<ExtArgs> = {}>(args?: Subset<T, Repository$auditEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -35223,7 +35436,13 @@ export namespace Prisma {
     readonly defaultBranch: FieldRef<"Repository", 'String'>
     readonly gitStoragePath: FieldRef<"Repository", 'String'>
     readonly archived: FieldRef<"Repository", 'Boolean'>
+    readonly archivedAt: FieldRef<"Repository", 'DateTime'>
     readonly disabled: FieldRef<"Repository", 'Boolean'>
+    readonly status: FieldRef<"Repository", 'String'>
+    readonly deletedAt: FieldRef<"Repository", 'DateTime'>
+    readonly deletionScheduledAt: FieldRef<"Repository", 'DateTime'>
+    readonly purgeAt: FieldRef<"Repository", 'DateTime'>
+    readonly restoredAt: FieldRef<"Repository", 'DateTime'>
     readonly forkedFromId: FieldRef<"Repository", 'String'>
     readonly createdAt: FieldRef<"Repository", 'DateTime'>
     readonly updatedAt: FieldRef<"Repository", 'DateTime'>
@@ -35898,6 +36117,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RepositoryActionRunScalarFieldEnum | RepositoryActionRunScalarFieldEnum[]
+  }
+
+  /**
+   * Repository.auditEvents
+   */
+  export type Repository$auditEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    where?: RepositoryAuditEventWhereInput
+    orderBy?: RepositoryAuditEventOrderByWithRelationInput | RepositoryAuditEventOrderByWithRelationInput[]
+    cursor?: RepositoryAuditEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepositoryAuditEventScalarFieldEnum | RepositoryAuditEventScalarFieldEnum[]
   }
 
   /**
@@ -50660,6 +50903,1133 @@ export namespace Prisma {
 
 
   /**
+   * Model RepositoryAuditEvent
+   */
+
+  export type AggregateRepositoryAuditEvent = {
+    _count: RepositoryAuditEventCountAggregateOutputType | null
+    _min: RepositoryAuditEventMinAggregateOutputType | null
+    _max: RepositoryAuditEventMaxAggregateOutputType | null
+  }
+
+  export type RepositoryAuditEventMinAggregateOutputType = {
+    id: string | null
+    repositoryId: string | null
+    actorId: string | null
+    action: string | null
+    previousValue: string | null
+    newValue: string | null
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date | null
+  }
+
+  export type RepositoryAuditEventMaxAggregateOutputType = {
+    id: string | null
+    repositoryId: string | null
+    actorId: string | null
+    action: string | null
+    previousValue: string | null
+    newValue: string | null
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date | null
+  }
+
+  export type RepositoryAuditEventCountAggregateOutputType = {
+    id: number
+    repositoryId: number
+    actorId: number
+    action: number
+    previousValue: number
+    newValue: number
+    metadata: number
+    ipAddress: number
+    userAgent: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type RepositoryAuditEventMinAggregateInputType = {
+    id?: true
+    repositoryId?: true
+    actorId?: true
+    action?: true
+    previousValue?: true
+    newValue?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+  }
+
+  export type RepositoryAuditEventMaxAggregateInputType = {
+    id?: true
+    repositoryId?: true
+    actorId?: true
+    action?: true
+    previousValue?: true
+    newValue?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+  }
+
+  export type RepositoryAuditEventCountAggregateInputType = {
+    id?: true
+    repositoryId?: true
+    actorId?: true
+    action?: true
+    previousValue?: true
+    newValue?: true
+    metadata?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type RepositoryAuditEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepositoryAuditEvent to aggregate.
+     */
+    where?: RepositoryAuditEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepositoryAuditEvents to fetch.
+     */
+    orderBy?: RepositoryAuditEventOrderByWithRelationInput | RepositoryAuditEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RepositoryAuditEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepositoryAuditEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepositoryAuditEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RepositoryAuditEvents
+    **/
+    _count?: true | RepositoryAuditEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RepositoryAuditEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RepositoryAuditEventMaxAggregateInputType
+  }
+
+  export type GetRepositoryAuditEventAggregateType<T extends RepositoryAuditEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateRepositoryAuditEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRepositoryAuditEvent[P]>
+      : GetScalarType<T[P], AggregateRepositoryAuditEvent[P]>
+  }
+
+
+
+
+  export type RepositoryAuditEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepositoryAuditEventWhereInput
+    orderBy?: RepositoryAuditEventOrderByWithAggregationInput | RepositoryAuditEventOrderByWithAggregationInput[]
+    by: RepositoryAuditEventScalarFieldEnum[] | RepositoryAuditEventScalarFieldEnum
+    having?: RepositoryAuditEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RepositoryAuditEventCountAggregateInputType | true
+    _min?: RepositoryAuditEventMinAggregateInputType
+    _max?: RepositoryAuditEventMaxAggregateInputType
+  }
+
+  export type RepositoryAuditEventGroupByOutputType = {
+    id: string
+    repositoryId: string
+    actorId: string
+    action: string
+    previousValue: string | null
+    newValue: string | null
+    metadata: JsonValue | null
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date
+    _count: RepositoryAuditEventCountAggregateOutputType | null
+    _min: RepositoryAuditEventMinAggregateOutputType | null
+    _max: RepositoryAuditEventMaxAggregateOutputType | null
+  }
+
+  type GetRepositoryAuditEventGroupByPayload<T extends RepositoryAuditEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RepositoryAuditEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RepositoryAuditEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RepositoryAuditEventGroupByOutputType[P]>
+            : GetScalarType<T[P], RepositoryAuditEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RepositoryAuditEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    repositoryId?: boolean
+    actorId?: boolean
+    action?: boolean
+    previousValue?: boolean
+    newValue?: boolean
+    metadata?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repositoryAuditEvent"]>
+
+  export type RepositoryAuditEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    repositoryId?: boolean
+    actorId?: boolean
+    action?: boolean
+    previousValue?: boolean
+    newValue?: boolean
+    metadata?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repositoryAuditEvent"]>
+
+  export type RepositoryAuditEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    repositoryId?: boolean
+    actorId?: boolean
+    action?: boolean
+    previousValue?: boolean
+    newValue?: boolean
+    metadata?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repositoryAuditEvent"]>
+
+  export type RepositoryAuditEventSelectScalar = {
+    id?: boolean
+    repositoryId?: boolean
+    actorId?: boolean
+    action?: boolean
+    previousValue?: boolean
+    newValue?: boolean
+    metadata?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+  }
+
+  export type RepositoryAuditEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repositoryId" | "actorId" | "action" | "previousValue" | "newValue" | "metadata" | "ipAddress" | "userAgent" | "createdAt", ExtArgs["result"]["repositoryAuditEvent"]>
+  export type RepositoryAuditEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RepositoryAuditEventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RepositoryAuditEventIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $RepositoryAuditEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RepositoryAuditEvent"
+    objects: {
+      repository: Prisma.$RepositoryPayload<ExtArgs>
+      actor: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      repositoryId: string
+      actorId: string
+      action: string
+      previousValue: string | null
+      newValue: string | null
+      metadata: Prisma.JsonValue | null
+      ipAddress: string | null
+      userAgent: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["repositoryAuditEvent"]>
+    composites: {}
+  }
+
+  type RepositoryAuditEventGetPayload<S extends boolean | null | undefined | RepositoryAuditEventDefaultArgs> = $Result.GetResult<Prisma.$RepositoryAuditEventPayload, S>
+
+  type RepositoryAuditEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RepositoryAuditEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RepositoryAuditEventCountAggregateInputType | true
+    }
+
+  export interface RepositoryAuditEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RepositoryAuditEvent'], meta: { name: 'RepositoryAuditEvent' } }
+    /**
+     * Find zero or one RepositoryAuditEvent that matches the filter.
+     * @param {RepositoryAuditEventFindUniqueArgs} args - Arguments to find a RepositoryAuditEvent
+     * @example
+     * // Get one RepositoryAuditEvent
+     * const repositoryAuditEvent = await prisma.repositoryAuditEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RepositoryAuditEventFindUniqueArgs>(args: SelectSubset<T, RepositoryAuditEventFindUniqueArgs<ExtArgs>>): Prisma__RepositoryAuditEventClient<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RepositoryAuditEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RepositoryAuditEventFindUniqueOrThrowArgs} args - Arguments to find a RepositoryAuditEvent
+     * @example
+     * // Get one RepositoryAuditEvent
+     * const repositoryAuditEvent = await prisma.repositoryAuditEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RepositoryAuditEventFindUniqueOrThrowArgs>(args: SelectSubset<T, RepositoryAuditEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RepositoryAuditEventClient<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepositoryAuditEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryAuditEventFindFirstArgs} args - Arguments to find a RepositoryAuditEvent
+     * @example
+     * // Get one RepositoryAuditEvent
+     * const repositoryAuditEvent = await prisma.repositoryAuditEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RepositoryAuditEventFindFirstArgs>(args?: SelectSubset<T, RepositoryAuditEventFindFirstArgs<ExtArgs>>): Prisma__RepositoryAuditEventClient<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepositoryAuditEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryAuditEventFindFirstOrThrowArgs} args - Arguments to find a RepositoryAuditEvent
+     * @example
+     * // Get one RepositoryAuditEvent
+     * const repositoryAuditEvent = await prisma.repositoryAuditEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RepositoryAuditEventFindFirstOrThrowArgs>(args?: SelectSubset<T, RepositoryAuditEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__RepositoryAuditEventClient<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RepositoryAuditEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryAuditEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RepositoryAuditEvents
+     * const repositoryAuditEvents = await prisma.repositoryAuditEvent.findMany()
+     * 
+     * // Get first 10 RepositoryAuditEvents
+     * const repositoryAuditEvents = await prisma.repositoryAuditEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const repositoryAuditEventWithIdOnly = await prisma.repositoryAuditEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RepositoryAuditEventFindManyArgs>(args?: SelectSubset<T, RepositoryAuditEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RepositoryAuditEvent.
+     * @param {RepositoryAuditEventCreateArgs} args - Arguments to create a RepositoryAuditEvent.
+     * @example
+     * // Create one RepositoryAuditEvent
+     * const RepositoryAuditEvent = await prisma.repositoryAuditEvent.create({
+     *   data: {
+     *     // ... data to create a RepositoryAuditEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends RepositoryAuditEventCreateArgs>(args: SelectSubset<T, RepositoryAuditEventCreateArgs<ExtArgs>>): Prisma__RepositoryAuditEventClient<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RepositoryAuditEvents.
+     * @param {RepositoryAuditEventCreateManyArgs} args - Arguments to create many RepositoryAuditEvents.
+     * @example
+     * // Create many RepositoryAuditEvents
+     * const repositoryAuditEvent = await prisma.repositoryAuditEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RepositoryAuditEventCreateManyArgs>(args?: SelectSubset<T, RepositoryAuditEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RepositoryAuditEvents and returns the data saved in the database.
+     * @param {RepositoryAuditEventCreateManyAndReturnArgs} args - Arguments to create many RepositoryAuditEvents.
+     * @example
+     * // Create many RepositoryAuditEvents
+     * const repositoryAuditEvent = await prisma.repositoryAuditEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RepositoryAuditEvents and only return the `id`
+     * const repositoryAuditEventWithIdOnly = await prisma.repositoryAuditEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RepositoryAuditEventCreateManyAndReturnArgs>(args?: SelectSubset<T, RepositoryAuditEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RepositoryAuditEvent.
+     * @param {RepositoryAuditEventDeleteArgs} args - Arguments to delete one RepositoryAuditEvent.
+     * @example
+     * // Delete one RepositoryAuditEvent
+     * const RepositoryAuditEvent = await prisma.repositoryAuditEvent.delete({
+     *   where: {
+     *     // ... filter to delete one RepositoryAuditEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RepositoryAuditEventDeleteArgs>(args: SelectSubset<T, RepositoryAuditEventDeleteArgs<ExtArgs>>): Prisma__RepositoryAuditEventClient<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RepositoryAuditEvent.
+     * @param {RepositoryAuditEventUpdateArgs} args - Arguments to update one RepositoryAuditEvent.
+     * @example
+     * // Update one RepositoryAuditEvent
+     * const repositoryAuditEvent = await prisma.repositoryAuditEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RepositoryAuditEventUpdateArgs>(args: SelectSubset<T, RepositoryAuditEventUpdateArgs<ExtArgs>>): Prisma__RepositoryAuditEventClient<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RepositoryAuditEvents.
+     * @param {RepositoryAuditEventDeleteManyArgs} args - Arguments to filter RepositoryAuditEvents to delete.
+     * @example
+     * // Delete a few RepositoryAuditEvents
+     * const { count } = await prisma.repositoryAuditEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RepositoryAuditEventDeleteManyArgs>(args?: SelectSubset<T, RepositoryAuditEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepositoryAuditEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryAuditEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RepositoryAuditEvents
+     * const repositoryAuditEvent = await prisma.repositoryAuditEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RepositoryAuditEventUpdateManyArgs>(args: SelectSubset<T, RepositoryAuditEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepositoryAuditEvents and returns the data updated in the database.
+     * @param {RepositoryAuditEventUpdateManyAndReturnArgs} args - Arguments to update many RepositoryAuditEvents.
+     * @example
+     * // Update many RepositoryAuditEvents
+     * const repositoryAuditEvent = await prisma.repositoryAuditEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RepositoryAuditEvents and only return the `id`
+     * const repositoryAuditEventWithIdOnly = await prisma.repositoryAuditEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RepositoryAuditEventUpdateManyAndReturnArgs>(args: SelectSubset<T, RepositoryAuditEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RepositoryAuditEvent.
+     * @param {RepositoryAuditEventUpsertArgs} args - Arguments to update or create a RepositoryAuditEvent.
+     * @example
+     * // Update or create a RepositoryAuditEvent
+     * const repositoryAuditEvent = await prisma.repositoryAuditEvent.upsert({
+     *   create: {
+     *     // ... data to create a RepositoryAuditEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RepositoryAuditEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RepositoryAuditEventUpsertArgs>(args: SelectSubset<T, RepositoryAuditEventUpsertArgs<ExtArgs>>): Prisma__RepositoryAuditEventClient<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RepositoryAuditEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryAuditEventCountArgs} args - Arguments to filter RepositoryAuditEvents to count.
+     * @example
+     * // Count the number of RepositoryAuditEvents
+     * const count = await prisma.repositoryAuditEvent.count({
+     *   where: {
+     *     // ... the filter for the RepositoryAuditEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends RepositoryAuditEventCountArgs>(
+      args?: Subset<T, RepositoryAuditEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RepositoryAuditEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RepositoryAuditEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryAuditEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RepositoryAuditEventAggregateArgs>(args: Subset<T, RepositoryAuditEventAggregateArgs>): Prisma.PrismaPromise<GetRepositoryAuditEventAggregateType<T>>
+
+    /**
+     * Group by RepositoryAuditEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryAuditEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RepositoryAuditEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RepositoryAuditEventGroupByArgs['orderBy'] }
+        : { orderBy?: RepositoryAuditEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RepositoryAuditEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRepositoryAuditEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RepositoryAuditEvent model
+   */
+  readonly fields: RepositoryAuditEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RepositoryAuditEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RepositoryAuditEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    repository<T extends RepositoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryDefaultArgs<ExtArgs>>): Prisma__RepositoryClient<$Result.GetResult<Prisma.$RepositoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    actor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RepositoryAuditEvent model
+   */
+  interface RepositoryAuditEventFieldRefs {
+    readonly id: FieldRef<"RepositoryAuditEvent", 'String'>
+    readonly repositoryId: FieldRef<"RepositoryAuditEvent", 'String'>
+    readonly actorId: FieldRef<"RepositoryAuditEvent", 'String'>
+    readonly action: FieldRef<"RepositoryAuditEvent", 'String'>
+    readonly previousValue: FieldRef<"RepositoryAuditEvent", 'String'>
+    readonly newValue: FieldRef<"RepositoryAuditEvent", 'String'>
+    readonly metadata: FieldRef<"RepositoryAuditEvent", 'Json'>
+    readonly ipAddress: FieldRef<"RepositoryAuditEvent", 'String'>
+    readonly userAgent: FieldRef<"RepositoryAuditEvent", 'String'>
+    readonly createdAt: FieldRef<"RepositoryAuditEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RepositoryAuditEvent findUnique
+   */
+  export type RepositoryAuditEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    /**
+     * Filter, which RepositoryAuditEvent to fetch.
+     */
+    where: RepositoryAuditEventWhereUniqueInput
+  }
+
+  /**
+   * RepositoryAuditEvent findUniqueOrThrow
+   */
+  export type RepositoryAuditEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    /**
+     * Filter, which RepositoryAuditEvent to fetch.
+     */
+    where: RepositoryAuditEventWhereUniqueInput
+  }
+
+  /**
+   * RepositoryAuditEvent findFirst
+   */
+  export type RepositoryAuditEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    /**
+     * Filter, which RepositoryAuditEvent to fetch.
+     */
+    where?: RepositoryAuditEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepositoryAuditEvents to fetch.
+     */
+    orderBy?: RepositoryAuditEventOrderByWithRelationInput | RepositoryAuditEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepositoryAuditEvents.
+     */
+    cursor?: RepositoryAuditEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepositoryAuditEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepositoryAuditEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepositoryAuditEvents.
+     */
+    distinct?: RepositoryAuditEventScalarFieldEnum | RepositoryAuditEventScalarFieldEnum[]
+  }
+
+  /**
+   * RepositoryAuditEvent findFirstOrThrow
+   */
+  export type RepositoryAuditEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    /**
+     * Filter, which RepositoryAuditEvent to fetch.
+     */
+    where?: RepositoryAuditEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepositoryAuditEvents to fetch.
+     */
+    orderBy?: RepositoryAuditEventOrderByWithRelationInput | RepositoryAuditEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepositoryAuditEvents.
+     */
+    cursor?: RepositoryAuditEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepositoryAuditEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepositoryAuditEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepositoryAuditEvents.
+     */
+    distinct?: RepositoryAuditEventScalarFieldEnum | RepositoryAuditEventScalarFieldEnum[]
+  }
+
+  /**
+   * RepositoryAuditEvent findMany
+   */
+  export type RepositoryAuditEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    /**
+     * Filter, which RepositoryAuditEvents to fetch.
+     */
+    where?: RepositoryAuditEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepositoryAuditEvents to fetch.
+     */
+    orderBy?: RepositoryAuditEventOrderByWithRelationInput | RepositoryAuditEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RepositoryAuditEvents.
+     */
+    cursor?: RepositoryAuditEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepositoryAuditEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepositoryAuditEvents.
+     */
+    skip?: number
+    distinct?: RepositoryAuditEventScalarFieldEnum | RepositoryAuditEventScalarFieldEnum[]
+  }
+
+  /**
+   * RepositoryAuditEvent create
+   */
+  export type RepositoryAuditEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RepositoryAuditEvent.
+     */
+    data: XOR<RepositoryAuditEventCreateInput, RepositoryAuditEventUncheckedCreateInput>
+  }
+
+  /**
+   * RepositoryAuditEvent createMany
+   */
+  export type RepositoryAuditEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RepositoryAuditEvents.
+     */
+    data: RepositoryAuditEventCreateManyInput | RepositoryAuditEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RepositoryAuditEvent createManyAndReturn
+   */
+  export type RepositoryAuditEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many RepositoryAuditEvents.
+     */
+    data: RepositoryAuditEventCreateManyInput | RepositoryAuditEventCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RepositoryAuditEvent update
+   */
+  export type RepositoryAuditEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RepositoryAuditEvent.
+     */
+    data: XOR<RepositoryAuditEventUpdateInput, RepositoryAuditEventUncheckedUpdateInput>
+    /**
+     * Choose, which RepositoryAuditEvent to update.
+     */
+    where: RepositoryAuditEventWhereUniqueInput
+  }
+
+  /**
+   * RepositoryAuditEvent updateMany
+   */
+  export type RepositoryAuditEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RepositoryAuditEvents.
+     */
+    data: XOR<RepositoryAuditEventUpdateManyMutationInput, RepositoryAuditEventUncheckedUpdateManyInput>
+    /**
+     * Filter which RepositoryAuditEvents to update
+     */
+    where?: RepositoryAuditEventWhereInput
+    /**
+     * Limit how many RepositoryAuditEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepositoryAuditEvent updateManyAndReturn
+   */
+  export type RepositoryAuditEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * The data used to update RepositoryAuditEvents.
+     */
+    data: XOR<RepositoryAuditEventUpdateManyMutationInput, RepositoryAuditEventUncheckedUpdateManyInput>
+    /**
+     * Filter which RepositoryAuditEvents to update
+     */
+    where?: RepositoryAuditEventWhereInput
+    /**
+     * Limit how many RepositoryAuditEvents to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RepositoryAuditEvent upsert
+   */
+  export type RepositoryAuditEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RepositoryAuditEvent to update in case it exists.
+     */
+    where: RepositoryAuditEventWhereUniqueInput
+    /**
+     * In case the RepositoryAuditEvent found by the `where` argument doesn't exist, create a new RepositoryAuditEvent with this data.
+     */
+    create: XOR<RepositoryAuditEventCreateInput, RepositoryAuditEventUncheckedCreateInput>
+    /**
+     * In case the RepositoryAuditEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RepositoryAuditEventUpdateInput, RepositoryAuditEventUncheckedUpdateInput>
+  }
+
+  /**
+   * RepositoryAuditEvent delete
+   */
+  export type RepositoryAuditEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+    /**
+     * Filter which RepositoryAuditEvent to delete.
+     */
+    where: RepositoryAuditEventWhereUniqueInput
+  }
+
+  /**
+   * RepositoryAuditEvent deleteMany
+   */
+  export type RepositoryAuditEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepositoryAuditEvents to delete
+     */
+    where?: RepositoryAuditEventWhereInput
+    /**
+     * Limit how many RepositoryAuditEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepositoryAuditEvent without action
+   */
+  export type RepositoryAuditEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryAuditEvent
+     */
+    select?: RepositoryAuditEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryAuditEvent
+     */
+    omit?: RepositoryAuditEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryAuditEventInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -51029,7 +52399,13 @@ export namespace Prisma {
     defaultBranch: 'defaultBranch',
     gitStoragePath: 'gitStoragePath',
     archived: 'archived',
+    archivedAt: 'archivedAt',
     disabled: 'disabled',
+    status: 'status',
+    deletedAt: 'deletedAt',
+    deletionScheduledAt: 'deletionScheduledAt',
+    purgeAt: 'purgeAt',
+    restoredAt: 'restoredAt',
     forkedFromId: 'forkedFromId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -51221,6 +52597,22 @@ export namespace Prisma {
   };
 
   export type RepositoryActionRunScalarFieldEnum = (typeof RepositoryActionRunScalarFieldEnum)[keyof typeof RepositoryActionRunScalarFieldEnum]
+
+
+  export const RepositoryAuditEventScalarFieldEnum: {
+    id: 'id',
+    repositoryId: 'repositoryId',
+    actorId: 'actorId',
+    action: 'action',
+    previousValue: 'previousValue',
+    newValue: 'newValue',
+    metadata: 'metadata',
+    ipAddress: 'ipAddress',
+    userAgent: 'userAgent',
+    createdAt: 'createdAt'
+  };
+
+  export type RepositoryAuditEventScalarFieldEnum = (typeof RepositoryAuditEventScalarFieldEnum)[keyof typeof RepositoryAuditEventScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -51623,6 +53015,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewListRelationFilter
     pullRequestComments?: PullRequestCommentListRelationFilter
     repositoryReleases?: RepositoryReleaseListRelationFilter
+    repositoryAuditEvents?: RepositoryAuditEventListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -51679,6 +53072,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewOrderByRelationAggregateInput
     pullRequestComments?: PullRequestCommentOrderByRelationAggregateInput
     repositoryReleases?: RepositoryReleaseOrderByRelationAggregateInput
+    repositoryAuditEvents?: RepositoryAuditEventOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -51738,6 +53132,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewListRelationFilter
     pullRequestComments?: PullRequestCommentListRelationFilter
     repositoryReleases?: RepositoryReleaseListRelationFilter
+    repositoryAuditEvents?: RepositoryAuditEventListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -53513,7 +54908,13 @@ export namespace Prisma {
     defaultBranch?: StringFilter<"Repository"> | string
     gitStoragePath?: StringFilter<"Repository"> | string
     archived?: BoolFilter<"Repository"> | boolean
+    archivedAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
     disabled?: BoolFilter<"Repository"> | boolean
+    status?: StringFilter<"Repository"> | string
+    deletedAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
+    deletionScheduledAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
+    purgeAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
+    restoredAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
     forkedFromId?: StringNullableFilter<"Repository"> | string | null
     createdAt?: DateTimeFilter<"Repository"> | Date | string
     updatedAt?: DateTimeFilter<"Repository"> | Date | string
@@ -53530,6 +54931,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseListRelationFilter
     webhooks?: RepositoryWebhookListRelationFilter
     actionRuns?: RepositoryActionRunListRelationFilter
+    auditEvents?: RepositoryAuditEventListRelationFilter
   }
 
   export type RepositoryOrderByWithRelationInput = {
@@ -53544,7 +54946,13 @@ export namespace Prisma {
     defaultBranch?: SortOrder
     gitStoragePath?: SortOrder
     archived?: SortOrder
+    archivedAt?: SortOrderInput | SortOrder
     disabled?: SortOrder
+    status?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    deletionScheduledAt?: SortOrderInput | SortOrder
+    purgeAt?: SortOrderInput | SortOrder
+    restoredAt?: SortOrderInput | SortOrder
     forkedFromId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -53561,6 +54969,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseOrderByRelationAggregateInput
     webhooks?: RepositoryWebhookOrderByRelationAggregateInput
     actionRuns?: RepositoryActionRunOrderByRelationAggregateInput
+    auditEvents?: RepositoryAuditEventOrderByRelationAggregateInput
   }
 
   export type RepositoryWhereUniqueInput = Prisma.AtLeast<{
@@ -53579,7 +54988,13 @@ export namespace Prisma {
     defaultBranch?: StringFilter<"Repository"> | string
     gitStoragePath?: StringFilter<"Repository"> | string
     archived?: BoolFilter<"Repository"> | boolean
+    archivedAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
     disabled?: BoolFilter<"Repository"> | boolean
+    status?: StringFilter<"Repository"> | string
+    deletedAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
+    deletionScheduledAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
+    purgeAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
+    restoredAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
     forkedFromId?: StringNullableFilter<"Repository"> | string | null
     createdAt?: DateTimeFilter<"Repository"> | Date | string
     updatedAt?: DateTimeFilter<"Repository"> | Date | string
@@ -53596,6 +55011,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseListRelationFilter
     webhooks?: RepositoryWebhookListRelationFilter
     actionRuns?: RepositoryActionRunListRelationFilter
+    auditEvents?: RepositoryAuditEventListRelationFilter
   }, "id" | "ownerId_slug">
 
   export type RepositoryOrderByWithAggregationInput = {
@@ -53610,7 +55026,13 @@ export namespace Prisma {
     defaultBranch?: SortOrder
     gitStoragePath?: SortOrder
     archived?: SortOrder
+    archivedAt?: SortOrderInput | SortOrder
     disabled?: SortOrder
+    status?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    deletionScheduledAt?: SortOrderInput | SortOrder
+    purgeAt?: SortOrderInput | SortOrder
+    restoredAt?: SortOrderInput | SortOrder
     forkedFromId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -53634,7 +55056,13 @@ export namespace Prisma {
     defaultBranch?: StringWithAggregatesFilter<"Repository"> | string
     gitStoragePath?: StringWithAggregatesFilter<"Repository"> | string
     archived?: BoolWithAggregatesFilter<"Repository"> | boolean
+    archivedAt?: DateTimeNullableWithAggregatesFilter<"Repository"> | Date | string | null
     disabled?: BoolWithAggregatesFilter<"Repository"> | boolean
+    status?: StringWithAggregatesFilter<"Repository"> | string
+    deletedAt?: DateTimeNullableWithAggregatesFilter<"Repository"> | Date | string | null
+    deletionScheduledAt?: DateTimeNullableWithAggregatesFilter<"Repository"> | Date | string | null
+    purgeAt?: DateTimeNullableWithAggregatesFilter<"Repository"> | Date | string | null
+    restoredAt?: DateTimeNullableWithAggregatesFilter<"Repository"> | Date | string | null
     forkedFromId?: StringNullableWithAggregatesFilter<"Repository"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Repository"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Repository"> | Date | string
@@ -54628,6 +56056,89 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"RepositoryActionRun"> | Date | string
   }
 
+  export type RepositoryAuditEventWhereInput = {
+    AND?: RepositoryAuditEventWhereInput | RepositoryAuditEventWhereInput[]
+    OR?: RepositoryAuditEventWhereInput[]
+    NOT?: RepositoryAuditEventWhereInput | RepositoryAuditEventWhereInput[]
+    id?: StringFilter<"RepositoryAuditEvent"> | string
+    repositoryId?: StringFilter<"RepositoryAuditEvent"> | string
+    actorId?: StringFilter<"RepositoryAuditEvent"> | string
+    action?: StringFilter<"RepositoryAuditEvent"> | string
+    previousValue?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    newValue?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    metadata?: JsonNullableFilter<"RepositoryAuditEvent">
+    ipAddress?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    userAgent?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    createdAt?: DateTimeFilter<"RepositoryAuditEvent"> | Date | string
+    repository?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
+    actor?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type RepositoryAuditEventOrderByWithRelationInput = {
+    id?: SortOrder
+    repositoryId?: SortOrder
+    actorId?: SortOrder
+    action?: SortOrder
+    previousValue?: SortOrderInput | SortOrder
+    newValue?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    repository?: RepositoryOrderByWithRelationInput
+    actor?: UserOrderByWithRelationInput
+  }
+
+  export type RepositoryAuditEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RepositoryAuditEventWhereInput | RepositoryAuditEventWhereInput[]
+    OR?: RepositoryAuditEventWhereInput[]
+    NOT?: RepositoryAuditEventWhereInput | RepositoryAuditEventWhereInput[]
+    repositoryId?: StringFilter<"RepositoryAuditEvent"> | string
+    actorId?: StringFilter<"RepositoryAuditEvent"> | string
+    action?: StringFilter<"RepositoryAuditEvent"> | string
+    previousValue?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    newValue?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    metadata?: JsonNullableFilter<"RepositoryAuditEvent">
+    ipAddress?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    userAgent?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    createdAt?: DateTimeFilter<"RepositoryAuditEvent"> | Date | string
+    repository?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
+    actor?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type RepositoryAuditEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    repositoryId?: SortOrder
+    actorId?: SortOrder
+    action?: SortOrder
+    previousValue?: SortOrderInput | SortOrder
+    newValue?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: RepositoryAuditEventCountOrderByAggregateInput
+    _max?: RepositoryAuditEventMaxOrderByAggregateInput
+    _min?: RepositoryAuditEventMinOrderByAggregateInput
+  }
+
+  export type RepositoryAuditEventScalarWhereWithAggregatesInput = {
+    AND?: RepositoryAuditEventScalarWhereWithAggregatesInput | RepositoryAuditEventScalarWhereWithAggregatesInput[]
+    OR?: RepositoryAuditEventScalarWhereWithAggregatesInput[]
+    NOT?: RepositoryAuditEventScalarWhereWithAggregatesInput | RepositoryAuditEventScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RepositoryAuditEvent"> | string
+    repositoryId?: StringWithAggregatesFilter<"RepositoryAuditEvent"> | string
+    actorId?: StringWithAggregatesFilter<"RepositoryAuditEvent"> | string
+    action?: StringWithAggregatesFilter<"RepositoryAuditEvent"> | string
+    previousValue?: StringNullableWithAggregatesFilter<"RepositoryAuditEvent"> | string | null
+    newValue?: StringNullableWithAggregatesFilter<"RepositoryAuditEvent"> | string | null
+    metadata?: JsonNullableWithAggregatesFilter<"RepositoryAuditEvent">
+    ipAddress?: StringNullableWithAggregatesFilter<"RepositoryAuditEvent"> | string | null
+    userAgent?: StringNullableWithAggregatesFilter<"RepositoryAuditEvent"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RepositoryAuditEvent"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -54682,6 +56193,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -54738,6 +56250,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserUpdateInput = {
@@ -54794,6 +56307,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -54850,6 +56364,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -56691,7 +58206,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -56707,6 +58228,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateInput = {
@@ -56721,7 +58243,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -56735,6 +58263,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUpdateInput = {
@@ -56747,7 +58276,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -56763,6 +58298,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateInput = {
@@ -56777,7 +58313,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -56791,6 +58333,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryCreateManyInput = {
@@ -56805,7 +58348,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -56821,7 +58370,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -56838,7 +58393,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -57858,6 +59419,95 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RepositoryAuditEventCreateInput = {
+    id?: string
+    action: string
+    previousValue?: string | null
+    newValue?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    repository: RepositoryCreateNestedOneWithoutAuditEventsInput
+    actor: UserCreateNestedOneWithoutRepositoryAuditEventsInput
+  }
+
+  export type RepositoryAuditEventUncheckedCreateInput = {
+    id?: string
+    repositoryId: string
+    actorId: string
+    action: string
+    previousValue?: string | null
+    newValue?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type RepositoryAuditEventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    previousValue?: NullableStringFieldUpdateOperationsInput | string | null
+    newValue?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repository?: RepositoryUpdateOneRequiredWithoutAuditEventsNestedInput
+    actor?: UserUpdateOneRequiredWithoutRepositoryAuditEventsNestedInput
+  }
+
+  export type RepositoryAuditEventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    previousValue?: NullableStringFieldUpdateOperationsInput | string | null
+    newValue?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryAuditEventCreateManyInput = {
+    id?: string
+    repositoryId: string
+    actorId: string
+    action: string
+    previousValue?: string | null
+    newValue?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type RepositoryAuditEventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    previousValue?: NullableStringFieldUpdateOperationsInput | string | null
+    newValue?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryAuditEventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    previousValue?: NullableStringFieldUpdateOperationsInput | string | null
+    newValue?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -58120,6 +59770,12 @@ export namespace Prisma {
     none?: RepositoryReleaseWhereInput
   }
 
+  export type RepositoryAuditEventListRelationFilter = {
+    every?: RepositoryAuditEventWhereInput
+    some?: RepositoryAuditEventWhereInput
+    none?: RepositoryAuditEventWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -58234,6 +59890,10 @@ export namespace Prisma {
   }
 
   export type RepositoryReleaseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RepositoryAuditEventOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -59652,7 +61312,13 @@ export namespace Prisma {
     defaultBranch?: SortOrder
     gitStoragePath?: SortOrder
     archived?: SortOrder
+    archivedAt?: SortOrder
     disabled?: SortOrder
+    status?: SortOrder
+    deletedAt?: SortOrder
+    deletionScheduledAt?: SortOrder
+    purgeAt?: SortOrder
+    restoredAt?: SortOrder
     forkedFromId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -59670,7 +61336,13 @@ export namespace Prisma {
     defaultBranch?: SortOrder
     gitStoragePath?: SortOrder
     archived?: SortOrder
+    archivedAt?: SortOrder
     disabled?: SortOrder
+    status?: SortOrder
+    deletedAt?: SortOrder
+    deletionScheduledAt?: SortOrder
+    purgeAt?: SortOrder
+    restoredAt?: SortOrder
     forkedFromId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -59688,7 +61360,13 @@ export namespace Prisma {
     defaultBranch?: SortOrder
     gitStoragePath?: SortOrder
     archived?: SortOrder
+    archivedAt?: SortOrder
     disabled?: SortOrder
+    status?: SortOrder
+    deletedAt?: SortOrder
+    deletionScheduledAt?: SortOrder
+    purgeAt?: SortOrder
+    restoredAt?: SortOrder
     forkedFromId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -60268,6 +61946,43 @@ export namespace Prisma {
     durationMs?: SortOrder
   }
 
+  export type RepositoryAuditEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    repositoryId?: SortOrder
+    actorId?: SortOrder
+    action?: SortOrder
+    previousValue?: SortOrder
+    newValue?: SortOrder
+    metadata?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RepositoryAuditEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    repositoryId?: SortOrder
+    actorId?: SortOrder
+    action?: SortOrder
+    previousValue?: SortOrder
+    newValue?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RepositoryAuditEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    repositoryId?: SortOrder
+    actorId?: SortOrder
+    action?: SortOrder
+    previousValue?: SortOrder
+    newValue?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type OAuthAccountCreateNestedManyWithoutUserInput = {
     create?: XOR<OAuthAccountCreateWithoutUserInput, OAuthAccountUncheckedCreateWithoutUserInput> | OAuthAccountCreateWithoutUserInput[] | OAuthAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OAuthAccountCreateOrConnectWithoutUserInput | OAuthAccountCreateOrConnectWithoutUserInput[]
@@ -60484,6 +62199,13 @@ export namespace Prisma {
     connect?: RepositoryReleaseWhereUniqueInput | RepositoryReleaseWhereUniqueInput[]
   }
 
+  export type RepositoryAuditEventCreateNestedManyWithoutActorInput = {
+    create?: XOR<RepositoryAuditEventCreateWithoutActorInput, RepositoryAuditEventUncheckedCreateWithoutActorInput> | RepositoryAuditEventCreateWithoutActorInput[] | RepositoryAuditEventUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: RepositoryAuditEventCreateOrConnectWithoutActorInput | RepositoryAuditEventCreateOrConnectWithoutActorInput[]
+    createMany?: RepositoryAuditEventCreateManyActorInputEnvelope
+    connect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+  }
+
   export type OAuthAccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<OAuthAccountCreateWithoutUserInput, OAuthAccountUncheckedCreateWithoutUserInput> | OAuthAccountCreateWithoutUserInput[] | OAuthAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OAuthAccountCreateOrConnectWithoutUserInput | OAuthAccountCreateOrConnectWithoutUserInput[]
@@ -60698,6 +62420,13 @@ export namespace Prisma {
     connectOrCreate?: RepositoryReleaseCreateOrConnectWithoutAuthorInput | RepositoryReleaseCreateOrConnectWithoutAuthorInput[]
     createMany?: RepositoryReleaseCreateManyAuthorInputEnvelope
     connect?: RepositoryReleaseWhereUniqueInput | RepositoryReleaseWhereUniqueInput[]
+  }
+
+  export type RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput = {
+    create?: XOR<RepositoryAuditEventCreateWithoutActorInput, RepositoryAuditEventUncheckedCreateWithoutActorInput> | RepositoryAuditEventCreateWithoutActorInput[] | RepositoryAuditEventUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: RepositoryAuditEventCreateOrConnectWithoutActorInput | RepositoryAuditEventCreateOrConnectWithoutActorInput[]
+    createMany?: RepositoryAuditEventCreateManyActorInputEnvelope
+    connect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -61170,6 +62899,20 @@ export namespace Prisma {
     deleteMany?: RepositoryReleaseScalarWhereInput | RepositoryReleaseScalarWhereInput[]
   }
 
+  export type RepositoryAuditEventUpdateManyWithoutActorNestedInput = {
+    create?: XOR<RepositoryAuditEventCreateWithoutActorInput, RepositoryAuditEventUncheckedCreateWithoutActorInput> | RepositoryAuditEventCreateWithoutActorInput[] | RepositoryAuditEventUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: RepositoryAuditEventCreateOrConnectWithoutActorInput | RepositoryAuditEventCreateOrConnectWithoutActorInput[]
+    upsert?: RepositoryAuditEventUpsertWithWhereUniqueWithoutActorInput | RepositoryAuditEventUpsertWithWhereUniqueWithoutActorInput[]
+    createMany?: RepositoryAuditEventCreateManyActorInputEnvelope
+    set?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    disconnect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    delete?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    connect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    update?: RepositoryAuditEventUpdateWithWhereUniqueWithoutActorInput | RepositoryAuditEventUpdateWithWhereUniqueWithoutActorInput[]
+    updateMany?: RepositoryAuditEventUpdateManyWithWhereWithoutActorInput | RepositoryAuditEventUpdateManyWithWhereWithoutActorInput[]
+    deleteMany?: RepositoryAuditEventScalarWhereInput | RepositoryAuditEventScalarWhereInput[]
+  }
+
   export type OAuthAccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<OAuthAccountCreateWithoutUserInput, OAuthAccountUncheckedCreateWithoutUserInput> | OAuthAccountCreateWithoutUserInput[] | OAuthAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OAuthAccountCreateOrConnectWithoutUserInput | OAuthAccountCreateOrConnectWithoutUserInput[]
@@ -61598,6 +63341,20 @@ export namespace Prisma {
     update?: RepositoryReleaseUpdateWithWhereUniqueWithoutAuthorInput | RepositoryReleaseUpdateWithWhereUniqueWithoutAuthorInput[]
     updateMany?: RepositoryReleaseUpdateManyWithWhereWithoutAuthorInput | RepositoryReleaseUpdateManyWithWhereWithoutAuthorInput[]
     deleteMany?: RepositoryReleaseScalarWhereInput | RepositoryReleaseScalarWhereInput[]
+  }
+
+  export type RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput = {
+    create?: XOR<RepositoryAuditEventCreateWithoutActorInput, RepositoryAuditEventUncheckedCreateWithoutActorInput> | RepositoryAuditEventCreateWithoutActorInput[] | RepositoryAuditEventUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: RepositoryAuditEventCreateOrConnectWithoutActorInput | RepositoryAuditEventCreateOrConnectWithoutActorInput[]
+    upsert?: RepositoryAuditEventUpsertWithWhereUniqueWithoutActorInput | RepositoryAuditEventUpsertWithWhereUniqueWithoutActorInput[]
+    createMany?: RepositoryAuditEventCreateManyActorInputEnvelope
+    set?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    disconnect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    delete?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    connect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    update?: RepositoryAuditEventUpdateWithWhereUniqueWithoutActorInput | RepositoryAuditEventUpdateWithWhereUniqueWithoutActorInput[]
+    updateMany?: RepositoryAuditEventUpdateManyWithWhereWithoutActorInput | RepositoryAuditEventUpdateManyWithWhereWithoutActorInput[]
+    deleteMany?: RepositoryAuditEventScalarWhereInput | RepositoryAuditEventScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutUsernameHistoryInput = {
@@ -63177,6 +64934,13 @@ export namespace Prisma {
     connect?: RepositoryActionRunWhereUniqueInput | RepositoryActionRunWhereUniqueInput[]
   }
 
+  export type RepositoryAuditEventCreateNestedManyWithoutRepositoryInput = {
+    create?: XOR<RepositoryAuditEventCreateWithoutRepositoryInput, RepositoryAuditEventUncheckedCreateWithoutRepositoryInput> | RepositoryAuditEventCreateWithoutRepositoryInput[] | RepositoryAuditEventUncheckedCreateWithoutRepositoryInput[]
+    connectOrCreate?: RepositoryAuditEventCreateOrConnectWithoutRepositoryInput | RepositoryAuditEventCreateOrConnectWithoutRepositoryInput[]
+    createMany?: RepositoryAuditEventCreateManyRepositoryInputEnvelope
+    connect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+  }
+
   export type RepositoryUncheckedCreateNestedManyWithoutForkedFromInput = {
     create?: XOR<RepositoryCreateWithoutForkedFromInput, RepositoryUncheckedCreateWithoutForkedFromInput> | RepositoryCreateWithoutForkedFromInput[] | RepositoryUncheckedCreateWithoutForkedFromInput[]
     connectOrCreate?: RepositoryCreateOrConnectWithoutForkedFromInput | RepositoryCreateOrConnectWithoutForkedFromInput[]
@@ -63245,6 +65009,13 @@ export namespace Prisma {
     connectOrCreate?: RepositoryActionRunCreateOrConnectWithoutRepositoryInput | RepositoryActionRunCreateOrConnectWithoutRepositoryInput[]
     createMany?: RepositoryActionRunCreateManyRepositoryInputEnvelope
     connect?: RepositoryActionRunWhereUniqueInput | RepositoryActionRunWhereUniqueInput[]
+  }
+
+  export type RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput = {
+    create?: XOR<RepositoryAuditEventCreateWithoutRepositoryInput, RepositoryAuditEventUncheckedCreateWithoutRepositoryInput> | RepositoryAuditEventCreateWithoutRepositoryInput[] | RepositoryAuditEventUncheckedCreateWithoutRepositoryInput[]
+    connectOrCreate?: RepositoryAuditEventCreateOrConnectWithoutRepositoryInput | RepositoryAuditEventCreateOrConnectWithoutRepositoryInput[]
+    createMany?: RepositoryAuditEventCreateManyRepositoryInputEnvelope
+    connect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput = {
@@ -63415,6 +65186,20 @@ export namespace Prisma {
     deleteMany?: RepositoryActionRunScalarWhereInput | RepositoryActionRunScalarWhereInput[]
   }
 
+  export type RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput = {
+    create?: XOR<RepositoryAuditEventCreateWithoutRepositoryInput, RepositoryAuditEventUncheckedCreateWithoutRepositoryInput> | RepositoryAuditEventCreateWithoutRepositoryInput[] | RepositoryAuditEventUncheckedCreateWithoutRepositoryInput[]
+    connectOrCreate?: RepositoryAuditEventCreateOrConnectWithoutRepositoryInput | RepositoryAuditEventCreateOrConnectWithoutRepositoryInput[]
+    upsert?: RepositoryAuditEventUpsertWithWhereUniqueWithoutRepositoryInput | RepositoryAuditEventUpsertWithWhereUniqueWithoutRepositoryInput[]
+    createMany?: RepositoryAuditEventCreateManyRepositoryInputEnvelope
+    set?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    disconnect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    delete?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    connect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    update?: RepositoryAuditEventUpdateWithWhereUniqueWithoutRepositoryInput | RepositoryAuditEventUpdateWithWhereUniqueWithoutRepositoryInput[]
+    updateMany?: RepositoryAuditEventUpdateManyWithWhereWithoutRepositoryInput | RepositoryAuditEventUpdateManyWithWhereWithoutRepositoryInput[]
+    deleteMany?: RepositoryAuditEventScalarWhereInput | RepositoryAuditEventScalarWhereInput[]
+  }
+
   export type RepositoryUncheckedUpdateManyWithoutForkedFromNestedInput = {
     create?: XOR<RepositoryCreateWithoutForkedFromInput, RepositoryUncheckedCreateWithoutForkedFromInput> | RepositoryCreateWithoutForkedFromInput[] | RepositoryUncheckedCreateWithoutForkedFromInput[]
     connectOrCreate?: RepositoryCreateOrConnectWithoutForkedFromInput | RepositoryCreateOrConnectWithoutForkedFromInput[]
@@ -63553,6 +65338,20 @@ export namespace Prisma {
     update?: RepositoryActionRunUpdateWithWhereUniqueWithoutRepositoryInput | RepositoryActionRunUpdateWithWhereUniqueWithoutRepositoryInput[]
     updateMany?: RepositoryActionRunUpdateManyWithWhereWithoutRepositoryInput | RepositoryActionRunUpdateManyWithWhereWithoutRepositoryInput[]
     deleteMany?: RepositoryActionRunScalarWhereInput | RepositoryActionRunScalarWhereInput[]
+  }
+
+  export type RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput = {
+    create?: XOR<RepositoryAuditEventCreateWithoutRepositoryInput, RepositoryAuditEventUncheckedCreateWithoutRepositoryInput> | RepositoryAuditEventCreateWithoutRepositoryInput[] | RepositoryAuditEventUncheckedCreateWithoutRepositoryInput[]
+    connectOrCreate?: RepositoryAuditEventCreateOrConnectWithoutRepositoryInput | RepositoryAuditEventCreateOrConnectWithoutRepositoryInput[]
+    upsert?: RepositoryAuditEventUpsertWithWhereUniqueWithoutRepositoryInput | RepositoryAuditEventUpsertWithWhereUniqueWithoutRepositoryInput[]
+    createMany?: RepositoryAuditEventCreateManyRepositoryInputEnvelope
+    set?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    disconnect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    delete?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    connect?: RepositoryAuditEventWhereUniqueInput | RepositoryAuditEventWhereUniqueInput[]
+    update?: RepositoryAuditEventUpdateWithWhereUniqueWithoutRepositoryInput | RepositoryAuditEventUpdateWithWhereUniqueWithoutRepositoryInput[]
+    updateMany?: RepositoryAuditEventUpdateManyWithWhereWithoutRepositoryInput | RepositoryAuditEventUpdateManyWithWhereWithoutRepositoryInput[]
+    deleteMany?: RepositoryAuditEventScalarWhereInput | RepositoryAuditEventScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutRepositoryStarsInput = {
@@ -64087,6 +65886,34 @@ export namespace Prisma {
     upsert?: RepositoryUpsertWithoutActionRunsInput
     connect?: RepositoryWhereUniqueInput
     update?: XOR<XOR<RepositoryUpdateToOneWithWhereWithoutActionRunsInput, RepositoryUpdateWithoutActionRunsInput>, RepositoryUncheckedUpdateWithoutActionRunsInput>
+  }
+
+  export type RepositoryCreateNestedOneWithoutAuditEventsInput = {
+    create?: XOR<RepositoryCreateWithoutAuditEventsInput, RepositoryUncheckedCreateWithoutAuditEventsInput>
+    connectOrCreate?: RepositoryCreateOrConnectWithoutAuditEventsInput
+    connect?: RepositoryWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutRepositoryAuditEventsInput = {
+    create?: XOR<UserCreateWithoutRepositoryAuditEventsInput, UserUncheckedCreateWithoutRepositoryAuditEventsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRepositoryAuditEventsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type RepositoryUpdateOneRequiredWithoutAuditEventsNestedInput = {
+    create?: XOR<RepositoryCreateWithoutAuditEventsInput, RepositoryUncheckedCreateWithoutAuditEventsInput>
+    connectOrCreate?: RepositoryCreateOrConnectWithoutAuditEventsInput
+    upsert?: RepositoryUpsertWithoutAuditEventsInput
+    connect?: RepositoryWhereUniqueInput
+    update?: XOR<XOR<RepositoryUpdateToOneWithWhereWithoutAuditEventsInput, RepositoryUpdateWithoutAuditEventsInput>, RepositoryUncheckedUpdateWithoutAuditEventsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutRepositoryAuditEventsNestedInput = {
+    create?: XOR<UserCreateWithoutRepositoryAuditEventsInput, UserUncheckedCreateWithoutRepositoryAuditEventsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRepositoryAuditEventsInput
+    upsert?: UserUpsertWithoutRepositoryAuditEventsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRepositoryAuditEventsInput, UserUpdateWithoutRepositoryAuditEventsInput>, UserUncheckedUpdateWithoutRepositoryAuditEventsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -65166,7 +66993,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project?: ProjectCreateNestedOneWithoutRepositoriesInput
@@ -65181,6 +67014,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutOwnerInput = {
@@ -65194,7 +67028,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -65208,6 +67048,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutOwnerInput = {
@@ -65577,6 +67418,40 @@ export namespace Prisma {
 
   export type RepositoryReleaseCreateManyAuthorInputEnvelope = {
     data: RepositoryReleaseCreateManyAuthorInput | RepositoryReleaseCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RepositoryAuditEventCreateWithoutActorInput = {
+    id?: string
+    action: string
+    previousValue?: string | null
+    newValue?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    repository: RepositoryCreateNestedOneWithoutAuditEventsInput
+  }
+
+  export type RepositoryAuditEventUncheckedCreateWithoutActorInput = {
+    id?: string
+    repositoryId: string
+    action: string
+    previousValue?: string | null
+    newValue?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type RepositoryAuditEventCreateOrConnectWithoutActorInput = {
+    where: RepositoryAuditEventWhereUniqueInput
+    create: XOR<RepositoryAuditEventCreateWithoutActorInput, RepositoryAuditEventUncheckedCreateWithoutActorInput>
+  }
+
+  export type RepositoryAuditEventCreateManyActorInputEnvelope = {
+    data: RepositoryAuditEventCreateManyActorInput | RepositoryAuditEventCreateManyActorInput[]
     skipDuplicates?: boolean
   }
 
@@ -66163,7 +68038,13 @@ export namespace Prisma {
     defaultBranch?: StringFilter<"Repository"> | string
     gitStoragePath?: StringFilter<"Repository"> | string
     archived?: BoolFilter<"Repository"> | boolean
+    archivedAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
     disabled?: BoolFilter<"Repository"> | boolean
+    status?: StringFilter<"Repository"> | string
+    deletedAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
+    deletionScheduledAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
+    purgeAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
+    restoredAt?: DateTimeNullableFilter<"Repository"> | Date | string | null
     forkedFromId?: StringNullableFilter<"Repository"> | string | null
     createdAt?: DateTimeFilter<"Repository"> | Date | string
     updatedAt?: DateTimeFilter<"Repository"> | Date | string
@@ -66470,6 +68351,38 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RepositoryRelease"> | Date | string
   }
 
+  export type RepositoryAuditEventUpsertWithWhereUniqueWithoutActorInput = {
+    where: RepositoryAuditEventWhereUniqueInput
+    update: XOR<RepositoryAuditEventUpdateWithoutActorInput, RepositoryAuditEventUncheckedUpdateWithoutActorInput>
+    create: XOR<RepositoryAuditEventCreateWithoutActorInput, RepositoryAuditEventUncheckedCreateWithoutActorInput>
+  }
+
+  export type RepositoryAuditEventUpdateWithWhereUniqueWithoutActorInput = {
+    where: RepositoryAuditEventWhereUniqueInput
+    data: XOR<RepositoryAuditEventUpdateWithoutActorInput, RepositoryAuditEventUncheckedUpdateWithoutActorInput>
+  }
+
+  export type RepositoryAuditEventUpdateManyWithWhereWithoutActorInput = {
+    where: RepositoryAuditEventScalarWhereInput
+    data: XOR<RepositoryAuditEventUpdateManyMutationInput, RepositoryAuditEventUncheckedUpdateManyWithoutActorInput>
+  }
+
+  export type RepositoryAuditEventScalarWhereInput = {
+    AND?: RepositoryAuditEventScalarWhereInput | RepositoryAuditEventScalarWhereInput[]
+    OR?: RepositoryAuditEventScalarWhereInput[]
+    NOT?: RepositoryAuditEventScalarWhereInput | RepositoryAuditEventScalarWhereInput[]
+    id?: StringFilter<"RepositoryAuditEvent"> | string
+    repositoryId?: StringFilter<"RepositoryAuditEvent"> | string
+    actorId?: StringFilter<"RepositoryAuditEvent"> | string
+    action?: StringFilter<"RepositoryAuditEvent"> | string
+    previousValue?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    newValue?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    metadata?: JsonNullableFilter<"RepositoryAuditEvent">
+    ipAddress?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    userAgent?: StringNullableFilter<"RepositoryAuditEvent"> | string | null
+    createdAt?: DateTimeFilter<"RepositoryAuditEvent"> | Date | string
+  }
+
   export type UserCreateWithoutUsernameHistoryInput = {
     id?: string
     email: string
@@ -66523,6 +68436,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutUsernameHistoryInput = {
@@ -66578,6 +68492,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutUsernameHistoryInput = {
@@ -66649,6 +68564,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUsernameHistoryInput = {
@@ -66704,6 +68620,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type UserCreateWithoutOauthAccountsInput = {
@@ -66759,6 +68676,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutOauthAccountsInput = {
@@ -66814,6 +68732,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutOauthAccountsInput = {
@@ -66885,6 +68804,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOauthAccountsInput = {
@@ -66940,6 +68860,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -66995,6 +68916,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -67050,6 +68972,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -67121,6 +69044,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -67176,6 +69100,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type SkillOnUserCreateWithoutSkillInput = {
@@ -67267,6 +69192,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutSkillsInput = {
@@ -67322,6 +69248,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutSkillsInput = {
@@ -67410,6 +69337,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSkillsInput = {
@@ -67465,6 +69393,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type SkillUpsertWithoutUsersInput = {
@@ -67543,6 +69472,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutProjectsOwnedInput = {
@@ -67598,6 +69528,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutProjectsOwnedInput = {
@@ -68017,7 +69948,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -68032,6 +69969,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutProjectInput = {
@@ -68045,7 +69983,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -68059,6 +70003,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutProjectInput = {
@@ -68135,6 +70080,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectsOwnedInput = {
@@ -68190,6 +70136,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type RoleUpsertWithWhereUniqueWithoutProjectInput = {
@@ -68828,6 +70775,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -68883,6 +70831,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -69058,6 +71007,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -69113,6 +71063,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type RoleUpsertWithoutMembersInput = {
@@ -69297,6 +71248,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutApplicationsInput = {
@@ -69352,6 +71304,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutApplicationsInput = {
@@ -69533,6 +71486,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApplicationsInput = {
@@ -69588,6 +71542,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProjectCreateWithoutMilestonesInput = {
@@ -70190,6 +72145,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutAssignedTasksInput = {
@@ -70245,6 +72201,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutAssignedTasksInput = {
@@ -70355,6 +72312,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignedTasksInput = {
@@ -70410,6 +72368,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProjectCreateWithoutThreadsInput = {
@@ -70538,6 +72497,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionThreadsInput = {
@@ -70593,6 +72553,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionThreadsInput = {
@@ -70769,6 +72730,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionThreadsInput = {
@@ -70824,6 +72786,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type DiscussionCommentUpsertWithWhereUniqueWithoutThreadInput = {
@@ -70924,6 +72887,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionCommentsInput = {
@@ -70979,6 +72943,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionCommentsInput = {
@@ -71085,6 +73050,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionCommentsInput = {
@@ -71140,6 +73106,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProjectCreateWithoutFilesInput = {
@@ -71268,6 +73235,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutUploadedFilesInput = {
@@ -71323,6 +73291,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutUploadedFilesInput = {
@@ -71473,6 +73442,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUploadedFilesInput = {
@@ -71528,6 +73498,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type UserCreateWithoutContributionRecordsInput = {
@@ -71583,6 +73554,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutContributionRecordsInput = {
@@ -71638,6 +73610,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutContributionRecordsInput = {
@@ -71813,6 +73786,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutContributionRecordsInput = {
@@ -71868,6 +73842,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProjectUpsertWithoutContributionRecordsInput = {
@@ -72039,6 +74014,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -72094,6 +74070,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -72165,6 +74142,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -72220,6 +74198,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type UserCreateWithoutPlatformAdminInput = {
@@ -72275,6 +74254,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutPlatformAdminInput = {
@@ -72330,6 +74310,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutPlatformAdminInput = {
@@ -72401,6 +74382,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlatformAdminInput = {
@@ -72456,6 +74438,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type UserCreateWithoutActivityEventsInput = {
@@ -72511,6 +74494,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutActivityEventsInput = {
@@ -72566,6 +74550,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutActivityEventsInput = {
@@ -72710,6 +74695,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutActivityEventsInput = {
@@ -72765,6 +74751,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProjectUpsertWithoutActivityEventsInput = {
@@ -72899,6 +74886,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutFollowedProjectsInput = {
@@ -72954,6 +74942,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutFollowedProjectsInput = {
@@ -73098,6 +75087,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFollowedProjectsInput = {
@@ -73153,6 +75143,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProjectUpsertWithoutFollowersInput = {
@@ -73287,6 +75278,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutStarredProjectsInput = {
@@ -73342,6 +75334,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutStarredProjectsInput = {
@@ -73486,6 +75479,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStarredProjectsInput = {
@@ -73541,6 +75535,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProjectUpsertWithoutStarsInput = {
@@ -73748,6 +75743,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutReleasesAuthoredInput = {
@@ -73803,6 +75799,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutReleasesAuthoredInput = {
@@ -73953,6 +75950,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReleasesAuthoredInput = {
@@ -74008,6 +76006,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProjectCreateWithoutUpdatesInput = {
@@ -74136,6 +76135,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutProjectUpdatesInput = {
@@ -74191,6 +76191,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutProjectUpdatesInput = {
@@ -74341,6 +76342,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectUpdatesInput = {
@@ -74396,6 +76398,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type UserCreateWithoutRepositoriesOwnedInput = {
@@ -74451,6 +76454,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutRepositoriesOwnedInput = {
@@ -74506,6 +76510,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutRepositoriesOwnedInput = {
@@ -74596,7 +76601,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -74611,6 +76622,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutForksInput = {
@@ -74625,7 +76637,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -74638,6 +76656,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutForksInput = {
@@ -74655,7 +76674,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -74670,6 +76695,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutForkedFromInput = {
@@ -74684,7 +76710,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     forks?: RepositoryUncheckedCreateNestedManyWithoutForkedFromInput
@@ -74697,6 +76729,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutForkedFromInput = {
@@ -74999,6 +77032,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RepositoryAuditEventCreateWithoutRepositoryInput = {
+    id?: string
+    action: string
+    previousValue?: string | null
+    newValue?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    actor: UserCreateNestedOneWithoutRepositoryAuditEventsInput
+  }
+
+  export type RepositoryAuditEventUncheckedCreateWithoutRepositoryInput = {
+    id?: string
+    actorId: string
+    action: string
+    previousValue?: string | null
+    newValue?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type RepositoryAuditEventCreateOrConnectWithoutRepositoryInput = {
+    where: RepositoryAuditEventWhereUniqueInput
+    create: XOR<RepositoryAuditEventCreateWithoutRepositoryInput, RepositoryAuditEventUncheckedCreateWithoutRepositoryInput>
+  }
+
+  export type RepositoryAuditEventCreateManyRepositoryInputEnvelope = {
+    data: RepositoryAuditEventCreateManyRepositoryInput | RepositoryAuditEventCreateManyRepositoryInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutRepositoriesOwnedInput = {
     update: XOR<UserUpdateWithoutRepositoriesOwnedInput, UserUncheckedUpdateWithoutRepositoriesOwnedInput>
     create: XOR<UserCreateWithoutRepositoriesOwnedInput, UserUncheckedCreateWithoutRepositoriesOwnedInput>
@@ -75063,6 +77130,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoriesOwnedInput = {
@@ -75118,6 +77186,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type ProjectUpsertWithoutRepositoriesInput = {
@@ -75220,7 +77289,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -75235,6 +77310,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutForksInput = {
@@ -75249,7 +77325,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -75262,6 +77344,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUpsertWithWhereUniqueWithoutForkedFromInput = {
@@ -75469,6 +77552,22 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RepositoryActionRun"> | Date | string
   }
 
+  export type RepositoryAuditEventUpsertWithWhereUniqueWithoutRepositoryInput = {
+    where: RepositoryAuditEventWhereUniqueInput
+    update: XOR<RepositoryAuditEventUpdateWithoutRepositoryInput, RepositoryAuditEventUncheckedUpdateWithoutRepositoryInput>
+    create: XOR<RepositoryAuditEventCreateWithoutRepositoryInput, RepositoryAuditEventUncheckedCreateWithoutRepositoryInput>
+  }
+
+  export type RepositoryAuditEventUpdateWithWhereUniqueWithoutRepositoryInput = {
+    where: RepositoryAuditEventWhereUniqueInput
+    data: XOR<RepositoryAuditEventUpdateWithoutRepositoryInput, RepositoryAuditEventUncheckedUpdateWithoutRepositoryInput>
+  }
+
+  export type RepositoryAuditEventUpdateManyWithWhereWithoutRepositoryInput = {
+    where: RepositoryAuditEventScalarWhereInput
+    data: XOR<RepositoryAuditEventUpdateManyMutationInput, RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryInput>
+  }
+
   export type UserCreateWithoutRepositoryStarsInput = {
     id?: string
     email: string
@@ -75522,6 +77621,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryStarsInput = {
@@ -75577,6 +77677,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryStarsInput = {
@@ -75594,7 +77695,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -75609,6 +77716,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutStarsInput = {
@@ -75623,7 +77731,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -75636,6 +77750,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutStarsInput = {
@@ -75707,6 +77822,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryStarsInput = {
@@ -75762,6 +77878,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type RepositoryUpsertWithoutStarsInput = {
@@ -75785,7 +77902,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -75800,6 +77923,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutStarsInput = {
@@ -75814,7 +77938,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -75827,6 +77957,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type UserCreateWithoutRepositoryWatchersInput = {
@@ -75882,6 +78013,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryWatchersInput = {
@@ -75937,6 +78069,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryWatchersInput = {
@@ -75954,7 +78087,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -75969,6 +78108,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutWatchersInput = {
@@ -75983,7 +78123,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -75996,6 +78142,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutWatchersInput = {
@@ -76067,6 +78214,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryWatchersInput = {
@@ -76122,6 +78270,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type RepositoryUpsertWithoutWatchersInput = {
@@ -76145,7 +78294,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -76160,6 +78315,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutWatchersInput = {
@@ -76174,7 +78330,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -76187,6 +78349,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryCreateWithoutCollaboratorsInput = {
@@ -76199,7 +78362,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -76214,6 +78383,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutCollaboratorsInput = {
@@ -76228,7 +78398,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -76241,6 +78417,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutCollaboratorsInput = {
@@ -76301,6 +78478,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryCollaboratorsInput = {
@@ -76356,6 +78534,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryCollaboratorsInput = {
@@ -76384,7 +78563,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -76399,6 +78584,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutCollaboratorsInput = {
@@ -76413,7 +78599,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -76426,6 +78618,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type UserUpsertWithoutRepositoryCollaboratorsInput = {
@@ -76492,6 +78685,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryCollaboratorsInput = {
@@ -76547,6 +78741,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type RepositoryCreateWithoutBranchRulesInput = {
@@ -76559,7 +78754,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -76574,6 +78775,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutBranchRulesInput = {
@@ -76588,7 +78790,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -76601,6 +78809,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutBranchRulesInput = {
@@ -76629,7 +78838,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -76644,6 +78859,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutBranchRulesInput = {
@@ -76658,7 +78874,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -76671,6 +78893,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryCreateWithoutIssuesInput = {
@@ -76683,7 +78906,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -76698,6 +78927,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutIssuesInput = {
@@ -76712,7 +78942,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -76725,6 +78961,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutIssuesInput = {
@@ -76785,6 +79022,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryIssuesInput = {
@@ -76840,6 +79078,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryIssuesInput = {
@@ -76900,6 +79139,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutAssignedRepositoryIssuesInput = {
@@ -76955,6 +79195,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutAssignedRepositoryIssuesInput = {
@@ -77009,7 +79250,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -77024,6 +79271,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutIssuesInput = {
@@ -77038,7 +79286,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -77051,6 +79305,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type UserUpsertWithoutRepositoryIssuesInput = {
@@ -77117,6 +79372,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryIssuesInput = {
@@ -77172,6 +79428,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type UserUpsertWithoutAssignedRepositoryIssuesInput = {
@@ -77238,6 +79495,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignedRepositoryIssuesInput = {
@@ -77293,6 +79551,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type RepositoryIssueCommentUpsertWithWhereUniqueWithoutIssueInput = {
@@ -77399,6 +79658,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryIssueCommentsInput = {
@@ -77454,6 +79714,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryIssueCommentsInput = {
@@ -77566,6 +79827,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryIssueCommentsInput = {
@@ -77621,6 +79883,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type RepositoryCreateWithoutPullRequestsInput = {
@@ -77633,7 +79896,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -77648,6 +79917,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutPullRequestsInput = {
@@ -77662,7 +79932,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -77675,6 +79951,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutPullRequestsInput = {
@@ -77735,6 +80012,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutPullRequestsAuthoredInput = {
@@ -77790,6 +80068,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutPullRequestsAuthoredInput = {
@@ -77850,6 +80129,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutPullRequestsMergedInput = {
@@ -77905,6 +80185,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutPullRequestsMergedInput = {
@@ -77989,7 +80270,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -78004,6 +80291,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutPullRequestsInput = {
@@ -78018,7 +80306,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -78031,6 +80325,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type UserUpsertWithoutPullRequestsAuthoredInput = {
@@ -78097,6 +80392,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPullRequestsAuthoredInput = {
@@ -78152,6 +80448,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type UserUpsertWithoutPullRequestsMergedInput = {
@@ -78218,6 +80515,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPullRequestsMergedInput = {
@@ -78273,6 +80571,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type PullRequestReviewUpsertWithWhereUniqueWithoutPullRequestInput = {
@@ -78401,6 +80700,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutPullRequestReviewsInput = {
@@ -78456,6 +80756,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutPullRequestReviewsInput = {
@@ -78574,6 +80875,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPullRequestReviewsInput = {
@@ -78629,6 +80931,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type PullRequestCreateWithoutCommentsInput = {
@@ -78725,6 +81028,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutPullRequestCommentsInput = {
@@ -78780,6 +81084,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutPullRequestCommentsInput = {
@@ -78898,6 +81203,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPullRequestCommentsInput = {
@@ -78953,6 +81259,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type RepositoryCreateWithoutReleasesInput = {
@@ -78965,7 +81272,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -78980,6 +81293,7 @@ export namespace Prisma {
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutReleasesInput = {
@@ -78994,7 +81308,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -79007,6 +81327,7 @@ export namespace Prisma {
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutReleasesInput = {
@@ -79067,6 +81388,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryReleasesInput = {
@@ -79122,6 +81444,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryReleasesInput = {
@@ -79150,7 +81473,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -79165,6 +81494,7 @@ export namespace Prisma {
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutReleasesInput = {
@@ -79179,7 +81509,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -79192,6 +81528,7 @@ export namespace Prisma {
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type UserUpsertWithoutRepositoryReleasesInput = {
@@ -79258,6 +81595,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryReleasesInput = {
@@ -79313,6 +81651,7 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
   }
 
   export type RepositoryCreateWithoutWebhooksInput = {
@@ -79325,7 +81664,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -79340,6 +81685,7 @@ export namespace Prisma {
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutWebhooksInput = {
@@ -79354,7 +81700,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -79367,6 +81719,7 @@ export namespace Prisma {
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutWebhooksInput = {
@@ -79427,7 +81780,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -79442,6 +81801,7 @@ export namespace Prisma {
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutWebhooksInput = {
@@ -79456,7 +81816,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -79469,6 +81835,7 @@ export namespace Prisma {
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryWebhookDeliveryUpsertWithWhereUniqueWithoutWebhookInput = {
@@ -79568,7 +81935,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
@@ -79583,6 +81956,7 @@ export namespace Prisma {
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryUncheckedCreateWithoutActionRunsInput = {
@@ -79597,7 +81971,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -79610,6 +81990,7 @@ export namespace Prisma {
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
   }
 
   export type RepositoryCreateOrConnectWithoutActionRunsInput = {
@@ -79638,7 +82019,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -79653,6 +82040,7 @@ export namespace Prisma {
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutActionRunsInput = {
@@ -79667,7 +82055,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -79680,6 +82074,399 @@ export namespace Prisma {
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
+  }
+
+  export type RepositoryCreateWithoutAuditEventsInput = {
+    id?: string
+    workspaceId?: string | null
+    name: string
+    slug: string
+    description?: string | null
+    visibility?: $Enums.Visibility
+    defaultBranch?: string
+    gitStoragePath: string
+    archived?: boolean
+    archivedAt?: Date | string | null
+    disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
+    project?: ProjectCreateNestedOneWithoutRepositoriesInput
+    forkedFrom?: RepositoryCreateNestedOneWithoutForksInput
+    forks?: RepositoryCreateNestedManyWithoutForkedFromInput
+    stars?: RepositoryStarCreateNestedManyWithoutRepositoryInput
+    watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
+    collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
+    branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
+    pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
+    releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
+    webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
+    actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+  }
+
+  export type RepositoryUncheckedCreateWithoutAuditEventsInput = {
+    id?: string
+    workspaceId?: string | null
+    projectId?: string | null
+    ownerId: string
+    name: string
+    slug: string
+    description?: string | null
+    visibility?: $Enums.Visibility
+    defaultBranch?: string
+    gitStoragePath: string
+    archived?: boolean
+    archivedAt?: Date | string | null
+    disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
+    forkedFromId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    forks?: RepositoryUncheckedCreateNestedManyWithoutForkedFromInput
+    stars?: RepositoryStarUncheckedCreateNestedManyWithoutRepositoryInput
+    watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
+    collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
+    branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
+    releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
+    webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
+    actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+  }
+
+  export type RepositoryCreateOrConnectWithoutAuditEventsInput = {
+    where: RepositoryWhereUniqueInput
+    create: XOR<RepositoryCreateWithoutAuditEventsInput, RepositoryUncheckedCreateWithoutAuditEventsInput>
+  }
+
+  export type UserCreateWithoutRepositoryAuditEventsInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    applications?: ApplicationCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
+    repositoriesOwned?: RepositoryCreateNestedManyWithoutOwnerInput
+    repositoryStars?: RepositoryStarCreateNestedManyWithoutUserInput
+    repositoryWatchers?: RepositoryWatcherCreateNestedManyWithoutUserInput
+    repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
+    repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
+    assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
+    pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
+    pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
+    pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
+    pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserUncheckedCreateWithoutRepositoryAuditEventsInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentUncheckedCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetUncheckedCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
+    repositoriesOwned?: RepositoryUncheckedCreateNestedManyWithoutOwnerInput
+    repositoryStars?: RepositoryStarUncheckedCreateNestedManyWithoutUserInput
+    repositoryWatchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutUserInput
+    repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
+    repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
+    assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
+    pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
+    pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
+    pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
+    pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserCreateOrConnectWithoutRepositoryAuditEventsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRepositoryAuditEventsInput, UserUncheckedCreateWithoutRepositoryAuditEventsInput>
+  }
+
+  export type RepositoryUpsertWithoutAuditEventsInput = {
+    update: XOR<RepositoryUpdateWithoutAuditEventsInput, RepositoryUncheckedUpdateWithoutAuditEventsInput>
+    create: XOR<RepositoryCreateWithoutAuditEventsInput, RepositoryUncheckedCreateWithoutAuditEventsInput>
+    where?: RepositoryWhereInput
+  }
+
+  export type RepositoryUpdateToOneWithWhereWithoutAuditEventsInput = {
+    where?: RepositoryWhereInput
+    data: XOR<RepositoryUpdateWithoutAuditEventsInput, RepositoryUncheckedUpdateWithoutAuditEventsInput>
+  }
+
+  export type RepositoryUpdateWithoutAuditEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workspaceId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    defaultBranch?: StringFieldUpdateOperationsInput | string
+    gitStoragePath?: StringFieldUpdateOperationsInput | string
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
+    project?: ProjectUpdateOneWithoutRepositoriesNestedInput
+    forkedFrom?: RepositoryUpdateOneWithoutForksNestedInput
+    forks?: RepositoryUpdateManyWithoutForkedFromNestedInput
+    stars?: RepositoryStarUpdateManyWithoutRepositoryNestedInput
+    watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
+    collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
+    branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
+    releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
+    webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
+    actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+  }
+
+  export type RepositoryUncheckedUpdateWithoutAuditEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workspaceId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    defaultBranch?: StringFieldUpdateOperationsInput | string
+    gitStoragePath?: StringFieldUpdateOperationsInput | string
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    forks?: RepositoryUncheckedUpdateManyWithoutForkedFromNestedInput
+    stars?: RepositoryStarUncheckedUpdateManyWithoutRepositoryNestedInput
+    watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
+    collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
+    branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
+    releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
+    webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
+    actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+  }
+
+  export type UserUpsertWithoutRepositoryAuditEventsInput = {
+    update: XOR<UserUpdateWithoutRepositoryAuditEventsInput, UserUncheckedUpdateWithoutRepositoryAuditEventsInput>
+    create: XOR<UserCreateWithoutRepositoryAuditEventsInput, UserUncheckedCreateWithoutRepositoryAuditEventsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRepositoryAuditEventsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRepositoryAuditEventsInput, UserUncheckedUpdateWithoutRepositoryAuditEventsInput>
+  }
+
+  export type UserUpdateWithoutRepositoryAuditEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
+    repositoriesOwned?: RepositoryUpdateManyWithoutOwnerNestedInput
+    repositoryStars?: RepositoryStarUpdateManyWithoutUserNestedInput
+    repositoryWatchers?: RepositoryWatcherUpdateManyWithoutUserNestedInput
+    repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
+    repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
+    assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
+    pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
+    pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
+    pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
+    pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutRepositoryAuditEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoriesOwned?: RepositoryUncheckedUpdateManyWithoutOwnerNestedInput
+    repositoryStars?: RepositoryStarUncheckedUpdateManyWithoutUserNestedInput
+    repositoryWatchers?: RepositoryWatcherUncheckedUpdateManyWithoutUserNestedInput
+    repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
+    repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
+    assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
+    pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
+    pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
+    pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type OAuthAccountCreateManyUserInput = {
@@ -79862,7 +82649,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -79984,6 +82777,18 @@ export namespace Prisma {
     isDraft?: boolean
     isPrerelease?: boolean
     publishedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type RepositoryAuditEventCreateManyActorInput = {
+    id?: string
+    repositoryId: string
+    action: string
+    previousValue?: string | null
+    newValue?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
     createdAt?: Date | string
   }
 
@@ -80534,7 +83339,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneWithoutRepositoriesNestedInput
@@ -80549,6 +83360,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutOwnerInput = {
@@ -80562,7 +83374,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -80576,6 +83394,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateManyWithoutOwnerInput = {
@@ -80589,7 +83408,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -80964,6 +83789,42 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RepositoryAuditEventUpdateWithoutActorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    previousValue?: NullableStringFieldUpdateOperationsInput | string | null
+    newValue?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repository?: RepositoryUpdateOneRequiredWithoutAuditEventsNestedInput
+  }
+
+  export type RepositoryAuditEventUncheckedUpdateWithoutActorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    previousValue?: NullableStringFieldUpdateOperationsInput | string | null
+    newValue?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryAuditEventUncheckedUpdateManyWithoutActorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    previousValue?: NullableStringFieldUpdateOperationsInput | string | null
+    newValue?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type SkillOnUserCreateManySkillInput = {
     userId: string
     level?: $Enums.SkillLevel
@@ -81125,7 +83986,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     forkedFromId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -81543,7 +84410,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -81558,6 +84431,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutProjectInput = {
@@ -81571,7 +84445,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -81585,6 +84465,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateManyWithoutProjectInput = {
@@ -81598,7 +84479,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -81850,7 +84737,13 @@ export namespace Prisma {
     defaultBranch?: string
     gitStoragePath: string
     archived?: boolean
+    archivedAt?: Date | string | null
     disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -81951,6 +84844,18 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type RepositoryAuditEventCreateManyRepositoryInput = {
+    id?: string
+    actorId: string
+    action: string
+    previousValue?: string | null
+    newValue?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
   export type RepositoryUpdateWithoutForkedFromInput = {
     id?: StringFieldUpdateOperationsInput | string
     workspaceId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -81961,7 +84866,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
@@ -81976,6 +84887,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateWithoutForkedFromInput = {
@@ -81990,7 +84902,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     forks?: RepositoryUncheckedUpdateManyWithoutForkedFromNestedInput
@@ -82003,6 +84921,7 @@ export namespace Prisma {
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
     actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
   }
 
   export type RepositoryUncheckedUpdateManyWithoutForkedFromInput = {
@@ -82017,7 +84936,13 @@ export namespace Prisma {
     defaultBranch?: StringFieldUpdateOperationsInput | string
     gitStoragePath?: StringFieldUpdateOperationsInput | string
     archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -82315,6 +85240,42 @@ export namespace Prisma {
     durationMs?: IntFieldUpdateOperationsInput | number
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryAuditEventUpdateWithoutRepositoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    previousValue?: NullableStringFieldUpdateOperationsInput | string | null
+    newValue?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    actor?: UserUpdateOneRequiredWithoutRepositoryAuditEventsNestedInput
+  }
+
+  export type RepositoryAuditEventUncheckedUpdateWithoutRepositoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    previousValue?: NullableStringFieldUpdateOperationsInput | string | null
+    newValue?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    action?: StringFieldUpdateOperationsInput | string
+    previousValue?: NullableStringFieldUpdateOperationsInput | string | null
+    newValue?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

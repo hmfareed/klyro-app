@@ -25,6 +25,9 @@ export async function POST(req: Request, context: RouteContext) {
   if (!result) return apiError("NOT_FOUND", "Repository not found", null, 404);
 
   const { repository, viewer } = result;
+  if (repository.archived || repository.status === "DELETION_PENDING") {
+    return apiError("FORBIDDEN", "This repository is archived or pending deletion. Merging is disabled.", null, 403);
+  }
   if (!viewer.canWrite) {
     return apiError("FORBIDDEN", "Write access required to merge pull requests", null, 403);
   }

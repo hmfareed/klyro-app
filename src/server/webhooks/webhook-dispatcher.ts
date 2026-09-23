@@ -12,6 +12,16 @@ export interface DispatchWebhookParams {
  */
 export async function dispatchRepositoryWebhooks(params: DispatchWebhookParams): Promise<void> {
   try {
+    const repo = await prisma.repository.findUnique({
+      where: { id: params.repositoryId },
+      select: { archived: true, status: true },
+    });
+
+    // Suspend deliveries for archived, deletion pending, or inactive repositories
+    if (!repo || repo.archived || repo.status !== "ACTIVE") {
+      return;
+    }
+
     const webhooks = await prisma.repositoryWebhook.findMany({
       where: {
         repositoryId: params.repositoryId,

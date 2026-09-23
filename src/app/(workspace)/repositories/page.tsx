@@ -22,6 +22,7 @@ interface RepositoryItem {
   slug: string;
   description: string | null;
   visibility: string;
+  archived: boolean;
   defaultBranch: string;
   updatedAt: string;
   owner: {
@@ -91,6 +92,12 @@ export default function RepositoriesIndexPage() {
         </div>
 
         <div className="flex items-center gap-2.5">
+          <Link
+            href="/repositories/deleted"
+            className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-2 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
+          >
+            Deleted Repositories
+          </Link>
           <Link
             href="/projects"
             className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-2 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
@@ -198,10 +205,17 @@ export default function RepositoriesIndexPage() {
                       <span className="text-slate-400 font-normal">{repo.owner.username} /</span>
                       <span>{repo.name}</span>
                     </Link>
-                    <span className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-slate-300 shrink-0">
-                      {repo.visibility === "PRIVATE" ? <Lock size={10} /> : <Globe size={10} />}
-                      {repo.visibility}
-                    </span>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {repo.archived && (
+                        <span className="flex items-center gap-1 rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
+                          Archived
+                        </span>
+                      )}
+                      <span className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-slate-300">
+                        {repo.visibility === "PRIVATE" ? <Lock size={10} /> : <Globe size={10} />}
+                        {repo.visibility}
+                      </span>
+                    </div>
                   </div>
 
                   {repo.description && (

@@ -55,7 +55,9 @@ export async function GET(req: Request) {
   const filter = url.searchParams.get("filter"); // "mine" | "starred" | "all"
   const userId = await getSessionUserId();
 
-  const whereClause: any = {};
+  const whereClause: any = {
+    status: { notIn: ["DELETION_PENDING", "DELETED", "PURGING"] },
+  };
 
   if (search) {
     whereClause.OR = [

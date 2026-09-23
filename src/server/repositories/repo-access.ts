@@ -120,15 +120,27 @@ export async function getRepositoryWithAccess(
     if (collab) collabRole = collab.role;
   }
 
+  const isDeleted = repository.status === "DELETED" || repository.status === "PURGING";
+  if (isDeleted) return null;
+
+  const isDeletionPending = repository.status === "DELETION_PENDING";
+  const canAdmin = isOwner || collabRole === "OWNER" || collabRole === "MAINTAINER";
+
+  // If repository is pending deletion, hide it from unauthorized / non-admin viewers (404)
+  if (isDeletionPending && !canAdmin) {
+    return null;
+  }
+
   // Permission logic
   const isPublic = repository.visibility === "PUBLIC";
-  const canRead = isPublic || isOwner || Boolean(collabRole);
+  const canRead = isOwner || Boolean(collabRole) || (isPublic && !isDeletionPending);
   const canWrite =
-    isOwner ||
-    collabRole === "OWNER" ||
-    collabRole === "MAINTAINER" ||
-    collabRole === "CONTRIBUTOR";
-  const canAdmin = isOwner || collabRole === "OWNER" || collabRole === "MAINTAINER";
+    !isDeletionPending &&
+    !repository.archived &&
+    (isOwner ||
+      collabRole === "OWNER" ||
+      collabRole === "MAINTAINER" ||
+      collabRole === "CONTRIBUTOR");
 
   // Check star & watch
   let isStarred = false;

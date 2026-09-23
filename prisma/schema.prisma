@@ -168,6 +168,7 @@ model User {
   pullRequestReviews      PullRequestReview[]
   pullRequestComments     PullRequestComment[]
   repositoryReleases      RepositoryRelease[]
+  repositoryAuditEvents   RepositoryAuditEvent[]
 
   @@index([username])
 }
@@ -605,7 +606,13 @@ model Repository {
   defaultBranch   String                  @default("main")
   gitStoragePath  String
   archived        Boolean                 @default(false)
+  archivedAt      DateTime?
   disabled        Boolean                 @default(false)
+  status          String                  @default("ACTIVE") // ACTIVE, ARCHIVED, DELETION_PENDING, PURGING, DELETED
+  deletedAt       DateTime?
+  deletionScheduledAt DateTime?
+  purgeAt         DateTime?
+  restoredAt      DateTime?
   forkedFromId    String?
   createdAt       DateTime                @default(now())
   updatedAt       DateTime                @updatedAt
@@ -624,12 +631,14 @@ model Repository {
   releases        RepositoryRelease[]
   webhooks        RepositoryWebhook[]
   actionRuns      RepositoryActionRun[]
+  auditEvents     RepositoryAuditEvent[]
 
   @@unique([ownerId, slug])
   @@index([slug])
   @@index([projectId])
   @@index([ownerId])
   @@index([visibility])
+  @@index([status])
 }
 
 model RepositoryStar {
@@ -859,6 +868,25 @@ model RepositoryActionRun {
   repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 
   @@index([repositoryId, createdAt])
+}
+
+model RepositoryAuditEvent {
+  id            String     @id @default(cuid())
+  repositoryId  String
+  actorId       String
+  action        String     // REPOSITORY_VISIBILITY_CHANGED, REPOSITORY_ARCHIVED, REPOSITORY_UNARCHIVED, REPOSITORY_DELETION_SCHEDULED, REPOSITORY_RESTORED, REPOSITORY_PURGED
+  previousValue String?
+  newValue      String?
+  metadata      Json?
+  ipAddress     String?
+  userAgent     String?
+  createdAt     DateTime   @default(now())
+
+  repository    Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  actor         User       @relation(fields: [actorId], references: [id], onDelete: Cascade)
+
+  @@index([repositoryId, createdAt])
+  @@index([actorId, createdAt])
 }
 
 

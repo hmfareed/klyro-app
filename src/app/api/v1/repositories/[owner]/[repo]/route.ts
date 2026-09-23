@@ -3,7 +3,10 @@ import { prisma } from "@/shared/db/prisma";
 import { apiError, apiOk } from "@/shared/api/errors";
 import { getRepositoryWithAccess } from "@/server/repositories/repo-access";
 import { getBranches } from "@/server/git/git-service";
-import fs from "node:fs/promises";
+import {
+  scheduleRepositoryDeletion,
+  purgeRepositoryPermanently,
+} from "@/server/repositories/repo-lifecycle";
 
 type RouteContext = { params: Promise<{ owner: string; repo: string }> };
 
@@ -19,7 +22,7 @@ export async function GET(req: Request, context: RouteContext) {
   const { repository, viewer } = result;
 
   if (!viewer.canRead) {
-    return apiError("FORBIDDEN", "This repository is private.", null, 403);
+    return apiError("NOT_FOUND", "Repository not found", null, 404);
   }
 
   // Get branches list from Git
@@ -89,25 +92,37 @@ export async function DELETE(req: Request, context: RouteContext) {
   if (!result) return apiError("NOT_FOUND", "Repository not found", null, 404);
 
   const { repository, viewer } = result;
-  if (!viewer.isOwner) {
+  if (!viewer.isOwner || !viewer.userId) {
     return apiError("FORBIDDEN", "Only the owner can delete this repository", null, 403);
   }
 
   const url = new URL(req.url);
-  const confirmName = url.searchParams.get("confirmName");
-  if (confirmName !== repository.name) {
-    return apiError("CONFIRMATION_REQUIRED", `You must type '${repository.name}' to confirm deletion.`, null, 400);
+  const confirmName = url.searchParams.get("confirmName") || "";
+  const isPurge = url.searchParams.get("purge") === "true";
+
+  if (isPurge) {
+    if (confirmName !== repository.name) {
+      return apiError("CONFIRMATION_REQUIRED", `You must type '${repository.name}' to confirm permanent deletion.`, null, 400);
+    }
+    await purgeRepositoryPermanently({ repository, actorId: viewer.userId, req });
+    return apiOk({ success: true, purged: true });
   }
 
-  try {
-    // Delete bare git directory
-    await fs.rm(repository.gitStoragePath, { recursive: true, force: true }).catch(() => {});
+  const outcome = await scheduleRepositoryDeletion({
+    repository,
+    actorId: viewer.userId,
+    confirmationName: confirmName,
+    req,
+  });
 
-    // Delete DB record (cascades to issues, PRs, etc.)
-    await prisma.repository.delete({ where: { id: repository.id } });
-
-    return apiOk({ success: true });
-  } catch (err: any) {
-    return apiError("INTERNAL_ERROR", "Failed to delete repository", null, 500);
+  if (!outcome.success) {
+    return apiError("CONFIRMATION_REQUIRED", outcome.message, null, 400);
   }
+
+  return apiOk({
+    success: true,
+    repository: outcome.repository,
+    purgeAt: outcome.purgeAt,
+    daysRemaining: outcome.daysRemaining,
+  });
 }

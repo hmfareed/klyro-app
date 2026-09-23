@@ -84,6 +84,14 @@ export async function POST(req: Request, context: RouteContext) {
 
   const { repository, viewer } = result;
   if (!viewer.canRead) return apiError("FORBIDDEN", "Private repository", null, 403);
+  if (repository.archived || repository.status === "DELETION_PENDING") {
+    return apiError(
+      "FORBIDDEN",
+      "This repository is archived or pending deletion. Creating new issues is disabled.",
+      null,
+      403
+    );
+  }
 
   const body = await req.json().catch(() => null);
   const parsed = createIssueSchema.safeParse(body);
