@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     await (prisma as unknown as { analyticsEvent: { create: (a: unknown) => Promise<unknown> } }).analyticsEvent.create({
       data: { event: parsed.data.event, userId, projectId: parsed.data.projectId, props: parsed.data.props ?? {} },
     });
-  } catch (err) {
+  } catch {
     // Table may not exist until `prisma db push` after the 21–30 schema
     // additions — log and still 200 so onboarding never blocks on analytics.
     console.log("[analytics]", parsed.data.event, { userId, ...parsed.data.props });

@@ -12,6 +12,13 @@ const RANK: Record<PermissionLevel, number> = {
 };
 
 export async function getMemberPermission(projectId: string, userId: string): Promise<PermissionLevel | null> {
+  const project = await prisma.project.findUnique({
+    where: { id: projectId },
+    select: { ownerId: true },
+  });
+  if (!project) return null;
+  if (project.ownerId === userId) return "OWNER";
+
   const member = await prisma.teamMember.findUnique({
     where: { projectId_userId: { projectId, userId } },
     include: { role: true },

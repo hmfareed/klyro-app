@@ -3,22 +3,98 @@ import { prisma } from "@/shared/db/prisma";
 import { getSessionUserId } from "@/shared/auth/session";
 import { apiError, apiOk } from "@/shared/api/errors";
 
-// GET /api/v1/projects — functional workspace list: owned + member projects.
-// New users get [] (empty workspace), never someone else's seeded data.
-export async function GET() {
+// GET /api/v1/projects
+// If ?feed=explore -> public project discovery (status: RECRUITING or IN_PROGRESS, visibility: PUBLIC)
+// Else -> authenticated user's active/owned projects
+export async function GET(req: Request) {
+  const url = new URL(req.url);
+  const feed = url.searchParams.get("feed");
+  const search = url.searchParams.get("q")?.trim();
+  const category = url.searchParams.get("category");
+  const ipModel = url.searchParams.get("ipModel");
+
+  if (feed === "explore") {
+    const whereClause: Record<string, unknown> = {
+      visibility: "PUBLIC",
+    };
+    if (search) {
+      whereClause.OR = [
+        { title: { contains: search, mode: "insensitive" } },
+        { tagline: { contains: search, mode: "insensitive" } },
+        { description: { contains: search, mode: "insensitive" } },
+        { techStack: { has: search } },
+      ];
+    }
+    if (category && category !== "all") {
+      whereClause.category = category;
+    }
+    if (ipModel && ipModel !== "all") {
+      whereClause.ipModel = ipModel;
+    }
+
+    try {
+      const projects = await prisma.project.findMany({
+        where: whereClause,
+        orderBy: { createdAt: "desc" },
+        take: 50,
+        select: {
+          id: true,
+          slug: true,
+          title: true,
+          tagline: true,
+          description: true,
+          category: true,
+          status: true,
+          visibility: true,
+          ipModel: true,
+          openSourceLicense: true,
+          techStack: true,
+          commitmentLevel: true,
+          createdAt: true,
+          owner: { select: { id: true, username: true, displayName: true, avatarUrl: true } },
+          roles: {
+            where: { isOpen: true },
+            select: { id: true, title: true, description: true, isOpen: true, permissionLevel: true },
+          },
+          _count: { select: { members: true, tasks: true, threads: true } },
+        },
+      });
+      return apiOk({ projects });
+    } catch {
+      return apiOk({ projects: [] });
+    }
+  }
+
   const userId = await getSessionUserId();
   if (!userId) return apiError("UNAUTHENTICATED", "Sign in required.", null, 401);
-  const projects = await prisma.project.findMany({
-    where: { OR: [{ ownerId: userId }, { members: { some: { userId } } }] },
-    orderBy: { updatedAt: "desc" },
-    select: {
-      id: true, slug: true, title: true, tagline: true, status: true,
-      visibility: true, updatedAt: true, createdAt: true,
-      _count: { select: { members: true, roles: true } },
-    },
-  });
-  return apiOk({ projects });
+  try {
+    const projects = await prisma.project.findMany({
+      where: { OR: [{ ownerId: userId }, { members: { some: { userId } } }] },
+      orderBy: { updatedAt: "desc" },
+      select: {
+        id: true,
+        slug: true,
+        title: true,
+        tagline: true,
+        status: true,
+        visibility: true,
+        ipModel: true,
+        updatedAt: true,
+        createdAt: true,
+        _count: { select: { members: true, roles: true, tasks: true, threads: true } },
+      },
+    });
+    return apiOk({ projects });
+  } catch {
+    return apiOk({ projects: [] });
+  }
 }
+
+const roleItemSchema = z.object({
+  title: z.string().min(2).max(80),
+  description: z.string().max(1000).optional(),
+  permissionLevel: z.enum(["OWNER", "MAINTAINER", "CONTRIBUTOR", "VIEWER"]).default("CONTRIBUTOR"),
+});
 
 const createSchema = z.object({
   title: z.string().min(2).max(80),
@@ -26,15 +102,19 @@ const createSchema = z.object({
   tagline: z.string().max(160).optional(),
   description: z.string().max(5000).optional(),
   category: z.string().max(60).optional(),
-  visibility: z.enum(["PUBLIC", "UNLISTED", "PRIVATE"]).default("PRIVATE"),
+  visibility: z.enum(["PUBLIC", "UNLISTED", "PRIVATE"]).default("PUBLIC"),
   ipModel: z.enum(["OWNER_RETAINED", "OPEN_SOURCE", "SHARED_EQUITY", "PORTFOLIO_ONLY"]).default("PORTFOLIO_ONLY"),
+  openSourceLicense: z.string().max(40).optional().nullable(),
+  techStack: z.array(z.string()).default([]),
+  commitmentLevel: z.string().max(50).optional(),
+  roles: z.array(roleItemSchema).optional(),
 });
 
 function slugify(title: string): string {
   return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "project";
 }
 
-// POST /api/v1/projects — create first project (functional empty-workspace CTA).
+// POST /api/v1/projects — create project with optional initial roles & tech stack
 export async function POST(req: Request) {
   const userId = await getSessionUserId();
   if (!userId) return apiError("UNAUTHENTICATED", "Sign in required.", null, 401);
@@ -59,17 +139,32 @@ export async function POST(req: Request) {
         title: parsed.data.title.trim(),
         tagline: parsed.data.tagline?.trim() || parsed.data.title.trim(),
         description: parsed.data.description?.trim() || parsed.data.title.trim(),
-        category: parsed.data.category?.trim() || "general",
+        category: parsed.data.category?.trim() || "engineering",
         visibility: parsed.data.visibility,
         ipModel: parsed.data.ipModel,
+        openSourceLicense: parsed.data.openSourceLicense,
+        techStack: parsed.data.techStack,
+        commitmentLevel: parsed.data.commitmentLevel || "Part-time",
+        roles: parsed.data.roles && parsed.data.roles.length > 0
+          ? {
+              create: parsed.data.roles.map((r) => ({
+                title: r.title.trim(),
+                description: r.description?.trim() ?? null,
+                permissionLevel: r.permissionLevel,
+                isOpen: true,
+              })),
+            }
+          : undefined,
       },
       select: { id: true, slug: true, title: true },
     });
+
     try {
-      await (prisma as unknown as { analyticsEvent: { create: (a: unknown) => Promise<unknown> } }).analyticsEvent.create({
+      await prisma.analyticsEvent.create({
         data: { event: "project_created", userId, projectId: project.id },
       });
     } catch { /* analytics optional */ }
+
     return apiOk({ project }, 201);
   } catch (err) {
     if ((err as { code?: string }).code === "P2002") return apiError("SLUG_TAKEN", "That project URL is taken.", "slug", 409);

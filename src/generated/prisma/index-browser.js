@@ -225,6 +225,108 @@ exports.Prisma.TeamMemberScalarFieldEnum = {
   leftAt: 'leftAt'
 };
 
+exports.Prisma.ApplicationScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  roleId: 'roleId',
+  applicantId: 'applicantId',
+  message: 'message',
+  status: 'status',
+  createdAt: 'createdAt',
+  decidedAt: 'decidedAt'
+};
+
+exports.Prisma.MilestoneScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  title: 'title',
+  description: 'description',
+  dueDate: 'dueDate',
+  status: 'status',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TaskScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  milestoneId: 'milestoneId',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  priority: 'priority',
+  dueDate: 'dueDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  completedAt: 'completedAt'
+};
+
+exports.Prisma.TaskAssigneeScalarFieldEnum = {
+  taskId: 'taskId',
+  userId: 'userId'
+};
+
+exports.Prisma.DiscussionThreadScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  title: 'title',
+  body: 'body',
+  authorId: 'authorId',
+  isPinned: 'isPinned',
+  isLocked: 'isLocked',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DiscussionCommentScalarFieldEnum = {
+  id: 'id',
+  threadId: 'threadId',
+  authorId: 'authorId',
+  body: 'body',
+  createdAt: 'createdAt',
+  editedAt: 'editedAt'
+};
+
+exports.Prisma.FileAssetScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  uploadedById: 'uploadedById',
+  fileName: 'fileName',
+  storageKey: 'storageKey',
+  mimeType: 'mimeType',
+  sizeBytes: 'sizeBytes',
+  version: 'version',
+  parentFileId: 'parentFileId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ContributionRecordScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  projectId: 'projectId',
+  milestoneId: 'milestoneId',
+  summary: 'summary',
+  roleTitle: 'roleTitle',
+  tasksCompleted: 'tasksCompleted',
+  commitsAuthored: 'commitsAuthored',
+  peerAttestations: 'peerAttestations',
+  issuedAt: 'issuedAt',
+  recordHash: 'recordHash',
+  isFinal: 'isFinal'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  title: 'title',
+  body: 'body',
+  linkUrl: 'linkUrl',
+  isRead: 'isRead',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.PlatformAdminScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -244,6 +346,10 @@ exports.Prisma.AnalyticsEventScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.NullableJsonNullValueInput = {
@@ -326,6 +432,35 @@ exports.MemberStatus = exports.$Enums.MemberStatus = {
   REMOVED: 'REMOVED'
 };
 
+exports.ApplicationStatus = exports.$Enums.ApplicationStatus = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+  WITHDRAWN: 'WITHDRAWN'
+};
+
+exports.MilestoneStatus = exports.$Enums.MilestoneStatus = {
+  PLANNED: 'PLANNED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  DONE: 'DONE',
+  MISSED: 'MISSED'
+};
+
+exports.TaskStatus = exports.$Enums.TaskStatus = {
+  TODO: 'TODO',
+  IN_PROGRESS: 'IN_PROGRESS',
+  IN_REVIEW: 'IN_REVIEW',
+  DONE: 'DONE',
+  BLOCKED: 'BLOCKED'
+};
+
+exports.Priority = exports.$Enums.Priority = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+};
+
 exports.PlatformAdminRole = exports.$Enums.PlatformAdminRole = {
   SUPER_ADMIN: 'SUPER_ADMIN',
   TRUST_SAFETY: 'TRUST_SAFETY',
@@ -342,6 +477,15 @@ exports.Prisma.ModelName = {
   Project: 'Project',
   Role: 'Role',
   TeamMember: 'TeamMember',
+  Application: 'Application',
+  Milestone: 'Milestone',
+  Task: 'Task',
+  TaskAssignee: 'TaskAssignee',
+  DiscussionThread: 'DiscussionThread',
+  DiscussionComment: 'DiscussionComment',
+  FileAsset: 'FileAsset',
+  ContributionRecord: 'ContributionRecord',
+  Notification: 'Notification',
   PlatformAdmin: 'PlatformAdmin',
   AnalyticsEvent: 'AnalyticsEvent'
 };
