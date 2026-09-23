@@ -116,10 +116,19 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+const defaultWorkspaceContext: WorkspaceContextType = {
+  user: null,
+  sidebarOpen: false,
+  setSidebarOpen: () => {},
+  toggleSidebar: () => {},
+  workspaceName: "Workspace",
+  initials: "…",
+  sidebarInitial: "W",
+  refreshUser: async () => {},
+  isLoading: false,
+};
+
 export function useWorkspace() {
   const context = useContext(WorkspaceContext);
-  if (!context) {
-    throw new Error("useWorkspace must be used within a WorkspaceProvider");
-  }
-  return context;
+  return context || defaultWorkspaceContext;
 }

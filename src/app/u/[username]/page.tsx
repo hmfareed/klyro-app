@@ -3,6 +3,7 @@ import { prisma } from "@/shared/db/prisma";
 import { notFound } from "next/navigation";
 import { getSessionUserId } from "@/shared/auth/session";
 import { TopBar } from "@/components/workspace/TopBar";
+import { SidebarDrawer } from "@/components/workspace/SidebarDrawer";
 import { UserProfileView } from "@/components/profile/UserProfileView";
 
 // 28-SEO: SSR public profile with title/meta/OG/canonical + Person schema.
@@ -147,6 +148,7 @@ export default async function ProfilePage({
         }}
       />
       <UserProfileView initialUser={profileUser} isOwner={isOwner} />
+      <SidebarDrawer />
     </div>
   );
 }
