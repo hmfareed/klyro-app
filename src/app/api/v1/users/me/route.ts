@@ -58,6 +58,7 @@ export async function PATCH(req: Request) {
       about: profile.about,
       location: profile.location,
       websiteUrl: profile.websiteUrl || undefined,
+      githubUsername: profile.githubUsername !== undefined ? profile.githubUsername || null : undefined,
     },
     select: { id: true, username: true, displayName: true, bio: true },
   });

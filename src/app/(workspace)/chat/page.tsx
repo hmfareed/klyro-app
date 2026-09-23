@@ -106,9 +106,9 @@ export default function WorkspaceChatPage() {
   };
 
   return (
-    <div className="flex flex-1 overflow-hidden bg-[#0a0f24] min-w-0">
+    <div className="flex flex-1 overflow-hidden bg-black min-w-0">
       {/* Channels Sidebar */}
-      <aside className="w-56 shrink-0 border-r border-white/10 bg-[#0b1226] flex flex-col">
+      <aside className="w-56 shrink-0 border-r border-white/10 bg-[#09090b] flex flex-col">
         <div className="p-3 border-b border-white/10">
           <div className="flex items-center gap-2 px-2 py-1 text-xs font-bold text-white uppercase tracking-wider">
             <MessageSquare size={14} className="text-indigo-400" />
@@ -211,7 +211,7 @@ export default function WorkspaceChatPage() {
               placeholder={`Message #${activeChannel}...`}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="flex-1 rounded-lg border border-white/10 bg-[#0b1226] px-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
+              className="flex-1 rounded-lg border border-white/10 bg-[#09090b] px-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
             />
             <button
               type="submit"

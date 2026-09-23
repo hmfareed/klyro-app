@@ -61,7 +61,7 @@ export default function WorkspaceProjectsPage() {
   const [boards] = useState<ProjectBoard[]>(BOARDS);
 
   return (
-    <div className="flex-1 overflow-y-auto bg-[#0a0f24] p-6 text-white min-w-0">
+    <div className="flex-1 overflow-y-auto bg-black p-6 text-white min-w-0">
       {/* Header */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -98,7 +98,7 @@ export default function WorkspaceProjectsPage() {
           return (
             <div
               key={board.id}
-              className="flex flex-col justify-between rounded-xl border border-white/10 bg-[#0b1226] p-6 shadow-sm hover:border-indigo-500/40 transition-all"
+              className="flex flex-col justify-between rounded-xl border border-white/10 bg-[#09090b] p-6 shadow-sm hover:border-indigo-500/40 transition-all"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">

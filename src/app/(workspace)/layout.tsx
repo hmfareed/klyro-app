@@ -7,10 +7,10 @@ import { WorkspaceCreateProjectModal } from "@/components/workspace/WorkspaceCre
 // with integrated in-workspace modals.
 export default function WorkspaceLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen flex-col bg-[#0a0f24] text-white">
+    <div className="flex h-screen flex-col bg-black text-white">
       <TopBar />
       <div className="flex min-h-0 flex-1">
-        <Suspense fallback={<aside className="w-56 shrink-0 bg-[#0b1226] border-r border-white/10" />}>
+        <Suspense fallback={<aside className="w-56 shrink-0 bg-black border-r border-zinc-800" />}>
           <Sidebar />
         </Suspense>
         <div className="flex min-w-0 flex-1">{children}</div>

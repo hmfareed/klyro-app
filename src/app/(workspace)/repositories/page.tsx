@@ -85,7 +85,7 @@ export default function RepositoriesIndex() {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. campus food finder"
               maxLength={80}
-              className="w-full rounded-lg border border-white/10 bg-[#0b1226] px-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-xs text-white placeholder:text-zinc-500 focus:border-indigo-500 focus:outline-none"
             />
             <button
               disabled={creating}

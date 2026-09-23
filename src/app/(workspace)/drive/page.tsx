@@ -82,7 +82,7 @@ export default function WorkspaceDrivePage() {
   });
 
   return (
-    <div className="flex-1 overflow-y-auto bg-[#0a0f24] p-6 text-white min-w-0">
+    <div className="flex-1 overflow-y-auto bg-black p-6 text-white min-w-0">
       {/* Header */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -106,7 +106,7 @@ export default function WorkspaceDrivePage() {
       </div>
 
       {/* Storage Quota Card */}
-      <div className="mb-6 rounded-xl border border-white/10 bg-[#0b1226] p-4">
+      <div className="mb-6 rounded-xl border border-white/10 bg-[#09090b] p-4">
         <div className="flex items-center justify-between text-xs mb-2">
           <span className="font-semibold text-slate-300">Storage Usage</span>
           <span className="text-slate-400 font-mono">1.2 GB of 10.0 GB (12%)</span>
@@ -118,7 +118,7 @@ export default function WorkspaceDrivePage() {
 
       {/* Filter and Search Bar */}
       <div className="mb-6 flex flex-col sm:flex-row gap-3 items-center justify-between">
-        <div className="flex items-center gap-1 rounded-lg bg-[#0b1226] border border-white/10 p-1 w-full sm:w-auto">
+        <div className="flex items-center gap-1 rounded-lg bg-[#09090b] border border-white/10 p-1 w-full sm:w-auto">
           {["all", "document", "code", "image", "archive"].map((t) => (
             <button
               key={t}
@@ -141,13 +141,13 @@ export default function WorkspaceDrivePage() {
             placeholder="Search drive files..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-[#0b1226] py-1.5 pl-8 pr-3 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
+            className="w-full rounded-lg border border-white/10 bg-[#09090b] py-1.5 pl-8 pr-3 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
           />
         </div>
       </div>
 
       {/* Files Table */}
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0b1226] shadow-sm">
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-[#09090b] shadow-sm">
         <table className="w-full text-left text-xs text-slate-400">
           <thead className="border-b border-white/10 bg-white/[0.02] text-[11px] font-bold uppercase tracking-wider text-slate-500">
             <tr>

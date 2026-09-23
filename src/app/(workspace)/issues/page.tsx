@@ -141,7 +141,7 @@ export default function IssuesPage() {
   };
 
   return (
-    <div className="flex-1 overflow-y-auto bg-[#0a0f24] p-6 text-white min-w-0">
+    <div className="flex-1 overflow-y-auto bg-black p-6 text-white min-w-0">
       {/* Header */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -164,7 +164,7 @@ export default function IssuesPage() {
 
       {/* Filter and Search Bar */}
       <div className="mb-6 flex flex-col sm:flex-row gap-3 items-center justify-between">
-        <div className="flex items-center gap-1 rounded-lg bg-[#0b1226] border border-white/10 p-1 w-full sm:w-auto">
+        <div className="flex items-center gap-1 rounded-lg bg-[#09090b] border border-white/10 p-1 w-full sm:w-auto">
           {(["OPEN", "IN_PROGRESS", "CLOSED", "ALL"] as const).map((tab) => (
             <button
               key={tab}
@@ -190,13 +190,13 @@ export default function IssuesPage() {
             placeholder="Filter issues or labels..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-[#0b1226] py-1.5 pl-8 pr-3 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
+            className="w-full rounded-lg border border-white/10 bg-[#09090b] py-1.5 pl-8 pr-3 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
           />
         </div>
       </div>
 
       {/* Issues List */}
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0b1226] shadow-sm divide-y divide-white/5">
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-[#09090b] shadow-sm divide-y divide-white/5">
         {filteredIssues.length === 0 ? (
           <div className="p-8 text-center">
             <CirclePlus size={32} className="mx-auto text-slate-500 mb-2" />
@@ -319,7 +319,7 @@ export default function IssuesPage() {
                   placeholder="e.g. Bug: Navigation bar drops z-index on mobile"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="w-full rounded-lg border border-white/10 bg-[#0b1226] px-3.5 py-2 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
+                  className="w-full rounded-lg border border-white/10 bg-[#09090b] px-3.5 py-2 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none"
                 />
               </div>
 
@@ -332,7 +332,7 @@ export default function IssuesPage() {
                   placeholder="Steps to reproduce, environment, or acceptance criteria..."
                   value={newDesc}
                   onChange={(e) => setNewDesc(e.target.value)}
-                  className="w-full rounded-lg border border-white/10 bg-[#0b1226] px-3.5 py-2 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none resize-none"
+                  className="w-full rounded-lg border border-white/10 bg-[#09090b] px-3.5 py-2 text-xs text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none resize-none"
                 />
               </div>
 
@@ -343,7 +343,7 @@ export default function IssuesPage() {
                 <select
                   value={newPriority}
                   onChange={(e) => setNewPriority(e.target.value as "LOW" | "MEDIUM" | "HIGH" | "CRITICAL")}
-                  className="w-full rounded-lg border border-white/10 bg-[#0b1226] px-3.5 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                  className="w-full rounded-lg border border-white/10 bg-[#09090b] px-3.5 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="LOW">Low</option>
                   <option value="MEDIUM">Medium</option>

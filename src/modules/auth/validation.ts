@@ -20,6 +20,7 @@ export const onboardingSchema = z.object({
   about: z.string().max(5000).optional(),
   location: z.string().max(120).optional(),
   websiteUrl: z.string().url().max(2048).optional().or(z.literal("")),
+  githubUsername: z.string().max(80).optional().or(z.literal("")),
   intent: z.enum(["start", "join", "both"]).optional(),
   skills: z.array(z.object({ name: z.string().min(1).max(60), level: z.enum(["BEGINNER", "INTERMEDIATE", "ADVANCED", "EXPERT"]).default("INTERMEDIATE") })).max(20).optional(),
 });

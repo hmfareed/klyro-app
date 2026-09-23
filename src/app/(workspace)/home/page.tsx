@@ -51,7 +51,7 @@ export default function WorkspaceHomePage() {
   const displayName = user?.displayName || user?.username || "Developer";
 
   return (
-    <div className="flex-1 overflow-y-auto bg-[#0a0f24] p-6 text-white min-w-0">
+    <div className="flex-1 overflow-y-auto bg-black p-6 text-white min-w-0">
       {/* Welcome Banner */}
       <div className="mb-8 rounded-2xl border border-white/10 bg-gradient-to-r from-indigo-950/60 via-[#0d1430] to-purple-950/40 p-6 shadow-lg">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -89,7 +89,7 @@ export default function WorkspaceHomePage() {
       <div className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
         <Link
           href="/repositories"
-          className="group rounded-xl border border-white/10 bg-[#0b1226] p-4 transition-all hover:border-indigo-500/50 hover:bg-white/[0.04]"
+          className="group rounded-xl border border-white/10 bg-[#09090b] p-4 transition-all hover:border-indigo-500/50 hover:bg-white/[0.04]"
         >
           <div className="flex items-center justify-between text-slate-400 mb-2">
             <span className="text-xs font-medium">Repositories</span>
@@ -101,7 +101,7 @@ export default function WorkspaceHomePage() {
 
         <Link
           href="/pull-requests"
-          className="group rounded-xl border border-white/10 bg-[#0b1226] p-4 transition-all hover:border-indigo-500/50 hover:bg-white/[0.04]"
+          className="group rounded-xl border border-white/10 bg-[#09090b] p-4 transition-all hover:border-indigo-500/50 hover:bg-white/[0.04]"
         >
           <div className="flex items-center justify-between text-slate-400 mb-2">
             <span className="text-xs font-medium">Pull Requests</span>
@@ -113,7 +113,7 @@ export default function WorkspaceHomePage() {
 
         <Link
           href="/issues"
-          className="group rounded-xl border border-white/10 bg-[#0b1226] p-4 transition-all hover:border-indigo-500/50 hover:bg-white/[0.04]"
+          className="group rounded-xl border border-white/10 bg-[#09090b] p-4 transition-all hover:border-indigo-500/50 hover:bg-white/[0.04]"
         >
           <div className="flex items-center justify-between text-slate-400 mb-2">
             <span className="text-xs font-medium">Issues</span>
@@ -125,7 +125,7 @@ export default function WorkspaceHomePage() {
 
         <Link
           href="/teams"
-          className="group rounded-xl border border-white/10 bg-[#0b1226] p-4 transition-all hover:border-indigo-500/50 hover:bg-white/[0.04]"
+          className="group rounded-xl border border-white/10 bg-[#09090b] p-4 transition-all hover:border-indigo-500/50 hover:bg-white/[0.04]"
         >
           <div className="flex items-center justify-between text-slate-400 mb-2">
             <span className="text-xs font-medium">Collaborators</span>
@@ -158,7 +158,7 @@ export default function WorkspaceHomePage() {
               <Link
                 key={proj.slug}
                 href={`/repositories/${proj.slug}`}
-                className="group rounded-xl border border-white/10 bg-[#0b1226] p-4 hover:border-indigo-500/50 hover:bg-white/[0.03] transition-all"
+                className="group rounded-xl border border-white/10 bg-[#09090b] p-4 hover:border-indigo-500/50 hover:bg-white/[0.03] transition-all"
               >
                 <div className="flex items-center justify-between gap-2 mb-1.5">
                   <span className="font-semibold text-sm text-white group-hover:text-indigo-400 transition-colors truncate">
@@ -177,7 +177,7 @@ export default function WorkspaceHomePage() {
             ))}
 
             {projects.length === 0 && (
-              <div className="col-span-2 rounded-xl border border-dashed border-white/10 bg-[#0b1226] p-8 text-center">
+              <div className="col-span-2 rounded-xl border border-dashed border-white/10 bg-[#09090b] p-8 text-center">
                 <FolderGit2 size={32} className="mx-auto text-slate-500 mb-2" />
                 <p className="text-sm font-semibold text-white">No repositories created yet</p>
                 <p className="text-xs text-slate-400 mt-1">Start by creating your first collaborative project.</p>
@@ -192,7 +192,7 @@ export default function WorkspaceHomePage() {
           </div>
 
           {/* Quick Shortcuts */}
-          <div className="mt-6 rounded-xl border border-white/10 bg-[#0b1226] p-4">
+          <div className="mt-6 rounded-xl border border-white/10 bg-[#09090b] p-4">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Quick Navigation</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <Link
@@ -237,7 +237,7 @@ export default function WorkspaceHomePage() {
             <span className="text-[11px] text-slate-500">Live feed</span>
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-[#0b1226] p-4 space-y-4">
+          <div className="rounded-xl border border-white/10 bg-[#09090b] p-4 space-y-4">
             {mockActivity.map((act, idx) => (
               <div key={idx} className="flex gap-3 text-xs border-b border-white/5 pb-3 last:border-b-0 last:pb-0">
                 <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-500/20 text-indigo-400 font-bold text-[11px]">

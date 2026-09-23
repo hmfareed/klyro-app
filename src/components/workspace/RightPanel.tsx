@@ -3,7 +3,7 @@ import { activity, collaborators, repo } from "@/mock/workspace";
 
 export function RightPanel() {
   return (
-    <aside className="w-80 shrink-0 space-y-5 overflow-y-auto border-l border-white/10 bg-[#0b1226] p-4">
+    <aside className="w-80 shrink-0 space-y-5 overflow-y-auto border-l border-zinc-800 bg-black p-4">
       <section>
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-semibold text-white">Collaborators <span className="text-slate-400">{collaborators.count}</span></h3>
@@ -14,13 +14,13 @@ export function RightPanel() {
             <span
               key={p}
               title={p}
-              className="-ml-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#0b1226] bg-gradient-to-br from-slate-600 to-slate-800 text-[10px] font-bold text-white first:ml-0"
+              className="-ml-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-black bg-gradient-to-br from-slate-600 to-slate-800 text-[10px] font-bold text-white first:ml-0"
               style={{ zIndex: 10 - i }}
             >
               {p.slice(0, 2).toUpperCase()}
             </span>
           ))}
-          <span className="-ml-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#0b1226] bg-white/10 text-[10px] font-bold text-slate-200">
+          <span className="-ml-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-black bg-white/10 text-[10px] font-bold text-slate-200">
             +{collaborators.extra}
           </span>
         </div>

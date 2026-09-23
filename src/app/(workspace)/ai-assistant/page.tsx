@@ -15,7 +15,7 @@ export default function WorkspaceAIAssistantPage() {
   const [joined, setJoined] = useState(false);
 
   return (
-    <div className="flex-1 overflow-y-auto bg-[#0a0f24] p-6 text-white min-w-0">
+    <div className="flex-1 overflow-y-auto bg-black p-6 text-white min-w-0">
       {/* Banner */}
       <div className="mb-8 rounded-2xl border border-indigo-500/30 bg-gradient-to-br from-indigo-950/70 via-[#0d1430] to-purple-950/60 p-8 shadow-xl text-center max-w-3xl mx-auto">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 text-white shadow-lg mb-4">
@@ -56,7 +56,7 @@ export default function WorkspaceAIAssistantPage() {
 
       {/* Feature Capabilities Preview Grid */}
       <div className="max-w-4xl mx-auto grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-white/10 bg-[#0b1226] p-5 space-y-2">
+        <div className="rounded-xl border border-white/10 bg-[#09090b] p-5 space-y-2">
           <div className="flex items-center gap-2 text-indigo-400">
             <GitPullRequest size={18} />
             <h3 className="font-semibold text-sm text-white">Automated PR Code Review</h3>
@@ -66,7 +66,7 @@ export default function WorkspaceAIAssistantPage() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-[#0b1226] p-5 space-y-2">
+        <div className="rounded-xl border border-white/10 bg-[#09090b] p-5 space-y-2">
           <div className="flex items-center gap-2 text-purple-400">
             <Cpu size={18} />
             <h3 className="font-semibold text-sm text-white">Architectural Consistency Checker</h3>
@@ -76,7 +76,7 @@ export default function WorkspaceAIAssistantPage() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-[#0b1226] p-5 space-y-2">
+        <div className="rounded-xl border border-white/10 bg-[#09090b] p-5 space-y-2">
           <div className="flex items-center gap-2 text-emerald-400">
             <ShieldCheck size={18} />
             <h3 className="font-semibold text-sm text-white">Contribution Attestation Assistant</h3>
@@ -86,7 +86,7 @@ export default function WorkspaceAIAssistantPage() {
           </p>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-[#0b1226] p-5 space-y-2">
+        <div className="rounded-xl border border-white/10 bg-[#09090b] p-5 space-y-2">
           <div className="flex items-center gap-2 text-amber-400">
             <Terminal size={18} />
             <h3 className="font-semibold text-sm text-white">Natural Language Sprint Breakdown</h3>

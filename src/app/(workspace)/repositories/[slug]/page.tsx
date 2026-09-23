@@ -140,7 +140,7 @@ function RepoWorkspaceContent({ params }: { params: Promise<{ slug: string }> })
   ] as const;
 
   return (
-    <div className="flex min-w-0 flex-1 flex-col overflow-hidden bg-[#0a0f24]">
+    <div className="flex min-w-0 flex-1 flex-col overflow-hidden bg-black">
       {/* Workspace Project Header */}
       <div className="border-b border-white/10 bg-[#0d1430] px-6 pt-5 pb-0">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4">
@@ -248,7 +248,7 @@ export default function RepoWorkspacePage(props: { params: Promise<{ slug: strin
   return (
     <Suspense
       fallback={
-        <div className="flex flex-1 items-center justify-center p-8 bg-[#0a0f24]">
+        <div className="flex flex-1 items-center justify-center p-8 bg-black">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
         </div>
       }

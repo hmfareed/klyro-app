@@ -132,7 +132,7 @@ export function Sidebar() {
   ];
 
   return (
-    <aside className="flex w-60 shrink-0 flex-col border-r border-white/10 bg-[#0b1226] text-white">
+    <aside className="flex w-60 shrink-0 flex-col border-r border-zinc-800 bg-black text-white">
       {/* Workspace Identifier Header */}
       <button className="flex items-center gap-2.5 px-4 pb-3 pt-4 text-left border-b border-white/5 hover:bg-white/[0.02] transition-colors">
         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 text-xs font-bold text-white shadow-md">
