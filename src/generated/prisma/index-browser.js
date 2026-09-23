@@ -445,7 +445,23 @@ exports.Prisma.BranchProtectionRuleScalarFieldEnum = {
   requiredApprovals: 'requiredApprovals',
   preventForcePush: 'preventForcePush',
   preventDeletion: 'preventDeletion',
+  requireStatusChecks: 'requireStatusChecks',
+  requiredChecks: 'requiredChecks',
+  requireUpToDateBranch: 'requireUpToDateBranch',
+  requireConversationResolution: 'requireConversationResolution',
   createdAt: 'createdAt'
+};
+
+exports.Prisma.CommitStatusScalarFieldEnum = {
+  id: 'id',
+  repositoryId: 'repositoryId',
+  commitSha: 'commitSha',
+  context: 'context',
+  state: 'state',
+  description: 'description',
+  targetUrl: 'targetUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.RepositoryIssueScalarFieldEnum = {
@@ -460,7 +476,9 @@ exports.Prisma.RepositoryIssueScalarFieldEnum = {
   labels: 'labels',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  closedAt: 'closedAt'
+  closedAt: 'closedAt',
+  closedById: 'closedById',
+  closedByPRId: 'closedByPRId'
 };
 
 exports.Prisma.RepositoryIssueCommentScalarFieldEnum = {
@@ -484,6 +502,8 @@ exports.Prisma.PullRequestScalarFieldEnum = {
   authorId: 'authorId',
   mergedById: 'mergedById',
   mergedAt: 'mergedAt',
+  mergeStrategy: 'mergeStrategy',
+  mergeCommitSha: 'mergeCommitSha',
   closedAt: 'closedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -786,6 +806,7 @@ exports.Prisma.ModelName = {
   RepositoryWatcher: 'RepositoryWatcher',
   RepositoryCollaborator: 'RepositoryCollaborator',
   BranchProtectionRule: 'BranchProtectionRule',
+  CommitStatus: 'CommitStatus',
   RepositoryIssue: 'RepositoryIssue',
   RepositoryIssueComment: 'RepositoryIssueComment',
   PullRequest: 'PullRequest',

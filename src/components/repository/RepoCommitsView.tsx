@@ -8,6 +8,7 @@ interface RepoCommitsViewProps {
   repo: string;
   refName: string;
   onSelectCommit: (sha: string) => void;
+  onViewGraph?: () => void;
 }
 
 export function RepoCommitsView({
@@ -15,6 +16,7 @@ export function RepoCommitsView({
   repo,
   refName,
   onSelectCommit,
+  onViewGraph,
 }: RepoCommitsViewProps) {
   const [commits, setCommits] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -45,7 +47,18 @@ export function RepoCommitsView({
           <GitCommit size={16} className="text-indigo-400" />
           Commits on <span className="font-mono text-indigo-300">{refName}</span>
         </h2>
-        <span className="text-xs text-slate-500 font-mono">{commits.length} commits</span>
+        <div className="flex items-center gap-3">
+          <span className="text-xs text-slate-500 font-mono">{commits.length} commits</span>
+          {onViewGraph && (
+            <button
+              onClick={onViewGraph}
+              className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            >
+              <span>Graph view</span>
+              <ArrowRight size={12} className="text-indigo-400" />
+            </button>
+          )}
+        </div>
       </div>
 
       {loading ? (

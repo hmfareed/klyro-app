@@ -7,6 +7,7 @@ import { compareBranches } from "@/server/git/git-service";
 import { recordActivityEvent } from "@/server/events";
 import { ActivityEventType } from "@/generated/prisma";
 import { dispatchRepositoryWebhooks } from "@/server/webhooks/webhook-dispatcher";
+import { recordPRReferenceEvents } from "@/server/git/issues/issue-reference-service";
 
 type RouteContext = { params: Promise<{ owner: string; repo: string }> };
 
@@ -171,6 +172,18 @@ export async function POST(req: Request, context: RouteContext) {
         pull_request: pullRequest,
       },
     });
+
+    // 6. Record cross-references on mentioned issues
+    recordPRReferenceEvents({
+      repositoryId: repository.id,
+      pullRequest: {
+        id: pullRequest.id,
+        number: pullRequest.number,
+        title: pullRequest.title,
+        body: pullRequest.body,
+      },
+      userId,
+    }).catch(() => {});
 
     return apiOk({ pullRequest }, 201);
   } catch (err: any) {

@@ -150,8 +150,8 @@ export function MarkdownViewer({ content, className = "" }: MarkdownViewerProps)
  */
 function renderInline(text: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
-  // Tokenize regex for inline patterns
-  const tokenRegex = /(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g;
+  // Tokenize regex for inline patterns including #123 references
+  const tokenRegex = /(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\)|#\d+)/g;
 
   let lastIndex = 0;
   let match;
@@ -171,6 +171,16 @@ function renderInline(text: string): React.ReactNode[] {
         <code key={match.index} className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[11px] text-indigo-300">
           {token.slice(1, -1)}
         </code>
+      );
+    } else if (token.startsWith("#") && /^#\d+$/.test(token)) {
+      parts.push(
+        <span
+          key={match.index}
+          className="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold cursor-pointer hover:underline"
+          title={`Reference #${token.slice(1)}`}
+        >
+          {token}
+        </span>
       );
     } else if (token.startsWith("[") && token.includes("](")) {
       const linkMatch = token.match(/\[([^\]]+)\]\(([^)]+)\)/);

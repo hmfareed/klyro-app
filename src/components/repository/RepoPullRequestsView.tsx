@@ -18,6 +18,11 @@ import {
   CornerDownRight,
   FileCode,
   Send,
+  GitCommit,
+  Layers,
+  Trash2,
+  ShieldCheck,
+  RefreshCw,
 } from "lucide-react";
 import { MarkdownViewer } from "./MarkdownViewer";
 import { RepoDiffViewer } from "./RepoDiffViewer";
@@ -136,6 +141,34 @@ export function RepoPullRequestsView({
   const [mergeError, setMergeError] = useState<string | null>(null);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
+  // Merge strategies & branch deletion state
+  const [selectedStrategy, setSelectedStrategy] = useState<"MERGE_COMMIT" | "SQUASH" | "REBASE">("MERGE_COMMIT");
+  const [isConfirmingMerge, setIsConfirmingMerge] = useState(false);
+  const [customMergeTitle, setCustomMergeTitle] = useState("");
+  const [customMergeMessage, setCustomMergeMessage] = useState("");
+  const [branchDeleting, setBranchDeleting] = useState(false);
+  const [branchDeleted, setBranchDeleted] = useState(false);
+  const [mergeGates, setMergeGates] = useState<any>(null);
+  const [loadingGates, setLoadingGates] = useState(false);
+  const [updatingBranch, setUpdatingBranch] = useState(false);
+  const [closingIssues, setClosingIssues] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (prDetail) {
+      setBranchDeleted(false);
+      if (selectedStrategy === "SQUASH") {
+        setCustomMergeTitle(`${prDetail.title} (#${prDetail.number})`);
+        setCustomMergeMessage(prDetail.body || "");
+      } else if (selectedStrategy === "MERGE_COMMIT") {
+        setCustomMergeTitle(`Merge pull request #${prDetail.number} from ${prDetail.headBranch}`);
+        setCustomMergeMessage(prDetail.title);
+      } else {
+        setCustomMergeTitle("");
+        setCustomMergeMessage("");
+      }
+    }
+  }, [selectedStrategy, prDetail?.id, prDetail?.title, prDetail?.number, prDetail?.headBranch, prDetail?.body]);
+
   // Load PR list
   const loadPulls = () => {
     setLoading(true);
@@ -193,29 +226,99 @@ export function RepoPullRequestsView({
       .finally(() => setComparing(false));
   }, [isCreating, baseBranch, headBranch, owner, repo]);
 
-  // Load PR detail
-  useEffect(() => {
-    if (!selectedPRNumber) {
-      setPrDetail(null);
-      setPrComparison(null);
-      setReviewStats(null);
-      return;
-    }
-
-    setDetailLoading(true);
-    setMergeError(null);
-    fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${selectedPRNumber}`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
+  // Load PR detail and merge gates
+  const reloadPRDetail = async () => {
+    if (!selectedPRNumber) return;
+    try {
+      const [resPR, resGates, resClosing] = await Promise.all([
+        fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${selectedPRNumber}`),
+        fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${selectedPRNumber}/gates`),
+        fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${selectedPRNumber}/closing-issues`),
+      ]);
+      if (resPR.ok) {
+        const d = await resPR.json();
         if (d?.data?.pullRequest) {
           setPrDetail(d.data.pullRequest);
           setPrComparison(d.data.comparison);
           if (d.data.reviewStats) setReviewStats(d.data.reviewStats);
         }
+      }
+      if (resGates.ok) {
+        const gd = await resGates.json();
+        if (gd?.data) setMergeGates(gd.data);
+      }
+      if (resClosing.ok) {
+        const cd = await resClosing.json();
+        if (cd?.data?.closingIssues) setClosingIssues(cd.data.closingIssues);
+      }
+    } catch {}
+  };
+
+  useEffect(() => {
+    if (!selectedPRNumber) {
+      setPrDetail(null);
+      setPrComparison(null);
+      setReviewStats(null);
+      setMergeGates(null);
+      setClosingIssues([]);
+      return;
+    }
+
+    setDetailLoading(true);
+    setMergeError(null);
+    setLoadingGates(true);
+
+    Promise.all([
+      fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${selectedPRNumber}`),
+      fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${selectedPRNumber}/gates`),
+      fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${selectedPRNumber}/closing-issues`),
+    ])
+      .then(async ([resPR, resGates, resClosing]) => {
+        if (resPR.ok) {
+          const d = await resPR.json();
+          if (d?.data?.pullRequest) {
+            setPrDetail(d.data.pullRequest);
+            setPrComparison(d.data.comparison);
+            if (d.data.reviewStats) setReviewStats(d.data.reviewStats);
+          }
+        }
+        if (resGates.ok) {
+          const gd = await resGates.json();
+          if (gd?.data) setMergeGates(gd.data);
+        }
+        if (resClosing.ok) {
+          const cd = await resClosing.json();
+          if (cd?.data?.closingIssues) setClosingIssues(cd.data.closingIssues);
+        }
       })
       .catch(() => {})
-      .finally(() => setDetailLoading(false));
+      .finally(() => {
+        setDetailLoading(false);
+        setLoadingGates(false);
+      });
   }, [selectedPRNumber, owner, repo]);
+
+  // Update head branch with base branch
+  const handleUpdateBranch = async () => {
+    if (!selectedPRNumber) return;
+    setUpdatingBranch(true);
+    setMergeError(null);
+    try {
+      const res = await fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${selectedPRNumber}/update-branch`, {
+        method: "POST",
+      });
+      const d = await res.json().catch(() => null);
+      if (!res.ok || !d?.success) {
+        setMergeError(d?.error?.message || "Failed to update branch");
+      } else {
+        await reloadPRDetail();
+      }
+    } catch (err: any) {
+      setMergeError(err.message || "Failed to update branch");
+    } finally {
+      setUpdatingBranch(false);
+    }
+  };
 
   // Create PR submit
   const handleCreatePR = async (e: React.FormEvent) => {
@@ -253,15 +356,27 @@ export function RepoPullRequestsView({
     }
   };
 
-  // Merge PR
+  // Merge PR with selected strategy
   const handleMergePR = async () => {
     if (!prDetail) return;
+    if (mergeGates && !mergeGates.canMerge) {
+      setMergeError(
+        `Merge blocked by branch protection: ${mergeGates.reasonsToBlock?.join("; ") || "Requirements not met."}`
+      );
+      return;
+    }
     setMerging(true);
     setMergeError(null);
 
     try {
       const res = await fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${prDetail.number}/merge`, {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          strategy: selectedStrategy,
+          commitTitle: customMergeTitle.trim() || undefined,
+          commitMessage: customMergeMessage.trim() || undefined,
+        }),
       });
       const d = await res.json().catch(() => null);
       if (!res.ok || !d.success) {
@@ -271,10 +386,28 @@ export function RepoPullRequestsView({
       }
 
       setPrDetail(d.data.pullRequest);
+      setIsConfirmingMerge(false);
     } catch {
       setMergeError("Failed to merge pull request.");
     } finally {
       setMerging(false);
+    }
+  };
+
+  // Delete merged head branch
+  const handleDeleteBranch = async () => {
+    if (!prDetail) return;
+    setBranchDeleting(true);
+    try {
+      const res = await fetch(
+        `/api/v1/repositories/${owner}/${repo}/branches?name=${encodeURIComponent(prDetail.headBranch)}`,
+        { method: "DELETE" }
+      );
+      if (res.ok) {
+        setBranchDeleted(true);
+      }
+    } catch {} finally {
+      setBranchDeleting(false);
     }
   };
 
@@ -626,7 +759,17 @@ export function RepoPullRequestsView({
               }`}
             >
               {isMerged ? <GitMerge size={13} /> : isOpen ? <GitPullRequest size={13} /> : <XCircle size={13} />}
-              <span>{isMerged ? "Merged" : isOpen ? "Open" : "Closed"}</span>
+              <span>
+                {isMerged
+                  ? prDetail.mergeStrategy === "SQUASH"
+                    ? "Merged (Squash)"
+                    : prDetail.mergeStrategy === "REBASE"
+                    ? "Merged (Rebase)"
+                    : "Merged"
+                  : isOpen
+                  ? "Open"
+                  : "Closed"}
+              </span>
             </span>
 
             <span className="text-slate-400">
@@ -706,6 +849,37 @@ export function RepoPullRequestsView({
                 <MarkdownViewer content={prDetail.body} />
               ) : (
                 <p className="text-xs text-slate-500 italic">No description provided.</p>
+              )}
+
+              {/* Linked Closing Issues */}
+              {closingIssues.length > 0 && (
+                <div className="mt-4 pt-3.5 border-t border-white/5 flex flex-wrap items-center gap-2">
+                  <span className="text-[11px] font-semibold text-slate-400">
+                    Closing issues:
+                  </span>
+                  {closingIssues.map((ci) => (
+                    <span
+                      key={ci.id}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-purple-500/30 bg-purple-950/20 px-2.5 py-1 text-xs text-purple-200"
+                    >
+                      <CheckCircle2
+                        size={12}
+                        className={ci.status === "CLOSED" ? "text-purple-400" : "text-emerald-400"}
+                      />
+                      <span className="font-semibold text-white">#{ci.number}</span>
+                      <span className="text-slate-300 max-w-[200px] truncate">{ci.title}</span>
+                      <span
+                        className={`text-[10px] px-1 py-0.2 rounded font-medium ${
+                          ci.status === "CLOSED"
+                            ? "bg-purple-500/20 text-purple-300"
+                            : "bg-emerald-500/20 text-emerald-300"
+                        }`}
+                      >
+                        {ci.status === "CLOSED" ? "Closed" : "Open"}
+                      </span>
+                    </span>
+                  ))}
+                </div>
               )}
             </div>
 
@@ -848,9 +1022,155 @@ export function RepoPullRequestsView({
               );
             })}
 
+            {/* Merge Gates & Policy Enforcement (if OPEN) */}
+            {isOpen && (
+              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex items-start gap-3">
+                    <ShieldCheck
+                      className={`shrink-0 mt-0.5 ${
+                        mergeGates?.canMerge ? "text-emerald-400" : "text-amber-400"
+                      }`}
+                      size={20}
+                    />
+                    <div>
+                      <h4 className="text-xs font-bold text-white flex items-center gap-2">
+                        {mergeGates?.canMerge
+                          ? "Merge requirements satisfied"
+                          : "Merge blocked by repository policy"}
+                        {mergeGates?.rulePattern && (
+                          <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] font-mono text-slate-300">
+                            rule: {mergeGates.rulePattern}
+                          </span>
+                        )}
+                      </h4>
+                      <p className="text-[11px] text-slate-400 mt-0.5">
+                        {mergeGates?.canMerge
+                          ? "All policy conditions have been met. This pull request is ready to be merged."
+                          : `${mergeGates?.summary?.failedRequired || 0} required condition(s) failing, ${
+                              mergeGates?.summary?.pendingRequired || 0
+                            } pending.`}
+                      </p>
+                    </div>
+                  </div>
+
+                  {mergeGates &&
+                    !mergeGates.canMerge &&
+                    mergeGates.gates.some((g: any) => g.id === "up_to_date" && g.status === "FAILED") && (
+                      <button
+                        type="button"
+                        onClick={handleUpdateBranch}
+                        disabled={updatingBranch}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-500/40 bg-indigo-500/10 px-3 py-1.5 text-xs font-medium text-indigo-300 hover:bg-indigo-500/20 disabled:opacity-40 cursor-pointer transition-colors"
+                      >
+                        <RefreshCw size={12} className={updatingBranch ? "animate-spin" : ""} />
+                        <span>{updatingBranch ? "Updating branch…" : "Update branch"}</span>
+                      </button>
+                    )}
+                </div>
+
+                {/* Gates checklist items */}
+                {mergeGates?.gates && (
+                  <div className="divide-y divide-white/5 rounded-xl border border-white/5 bg-zinc-950/60 overflow-hidden">
+                    {mergeGates.gates.map((gate: any) => {
+                      const isPassed = gate.status === "PASSED";
+                      const isFailed = gate.status === "FAILED";
+                      const isPending = gate.status === "PENDING";
+
+                      return (
+                        <div
+                          key={gate.id}
+                          className="flex items-start justify-between p-3.5 text-xs gap-3"
+                        >
+                          <div className="flex items-start gap-3">
+                            {isPassed && (
+                              <CheckCircle2
+                                size={16}
+                                className="text-emerald-400 shrink-0 mt-0.5"
+                              />
+                            )}
+                            {isFailed && (
+                              <XCircle
+                                size={16}
+                                className="text-rose-400 shrink-0 mt-0.5"
+                              />
+                            )}
+                            {isPending && (
+                              <Clock
+                                size={16}
+                                className="text-amber-400 shrink-0 mt-0.5 animate-pulse"
+                              />
+                            )}
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="font-semibold text-white">
+                                  {gate.title}
+                                </span>
+                                {gate.required && (
+                                  <span className="rounded bg-rose-500/10 border border-rose-500/20 px-1.5 py-0.5 text-[9px] font-semibold text-rose-300">
+                                    Required
+                                  </span>
+                                )}
+                                {!gate.required && (
+                                  <span className="rounded bg-white/5 px-1.5 py-0.5 text-[9px] text-slate-400">
+                                    Optional
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-[11px] text-slate-400 mt-0.5">
+                                {gate.description}
+                              </p>
+
+                              {/* Details pills if CI checks */}
+                              {gate.id === "status_checks" &&
+                                gate.details?.checks?.length > 0 && (
+                                  <div className="mt-2 flex flex-wrap gap-1.5">
+                                    {gate.details.checks.map((c: any, idx: number) => (
+                                      <span
+                                        key={idx}
+                                        className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-mono border ${
+                                          c.state === "SUCCESS"
+                                            ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
+                                            : c.state === "FAILURE" || c.state === "ERROR"
+                                            ? "border-rose-500/30 bg-rose-500/10 text-rose-300"
+                                            : "border-amber-500/30 bg-amber-500/10 text-amber-300"
+                                        }`}
+                                      >
+                                        <span>{c.context}:</span>
+                                        <span className="font-semibold">{c.state}</span>
+                                      </span>
+                                    ))}
+                                  </div>
+                                )}
+                            </div>
+                          </div>
+
+                          {/* Inline button for branch update if this gate is up_to_date */}
+                          {gate.id === "up_to_date" && isFailed && (
+                            <button
+                              type="button"
+                              onClick={handleUpdateBranch}
+                              disabled={updatingBranch}
+                              className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-indigo-600/20 border border-indigo-500/30 px-2.5 py-1 text-[11px] font-medium text-indigo-300 hover:bg-indigo-600/30 disabled:opacity-50 cursor-pointer"
+                            >
+                              <RefreshCw
+                                size={11}
+                                className={updatingBranch ? "animate-spin" : ""}
+                              />
+                              Update branch
+                            </button>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Merge Card (if OPEN) */}
             {isOpen && (
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-start gap-3">
                     {prComparison?.hasConflicts ? (
@@ -867,39 +1187,235 @@ export function RepoPullRequestsView({
                       <p className="text-[11px] text-slate-400 mt-0.5">
                         {prComparison?.hasConflicts
                           ? "Merging can only be completed after resolving conflicting files."
-                          : "Changes can be automatically merged into the base branch."}
+                          : "Changes can be merged automatically into the base branch."}
                       </p>
                     </div>
                   </div>
 
-                  {viewer?.canWrite && (
+                  {viewer?.canWrite && !isConfirmingMerge && (
                     <div className="flex items-center gap-2">
                       <button
                         onClick={handleToggleClose}
-                        className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-300 hover:text-white"
+                        className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
                       >
                         Close PR
                       </button>
 
                       <button
-                        onClick={handleMergePR}
-                        disabled={merging || prComparison?.hasConflicts}
-                        className="inline-flex items-center gap-2 rounded-xl bg-purple-600 px-5 py-2 text-xs font-semibold text-white shadow-lg hover:bg-purple-500 disabled:opacity-40 cursor-pointer"
+                        onClick={() => setIsConfirmingMerge(true)}
+                        disabled={prComparison?.hasConflicts || (mergeGates && !mergeGates.canMerge)}
+                        className="inline-flex items-center gap-2 rounded-xl bg-purple-600 px-5 py-2 text-xs font-semibold text-white shadow-lg hover:bg-purple-500 disabled:opacity-40 transition-all cursor-pointer"
                       >
-                        {merging ? (
-                          "Merging Git branch…"
-                        ) : (
-                          <>
-                            <GitMerge size={14} /> Merge pull request
-                          </>
-                        )}
+                        <GitMerge size={14} />
+                        <span>
+                          {mergeGates && !mergeGates.canMerge
+                            ? "Merge blocked"
+                            : selectedStrategy === "SQUASH"
+                            ? "Squash and merge"
+                            : selectedStrategy === "REBASE"
+                            ? "Rebase and merge"
+                            : "Merge pull request"}
+                        </span>
                       </button>
                     </div>
                   )}
                 </div>
 
+                {/* Strategy Selector & Confirmation Form */}
+                {viewer?.canWrite && !prComparison?.hasConflicts && (
+                  <div className="pt-3 border-t border-white/10 space-y-4">
+                    {/* Strategy Selection Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedStrategy("MERGE_COMMIT")}
+                        className={`text-left p-3 rounded-xl border transition-all cursor-pointer ${
+                          selectedStrategy === "MERGE_COMMIT"
+                            ? "border-purple-500/80 bg-purple-950/20"
+                            : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04]"
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5 font-semibold text-xs text-white">
+                          <GitMerge size={13} className="text-purple-400" /> Create a merge commit
+                        </div>
+                        <p className="text-[11px] text-slate-400 mt-1 leading-snug">
+                          All commits from this branch will be added to the base branch via a merge commit.
+                        </p>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedStrategy("SQUASH")}
+                        className={`text-left p-3 rounded-xl border transition-all cursor-pointer ${
+                          selectedStrategy === "SQUASH"
+                            ? "border-purple-500/80 bg-purple-950/20"
+                            : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04]"
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5 font-semibold text-xs text-white">
+                          <Layers size={13} className="text-indigo-400" /> Squash and merge
+                        </div>
+                        <p className="text-[11px] text-slate-400 mt-1 leading-snug">
+                          The {prComparison?.commits?.length || 1} commit(s) from this branch will be combined into one commit.
+                        </p>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedStrategy("REBASE")}
+                        className={`text-left p-3 rounded-xl border transition-all cursor-pointer ${
+                          selectedStrategy === "REBASE"
+                            ? "border-purple-500/80 bg-purple-950/20"
+                            : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04]"
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5 font-semibold text-xs text-white">
+                          <GitCommit size={13} className="text-emerald-400" /> Rebase and merge
+                        </div>
+                        <p className="text-[11px] text-slate-400 mt-1 leading-snug">
+                          The {prComparison?.commits?.length || 1} commit(s) will be rebased and added to the base branch linearly.
+                        </p>
+                      </button>
+                    </div>
+
+                    {/* Commit customization inputs (when confirming) */}
+                    {isConfirmingMerge && (
+                      <div className="rounded-xl border border-white/10 bg-zinc-950 p-4 space-y-3 animate-in fade-in duration-150">
+                        {selectedStrategy !== "REBASE" && (
+                          <>
+                            <div>
+                              <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                                Commit title
+                              </label>
+                              <input
+                                type="text"
+                                value={customMergeTitle}
+                                onChange={(e) => setCustomMergeTitle(e.target.value)}
+                                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white placeholder:text-zinc-500 focus:border-purple-500 focus:outline-none"
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                                Commit description
+                              </label>
+                              <textarea
+                                rows={3}
+                                value={customMergeMessage}
+                                onChange={(e) => setCustomMergeMessage(e.target.value)}
+                                className="w-full rounded-lg border border-white/10 bg-white/5 p-2.5 text-xs text-white placeholder:text-zinc-500 focus:border-purple-500 focus:outline-none"
+                              />
+                            </div>
+                          </>
+                        )}
+
+                        {selectedStrategy === "REBASE" && (
+                          <p className="text-xs text-slate-300">
+                            The {prComparison?.commits?.length || 1} commit(s) from <code className="text-indigo-300">{prDetail.headBranch}</code> will be replayed directly onto <code className="text-indigo-300">{prDetail.baseBranch}</code> without a merge commit.
+                          </p>
+                        )}
+
+                        <div className="flex items-center justify-end gap-2 pt-2">
+                          <button
+                            type="button"
+                            onClick={() => setIsConfirmingMerge(false)}
+                            className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white"
+                          >
+                            Cancel
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={handleMergePR}
+                            disabled={merging || (mergeGates && !mergeGates.canMerge)}
+                            className="inline-flex items-center gap-1.5 rounded-lg bg-purple-600 px-4 py-1.5 text-xs font-semibold text-white shadow hover:bg-purple-500 disabled:opacity-40 cursor-pointer"
+                          >
+                            {merging ? (
+                              "Executing Git merge…"
+                            ) : (
+                              <>
+                                <GitMerge size={13} />
+                                {selectedStrategy === "SQUASH"
+                                  ? "Confirm squash and merge"
+                                  : selectedStrategy === "REBASE"
+                                  ? "Confirm rebase and merge"
+                                  : "Confirm merge"}
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {mergeError && (
-                  <p className="mt-3 text-xs text-rose-400 font-semibold">{mergeError}</p>
+                  <p className="text-xs text-rose-400 font-semibold">{mergeError}</p>
+                )}
+              </div>
+            )}
+
+            {/* Merged Banner & Branch Deletion Card (if MERGED) */}
+            {isMerged && (
+              <div className="rounded-2xl border border-purple-500/30 bg-purple-950/15 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-600/20 text-purple-400 border border-purple-500/40 shrink-0">
+                    <GitMerge size={16} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white">
+                      Pull request successfully merged and closed
+                    </h4>
+                    <p className="text-[11px] text-slate-400 mt-0.5">
+                      Merged into <code className="text-indigo-300">{prDetail.baseBranch}</code> via{" "}
+                      <b className="text-purple-300">
+                        {prDetail.mergeStrategy === "SQUASH"
+                          ? "Squash and merge"
+                          : prDetail.mergeStrategy === "REBASE"
+                          ? "Rebase and merge"
+                          : "Merge commit"}
+                      </b>{" "}
+                      by <b className="text-white">{prDetail.mergedBy?.displayName || prDetail.mergedBy?.username || "collaborator"}</b>.
+                    </p>
+                    {prDetail.mergeCommitSha && (
+                      <p className="text-[11px] text-slate-500 font-mono mt-1">
+                        Commit: <span className="text-purple-300">{prDetail.mergeCommitSha.slice(0, 7)}</span>
+                      </p>
+                    )}
+
+                    {closingIssues.length > 0 && (
+                      <div className="mt-2 flex items-center gap-1.5 flex-wrap">
+                        <span className="text-[10px] text-slate-400">Closed issues:</span>
+                        {closingIssues.map((ci) => (
+                          <span
+                            key={ci.id}
+                            className="inline-flex items-center gap-1 rounded bg-purple-500/20 px-1.5 py-0.5 text-[10px] font-semibold text-purple-200"
+                          >
+                            #{ci.number}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {viewer?.canWrite && prDetail.headBranch !== defaultBranch && (
+                  <div>
+                    {branchDeleted ? (
+                      <span className="text-xs text-slate-400 italic">
+                        Branch <code className="text-slate-300">{prDetail.headBranch}</code> was deleted.
+                      </span>
+                    ) : (
+                      <button
+                        onClick={handleDeleteBranch}
+                        disabled={branchDeleting}
+                        className="inline-flex items-center gap-1.5 rounded-xl border border-rose-500/30 bg-rose-950/20 px-3 py-2 text-xs font-semibold text-rose-300 hover:bg-rose-900/40 hover:text-white transition-all cursor-pointer"
+                      >
+                        <Trash2 size={13} />
+                        {branchDeleting ? "Deleting branch…" : `Delete ${prDetail.headBranch}`}
+                      </button>
+                    )}
+                  </div>
                 )}
               </div>
             )}

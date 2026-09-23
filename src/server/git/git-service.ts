@@ -280,12 +280,24 @@ export interface GitBranchInfo {
   name: string;
   commitSha: string;
   isDefault: boolean;
+  ahead?: number;
+  behind?: number;
+  lastCommit?: {
+    sha: string;
+    message: string;
+    author: string;
+    relativeDate: string;
+  };
 }
 
 /**
- * List branches in repository
+ * List branches in repository with optional ahead/behind divergence metrics
  */
-export async function getBranches(storagePath: string, defaultBranch = "main"): Promise<GitBranchInfo[]> {
+export async function getBranches(
+  storagePath: string,
+  defaultBranch = "main",
+  calculateDivergence = false
+): Promise<GitBranchInfo[]> {
   try {
     const { stdout } = await runGit(storagePath, [
       "for-each-ref",
@@ -294,7 +306,7 @@ export async function getBranches(storagePath: string, defaultBranch = "main"): 
     ]);
 
     const lines = stdout.trim().split("\n").filter(Boolean);
-    return lines.map((line) => {
+    const basicBranches: GitBranchInfo[] = lines.map((line) => {
       const [name, commitSha] = line.split("|");
       return {
         name,
@@ -302,6 +314,71 @@ export async function getBranches(storagePath: string, defaultBranch = "main"): 
         isDefault: name === defaultBranch,
       };
     });
+
+    if (!calculateDivergence) {
+      return basicBranches;
+    }
+
+    // Enrich branches with ahead/behind divergence against defaultBranch
+    const enrichedBranches = await Promise.all(
+      basicBranches.map(async (branch) => {
+        try {
+          // Fetch latest commit metadata
+          let lastCommit: GitBranchInfo["lastCommit"] = undefined;
+          try {
+            const { stdout: logOut } = await runGit(storagePath, [
+              "log",
+              "-1",
+              "--format=%H|%s|%an|%cr",
+              branch.name,
+            ]);
+            const [cSha, cMsg, cAuthor, cRel] = logOut.trim().split("|");
+            if (cSha) {
+              lastCommit = {
+                sha: cSha,
+                message: cMsg || "",
+                author: cAuthor || "",
+                relativeDate: cRel || "",
+              };
+            }
+          } catch {}
+
+          if (branch.isDefault) {
+            return {
+              ...branch,
+              ahead: 0,
+              behind: 0,
+              lastCommit,
+            };
+          }
+
+          // rev-list defaultBranch..branch (commits ahead of default)
+          const { stdout: aheadOut } = await runGit(storagePath, [
+            "rev-list",
+            "--count",
+            `${defaultBranch}..${branch.name}`,
+          ]).catch(() => ({ stdout: "0" }));
+
+          // rev-list branch..defaultBranch (commits behind default)
+          const { stdout: behindOut } = await runGit(storagePath, [
+            "rev-list",
+            "--count",
+            `${branch.name}..${defaultBranch}`,
+          ]).catch(() => ({ stdout: "0" }));
+
+          return {
+            ...branch,
+            ahead: parseInt(aheadOut.trim() || "0", 10),
+            behind: parseInt(behindOut.trim() || "0", 10),
+            lastCommit,
+          };
+        } catch {
+          return branch;
+        }
+      })
+    );
+
+    return enrichedBranches;
   } catch {
     return [];
   }
@@ -815,6 +892,49 @@ export async function checkMergeConflict(
 }
 
 /**
+ * Check if headBranch is up-to-date with baseBranch
+ */
+export async function isBranchUpToDate(
+  storagePath: string,
+  baseBranch: string,
+  headBranch: string
+): Promise<{ isUpToDate: boolean; behindBy: number; aheadBy: number }> {
+  try {
+    const { stdout: behindOut } = await runGit(storagePath, [
+      "rev-list",
+      "--count",
+      `${headBranch}..${baseBranch}`,
+    ]);
+    const { stdout: aheadOut } = await runGit(storagePath, [
+      "rev-list",
+      "--count",
+      `${baseBranch}..${headBranch}`,
+    ]);
+    const behindBy = parseInt(behindOut.trim(), 10) || 0;
+    const aheadBy = parseInt(aheadOut.trim(), 10) || 0;
+    return {
+      isUpToDate: behindBy === 0,
+      behindBy,
+      aheadBy,
+    };
+  } catch {
+    return { isUpToDate: true, behindBy: 0, aheadBy: 0 };
+  }
+}
+
+/**
+ * Get the current commit SHA of a ref/branch
+ */
+export async function getRefCommitSha(storagePath: string, ref: string): Promise<string | null> {
+  try {
+    const { stdout } = await runGit(storagePath, ["rev-parse", ref]);
+    return stdout.trim();
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Execute Git merge of headBranch into baseBranch
  */
 export async function mergeBranches(
@@ -868,6 +988,161 @@ export async function mergeBranches(
     return { success: true, commitSha: mergeCommitSha };
   } catch (err: any) {
     return { success: false, error: err.message || "Failed to merge branches" };
+  }
+}
+
+/**
+ * Execute Squash and Merge of headBranch into baseBranch
+ * Combines all changes into a single commit with 1 parent (baseSha)
+ */
+export async function squashMergeBranches(
+  storagePath: string,
+  baseBranch: string,
+  headBranch: string,
+  message: string,
+  author: { name: string; email: string },
+  committer?: { name: string; email: string }
+): Promise<{ success: boolean; commitSha?: string; error?: string }> {
+  try {
+    // 1. Check conflicts and compute merge tree
+    const { stdout: mergeTreeOut } = await runGit(storagePath, [
+      "merge-tree",
+      "--write-tree",
+      baseBranch,
+      headBranch,
+    ]);
+
+    const lines = mergeTreeOut.trim().split("\n");
+    const treeSha = lines[0].trim();
+    if (!treeSha || lines.some((l) => l.includes("CONFLICT"))) {
+      return { success: false, error: "Merge conflicts detected. Cannot automatically squash and merge." };
+    }
+
+    // 2. Get base commit SHA
+    const { stdout: baseShaOut } = await runGit(storagePath, ["rev-parse", baseBranch]);
+    const baseSha = baseShaOut.trim();
+
+    // 3. Create commit with SINGLE parent (baseSha)
+    const env: NodeJS.ProcessEnv = {
+      ...process.env,
+      GIT_AUTHOR_NAME: author.name,
+      GIT_AUTHOR_EMAIL: author.email,
+      GIT_COMMITTER_NAME: committer?.name || author.name,
+      GIT_COMMITTER_EMAIL: committer?.email || author.email,
+    };
+
+    const { stdout: commitShaOut } = await execFileAsync(
+      "git",
+      ["commit-tree", treeSha, "-p", baseSha, "-m", message],
+      { cwd: storagePath, env, encoding: "utf8" }
+    );
+
+    const squashCommitSha = commitShaOut.trim();
+
+    // 4. Update baseBranch ref
+    await runGit(storagePath, ["update-ref", `refs/heads/${baseBranch}`, squashCommitSha]);
+
+    return { success: true, commitSha: squashCommitSha };
+  } catch (err: any) {
+    return { success: false, error: err.message || "Failed to squash and merge branches" };
+  }
+}
+
+/**
+ * Execute Rebase and Merge of headBranch onto baseBranch
+ * Replays each individual commit from base..head linearly onto baseBranch
+ */
+export async function rebaseMergeBranches(
+  storagePath: string,
+  baseBranch: string,
+  headBranch: string,
+  committer: { name: string; email: string }
+): Promise<{ success: boolean; commitSha?: string; rebasedCommitsCount?: number; error?: string }> {
+  try {
+    // 1. Check if there are commits to rebase
+    const { stdout: commitsOut } = await runGit(storagePath, [
+      "log",
+      "--reverse",
+      `--format=%H|%an|%ae|%aI|%P`,
+      `${baseBranch}..${headBranch}`,
+    ]);
+
+    const lines = commitsOut.trim().split("\n").filter(Boolean);
+    if (lines.length === 0) {
+      return { success: false, error: "Head branch is already up to date with base branch." };
+    }
+
+    // 2. Parse commits metadata
+    const commitsToRebase = await Promise.all(
+      lines.map(async (line) => {
+        const [sha, authorName, authorEmail, authorDate, parentsStr] = line.split("|");
+        const parents = parentsStr ? parentsStr.trim().split(" ").filter(Boolean) : [];
+        const { stdout: bodyOut } = await runGit(storagePath, ["log", "-1", "--format=%B", sha]);
+        return {
+          sha: sha.trim(),
+          authorName: authorName.trim(),
+          authorEmail: authorEmail.trim(),
+          authorDate: authorDate.trim(),
+          parents,
+          fullMessage: bodyOut.trim(),
+        };
+      })
+    );
+
+    // 3. Current base commit SHA
+    const { stdout: baseShaOut } = await runGit(storagePath, ["rev-parse", baseBranch]);
+    let currentBaseSha = baseShaOut.trim();
+
+    // 4. Sequentially replay each commit onto currentBaseSha
+    for (const c of commitsToRebase) {
+      const oldParent = c.parents[0] || currentBaseSha;
+
+      const { stdout: mergeTreeOut } = await runGit(storagePath, [
+        "merge-tree",
+        "--write-tree",
+        "--merge-base",
+        oldParent,
+        currentBaseSha,
+        c.sha,
+      ]);
+
+      const mLines = mergeTreeOut.trim().split("\n");
+      const treeSha = mLines[0].trim();
+      if (!treeSha || mLines.some((l) => l.includes("CONFLICT"))) {
+        return {
+          success: false,
+          error: `Rebase conflict at commit ${c.sha.slice(0, 7)}: "${c.fullMessage.split("\n")[0]}"`,
+        };
+      }
+
+      const env: NodeJS.ProcessEnv = {
+        ...process.env,
+        GIT_AUTHOR_NAME: c.authorName,
+        GIT_AUTHOR_EMAIL: c.authorEmail,
+        GIT_AUTHOR_DATE: c.authorDate,
+        GIT_COMMITTER_NAME: committer.name,
+        GIT_COMMITTER_EMAIL: committer.email,
+      };
+
+      const { stdout: newCommitShaOut } = await execFileAsync(
+        "git",
+        ["commit-tree", treeSha, "-p", currentBaseSha, "-m", c.fullMessage],
+        { cwd: storagePath, env, encoding: "utf8" }
+      );
+
+      currentBaseSha = newCommitShaOut.trim();
+    }
+
+    // 5. Update baseBranch ref to the final rebased commit
+    await runGit(storagePath, ["update-ref", `refs/heads/${baseBranch}`, currentBaseSha]);
+
+    return {
+      success: true,
+      commitSha: currentBaseSha,
+      rebasedCommitsCount: commitsToRebase.length,
+    };
+  } catch (err: any) {
+    return { success: false, error: err.message || "Failed to rebase and merge branches" };
   }
 }
 

@@ -113,24 +113,51 @@ export function RepoBranchesView({
       ) : (
         <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] shadow-sm divide-y divide-white/5">
           {branches.map((b) => (
-            <div key={b.name} className="flex items-center justify-between p-4 hover:bg-white/[0.03] transition-colors">
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => onSelectBranch(b.name)}
-                  className="font-mono text-xs font-semibold text-indigo-400 hover:underline flex items-center gap-1.5 cursor-pointer"
-                >
-                  <GitBranch size={13} />
-                  <span>{b.name}</span>
-                </button>
+            <div key={b.name} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 hover:bg-white/[0.03] transition-colors gap-3">
+              <div className="min-w-0 space-y-1">
+                <div className="flex items-center gap-2.5 flex-wrap">
+                  <button
+                    onClick={() => onSelectBranch(b.name)}
+                    className="font-mono text-xs font-semibold text-indigo-400 hover:underline flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <GitBranch size={13} />
+                    <span>{b.name}</span>
+                  </button>
 
-                {b.isDefault && (
-                  <span className="rounded bg-indigo-950/80 border border-indigo-700/50 px-2 py-0.5 text-[10px] font-semibold text-indigo-300">
-                    default
-                  </span>
+                  {b.isDefault ? (
+                    <span className="rounded bg-indigo-950/80 border border-indigo-700/50 px-2 py-0.5 text-[10px] font-semibold text-indigo-300">
+                      default
+                    </span>
+                  ) : (
+                    <div className="flex items-center gap-1.5">
+                      {b.ahead === 0 && b.behind === 0 && (
+                        <span className="rounded bg-emerald-950/80 border border-emerald-700/50 px-2 py-0.5 text-[10px] font-semibold text-emerald-300">
+                          Up to date
+                        </span>
+                      )}
+                      {typeof b.ahead === "number" && b.ahead > 0 && (
+                        <span className="rounded bg-emerald-950/80 border border-emerald-600/50 px-2 py-0.5 text-[10px] font-semibold text-emerald-300">
+                          ↑ {b.ahead} ahead
+                        </span>
+                      )}
+                      {typeof b.behind === "number" && b.behind > 0 && (
+                        <span className="rounded bg-amber-950/80 border border-amber-600/50 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
+                          ↓ {b.behind} behind
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {b.lastCommit && (
+                  <p className="text-[11px] text-slate-400 truncate max-w-xl">
+                    <span className="text-slate-300 font-medium">{b.lastCommit.message}</span>
+                    <span className="text-slate-500"> · updated {b.lastCommit.relativeDate} by {b.lastCommit.author}</span>
+                  </p>
                 )}
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5 shrink-0 self-end sm:self-auto">
                 <span className="font-mono text-[11px] text-slate-500">{b.commitSha.slice(0, 7)}</span>
 
                 {!b.isDefault && viewer.canWrite && (
@@ -145,7 +172,7 @@ export function RepoBranchesView({
 
                 <button
                   onClick={() => onSelectBranch(b.name)}
-                  className="text-xs text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                  className="rounded-xl border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-slate-300 hover:text-white hover:bg-white/10 flex items-center gap-1 cursor-pointer transition-colors"
                 >
                   <span>Switch</span>
                   <ArrowRight size={12} />

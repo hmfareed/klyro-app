@@ -10,6 +10,7 @@ import {
   User,
   Tag,
   AlertCircle,
+  GitPullRequest,
 } from "lucide-react";
 import { MarkdownViewer } from "./MarkdownViewer";
 
@@ -210,6 +211,14 @@ export function RepoIssuesView({
             <span className="text-slate-400">
               <b className="text-white">{issueDetail.author.displayName || issueDetail.author.username}</b> opened this issue
             </span>
+
+            {issueDetail.closedByPR && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-purple-500/15 border border-purple-500/30 px-2.5 py-0.5 text-[11px] font-medium text-purple-200">
+                <GitPullRequest size={12} className="text-purple-400" />
+                <span>Closed by PR</span>
+                <span className="font-semibold text-white">#{issueDetail.closedByPR.number}</span>
+              </span>
+            )}
 
             {issueDetail.labels?.map((label: string) => (
               <span

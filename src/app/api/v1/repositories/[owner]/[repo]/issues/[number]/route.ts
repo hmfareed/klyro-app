@@ -26,6 +26,8 @@ export async function GET(req: Request, context: RouteContext) {
       include: {
         author: { select: { id: true, username: true, displayName: true, avatarUrl: true } },
         assignee: { select: { id: true, username: true, displayName: true, avatarUrl: true } },
+        closedBy: { select: { id: true, username: true, displayName: true } },
+        closedByPR: { select: { id: true, number: true, title: true, status: true, mergeCommitSha: true } },
         comments: {
           include: {
             author: { select: { id: true, username: true, displayName: true, avatarUrl: true } },

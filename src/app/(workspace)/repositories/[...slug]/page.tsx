@@ -17,6 +17,7 @@ import { RepoIssuesView } from "@/components/repository/RepoIssuesView";
 import { RepoActionsView } from "@/components/repository/RepoActionsView";
 import { RepoReleasesView } from "@/components/repository/RepoReleasesView";
 import { RepoSettingsView } from "@/components/repository/RepoSettingsView";
+import { RepoNetworkGraphView } from "@/components/repository/RepoNetworkGraphView";
 
 interface RepoDashboardProps {
   params: Promise<{ slug: string[] }>;
@@ -306,6 +307,31 @@ function RepositoryShell({ params }: RepoDashboardProps) {
                 repo={repoName}
                 refName={activeBranch}
                 onSelectCommit={(sha) => setSelectedCommitSha(sha)}
+                onViewGraph={() => setActiveTab("graph")}
+              />
+            )}
+          </>
+        )}
+
+        {(activeTab === "graph" || activeTab === "network") && (
+          <>
+            {selectedCommitSha ? (
+              <RepoCommitDiffView
+                owner={owner}
+                repo={repoName}
+                sha={selectedCommitSha}
+                onBack={() => setSelectedCommitSha(null)}
+              />
+            ) : (
+              <RepoNetworkGraphView
+                owner={owner}
+                repo={repoName}
+                defaultBranch={repository.defaultBranch}
+                onSelectCommit={(sha) => setSelectedCommitSha(sha)}
+                onSelectBranch={(b) => {
+                  setActiveBranch(b);
+                  setActiveTab("code");
+                }}
               />
             )}
           </>

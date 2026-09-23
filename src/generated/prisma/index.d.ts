@@ -164,6 +164,11 @@ export type RepositoryCollaborator = $Result.DefaultSelection<Prisma.$Repository
  */
 export type BranchProtectionRule = $Result.DefaultSelection<Prisma.$BranchProtectionRulePayload>
 /**
+ * Model CommitStatus
+ * 
+ */
+export type CommitStatus = $Result.DefaultSelection<Prisma.$CommitStatusPayload>
+/**
  * Model RepositoryIssue
  * 
  */
@@ -878,6 +883,16 @@ export class PrismaClient<
   get branchProtectionRule(): Prisma.BranchProtectionRuleDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.commitStatus`: Exposes CRUD operations for the **CommitStatus** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CommitStatuses
+    * const commitStatuses = await prisma.commitStatus.findMany()
+    * ```
+    */
+  get commitStatus(): Prisma.CommitStatusDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.repositoryIssue`: Exposes CRUD operations for the **RepositoryIssue** model.
     * Example usage:
     * ```ts
@@ -1467,6 +1482,7 @@ export namespace Prisma {
     RepositoryWatcher: 'RepositoryWatcher',
     RepositoryCollaborator: 'RepositoryCollaborator',
     BranchProtectionRule: 'BranchProtectionRule',
+    CommitStatus: 'CommitStatus',
     RepositoryIssue: 'RepositoryIssue',
     RepositoryIssueComment: 'RepositoryIssueComment',
     PullRequest: 'PullRequest',
@@ -1497,7 +1513,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "application" | "milestone" | "task" | "taskAssignee" | "discussionThread" | "discussionComment" | "fileAsset" | "contributionRecord" | "notification" | "platformAdmin" | "analyticsEvent" | "activityEvent" | "projectFollower" | "projectStar" | "release" | "projectUpdate" | "repository" | "repositoryStar" | "repositoryWatcher" | "repositoryCollaborator" | "branchProtectionRule" | "repositoryIssue" | "repositoryIssueComment" | "pullRequest" | "pullRequestReview" | "pullRequestComment" | "repositoryRelease" | "repositoryWebhook" | "repositoryWebhookDelivery" | "repositoryActionRun" | "repositoryAuditEvent" | "personalAccessToken" | "userSshKey"
+      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "application" | "milestone" | "task" | "taskAssignee" | "discussionThread" | "discussionComment" | "fileAsset" | "contributionRecord" | "notification" | "platformAdmin" | "analyticsEvent" | "activityEvent" | "projectFollower" | "projectStar" | "release" | "projectUpdate" | "repository" | "repositoryStar" | "repositoryWatcher" | "repositoryCollaborator" | "branchProtectionRule" | "commitStatus" | "repositoryIssue" | "repositoryIssueComment" | "pullRequest" | "pullRequestReview" | "pullRequestComment" | "repositoryRelease" | "repositoryWebhook" | "repositoryWebhookDelivery" | "repositoryActionRun" | "repositoryAuditEvent" | "personalAccessToken" | "userSshKey"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3721,6 +3737,80 @@ export namespace Prisma {
           }
         }
       }
+      CommitStatus: {
+        payload: Prisma.$CommitStatusPayload<ExtArgs>
+        fields: Prisma.CommitStatusFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CommitStatusFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CommitStatusFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload>
+          }
+          findFirst: {
+            args: Prisma.CommitStatusFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CommitStatusFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload>
+          }
+          findMany: {
+            args: Prisma.CommitStatusFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload>[]
+          }
+          create: {
+            args: Prisma.CommitStatusCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload>
+          }
+          createMany: {
+            args: Prisma.CommitStatusCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CommitStatusCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload>[]
+          }
+          delete: {
+            args: Prisma.CommitStatusDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload>
+          }
+          update: {
+            args: Prisma.CommitStatusUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload>
+          }
+          deleteMany: {
+            args: Prisma.CommitStatusDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CommitStatusUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CommitStatusUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload>[]
+          }
+          upsert: {
+            args: Prisma.CommitStatusUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommitStatusPayload>
+          }
+          aggregate: {
+            args: Prisma.CommitStatusAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCommitStatus>
+          }
+          groupBy: {
+            args: Prisma.CommitStatusGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CommitStatusGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CommitStatusCountArgs<ExtArgs>
+            result: $Utils.Optional<CommitStatusCountAggregateOutputType> | number
+          }
+        }
+      }
       RepositoryIssue: {
         payload: Prisma.$RepositoryIssuePayload<ExtArgs>
         fields: Prisma.RepositoryIssueFieldRefs
@@ -4735,6 +4825,7 @@ export namespace Prisma {
     repositoryWatcher?: RepositoryWatcherOmit
     repositoryCollaborator?: RepositoryCollaboratorOmit
     branchProtectionRule?: BranchProtectionRuleOmit
+    commitStatus?: CommitStatusOmit
     repositoryIssue?: RepositoryIssueOmit
     repositoryIssueComment?: RepositoryIssueCommentOmit
     pullRequest?: PullRequestOmit
@@ -4851,6 +4942,7 @@ export namespace Prisma {
     repositoryCollaborators: number
     repositoryIssues: number
     assignedRepositoryIssues: number
+    closedRepositoryIssues: number
     repositoryIssueComments: number
     pullRequestsAuthored: number
     pullRequestsMerged: number
@@ -4888,6 +4980,7 @@ export namespace Prisma {
     repositoryCollaborators?: boolean | UserCountOutputTypeCountRepositoryCollaboratorsArgs
     repositoryIssues?: boolean | UserCountOutputTypeCountRepositoryIssuesArgs
     assignedRepositoryIssues?: boolean | UserCountOutputTypeCountAssignedRepositoryIssuesArgs
+    closedRepositoryIssues?: boolean | UserCountOutputTypeCountClosedRepositoryIssuesArgs
     repositoryIssueComments?: boolean | UserCountOutputTypeCountRepositoryIssueCommentsArgs
     pullRequestsAuthored?: boolean | UserCountOutputTypeCountPullRequestsAuthoredArgs
     pullRequestsMerged?: boolean | UserCountOutputTypeCountPullRequestsMergedArgs
@@ -5076,6 +5169,13 @@ export namespace Prisma {
    * UserCountOutputType without action
    */
   export type UserCountOutputTypeCountAssignedRepositoryIssuesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepositoryIssueWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountClosedRepositoryIssuesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RepositoryIssueWhereInput
   }
 
@@ -5481,6 +5581,7 @@ export namespace Prisma {
     watchers: number
     collaborators: number
     branchRules: number
+    commitStatuses: number
     issues: number
     pullRequests: number
     releases: number
@@ -5495,6 +5596,7 @@ export namespace Prisma {
     watchers?: boolean | RepositoryCountOutputTypeCountWatchersArgs
     collaborators?: boolean | RepositoryCountOutputTypeCountCollaboratorsArgs
     branchRules?: boolean | RepositoryCountOutputTypeCountBranchRulesArgs
+    commitStatuses?: boolean | RepositoryCountOutputTypeCountCommitStatusesArgs
     issues?: boolean | RepositoryCountOutputTypeCountIssuesArgs
     pullRequests?: boolean | RepositoryCountOutputTypeCountPullRequestsArgs
     releases?: boolean | RepositoryCountOutputTypeCountReleasesArgs
@@ -5547,6 +5649,13 @@ export namespace Prisma {
    */
   export type RepositoryCountOutputTypeCountBranchRulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BranchProtectionRuleWhereInput
+  }
+
+  /**
+   * RepositoryCountOutputType without action
+   */
+  export type RepositoryCountOutputTypeCountCommitStatusesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommitStatusWhereInput
   }
 
   /**
@@ -5630,11 +5739,13 @@ export namespace Prisma {
   export type PullRequestCountOutputType = {
     reviews: number
     comments: number
+    closedIssues: number
   }
 
   export type PullRequestCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     reviews?: boolean | PullRequestCountOutputTypeCountReviewsArgs
     comments?: boolean | PullRequestCountOutputTypeCountCommentsArgs
+    closedIssues?: boolean | PullRequestCountOutputTypeCountClosedIssuesArgs
   }
 
   // Custom InputTypes
@@ -5660,6 +5771,13 @@ export namespace Prisma {
    */
   export type PullRequestCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PullRequestCommentWhereInput
+  }
+
+  /**
+   * PullRequestCountOutputType without action
+   */
+  export type PullRequestCountOutputTypeCountClosedIssuesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepositoryIssueWhereInput
   }
 
 
@@ -6088,6 +6206,7 @@ export namespace Prisma {
     repositoryCollaborators?: boolean | User$repositoryCollaboratorsArgs<ExtArgs>
     repositoryIssues?: boolean | User$repositoryIssuesArgs<ExtArgs>
     assignedRepositoryIssues?: boolean | User$assignedRepositoryIssuesArgs<ExtArgs>
+    closedRepositoryIssues?: boolean | User$closedRepositoryIssuesArgs<ExtArgs>
     repositoryIssueComments?: boolean | User$repositoryIssueCommentsArgs<ExtArgs>
     pullRequestsAuthored?: boolean | User$pullRequestsAuthoredArgs<ExtArgs>
     pullRequestsMerged?: boolean | User$pullRequestsMergedArgs<ExtArgs>
@@ -6203,6 +6322,7 @@ export namespace Prisma {
     repositoryCollaborators?: boolean | User$repositoryCollaboratorsArgs<ExtArgs>
     repositoryIssues?: boolean | User$repositoryIssuesArgs<ExtArgs>
     assignedRepositoryIssues?: boolean | User$assignedRepositoryIssuesArgs<ExtArgs>
+    closedRepositoryIssues?: boolean | User$closedRepositoryIssuesArgs<ExtArgs>
     repositoryIssueComments?: boolean | User$repositoryIssueCommentsArgs<ExtArgs>
     pullRequestsAuthored?: boolean | User$pullRequestsAuthoredArgs<ExtArgs>
     pullRequestsMerged?: boolean | User$pullRequestsMergedArgs<ExtArgs>
@@ -6246,6 +6366,7 @@ export namespace Prisma {
       repositoryCollaborators: Prisma.$RepositoryCollaboratorPayload<ExtArgs>[]
       repositoryIssues: Prisma.$RepositoryIssuePayload<ExtArgs>[]
       assignedRepositoryIssues: Prisma.$RepositoryIssuePayload<ExtArgs>[]
+      closedRepositoryIssues: Prisma.$RepositoryIssuePayload<ExtArgs>[]
       repositoryIssueComments: Prisma.$RepositoryIssueCommentPayload<ExtArgs>[]
       pullRequestsAuthored: Prisma.$PullRequestPayload<ExtArgs>[]
       pullRequestsMerged: Prisma.$PullRequestPayload<ExtArgs>[]
@@ -6699,6 +6820,7 @@ export namespace Prisma {
     repositoryCollaborators<T extends User$repositoryCollaboratorsArgs<ExtArgs> = {}>(args?: Subset<T, User$repositoryCollaboratorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryCollaboratorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     repositoryIssues<T extends User$repositoryIssuesArgs<ExtArgs> = {}>(args?: Subset<T, User$repositoryIssuesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryIssuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assignedRepositoryIssues<T extends User$assignedRepositoryIssuesArgs<ExtArgs> = {}>(args?: Subset<T, User$assignedRepositoryIssuesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryIssuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    closedRepositoryIssues<T extends User$closedRepositoryIssuesArgs<ExtArgs> = {}>(args?: Subset<T, User$closedRepositoryIssuesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryIssuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     repositoryIssueComments<T extends User$repositoryIssueCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$repositoryIssueCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryIssueCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pullRequestsAuthored<T extends User$pullRequestsAuthoredArgs<ExtArgs> = {}>(args?: Subset<T, User$pullRequestsAuthoredArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pullRequestsMerged<T extends User$pullRequestsMergedArgs<ExtArgs> = {}>(args?: Subset<T, User$pullRequestsMergedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -7722,6 +7844,30 @@ export namespace Prisma {
    * User.assignedRepositoryIssues
    */
   export type User$assignedRepositoryIssuesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryIssue
+     */
+    select?: RepositoryIssueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryIssue
+     */
+    omit?: RepositoryIssueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryIssueInclude<ExtArgs> | null
+    where?: RepositoryIssueWhereInput
+    orderBy?: RepositoryIssueOrderByWithRelationInput | RepositoryIssueOrderByWithRelationInput[]
+    cursor?: RepositoryIssueWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepositoryIssueScalarFieldEnum | RepositoryIssueScalarFieldEnum[]
+  }
+
+  /**
+   * User.closedRepositoryIssues
+   */
+  export type User$closedRepositoryIssuesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the RepositoryIssue
      */
@@ -35156,6 +35302,7 @@ export namespace Prisma {
     watchers?: boolean | Repository$watchersArgs<ExtArgs>
     collaborators?: boolean | Repository$collaboratorsArgs<ExtArgs>
     branchRules?: boolean | Repository$branchRulesArgs<ExtArgs>
+    commitStatuses?: boolean | Repository$commitStatusesArgs<ExtArgs>
     issues?: boolean | Repository$issuesArgs<ExtArgs>
     pullRequests?: boolean | Repository$pullRequestsArgs<ExtArgs>
     releases?: boolean | Repository$releasesArgs<ExtArgs>
@@ -35253,6 +35400,7 @@ export namespace Prisma {
     watchers?: boolean | Repository$watchersArgs<ExtArgs>
     collaborators?: boolean | Repository$collaboratorsArgs<ExtArgs>
     branchRules?: boolean | Repository$branchRulesArgs<ExtArgs>
+    commitStatuses?: boolean | Repository$commitStatusesArgs<ExtArgs>
     issues?: boolean | Repository$issuesArgs<ExtArgs>
     pullRequests?: boolean | Repository$pullRequestsArgs<ExtArgs>
     releases?: boolean | Repository$releasesArgs<ExtArgs>
@@ -35283,6 +35431,7 @@ export namespace Prisma {
       watchers: Prisma.$RepositoryWatcherPayload<ExtArgs>[]
       collaborators: Prisma.$RepositoryCollaboratorPayload<ExtArgs>[]
       branchRules: Prisma.$BranchProtectionRulePayload<ExtArgs>[]
+      commitStatuses: Prisma.$CommitStatusPayload<ExtArgs>[]
       issues: Prisma.$RepositoryIssuePayload<ExtArgs>[]
       pullRequests: Prisma.$PullRequestPayload<ExtArgs>[]
       releases: Prisma.$RepositoryReleasePayload<ExtArgs>[]
@@ -35714,6 +35863,7 @@ export namespace Prisma {
     watchers<T extends Repository$watchersArgs<ExtArgs> = {}>(args?: Subset<T, Repository$watchersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryWatcherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     collaborators<T extends Repository$collaboratorsArgs<ExtArgs> = {}>(args?: Subset<T, Repository$collaboratorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryCollaboratorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     branchRules<T extends Repository$branchRulesArgs<ExtArgs> = {}>(args?: Subset<T, Repository$branchRulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BranchProtectionRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    commitStatuses<T extends Repository$commitStatusesArgs<ExtArgs> = {}>(args?: Subset<T, Repository$commitStatusesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     issues<T extends Repository$issuesArgs<ExtArgs> = {}>(args?: Subset<T, Repository$issuesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryIssuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pullRequests<T extends Repository$pullRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Repository$pullRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     releases<T extends Repository$releasesArgs<ExtArgs> = {}>(args?: Subset<T, Repository$releasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -36321,6 +36471,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BranchProtectionRuleScalarFieldEnum | BranchProtectionRuleScalarFieldEnum[]
+  }
+
+  /**
+   * Repository.commitStatuses
+   */
+  export type Repository$commitStatusesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+    where?: CommitStatusWhereInput
+    orderBy?: CommitStatusOrderByWithRelationInput | CommitStatusOrderByWithRelationInput[]
+    cursor?: CommitStatusWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommitStatusScalarFieldEnum | CommitStatusScalarFieldEnum[]
   }
 
   /**
@@ -39699,6 +39873,9 @@ export namespace Prisma {
     requiredApprovals: number | null
     preventForcePush: boolean | null
     preventDeletion: boolean | null
+    requireStatusChecks: boolean | null
+    requireUpToDateBranch: boolean | null
+    requireConversationResolution: boolean | null
     createdAt: Date | null
   }
 
@@ -39710,6 +39887,9 @@ export namespace Prisma {
     requiredApprovals: number | null
     preventForcePush: boolean | null
     preventDeletion: boolean | null
+    requireStatusChecks: boolean | null
+    requireUpToDateBranch: boolean | null
+    requireConversationResolution: boolean | null
     createdAt: Date | null
   }
 
@@ -39721,6 +39901,10 @@ export namespace Prisma {
     requiredApprovals: number
     preventForcePush: number
     preventDeletion: number
+    requireStatusChecks: number
+    requiredChecks: number
+    requireUpToDateBranch: number
+    requireConversationResolution: number
     createdAt: number
     _all: number
   }
@@ -39742,6 +39926,9 @@ export namespace Prisma {
     requiredApprovals?: true
     preventForcePush?: true
     preventDeletion?: true
+    requireStatusChecks?: true
+    requireUpToDateBranch?: true
+    requireConversationResolution?: true
     createdAt?: true
   }
 
@@ -39753,6 +39940,9 @@ export namespace Prisma {
     requiredApprovals?: true
     preventForcePush?: true
     preventDeletion?: true
+    requireStatusChecks?: true
+    requireUpToDateBranch?: true
+    requireConversationResolution?: true
     createdAt?: true
   }
 
@@ -39764,6 +39954,10 @@ export namespace Prisma {
     requiredApprovals?: true
     preventForcePush?: true
     preventDeletion?: true
+    requireStatusChecks?: true
+    requiredChecks?: true
+    requireUpToDateBranch?: true
+    requireConversationResolution?: true
     createdAt?: true
     _all?: true
   }
@@ -39862,6 +40056,10 @@ export namespace Prisma {
     requiredApprovals: number
     preventForcePush: boolean
     preventDeletion: boolean
+    requireStatusChecks: boolean
+    requiredChecks: string[]
+    requireUpToDateBranch: boolean
+    requireConversationResolution: boolean
     createdAt: Date
     _count: BranchProtectionRuleCountAggregateOutputType | null
     _avg: BranchProtectionRuleAvgAggregateOutputType | null
@@ -39892,6 +40090,10 @@ export namespace Prisma {
     requiredApprovals?: boolean
     preventForcePush?: boolean
     preventDeletion?: boolean
+    requireStatusChecks?: boolean
+    requiredChecks?: boolean
+    requireUpToDateBranch?: boolean
+    requireConversationResolution?: boolean
     createdAt?: boolean
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["branchProtectionRule"]>
@@ -39904,6 +40106,10 @@ export namespace Prisma {
     requiredApprovals?: boolean
     preventForcePush?: boolean
     preventDeletion?: boolean
+    requireStatusChecks?: boolean
+    requiredChecks?: boolean
+    requireUpToDateBranch?: boolean
+    requireConversationResolution?: boolean
     createdAt?: boolean
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["branchProtectionRule"]>
@@ -39916,6 +40122,10 @@ export namespace Prisma {
     requiredApprovals?: boolean
     preventForcePush?: boolean
     preventDeletion?: boolean
+    requireStatusChecks?: boolean
+    requiredChecks?: boolean
+    requireUpToDateBranch?: boolean
+    requireConversationResolution?: boolean
     createdAt?: boolean
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["branchProtectionRule"]>
@@ -39928,10 +40138,14 @@ export namespace Prisma {
     requiredApprovals?: boolean
     preventForcePush?: boolean
     preventDeletion?: boolean
+    requireStatusChecks?: boolean
+    requiredChecks?: boolean
+    requireUpToDateBranch?: boolean
+    requireConversationResolution?: boolean
     createdAt?: boolean
   }
 
-  export type BranchProtectionRuleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repositoryId" | "pattern" | "requirePullRequest" | "requiredApprovals" | "preventForcePush" | "preventDeletion" | "createdAt", ExtArgs["result"]["branchProtectionRule"]>
+  export type BranchProtectionRuleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repositoryId" | "pattern" | "requirePullRequest" | "requiredApprovals" | "preventForcePush" | "preventDeletion" | "requireStatusChecks" | "requiredChecks" | "requireUpToDateBranch" | "requireConversationResolution" | "createdAt", ExtArgs["result"]["branchProtectionRule"]>
   export type BranchProtectionRuleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
   }
@@ -39955,6 +40169,10 @@ export namespace Prisma {
       requiredApprovals: number
       preventForcePush: boolean
       preventDeletion: boolean
+      requireStatusChecks: boolean
+      requiredChecks: string[]
+      requireUpToDateBranch: boolean
+      requireConversationResolution: boolean
       createdAt: Date
     }, ExtArgs["result"]["branchProtectionRule"]>
     composites: {}
@@ -40387,6 +40605,10 @@ export namespace Prisma {
     readonly requiredApprovals: FieldRef<"BranchProtectionRule", 'Int'>
     readonly preventForcePush: FieldRef<"BranchProtectionRule", 'Boolean'>
     readonly preventDeletion: FieldRef<"BranchProtectionRule", 'Boolean'>
+    readonly requireStatusChecks: FieldRef<"BranchProtectionRule", 'Boolean'>
+    readonly requiredChecks: FieldRef<"BranchProtectionRule", 'String[]'>
+    readonly requireUpToDateBranch: FieldRef<"BranchProtectionRule", 'Boolean'>
+    readonly requireConversationResolution: FieldRef<"BranchProtectionRule", 'Boolean'>
     readonly createdAt: FieldRef<"BranchProtectionRule", 'DateTime'>
   }
     
@@ -40803,6 +41025,1116 @@ export namespace Prisma {
 
 
   /**
+   * Model CommitStatus
+   */
+
+  export type AggregateCommitStatus = {
+    _count: CommitStatusCountAggregateOutputType | null
+    _min: CommitStatusMinAggregateOutputType | null
+    _max: CommitStatusMaxAggregateOutputType | null
+  }
+
+  export type CommitStatusMinAggregateOutputType = {
+    id: string | null
+    repositoryId: string | null
+    commitSha: string | null
+    context: string | null
+    state: string | null
+    description: string | null
+    targetUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CommitStatusMaxAggregateOutputType = {
+    id: string | null
+    repositoryId: string | null
+    commitSha: string | null
+    context: string | null
+    state: string | null
+    description: string | null
+    targetUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CommitStatusCountAggregateOutputType = {
+    id: number
+    repositoryId: number
+    commitSha: number
+    context: number
+    state: number
+    description: number
+    targetUrl: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CommitStatusMinAggregateInputType = {
+    id?: true
+    repositoryId?: true
+    commitSha?: true
+    context?: true
+    state?: true
+    description?: true
+    targetUrl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CommitStatusMaxAggregateInputType = {
+    id?: true
+    repositoryId?: true
+    commitSha?: true
+    context?: true
+    state?: true
+    description?: true
+    targetUrl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CommitStatusCountAggregateInputType = {
+    id?: true
+    repositoryId?: true
+    commitSha?: true
+    context?: true
+    state?: true
+    description?: true
+    targetUrl?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CommitStatusAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommitStatus to aggregate.
+     */
+    where?: CommitStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommitStatuses to fetch.
+     */
+    orderBy?: CommitStatusOrderByWithRelationInput | CommitStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CommitStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommitStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommitStatuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CommitStatuses
+    **/
+    _count?: true | CommitStatusCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CommitStatusMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CommitStatusMaxAggregateInputType
+  }
+
+  export type GetCommitStatusAggregateType<T extends CommitStatusAggregateArgs> = {
+        [P in keyof T & keyof AggregateCommitStatus]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCommitStatus[P]>
+      : GetScalarType<T[P], AggregateCommitStatus[P]>
+  }
+
+
+
+
+  export type CommitStatusGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommitStatusWhereInput
+    orderBy?: CommitStatusOrderByWithAggregationInput | CommitStatusOrderByWithAggregationInput[]
+    by: CommitStatusScalarFieldEnum[] | CommitStatusScalarFieldEnum
+    having?: CommitStatusScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CommitStatusCountAggregateInputType | true
+    _min?: CommitStatusMinAggregateInputType
+    _max?: CommitStatusMaxAggregateInputType
+  }
+
+  export type CommitStatusGroupByOutputType = {
+    id: string
+    repositoryId: string
+    commitSha: string
+    context: string
+    state: string
+    description: string | null
+    targetUrl: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CommitStatusCountAggregateOutputType | null
+    _min: CommitStatusMinAggregateOutputType | null
+    _max: CommitStatusMaxAggregateOutputType | null
+  }
+
+  type GetCommitStatusGroupByPayload<T extends CommitStatusGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CommitStatusGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CommitStatusGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CommitStatusGroupByOutputType[P]>
+            : GetScalarType<T[P], CommitStatusGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CommitStatusSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    repositoryId?: boolean
+    commitSha?: boolean
+    context?: boolean
+    state?: boolean
+    description?: boolean
+    targetUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commitStatus"]>
+
+  export type CommitStatusSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    repositoryId?: boolean
+    commitSha?: boolean
+    context?: boolean
+    state?: boolean
+    description?: boolean
+    targetUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commitStatus"]>
+
+  export type CommitStatusSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    repositoryId?: boolean
+    commitSha?: boolean
+    context?: boolean
+    state?: boolean
+    description?: boolean
+    targetUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commitStatus"]>
+
+  export type CommitStatusSelectScalar = {
+    id?: boolean
+    repositoryId?: boolean
+    commitSha?: boolean
+    context?: boolean
+    state?: boolean
+    description?: boolean
+    targetUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CommitStatusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repositoryId" | "commitSha" | "context" | "state" | "description" | "targetUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["commitStatus"]>
+  export type CommitStatusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+  }
+  export type CommitStatusIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+  }
+  export type CommitStatusIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repository?: boolean | RepositoryDefaultArgs<ExtArgs>
+  }
+
+  export type $CommitStatusPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CommitStatus"
+    objects: {
+      repository: Prisma.$RepositoryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      repositoryId: string
+      commitSha: string
+      context: string
+      state: string
+      description: string | null
+      targetUrl: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["commitStatus"]>
+    composites: {}
+  }
+
+  type CommitStatusGetPayload<S extends boolean | null | undefined | CommitStatusDefaultArgs> = $Result.GetResult<Prisma.$CommitStatusPayload, S>
+
+  type CommitStatusCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CommitStatusFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CommitStatusCountAggregateInputType | true
+    }
+
+  export interface CommitStatusDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CommitStatus'], meta: { name: 'CommitStatus' } }
+    /**
+     * Find zero or one CommitStatus that matches the filter.
+     * @param {CommitStatusFindUniqueArgs} args - Arguments to find a CommitStatus
+     * @example
+     * // Get one CommitStatus
+     * const commitStatus = await prisma.commitStatus.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CommitStatusFindUniqueArgs>(args: SelectSubset<T, CommitStatusFindUniqueArgs<ExtArgs>>): Prisma__CommitStatusClient<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CommitStatus that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CommitStatusFindUniqueOrThrowArgs} args - Arguments to find a CommitStatus
+     * @example
+     * // Get one CommitStatus
+     * const commitStatus = await prisma.commitStatus.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CommitStatusFindUniqueOrThrowArgs>(args: SelectSubset<T, CommitStatusFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CommitStatusClient<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CommitStatus that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommitStatusFindFirstArgs} args - Arguments to find a CommitStatus
+     * @example
+     * // Get one CommitStatus
+     * const commitStatus = await prisma.commitStatus.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CommitStatusFindFirstArgs>(args?: SelectSubset<T, CommitStatusFindFirstArgs<ExtArgs>>): Prisma__CommitStatusClient<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CommitStatus that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommitStatusFindFirstOrThrowArgs} args - Arguments to find a CommitStatus
+     * @example
+     * // Get one CommitStatus
+     * const commitStatus = await prisma.commitStatus.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CommitStatusFindFirstOrThrowArgs>(args?: SelectSubset<T, CommitStatusFindFirstOrThrowArgs<ExtArgs>>): Prisma__CommitStatusClient<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CommitStatuses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommitStatusFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CommitStatuses
+     * const commitStatuses = await prisma.commitStatus.findMany()
+     * 
+     * // Get first 10 CommitStatuses
+     * const commitStatuses = await prisma.commitStatus.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const commitStatusWithIdOnly = await prisma.commitStatus.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CommitStatusFindManyArgs>(args?: SelectSubset<T, CommitStatusFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CommitStatus.
+     * @param {CommitStatusCreateArgs} args - Arguments to create a CommitStatus.
+     * @example
+     * // Create one CommitStatus
+     * const CommitStatus = await prisma.commitStatus.create({
+     *   data: {
+     *     // ... data to create a CommitStatus
+     *   }
+     * })
+     * 
+     */
+    create<T extends CommitStatusCreateArgs>(args: SelectSubset<T, CommitStatusCreateArgs<ExtArgs>>): Prisma__CommitStatusClient<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CommitStatuses.
+     * @param {CommitStatusCreateManyArgs} args - Arguments to create many CommitStatuses.
+     * @example
+     * // Create many CommitStatuses
+     * const commitStatus = await prisma.commitStatus.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CommitStatusCreateManyArgs>(args?: SelectSubset<T, CommitStatusCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CommitStatuses and returns the data saved in the database.
+     * @param {CommitStatusCreateManyAndReturnArgs} args - Arguments to create many CommitStatuses.
+     * @example
+     * // Create many CommitStatuses
+     * const commitStatus = await prisma.commitStatus.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CommitStatuses and only return the `id`
+     * const commitStatusWithIdOnly = await prisma.commitStatus.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CommitStatusCreateManyAndReturnArgs>(args?: SelectSubset<T, CommitStatusCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CommitStatus.
+     * @param {CommitStatusDeleteArgs} args - Arguments to delete one CommitStatus.
+     * @example
+     * // Delete one CommitStatus
+     * const CommitStatus = await prisma.commitStatus.delete({
+     *   where: {
+     *     // ... filter to delete one CommitStatus
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CommitStatusDeleteArgs>(args: SelectSubset<T, CommitStatusDeleteArgs<ExtArgs>>): Prisma__CommitStatusClient<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CommitStatus.
+     * @param {CommitStatusUpdateArgs} args - Arguments to update one CommitStatus.
+     * @example
+     * // Update one CommitStatus
+     * const commitStatus = await prisma.commitStatus.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CommitStatusUpdateArgs>(args: SelectSubset<T, CommitStatusUpdateArgs<ExtArgs>>): Prisma__CommitStatusClient<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CommitStatuses.
+     * @param {CommitStatusDeleteManyArgs} args - Arguments to filter CommitStatuses to delete.
+     * @example
+     * // Delete a few CommitStatuses
+     * const { count } = await prisma.commitStatus.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CommitStatusDeleteManyArgs>(args?: SelectSubset<T, CommitStatusDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommitStatuses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommitStatusUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CommitStatuses
+     * const commitStatus = await prisma.commitStatus.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CommitStatusUpdateManyArgs>(args: SelectSubset<T, CommitStatusUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommitStatuses and returns the data updated in the database.
+     * @param {CommitStatusUpdateManyAndReturnArgs} args - Arguments to update many CommitStatuses.
+     * @example
+     * // Update many CommitStatuses
+     * const commitStatus = await prisma.commitStatus.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CommitStatuses and only return the `id`
+     * const commitStatusWithIdOnly = await prisma.commitStatus.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CommitStatusUpdateManyAndReturnArgs>(args: SelectSubset<T, CommitStatusUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CommitStatus.
+     * @param {CommitStatusUpsertArgs} args - Arguments to update or create a CommitStatus.
+     * @example
+     * // Update or create a CommitStatus
+     * const commitStatus = await prisma.commitStatus.upsert({
+     *   create: {
+     *     // ... data to create a CommitStatus
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CommitStatus we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CommitStatusUpsertArgs>(args: SelectSubset<T, CommitStatusUpsertArgs<ExtArgs>>): Prisma__CommitStatusClient<$Result.GetResult<Prisma.$CommitStatusPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CommitStatuses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommitStatusCountArgs} args - Arguments to filter CommitStatuses to count.
+     * @example
+     * // Count the number of CommitStatuses
+     * const count = await prisma.commitStatus.count({
+     *   where: {
+     *     // ... the filter for the CommitStatuses we want to count
+     *   }
+     * })
+    **/
+    count<T extends CommitStatusCountArgs>(
+      args?: Subset<T, CommitStatusCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CommitStatusCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CommitStatus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommitStatusAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CommitStatusAggregateArgs>(args: Subset<T, CommitStatusAggregateArgs>): Prisma.PrismaPromise<GetCommitStatusAggregateType<T>>
+
+    /**
+     * Group by CommitStatus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommitStatusGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CommitStatusGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CommitStatusGroupByArgs['orderBy'] }
+        : { orderBy?: CommitStatusGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CommitStatusGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCommitStatusGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CommitStatus model
+   */
+  readonly fields: CommitStatusFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CommitStatus.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CommitStatusClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    repository<T extends RepositoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryDefaultArgs<ExtArgs>>): Prisma__RepositoryClient<$Result.GetResult<Prisma.$RepositoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CommitStatus model
+   */
+  interface CommitStatusFieldRefs {
+    readonly id: FieldRef<"CommitStatus", 'String'>
+    readonly repositoryId: FieldRef<"CommitStatus", 'String'>
+    readonly commitSha: FieldRef<"CommitStatus", 'String'>
+    readonly context: FieldRef<"CommitStatus", 'String'>
+    readonly state: FieldRef<"CommitStatus", 'String'>
+    readonly description: FieldRef<"CommitStatus", 'String'>
+    readonly targetUrl: FieldRef<"CommitStatus", 'String'>
+    readonly createdAt: FieldRef<"CommitStatus", 'DateTime'>
+    readonly updatedAt: FieldRef<"CommitStatus", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CommitStatus findUnique
+   */
+  export type CommitStatusFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+    /**
+     * Filter, which CommitStatus to fetch.
+     */
+    where: CommitStatusWhereUniqueInput
+  }
+
+  /**
+   * CommitStatus findUniqueOrThrow
+   */
+  export type CommitStatusFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+    /**
+     * Filter, which CommitStatus to fetch.
+     */
+    where: CommitStatusWhereUniqueInput
+  }
+
+  /**
+   * CommitStatus findFirst
+   */
+  export type CommitStatusFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+    /**
+     * Filter, which CommitStatus to fetch.
+     */
+    where?: CommitStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommitStatuses to fetch.
+     */
+    orderBy?: CommitStatusOrderByWithRelationInput | CommitStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommitStatuses.
+     */
+    cursor?: CommitStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommitStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommitStatuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommitStatuses.
+     */
+    distinct?: CommitStatusScalarFieldEnum | CommitStatusScalarFieldEnum[]
+  }
+
+  /**
+   * CommitStatus findFirstOrThrow
+   */
+  export type CommitStatusFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+    /**
+     * Filter, which CommitStatus to fetch.
+     */
+    where?: CommitStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommitStatuses to fetch.
+     */
+    orderBy?: CommitStatusOrderByWithRelationInput | CommitStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommitStatuses.
+     */
+    cursor?: CommitStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommitStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommitStatuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommitStatuses.
+     */
+    distinct?: CommitStatusScalarFieldEnum | CommitStatusScalarFieldEnum[]
+  }
+
+  /**
+   * CommitStatus findMany
+   */
+  export type CommitStatusFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+    /**
+     * Filter, which CommitStatuses to fetch.
+     */
+    where?: CommitStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommitStatuses to fetch.
+     */
+    orderBy?: CommitStatusOrderByWithRelationInput | CommitStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CommitStatuses.
+     */
+    cursor?: CommitStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommitStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommitStatuses.
+     */
+    skip?: number
+    distinct?: CommitStatusScalarFieldEnum | CommitStatusScalarFieldEnum[]
+  }
+
+  /**
+   * CommitStatus create
+   */
+  export type CommitStatusCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CommitStatus.
+     */
+    data: XOR<CommitStatusCreateInput, CommitStatusUncheckedCreateInput>
+  }
+
+  /**
+   * CommitStatus createMany
+   */
+  export type CommitStatusCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CommitStatuses.
+     */
+    data: CommitStatusCreateManyInput | CommitStatusCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CommitStatus createManyAndReturn
+   */
+  export type CommitStatusCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * The data used to create many CommitStatuses.
+     */
+    data: CommitStatusCreateManyInput | CommitStatusCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CommitStatus update
+   */
+  export type CommitStatusUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CommitStatus.
+     */
+    data: XOR<CommitStatusUpdateInput, CommitStatusUncheckedUpdateInput>
+    /**
+     * Choose, which CommitStatus to update.
+     */
+    where: CommitStatusWhereUniqueInput
+  }
+
+  /**
+   * CommitStatus updateMany
+   */
+  export type CommitStatusUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CommitStatuses.
+     */
+    data: XOR<CommitStatusUpdateManyMutationInput, CommitStatusUncheckedUpdateManyInput>
+    /**
+     * Filter which CommitStatuses to update
+     */
+    where?: CommitStatusWhereInput
+    /**
+     * Limit how many CommitStatuses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommitStatus updateManyAndReturn
+   */
+  export type CommitStatusUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * The data used to update CommitStatuses.
+     */
+    data: XOR<CommitStatusUpdateManyMutationInput, CommitStatusUncheckedUpdateManyInput>
+    /**
+     * Filter which CommitStatuses to update
+     */
+    where?: CommitStatusWhereInput
+    /**
+     * Limit how many CommitStatuses to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CommitStatus upsert
+   */
+  export type CommitStatusUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CommitStatus to update in case it exists.
+     */
+    where: CommitStatusWhereUniqueInput
+    /**
+     * In case the CommitStatus found by the `where` argument doesn't exist, create a new CommitStatus with this data.
+     */
+    create: XOR<CommitStatusCreateInput, CommitStatusUncheckedCreateInput>
+    /**
+     * In case the CommitStatus was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CommitStatusUpdateInput, CommitStatusUncheckedUpdateInput>
+  }
+
+  /**
+   * CommitStatus delete
+   */
+  export type CommitStatusDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+    /**
+     * Filter which CommitStatus to delete.
+     */
+    where: CommitStatusWhereUniqueInput
+  }
+
+  /**
+   * CommitStatus deleteMany
+   */
+  export type CommitStatusDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommitStatuses to delete
+     */
+    where?: CommitStatusWhereInput
+    /**
+     * Limit how many CommitStatuses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommitStatus without action
+   */
+  export type CommitStatusDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommitStatus
+     */
+    select?: CommitStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommitStatus
+     */
+    omit?: CommitStatusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitStatusInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model RepositoryIssue
    */
 
@@ -40834,6 +42166,8 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     closedAt: Date | null
+    closedById: string | null
+    closedByPRId: string | null
   }
 
   export type RepositoryIssueMaxAggregateOutputType = {
@@ -40848,6 +42182,8 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     closedAt: Date | null
+    closedById: string | null
+    closedByPRId: string | null
   }
 
   export type RepositoryIssueCountAggregateOutputType = {
@@ -40863,6 +42199,8 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     closedAt: number
+    closedById: number
+    closedByPRId: number
     _all: number
   }
 
@@ -40887,6 +42225,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     closedAt?: true
+    closedById?: true
+    closedByPRId?: true
   }
 
   export type RepositoryIssueMaxAggregateInputType = {
@@ -40901,6 +42241,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     closedAt?: true
+    closedById?: true
+    closedByPRId?: true
   }
 
   export type RepositoryIssueCountAggregateInputType = {
@@ -40916,6 +42258,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     closedAt?: true
+    closedById?: true
+    closedByPRId?: true
     _all?: true
   }
 
@@ -41018,6 +42362,8 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     closedAt: Date | null
+    closedById: string | null
+    closedByPRId: string | null
     _count: RepositoryIssueCountAggregateOutputType | null
     _avg: RepositoryIssueAvgAggregateOutputType | null
     _sum: RepositoryIssueSumAggregateOutputType | null
@@ -41052,9 +42398,13 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     closedAt?: boolean
+    closedById?: boolean
+    closedByPRId?: boolean
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
     assignee?: boolean | RepositoryIssue$assigneeArgs<ExtArgs>
+    closedBy?: boolean | RepositoryIssue$closedByArgs<ExtArgs>
+    closedByPR?: boolean | RepositoryIssue$closedByPRArgs<ExtArgs>
     comments?: boolean | RepositoryIssue$commentsArgs<ExtArgs>
     _count?: boolean | RepositoryIssueCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["repositoryIssue"]>
@@ -41072,9 +42422,13 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     closedAt?: boolean
+    closedById?: boolean
+    closedByPRId?: boolean
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
     assignee?: boolean | RepositoryIssue$assigneeArgs<ExtArgs>
+    closedBy?: boolean | RepositoryIssue$closedByArgs<ExtArgs>
+    closedByPR?: boolean | RepositoryIssue$closedByPRArgs<ExtArgs>
   }, ExtArgs["result"]["repositoryIssue"]>
 
   export type RepositoryIssueSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -41090,9 +42444,13 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     closedAt?: boolean
+    closedById?: boolean
+    closedByPRId?: boolean
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
     assignee?: boolean | RepositoryIssue$assigneeArgs<ExtArgs>
+    closedBy?: boolean | RepositoryIssue$closedByArgs<ExtArgs>
+    closedByPR?: boolean | RepositoryIssue$closedByPRArgs<ExtArgs>
   }, ExtArgs["result"]["repositoryIssue"]>
 
   export type RepositoryIssueSelectScalar = {
@@ -41108,13 +42466,17 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     closedAt?: boolean
+    closedById?: boolean
+    closedByPRId?: boolean
   }
 
-  export type RepositoryIssueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repositoryId" | "number" | "title" | "body" | "status" | "authorId" | "assigneeId" | "labels" | "createdAt" | "updatedAt" | "closedAt", ExtArgs["result"]["repositoryIssue"]>
+  export type RepositoryIssueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repositoryId" | "number" | "title" | "body" | "status" | "authorId" | "assigneeId" | "labels" | "createdAt" | "updatedAt" | "closedAt" | "closedById" | "closedByPRId", ExtArgs["result"]["repositoryIssue"]>
   export type RepositoryIssueInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
     assignee?: boolean | RepositoryIssue$assigneeArgs<ExtArgs>
+    closedBy?: boolean | RepositoryIssue$closedByArgs<ExtArgs>
+    closedByPR?: boolean | RepositoryIssue$closedByPRArgs<ExtArgs>
     comments?: boolean | RepositoryIssue$commentsArgs<ExtArgs>
     _count?: boolean | RepositoryIssueCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -41122,11 +42484,15 @@ export namespace Prisma {
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
     assignee?: boolean | RepositoryIssue$assigneeArgs<ExtArgs>
+    closedBy?: boolean | RepositoryIssue$closedByArgs<ExtArgs>
+    closedByPR?: boolean | RepositoryIssue$closedByPRArgs<ExtArgs>
   }
   export type RepositoryIssueIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
     assignee?: boolean | RepositoryIssue$assigneeArgs<ExtArgs>
+    closedBy?: boolean | RepositoryIssue$closedByArgs<ExtArgs>
+    closedByPR?: boolean | RepositoryIssue$closedByPRArgs<ExtArgs>
   }
 
   export type $RepositoryIssuePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -41135,6 +42501,8 @@ export namespace Prisma {
       repository: Prisma.$RepositoryPayload<ExtArgs>
       author: Prisma.$UserPayload<ExtArgs>
       assignee: Prisma.$UserPayload<ExtArgs> | null
+      closedBy: Prisma.$UserPayload<ExtArgs> | null
+      closedByPR: Prisma.$PullRequestPayload<ExtArgs> | null
       comments: Prisma.$RepositoryIssueCommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -41150,6 +42518,8 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       closedAt: Date | null
+      closedById: string | null
+      closedByPRId: string | null
     }, ExtArgs["result"]["repositoryIssue"]>
     composites: {}
   }
@@ -41547,6 +42917,8 @@ export namespace Prisma {
     repository<T extends RepositoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryDefaultArgs<ExtArgs>>): Prisma__RepositoryClient<$Result.GetResult<Prisma.$RepositoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     assignee<T extends RepositoryIssue$assigneeArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryIssue$assigneeArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    closedBy<T extends RepositoryIssue$closedByArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryIssue$closedByArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    closedByPR<T extends RepositoryIssue$closedByPRArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryIssue$closedByPRArgs<ExtArgs>>): Prisma__PullRequestClient<$Result.GetResult<Prisma.$PullRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     comments<T extends RepositoryIssue$commentsArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryIssue$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryIssueCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -41589,6 +42961,8 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"RepositoryIssue", 'DateTime'>
     readonly updatedAt: FieldRef<"RepositoryIssue", 'DateTime'>
     readonly closedAt: FieldRef<"RepositoryIssue", 'DateTime'>
+    readonly closedById: FieldRef<"RepositoryIssue", 'String'>
+    readonly closedByPRId: FieldRef<"RepositoryIssue", 'String'>
   }
     
 
@@ -42001,6 +43375,44 @@ export namespace Prisma {
      */
     include?: UserInclude<ExtArgs> | null
     where?: UserWhereInput
+  }
+
+  /**
+   * RepositoryIssue.closedBy
+   */
+  export type RepositoryIssue$closedByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * RepositoryIssue.closedByPR
+   */
+  export type RepositoryIssue$closedByPRArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PullRequest
+     */
+    select?: PullRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PullRequest
+     */
+    omit?: PullRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PullRequestInclude<ExtArgs> | null
+    where?: PullRequestWhereInput
   }
 
   /**
@@ -43157,6 +44569,8 @@ export namespace Prisma {
     authorId: string | null
     mergedById: string | null
     mergedAt: Date | null
+    mergeStrategy: string | null
+    mergeCommitSha: string | null
     closedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -43174,6 +44588,8 @@ export namespace Prisma {
     authorId: string | null
     mergedById: string | null
     mergedAt: Date | null
+    mergeStrategy: string | null
+    mergeCommitSha: string | null
     closedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -43191,6 +44607,8 @@ export namespace Prisma {
     authorId: number
     mergedById: number
     mergedAt: number
+    mergeStrategy: number
+    mergeCommitSha: number
     closedAt: number
     createdAt: number
     updatedAt: number
@@ -43218,6 +44636,8 @@ export namespace Prisma {
     authorId?: true
     mergedById?: true
     mergedAt?: true
+    mergeStrategy?: true
+    mergeCommitSha?: true
     closedAt?: true
     createdAt?: true
     updatedAt?: true
@@ -43235,6 +44655,8 @@ export namespace Prisma {
     authorId?: true
     mergedById?: true
     mergedAt?: true
+    mergeStrategy?: true
+    mergeCommitSha?: true
     closedAt?: true
     createdAt?: true
     updatedAt?: true
@@ -43252,6 +44674,8 @@ export namespace Prisma {
     authorId?: true
     mergedById?: true
     mergedAt?: true
+    mergeStrategy?: true
+    mergeCommitSha?: true
     closedAt?: true
     createdAt?: true
     updatedAt?: true
@@ -43356,6 +44780,8 @@ export namespace Prisma {
     authorId: string
     mergedById: string | null
     mergedAt: Date | null
+    mergeStrategy: string | null
+    mergeCommitSha: string | null
     closedAt: Date | null
     createdAt: Date
     updatedAt: Date
@@ -43392,6 +44818,8 @@ export namespace Prisma {
     authorId?: boolean
     mergedById?: boolean
     mergedAt?: boolean
+    mergeStrategy?: boolean
+    mergeCommitSha?: boolean
     closedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -43400,6 +44828,7 @@ export namespace Prisma {
     mergedBy?: boolean | PullRequest$mergedByArgs<ExtArgs>
     reviews?: boolean | PullRequest$reviewsArgs<ExtArgs>
     comments?: boolean | PullRequest$commentsArgs<ExtArgs>
+    closedIssues?: boolean | PullRequest$closedIssuesArgs<ExtArgs>
     _count?: boolean | PullRequestCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pullRequest"]>
 
@@ -43415,6 +44844,8 @@ export namespace Prisma {
     authorId?: boolean
     mergedById?: boolean
     mergedAt?: boolean
+    mergeStrategy?: boolean
+    mergeCommitSha?: boolean
     closedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -43435,6 +44866,8 @@ export namespace Prisma {
     authorId?: boolean
     mergedById?: boolean
     mergedAt?: boolean
+    mergeStrategy?: boolean
+    mergeCommitSha?: boolean
     closedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -43455,18 +44888,21 @@ export namespace Prisma {
     authorId?: boolean
     mergedById?: boolean
     mergedAt?: boolean
+    mergeStrategy?: boolean
+    mergeCommitSha?: boolean
     closedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PullRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repositoryId" | "number" | "title" | "body" | "status" | "baseBranch" | "headBranch" | "authorId" | "mergedById" | "mergedAt" | "closedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["pullRequest"]>
+  export type PullRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repositoryId" | "number" | "title" | "body" | "status" | "baseBranch" | "headBranch" | "authorId" | "mergedById" | "mergedAt" | "mergeStrategy" | "mergeCommitSha" | "closedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["pullRequest"]>
   export type PullRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
     mergedBy?: boolean | PullRequest$mergedByArgs<ExtArgs>
     reviews?: boolean | PullRequest$reviewsArgs<ExtArgs>
     comments?: boolean | PullRequest$commentsArgs<ExtArgs>
+    closedIssues?: boolean | PullRequest$closedIssuesArgs<ExtArgs>
     _count?: boolean | PullRequestCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PullRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -43488,6 +44924,7 @@ export namespace Prisma {
       mergedBy: Prisma.$UserPayload<ExtArgs> | null
       reviews: Prisma.$PullRequestReviewPayload<ExtArgs>[]
       comments: Prisma.$PullRequestCommentPayload<ExtArgs>[]
+      closedIssues: Prisma.$RepositoryIssuePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -43501,6 +44938,8 @@ export namespace Prisma {
       authorId: string
       mergedById: string | null
       mergedAt: Date | null
+      mergeStrategy: string | null
+      mergeCommitSha: string | null
       closedAt: Date | null
       createdAt: Date
       updatedAt: Date
@@ -43903,6 +45342,7 @@ export namespace Prisma {
     mergedBy<T extends PullRequest$mergedByArgs<ExtArgs> = {}>(args?: Subset<T, PullRequest$mergedByArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     reviews<T extends PullRequest$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, PullRequest$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends PullRequest$commentsArgs<ExtArgs> = {}>(args?: Subset<T, PullRequest$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    closedIssues<T extends PullRequest$closedIssuesArgs<ExtArgs> = {}>(args?: Subset<T, PullRequest$closedIssuesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryIssuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -43943,6 +45383,8 @@ export namespace Prisma {
     readonly authorId: FieldRef<"PullRequest", 'String'>
     readonly mergedById: FieldRef<"PullRequest", 'String'>
     readonly mergedAt: FieldRef<"PullRequest", 'DateTime'>
+    readonly mergeStrategy: FieldRef<"PullRequest", 'String'>
+    readonly mergeCommitSha: FieldRef<"PullRequest", 'String'>
     readonly closedAt: FieldRef<"PullRequest", 'DateTime'>
     readonly createdAt: FieldRef<"PullRequest", 'DateTime'>
     readonly updatedAt: FieldRef<"PullRequest", 'DateTime'>
@@ -44406,6 +45848,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PullRequestCommentScalarFieldEnum | PullRequestCommentScalarFieldEnum[]
+  }
+
+  /**
+   * PullRequest.closedIssues
+   */
+  export type PullRequest$closedIssuesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryIssue
+     */
+    select?: RepositoryIssueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryIssue
+     */
+    omit?: RepositoryIssueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryIssueInclude<ExtArgs> | null
+    where?: RepositoryIssueWhereInput
+    orderBy?: RepositoryIssueOrderByWithRelationInput | RepositoryIssueOrderByWithRelationInput[]
+    cursor?: RepositoryIssueWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepositoryIssueScalarFieldEnum | RepositoryIssueScalarFieldEnum[]
   }
 
   /**
@@ -55130,10 +56596,29 @@ export namespace Prisma {
     requiredApprovals: 'requiredApprovals',
     preventForcePush: 'preventForcePush',
     preventDeletion: 'preventDeletion',
+    requireStatusChecks: 'requireStatusChecks',
+    requiredChecks: 'requiredChecks',
+    requireUpToDateBranch: 'requireUpToDateBranch',
+    requireConversationResolution: 'requireConversationResolution',
     createdAt: 'createdAt'
   };
 
   export type BranchProtectionRuleScalarFieldEnum = (typeof BranchProtectionRuleScalarFieldEnum)[keyof typeof BranchProtectionRuleScalarFieldEnum]
+
+
+  export const CommitStatusScalarFieldEnum: {
+    id: 'id',
+    repositoryId: 'repositoryId',
+    commitSha: 'commitSha',
+    context: 'context',
+    state: 'state',
+    description: 'description',
+    targetUrl: 'targetUrl',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CommitStatusScalarFieldEnum = (typeof CommitStatusScalarFieldEnum)[keyof typeof CommitStatusScalarFieldEnum]
 
 
   export const RepositoryIssueScalarFieldEnum: {
@@ -55148,7 +56633,9 @@ export namespace Prisma {
     labels: 'labels',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    closedAt: 'closedAt'
+    closedAt: 'closedAt',
+    closedById: 'closedById',
+    closedByPRId: 'closedByPRId'
   };
 
   export type RepositoryIssueScalarFieldEnum = (typeof RepositoryIssueScalarFieldEnum)[keyof typeof RepositoryIssueScalarFieldEnum]
@@ -55178,6 +56665,8 @@ export namespace Prisma {
     authorId: 'authorId',
     mergedById: 'mergedById',
     mergedAt: 'mergedAt',
+    mergeStrategy: 'mergeStrategy',
+    mergeCommitSha: 'mergeCommitSha',
     closedAt: 'closedAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -55719,6 +57208,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorListRelationFilter
     repositoryIssues?: RepositoryIssueListRelationFilter
     assignedRepositoryIssues?: RepositoryIssueListRelationFilter
+    closedRepositoryIssues?: RepositoryIssueListRelationFilter
     repositoryIssueComments?: RepositoryIssueCommentListRelationFilter
     pullRequestsAuthored?: PullRequestListRelationFilter
     pullRequestsMerged?: PullRequestListRelationFilter
@@ -55779,6 +57269,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorOrderByRelationAggregateInput
     repositoryIssues?: RepositoryIssueOrderByRelationAggregateInput
     assignedRepositoryIssues?: RepositoryIssueOrderByRelationAggregateInput
+    closedRepositoryIssues?: RepositoryIssueOrderByRelationAggregateInput
     repositoryIssueComments?: RepositoryIssueCommentOrderByRelationAggregateInput
     pullRequestsAuthored?: PullRequestOrderByRelationAggregateInput
     pullRequestsMerged?: PullRequestOrderByRelationAggregateInput
@@ -55842,6 +57333,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorListRelationFilter
     repositoryIssues?: RepositoryIssueListRelationFilter
     assignedRepositoryIssues?: RepositoryIssueListRelationFilter
+    closedRepositoryIssues?: RepositoryIssueListRelationFilter
     repositoryIssueComments?: RepositoryIssueCommentListRelationFilter
     pullRequestsAuthored?: PullRequestListRelationFilter
     pullRequestsMerged?: PullRequestListRelationFilter
@@ -57645,6 +59137,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherListRelationFilter
     collaborators?: RepositoryCollaboratorListRelationFilter
     branchRules?: BranchProtectionRuleListRelationFilter
+    commitStatuses?: CommitStatusListRelationFilter
     issues?: RepositoryIssueListRelationFilter
     pullRequests?: PullRequestListRelationFilter
     releases?: RepositoryReleaseListRelationFilter
@@ -57683,6 +59176,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherOrderByRelationAggregateInput
     collaborators?: RepositoryCollaboratorOrderByRelationAggregateInput
     branchRules?: BranchProtectionRuleOrderByRelationAggregateInput
+    commitStatuses?: CommitStatusOrderByRelationAggregateInput
     issues?: RepositoryIssueOrderByRelationAggregateInput
     pullRequests?: PullRequestOrderByRelationAggregateInput
     releases?: RepositoryReleaseOrderByRelationAggregateInput
@@ -57725,6 +59219,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherListRelationFilter
     collaborators?: RepositoryCollaboratorListRelationFilter
     branchRules?: BranchProtectionRuleListRelationFilter
+    commitStatuses?: CommitStatusListRelationFilter
     issues?: RepositoryIssueListRelationFilter
     pullRequests?: PullRequestListRelationFilter
     releases?: RepositoryReleaseListRelationFilter
@@ -57970,6 +59465,10 @@ export namespace Prisma {
     requiredApprovals?: IntFilter<"BranchProtectionRule"> | number
     preventForcePush?: BoolFilter<"BranchProtectionRule"> | boolean
     preventDeletion?: BoolFilter<"BranchProtectionRule"> | boolean
+    requireStatusChecks?: BoolFilter<"BranchProtectionRule"> | boolean
+    requiredChecks?: StringNullableListFilter<"BranchProtectionRule">
+    requireUpToDateBranch?: BoolFilter<"BranchProtectionRule"> | boolean
+    requireConversationResolution?: BoolFilter<"BranchProtectionRule"> | boolean
     createdAt?: DateTimeFilter<"BranchProtectionRule"> | Date | string
     repository?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
   }
@@ -57982,6 +59481,10 @@ export namespace Prisma {
     requiredApprovals?: SortOrder
     preventForcePush?: SortOrder
     preventDeletion?: SortOrder
+    requireStatusChecks?: SortOrder
+    requiredChecks?: SortOrder
+    requireUpToDateBranch?: SortOrder
+    requireConversationResolution?: SortOrder
     createdAt?: SortOrder
     repository?: RepositoryOrderByWithRelationInput
   }
@@ -57997,6 +59500,10 @@ export namespace Prisma {
     requiredApprovals?: IntFilter<"BranchProtectionRule"> | number
     preventForcePush?: BoolFilter<"BranchProtectionRule"> | boolean
     preventDeletion?: BoolFilter<"BranchProtectionRule"> | boolean
+    requireStatusChecks?: BoolFilter<"BranchProtectionRule"> | boolean
+    requiredChecks?: StringNullableListFilter<"BranchProtectionRule">
+    requireUpToDateBranch?: BoolFilter<"BranchProtectionRule"> | boolean
+    requireConversationResolution?: BoolFilter<"BranchProtectionRule"> | boolean
     createdAt?: DateTimeFilter<"BranchProtectionRule"> | Date | string
     repository?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
   }, "id">
@@ -58009,6 +59516,10 @@ export namespace Prisma {
     requiredApprovals?: SortOrder
     preventForcePush?: SortOrder
     preventDeletion?: SortOrder
+    requireStatusChecks?: SortOrder
+    requiredChecks?: SortOrder
+    requireUpToDateBranch?: SortOrder
+    requireConversationResolution?: SortOrder
     createdAt?: SortOrder
     _count?: BranchProtectionRuleCountOrderByAggregateInput
     _avg?: BranchProtectionRuleAvgOrderByAggregateInput
@@ -58028,7 +59539,87 @@ export namespace Prisma {
     requiredApprovals?: IntWithAggregatesFilter<"BranchProtectionRule"> | number
     preventForcePush?: BoolWithAggregatesFilter<"BranchProtectionRule"> | boolean
     preventDeletion?: BoolWithAggregatesFilter<"BranchProtectionRule"> | boolean
+    requireStatusChecks?: BoolWithAggregatesFilter<"BranchProtectionRule"> | boolean
+    requiredChecks?: StringNullableListFilter<"BranchProtectionRule">
+    requireUpToDateBranch?: BoolWithAggregatesFilter<"BranchProtectionRule"> | boolean
+    requireConversationResolution?: BoolWithAggregatesFilter<"BranchProtectionRule"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"BranchProtectionRule"> | Date | string
+  }
+
+  export type CommitStatusWhereInput = {
+    AND?: CommitStatusWhereInput | CommitStatusWhereInput[]
+    OR?: CommitStatusWhereInput[]
+    NOT?: CommitStatusWhereInput | CommitStatusWhereInput[]
+    id?: StringFilter<"CommitStatus"> | string
+    repositoryId?: StringFilter<"CommitStatus"> | string
+    commitSha?: StringFilter<"CommitStatus"> | string
+    context?: StringFilter<"CommitStatus"> | string
+    state?: StringFilter<"CommitStatus"> | string
+    description?: StringNullableFilter<"CommitStatus"> | string | null
+    targetUrl?: StringNullableFilter<"CommitStatus"> | string | null
+    createdAt?: DateTimeFilter<"CommitStatus"> | Date | string
+    updatedAt?: DateTimeFilter<"CommitStatus"> | Date | string
+    repository?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
+  }
+
+  export type CommitStatusOrderByWithRelationInput = {
+    id?: SortOrder
+    repositoryId?: SortOrder
+    commitSha?: SortOrder
+    context?: SortOrder
+    state?: SortOrder
+    description?: SortOrderInput | SortOrder
+    targetUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    repository?: RepositoryOrderByWithRelationInput
+  }
+
+  export type CommitStatusWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    repositoryId_commitSha_context?: CommitStatusRepositoryIdCommitShaContextCompoundUniqueInput
+    AND?: CommitStatusWhereInput | CommitStatusWhereInput[]
+    OR?: CommitStatusWhereInput[]
+    NOT?: CommitStatusWhereInput | CommitStatusWhereInput[]
+    repositoryId?: StringFilter<"CommitStatus"> | string
+    commitSha?: StringFilter<"CommitStatus"> | string
+    context?: StringFilter<"CommitStatus"> | string
+    state?: StringFilter<"CommitStatus"> | string
+    description?: StringNullableFilter<"CommitStatus"> | string | null
+    targetUrl?: StringNullableFilter<"CommitStatus"> | string | null
+    createdAt?: DateTimeFilter<"CommitStatus"> | Date | string
+    updatedAt?: DateTimeFilter<"CommitStatus"> | Date | string
+    repository?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
+  }, "id" | "repositoryId_commitSha_context">
+
+  export type CommitStatusOrderByWithAggregationInput = {
+    id?: SortOrder
+    repositoryId?: SortOrder
+    commitSha?: SortOrder
+    context?: SortOrder
+    state?: SortOrder
+    description?: SortOrderInput | SortOrder
+    targetUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CommitStatusCountOrderByAggregateInput
+    _max?: CommitStatusMaxOrderByAggregateInput
+    _min?: CommitStatusMinOrderByAggregateInput
+  }
+
+  export type CommitStatusScalarWhereWithAggregatesInput = {
+    AND?: CommitStatusScalarWhereWithAggregatesInput | CommitStatusScalarWhereWithAggregatesInput[]
+    OR?: CommitStatusScalarWhereWithAggregatesInput[]
+    NOT?: CommitStatusScalarWhereWithAggregatesInput | CommitStatusScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CommitStatus"> | string
+    repositoryId?: StringWithAggregatesFilter<"CommitStatus"> | string
+    commitSha?: StringWithAggregatesFilter<"CommitStatus"> | string
+    context?: StringWithAggregatesFilter<"CommitStatus"> | string
+    state?: StringWithAggregatesFilter<"CommitStatus"> | string
+    description?: StringNullableWithAggregatesFilter<"CommitStatus"> | string | null
+    targetUrl?: StringNullableWithAggregatesFilter<"CommitStatus"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CommitStatus"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CommitStatus"> | Date | string
   }
 
   export type RepositoryIssueWhereInput = {
@@ -58047,9 +59638,13 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RepositoryIssue"> | Date | string
     updatedAt?: DateTimeFilter<"RepositoryIssue"> | Date | string
     closedAt?: DateTimeNullableFilter<"RepositoryIssue"> | Date | string | null
+    closedById?: StringNullableFilter<"RepositoryIssue"> | string | null
+    closedByPRId?: StringNullableFilter<"RepositoryIssue"> | string | null
     repository?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
     assignee?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    closedBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    closedByPR?: XOR<PullRequestNullableScalarRelationFilter, PullRequestWhereInput> | null
     comments?: RepositoryIssueCommentListRelationFilter
   }
 
@@ -58066,9 +59661,13 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     closedAt?: SortOrderInput | SortOrder
+    closedById?: SortOrderInput | SortOrder
+    closedByPRId?: SortOrderInput | SortOrder
     repository?: RepositoryOrderByWithRelationInput
     author?: UserOrderByWithRelationInput
     assignee?: UserOrderByWithRelationInput
+    closedBy?: UserOrderByWithRelationInput
+    closedByPR?: PullRequestOrderByWithRelationInput
     comments?: RepositoryIssueCommentOrderByRelationAggregateInput
   }
 
@@ -58089,9 +59688,13 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RepositoryIssue"> | Date | string
     updatedAt?: DateTimeFilter<"RepositoryIssue"> | Date | string
     closedAt?: DateTimeNullableFilter<"RepositoryIssue"> | Date | string | null
+    closedById?: StringNullableFilter<"RepositoryIssue"> | string | null
+    closedByPRId?: StringNullableFilter<"RepositoryIssue"> | string | null
     repository?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
     assignee?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    closedBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    closedByPR?: XOR<PullRequestNullableScalarRelationFilter, PullRequestWhereInput> | null
     comments?: RepositoryIssueCommentListRelationFilter
   }, "id" | "repositoryId_number">
 
@@ -58108,6 +59711,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     closedAt?: SortOrderInput | SortOrder
+    closedById?: SortOrderInput | SortOrder
+    closedByPRId?: SortOrderInput | SortOrder
     _count?: RepositoryIssueCountOrderByAggregateInput
     _avg?: RepositoryIssueAvgOrderByAggregateInput
     _max?: RepositoryIssueMaxOrderByAggregateInput
@@ -58131,6 +59736,8 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"RepositoryIssue"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"RepositoryIssue"> | Date | string
     closedAt?: DateTimeNullableWithAggregatesFilter<"RepositoryIssue"> | Date | string | null
+    closedById?: StringNullableWithAggregatesFilter<"RepositoryIssue"> | string | null
+    closedByPRId?: StringNullableWithAggregatesFilter<"RepositoryIssue"> | string | null
   }
 
   export type RepositoryIssueCommentWhereInput = {
@@ -58211,6 +59818,8 @@ export namespace Prisma {
     authorId?: StringFilter<"PullRequest"> | string
     mergedById?: StringNullableFilter<"PullRequest"> | string | null
     mergedAt?: DateTimeNullableFilter<"PullRequest"> | Date | string | null
+    mergeStrategy?: StringNullableFilter<"PullRequest"> | string | null
+    mergeCommitSha?: StringNullableFilter<"PullRequest"> | string | null
     closedAt?: DateTimeNullableFilter<"PullRequest"> | Date | string | null
     createdAt?: DateTimeFilter<"PullRequest"> | Date | string
     updatedAt?: DateTimeFilter<"PullRequest"> | Date | string
@@ -58219,6 +59828,7 @@ export namespace Prisma {
     mergedBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     reviews?: PullRequestReviewListRelationFilter
     comments?: PullRequestCommentListRelationFilter
+    closedIssues?: RepositoryIssueListRelationFilter
   }
 
   export type PullRequestOrderByWithRelationInput = {
@@ -58233,6 +59843,8 @@ export namespace Prisma {
     authorId?: SortOrder
     mergedById?: SortOrderInput | SortOrder
     mergedAt?: SortOrderInput | SortOrder
+    mergeStrategy?: SortOrderInput | SortOrder
+    mergeCommitSha?: SortOrderInput | SortOrder
     closedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -58241,6 +59853,7 @@ export namespace Prisma {
     mergedBy?: UserOrderByWithRelationInput
     reviews?: PullRequestReviewOrderByRelationAggregateInput
     comments?: PullRequestCommentOrderByRelationAggregateInput
+    closedIssues?: RepositoryIssueOrderByRelationAggregateInput
   }
 
   export type PullRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -58259,6 +59872,8 @@ export namespace Prisma {
     authorId?: StringFilter<"PullRequest"> | string
     mergedById?: StringNullableFilter<"PullRequest"> | string | null
     mergedAt?: DateTimeNullableFilter<"PullRequest"> | Date | string | null
+    mergeStrategy?: StringNullableFilter<"PullRequest"> | string | null
+    mergeCommitSha?: StringNullableFilter<"PullRequest"> | string | null
     closedAt?: DateTimeNullableFilter<"PullRequest"> | Date | string | null
     createdAt?: DateTimeFilter<"PullRequest"> | Date | string
     updatedAt?: DateTimeFilter<"PullRequest"> | Date | string
@@ -58267,6 +59882,7 @@ export namespace Prisma {
     mergedBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     reviews?: PullRequestReviewListRelationFilter
     comments?: PullRequestCommentListRelationFilter
+    closedIssues?: RepositoryIssueListRelationFilter
   }, "id" | "repositoryId_number">
 
   export type PullRequestOrderByWithAggregationInput = {
@@ -58281,6 +59897,8 @@ export namespace Prisma {
     authorId?: SortOrder
     mergedById?: SortOrderInput | SortOrder
     mergedAt?: SortOrderInput | SortOrder
+    mergeStrategy?: SortOrderInput | SortOrder
+    mergeCommitSha?: SortOrderInput | SortOrder
     closedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -58306,6 +59924,8 @@ export namespace Prisma {
     authorId?: StringWithAggregatesFilter<"PullRequest"> | string
     mergedById?: StringNullableWithAggregatesFilter<"PullRequest"> | string | null
     mergedAt?: DateTimeNullableWithAggregatesFilter<"PullRequest"> | Date | string | null
+    mergeStrategy?: StringNullableWithAggregatesFilter<"PullRequest"> | string | null
+    mergeCommitSha?: StringNullableWithAggregatesFilter<"PullRequest"> | string | null
     closedAt?: DateTimeNullableWithAggregatesFilter<"PullRequest"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"PullRequest"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PullRequest"> | Date | string
@@ -59085,6 +60705,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -59145,6 +60766,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -59205,6 +60827,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -59265,6 +60888,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -61133,6 +62757,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -61168,6 +62793,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -61203,6 +62829,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -61238,6 +62865,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -61477,6 +63105,10 @@ export namespace Prisma {
     requiredApprovals?: number
     preventForcePush?: boolean
     preventDeletion?: boolean
+    requireStatusChecks?: boolean
+    requiredChecks?: BranchProtectionRuleCreaterequiredChecksInput | string[]
+    requireUpToDateBranch?: boolean
+    requireConversationResolution?: boolean
     createdAt?: Date | string
     repository: RepositoryCreateNestedOneWithoutBranchRulesInput
   }
@@ -61489,6 +63121,10 @@ export namespace Prisma {
     requiredApprovals?: number
     preventForcePush?: boolean
     preventDeletion?: boolean
+    requireStatusChecks?: boolean
+    requiredChecks?: BranchProtectionRuleCreaterequiredChecksInput | string[]
+    requireUpToDateBranch?: boolean
+    requireConversationResolution?: boolean
     createdAt?: Date | string
   }
 
@@ -61499,6 +63135,10 @@ export namespace Prisma {
     requiredApprovals?: IntFieldUpdateOperationsInput | number
     preventForcePush?: BoolFieldUpdateOperationsInput | boolean
     preventDeletion?: BoolFieldUpdateOperationsInput | boolean
+    requireStatusChecks?: BoolFieldUpdateOperationsInput | boolean
+    requiredChecks?: BranchProtectionRuleUpdaterequiredChecksInput | string[]
+    requireUpToDateBranch?: BoolFieldUpdateOperationsInput | boolean
+    requireConversationResolution?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     repository?: RepositoryUpdateOneRequiredWithoutBranchRulesNestedInput
   }
@@ -61511,6 +63151,10 @@ export namespace Prisma {
     requiredApprovals?: IntFieldUpdateOperationsInput | number
     preventForcePush?: BoolFieldUpdateOperationsInput | boolean
     preventDeletion?: BoolFieldUpdateOperationsInput | boolean
+    requireStatusChecks?: BoolFieldUpdateOperationsInput | boolean
+    requiredChecks?: BranchProtectionRuleUpdaterequiredChecksInput | string[]
+    requireUpToDateBranch?: BoolFieldUpdateOperationsInput | boolean
+    requireConversationResolution?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -61522,6 +63166,10 @@ export namespace Prisma {
     requiredApprovals?: number
     preventForcePush?: boolean
     preventDeletion?: boolean
+    requireStatusChecks?: boolean
+    requiredChecks?: BranchProtectionRuleCreaterequiredChecksInput | string[]
+    requireUpToDateBranch?: boolean
+    requireConversationResolution?: boolean
     createdAt?: Date | string
   }
 
@@ -61532,6 +63180,10 @@ export namespace Prisma {
     requiredApprovals?: IntFieldUpdateOperationsInput | number
     preventForcePush?: BoolFieldUpdateOperationsInput | boolean
     preventDeletion?: BoolFieldUpdateOperationsInput | boolean
+    requireStatusChecks?: BoolFieldUpdateOperationsInput | boolean
+    requiredChecks?: BranchProtectionRuleUpdaterequiredChecksInput | string[]
+    requireUpToDateBranch?: BoolFieldUpdateOperationsInput | boolean
+    requireConversationResolution?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -61543,7 +63195,94 @@ export namespace Prisma {
     requiredApprovals?: IntFieldUpdateOperationsInput | number
     preventForcePush?: BoolFieldUpdateOperationsInput | boolean
     preventDeletion?: BoolFieldUpdateOperationsInput | boolean
+    requireStatusChecks?: BoolFieldUpdateOperationsInput | boolean
+    requiredChecks?: BranchProtectionRuleUpdaterequiredChecksInput | string[]
+    requireUpToDateBranch?: BoolFieldUpdateOperationsInput | boolean
+    requireConversationResolution?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommitStatusCreateInput = {
+    id?: string
+    commitSha: string
+    context: string
+    state: string
+    description?: string | null
+    targetUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repository: RepositoryCreateNestedOneWithoutCommitStatusesInput
+  }
+
+  export type CommitStatusUncheckedCreateInput = {
+    id?: string
+    repositoryId: string
+    commitSha: string
+    context: string
+    state: string
+    description?: string | null
+    targetUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommitStatusUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commitSha?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    targetUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repository?: RepositoryUpdateOneRequiredWithoutCommitStatusesNestedInput
+  }
+
+  export type CommitStatusUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    commitSha?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    targetUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommitStatusCreateManyInput = {
+    id?: string
+    repositoryId: string
+    commitSha: string
+    context: string
+    state: string
+    description?: string | null
+    targetUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommitStatusUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commitSha?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    targetUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommitStatusUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    commitSha?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    targetUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RepositoryIssueCreateInput = {
@@ -61559,6 +63298,8 @@ export namespace Prisma {
     repository: RepositoryCreateNestedOneWithoutIssuesInput
     author: UserCreateNestedOneWithoutRepositoryIssuesInput
     assignee?: UserCreateNestedOneWithoutAssignedRepositoryIssuesInput
+    closedBy?: UserCreateNestedOneWithoutClosedRepositoryIssuesInput
+    closedByPR?: PullRequestCreateNestedOneWithoutClosedIssuesInput
     comments?: RepositoryIssueCommentCreateNestedManyWithoutIssueInput
   }
 
@@ -61575,6 +63316,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     closedAt?: Date | string | null
+    closedById?: string | null
+    closedByPRId?: string | null
     comments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutIssueInput
   }
 
@@ -61591,6 +63334,8 @@ export namespace Prisma {
     repository?: RepositoryUpdateOneRequiredWithoutIssuesNestedInput
     author?: UserUpdateOneRequiredWithoutRepositoryIssuesNestedInput
     assignee?: UserUpdateOneWithoutAssignedRepositoryIssuesNestedInput
+    closedBy?: UserUpdateOneWithoutClosedRepositoryIssuesNestedInput
+    closedByPR?: PullRequestUpdateOneWithoutClosedIssuesNestedInput
     comments?: RepositoryIssueCommentUpdateManyWithoutIssueNestedInput
   }
 
@@ -61607,6 +63352,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: RepositoryIssueCommentUncheckedUpdateManyWithoutIssueNestedInput
   }
 
@@ -61623,6 +63370,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     closedAt?: Date | string | null
+    closedById?: string | null
+    closedByPRId?: string | null
   }
 
   export type RepositoryIssueUpdateManyMutationInput = {
@@ -61650,6 +63399,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RepositoryIssueCommentCreateInput = {
@@ -61722,6 +63473,8 @@ export namespace Prisma {
     baseBranch?: string
     headBranch: string
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -61730,6 +63483,7 @@ export namespace Prisma {
     mergedBy?: UserCreateNestedOneWithoutPullRequestsMergedInput
     reviews?: PullRequestReviewCreateNestedManyWithoutPullRequestInput
     comments?: PullRequestCommentCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestUncheckedCreateInput = {
@@ -61744,11 +63498,14 @@ export namespace Prisma {
     authorId: string
     mergedById?: string | null
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reviews?: PullRequestReviewUncheckedCreateNestedManyWithoutPullRequestInput
     comments?: PullRequestCommentUncheckedCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestUpdateInput = {
@@ -61760,6 +63517,8 @@ export namespace Prisma {
     baseBranch?: StringFieldUpdateOperationsInput | string
     headBranch?: StringFieldUpdateOperationsInput | string
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -61768,6 +63527,7 @@ export namespace Prisma {
     mergedBy?: UserUpdateOneWithoutPullRequestsMergedNestedInput
     reviews?: PullRequestReviewUpdateManyWithoutPullRequestNestedInput
     comments?: PullRequestCommentUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type PullRequestUncheckedUpdateInput = {
@@ -61782,11 +63542,14 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     mergedById?: NullableStringFieldUpdateOperationsInput | string | null
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: PullRequestReviewUncheckedUpdateManyWithoutPullRequestNestedInput
     comments?: PullRequestCommentUncheckedUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type PullRequestCreateManyInput = {
@@ -61801,6 +63564,8 @@ export namespace Prisma {
     authorId: string
     mergedById?: string | null
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -61815,6 +63580,8 @@ export namespace Prisma {
     baseBranch?: StringFieldUpdateOperationsInput | string
     headBranch?: StringFieldUpdateOperationsInput | string
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -61832,6 +63599,8 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     mergedById?: NullableStringFieldUpdateOperationsInput | string | null
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -64397,6 +66166,12 @@ export namespace Prisma {
     none?: BranchProtectionRuleWhereInput
   }
 
+  export type CommitStatusListRelationFilter = {
+    every?: CommitStatusWhereInput
+    some?: CommitStatusWhereInput
+    none?: CommitStatusWhereInput
+  }
+
   export type RepositoryWebhookListRelationFilter = {
     every?: RepositoryWebhookWhereInput
     some?: RepositoryWebhookWhereInput
@@ -64410,6 +66185,10 @@ export namespace Prisma {
   }
 
   export type BranchProtectionRuleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CommitStatusOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -64595,6 +66374,10 @@ export namespace Prisma {
     requiredApprovals?: SortOrder
     preventForcePush?: SortOrder
     preventDeletion?: SortOrder
+    requireStatusChecks?: SortOrder
+    requiredChecks?: SortOrder
+    requireUpToDateBranch?: SortOrder
+    requireConversationResolution?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -64610,6 +66393,9 @@ export namespace Prisma {
     requiredApprovals?: SortOrder
     preventForcePush?: SortOrder
     preventDeletion?: SortOrder
+    requireStatusChecks?: SortOrder
+    requireUpToDateBranch?: SortOrder
+    requireConversationResolution?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -64621,6 +66407,9 @@ export namespace Prisma {
     requiredApprovals?: SortOrder
     preventForcePush?: SortOrder
     preventDeletion?: SortOrder
+    requireStatusChecks?: SortOrder
+    requireUpToDateBranch?: SortOrder
+    requireConversationResolution?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -64628,9 +66417,56 @@ export namespace Prisma {
     requiredApprovals?: SortOrder
   }
 
+  export type CommitStatusRepositoryIdCommitShaContextCompoundUniqueInput = {
+    repositoryId: string
+    commitSha: string
+    context: string
+  }
+
+  export type CommitStatusCountOrderByAggregateInput = {
+    id?: SortOrder
+    repositoryId?: SortOrder
+    commitSha?: SortOrder
+    context?: SortOrder
+    state?: SortOrder
+    description?: SortOrder
+    targetUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommitStatusMaxOrderByAggregateInput = {
+    id?: SortOrder
+    repositoryId?: SortOrder
+    commitSha?: SortOrder
+    context?: SortOrder
+    state?: SortOrder
+    description?: SortOrder
+    targetUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommitStatusMinOrderByAggregateInput = {
+    id?: SortOrder
+    repositoryId?: SortOrder
+    commitSha?: SortOrder
+    context?: SortOrder
+    state?: SortOrder
+    description?: SortOrder
+    targetUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
+  }
+
+  export type PullRequestNullableScalarRelationFilter = {
+    is?: PullRequestWhereInput | null
+    isNot?: PullRequestWhereInput | null
   }
 
   export type RepositoryIssueRepositoryIdNumberCompoundUniqueInput = {
@@ -64651,6 +66487,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     closedAt?: SortOrder
+    closedById?: SortOrder
+    closedByPRId?: SortOrder
   }
 
   export type RepositoryIssueAvgOrderByAggregateInput = {
@@ -64669,6 +66507,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     closedAt?: SortOrder
+    closedById?: SortOrder
+    closedByPRId?: SortOrder
   }
 
   export type RepositoryIssueMinOrderByAggregateInput = {
@@ -64683,6 +66523,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     closedAt?: SortOrder
+    closedById?: SortOrder
+    closedByPRId?: SortOrder
   }
 
   export type RepositoryIssueSumOrderByAggregateInput = {
@@ -64738,6 +66580,8 @@ export namespace Prisma {
     authorId?: SortOrder
     mergedById?: SortOrder
     mergedAt?: SortOrder
+    mergeStrategy?: SortOrder
+    mergeCommitSha?: SortOrder
     closedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -64759,6 +66603,8 @@ export namespace Prisma {
     authorId?: SortOrder
     mergedById?: SortOrder
     mergedAt?: SortOrder
+    mergeStrategy?: SortOrder
+    mergeCommitSha?: SortOrder
     closedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -64776,6 +66622,8 @@ export namespace Prisma {
     authorId?: SortOrder
     mergedById?: SortOrder
     mergedAt?: SortOrder
+    mergeStrategy?: SortOrder
+    mergeCommitSha?: SortOrder
     closedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -65370,6 +67218,13 @@ export namespace Prisma {
     connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
   }
 
+  export type RepositoryIssueCreateNestedManyWithoutClosedByInput = {
+    create?: XOR<RepositoryIssueCreateWithoutClosedByInput, RepositoryIssueUncheckedCreateWithoutClosedByInput> | RepositoryIssueCreateWithoutClosedByInput[] | RepositoryIssueUncheckedCreateWithoutClosedByInput[]
+    connectOrCreate?: RepositoryIssueCreateOrConnectWithoutClosedByInput | RepositoryIssueCreateOrConnectWithoutClosedByInput[]
+    createMany?: RepositoryIssueCreateManyClosedByInputEnvelope
+    connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+  }
+
   export type RepositoryIssueCommentCreateNestedManyWithoutAuthorInput = {
     create?: XOR<RepositoryIssueCommentCreateWithoutAuthorInput, RepositoryIssueCommentUncheckedCreateWithoutAuthorInput> | RepositoryIssueCommentCreateWithoutAuthorInput[] | RepositoryIssueCommentUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: RepositoryIssueCommentCreateOrConnectWithoutAuthorInput | RepositoryIssueCommentCreateOrConnectWithoutAuthorInput[]
@@ -65611,6 +67466,13 @@ export namespace Prisma {
     create?: XOR<RepositoryIssueCreateWithoutAssigneeInput, RepositoryIssueUncheckedCreateWithoutAssigneeInput> | RepositoryIssueCreateWithoutAssigneeInput[] | RepositoryIssueUncheckedCreateWithoutAssigneeInput[]
     connectOrCreate?: RepositoryIssueCreateOrConnectWithoutAssigneeInput | RepositoryIssueCreateOrConnectWithoutAssigneeInput[]
     createMany?: RepositoryIssueCreateManyAssigneeInputEnvelope
+    connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+  }
+
+  export type RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput = {
+    create?: XOR<RepositoryIssueCreateWithoutClosedByInput, RepositoryIssueUncheckedCreateWithoutClosedByInput> | RepositoryIssueCreateWithoutClosedByInput[] | RepositoryIssueUncheckedCreateWithoutClosedByInput[]
+    connectOrCreate?: RepositoryIssueCreateOrConnectWithoutClosedByInput | RepositoryIssueCreateOrConnectWithoutClosedByInput[]
+    createMany?: RepositoryIssueCreateManyClosedByInputEnvelope
     connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
   }
 
@@ -66067,6 +67929,20 @@ export namespace Prisma {
     connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
     update?: RepositoryIssueUpdateWithWhereUniqueWithoutAssigneeInput | RepositoryIssueUpdateWithWhereUniqueWithoutAssigneeInput[]
     updateMany?: RepositoryIssueUpdateManyWithWhereWithoutAssigneeInput | RepositoryIssueUpdateManyWithWhereWithoutAssigneeInput[]
+    deleteMany?: RepositoryIssueScalarWhereInput | RepositoryIssueScalarWhereInput[]
+  }
+
+  export type RepositoryIssueUpdateManyWithoutClosedByNestedInput = {
+    create?: XOR<RepositoryIssueCreateWithoutClosedByInput, RepositoryIssueUncheckedCreateWithoutClosedByInput> | RepositoryIssueCreateWithoutClosedByInput[] | RepositoryIssueUncheckedCreateWithoutClosedByInput[]
+    connectOrCreate?: RepositoryIssueCreateOrConnectWithoutClosedByInput | RepositoryIssueCreateOrConnectWithoutClosedByInput[]
+    upsert?: RepositoryIssueUpsertWithWhereUniqueWithoutClosedByInput | RepositoryIssueUpsertWithWhereUniqueWithoutClosedByInput[]
+    createMany?: RepositoryIssueCreateManyClosedByInputEnvelope
+    set?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    disconnect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    delete?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    update?: RepositoryIssueUpdateWithWhereUniqueWithoutClosedByInput | RepositoryIssueUpdateWithWhereUniqueWithoutClosedByInput[]
+    updateMany?: RepositoryIssueUpdateManyWithWhereWithoutClosedByInput | RepositoryIssueUpdateManyWithWhereWithoutClosedByInput[]
     deleteMany?: RepositoryIssueScalarWhereInput | RepositoryIssueScalarWhereInput[]
   }
 
@@ -66553,6 +68429,20 @@ export namespace Prisma {
     connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
     update?: RepositoryIssueUpdateWithWhereUniqueWithoutAssigneeInput | RepositoryIssueUpdateWithWhereUniqueWithoutAssigneeInput[]
     updateMany?: RepositoryIssueUpdateManyWithWhereWithoutAssigneeInput | RepositoryIssueUpdateManyWithWhereWithoutAssigneeInput[]
+    deleteMany?: RepositoryIssueScalarWhereInput | RepositoryIssueScalarWhereInput[]
+  }
+
+  export type RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput = {
+    create?: XOR<RepositoryIssueCreateWithoutClosedByInput, RepositoryIssueUncheckedCreateWithoutClosedByInput> | RepositoryIssueCreateWithoutClosedByInput[] | RepositoryIssueUncheckedCreateWithoutClosedByInput[]
+    connectOrCreate?: RepositoryIssueCreateOrConnectWithoutClosedByInput | RepositoryIssueCreateOrConnectWithoutClosedByInput[]
+    upsert?: RepositoryIssueUpsertWithWhereUniqueWithoutClosedByInput | RepositoryIssueUpsertWithWhereUniqueWithoutClosedByInput[]
+    createMany?: RepositoryIssueCreateManyClosedByInputEnvelope
+    set?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    disconnect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    delete?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    update?: RepositoryIssueUpdateWithWhereUniqueWithoutClosedByInput | RepositoryIssueUpdateWithWhereUniqueWithoutClosedByInput[]
+    updateMany?: RepositoryIssueUpdateManyWithWhereWithoutClosedByInput | RepositoryIssueUpdateManyWithWhereWithoutClosedByInput[]
     deleteMany?: RepositoryIssueScalarWhereInput | RepositoryIssueScalarWhereInput[]
   }
 
@@ -68238,6 +70128,13 @@ export namespace Prisma {
     connect?: BranchProtectionRuleWhereUniqueInput | BranchProtectionRuleWhereUniqueInput[]
   }
 
+  export type CommitStatusCreateNestedManyWithoutRepositoryInput = {
+    create?: XOR<CommitStatusCreateWithoutRepositoryInput, CommitStatusUncheckedCreateWithoutRepositoryInput> | CommitStatusCreateWithoutRepositoryInput[] | CommitStatusUncheckedCreateWithoutRepositoryInput[]
+    connectOrCreate?: CommitStatusCreateOrConnectWithoutRepositoryInput | CommitStatusCreateOrConnectWithoutRepositoryInput[]
+    createMany?: CommitStatusCreateManyRepositoryInputEnvelope
+    connect?: CommitStatusWhereUniqueInput | CommitStatusWhereUniqueInput[]
+  }
+
   export type RepositoryIssueCreateNestedManyWithoutRepositoryInput = {
     create?: XOR<RepositoryIssueCreateWithoutRepositoryInput, RepositoryIssueUncheckedCreateWithoutRepositoryInput> | RepositoryIssueCreateWithoutRepositoryInput[] | RepositoryIssueUncheckedCreateWithoutRepositoryInput[]
     connectOrCreate?: RepositoryIssueCreateOrConnectWithoutRepositoryInput | RepositoryIssueCreateOrConnectWithoutRepositoryInput[]
@@ -68313,6 +70210,13 @@ export namespace Prisma {
     connectOrCreate?: BranchProtectionRuleCreateOrConnectWithoutRepositoryInput | BranchProtectionRuleCreateOrConnectWithoutRepositoryInput[]
     createMany?: BranchProtectionRuleCreateManyRepositoryInputEnvelope
     connect?: BranchProtectionRuleWhereUniqueInput | BranchProtectionRuleWhereUniqueInput[]
+  }
+
+  export type CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput = {
+    create?: XOR<CommitStatusCreateWithoutRepositoryInput, CommitStatusUncheckedCreateWithoutRepositoryInput> | CommitStatusCreateWithoutRepositoryInput[] | CommitStatusUncheckedCreateWithoutRepositoryInput[]
+    connectOrCreate?: CommitStatusCreateOrConnectWithoutRepositoryInput | CommitStatusCreateOrConnectWithoutRepositoryInput[]
+    createMany?: CommitStatusCreateManyRepositoryInputEnvelope
+    connect?: CommitStatusWhereUniqueInput | CommitStatusWhereUniqueInput[]
   }
 
   export type RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput = {
@@ -68453,6 +70357,20 @@ export namespace Prisma {
     update?: BranchProtectionRuleUpdateWithWhereUniqueWithoutRepositoryInput | BranchProtectionRuleUpdateWithWhereUniqueWithoutRepositoryInput[]
     updateMany?: BranchProtectionRuleUpdateManyWithWhereWithoutRepositoryInput | BranchProtectionRuleUpdateManyWithWhereWithoutRepositoryInput[]
     deleteMany?: BranchProtectionRuleScalarWhereInput | BranchProtectionRuleScalarWhereInput[]
+  }
+
+  export type CommitStatusUpdateManyWithoutRepositoryNestedInput = {
+    create?: XOR<CommitStatusCreateWithoutRepositoryInput, CommitStatusUncheckedCreateWithoutRepositoryInput> | CommitStatusCreateWithoutRepositoryInput[] | CommitStatusUncheckedCreateWithoutRepositoryInput[]
+    connectOrCreate?: CommitStatusCreateOrConnectWithoutRepositoryInput | CommitStatusCreateOrConnectWithoutRepositoryInput[]
+    upsert?: CommitStatusUpsertWithWhereUniqueWithoutRepositoryInput | CommitStatusUpsertWithWhereUniqueWithoutRepositoryInput[]
+    createMany?: CommitStatusCreateManyRepositoryInputEnvelope
+    set?: CommitStatusWhereUniqueInput | CommitStatusWhereUniqueInput[]
+    disconnect?: CommitStatusWhereUniqueInput | CommitStatusWhereUniqueInput[]
+    delete?: CommitStatusWhereUniqueInput | CommitStatusWhereUniqueInput[]
+    connect?: CommitStatusWhereUniqueInput | CommitStatusWhereUniqueInput[]
+    update?: CommitStatusUpdateWithWhereUniqueWithoutRepositoryInput | CommitStatusUpdateWithWhereUniqueWithoutRepositoryInput[]
+    updateMany?: CommitStatusUpdateManyWithWhereWithoutRepositoryInput | CommitStatusUpdateManyWithWhereWithoutRepositoryInput[]
+    deleteMany?: CommitStatusScalarWhereInput | CommitStatusScalarWhereInput[]
   }
 
   export type RepositoryIssueUpdateManyWithoutRepositoryNestedInput = {
@@ -68607,6 +70525,20 @@ export namespace Prisma {
     update?: BranchProtectionRuleUpdateWithWhereUniqueWithoutRepositoryInput | BranchProtectionRuleUpdateWithWhereUniqueWithoutRepositoryInput[]
     updateMany?: BranchProtectionRuleUpdateManyWithWhereWithoutRepositoryInput | BranchProtectionRuleUpdateManyWithWhereWithoutRepositoryInput[]
     deleteMany?: BranchProtectionRuleScalarWhereInput | BranchProtectionRuleScalarWhereInput[]
+  }
+
+  export type CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput = {
+    create?: XOR<CommitStatusCreateWithoutRepositoryInput, CommitStatusUncheckedCreateWithoutRepositoryInput> | CommitStatusCreateWithoutRepositoryInput[] | CommitStatusUncheckedCreateWithoutRepositoryInput[]
+    connectOrCreate?: CommitStatusCreateOrConnectWithoutRepositoryInput | CommitStatusCreateOrConnectWithoutRepositoryInput[]
+    upsert?: CommitStatusUpsertWithWhereUniqueWithoutRepositoryInput | CommitStatusUpsertWithWhereUniqueWithoutRepositoryInput[]
+    createMany?: CommitStatusCreateManyRepositoryInputEnvelope
+    set?: CommitStatusWhereUniqueInput | CommitStatusWhereUniqueInput[]
+    disconnect?: CommitStatusWhereUniqueInput | CommitStatusWhereUniqueInput[]
+    delete?: CommitStatusWhereUniqueInput | CommitStatusWhereUniqueInput[]
+    connect?: CommitStatusWhereUniqueInput | CommitStatusWhereUniqueInput[]
+    update?: CommitStatusUpdateWithWhereUniqueWithoutRepositoryInput | CommitStatusUpdateWithWhereUniqueWithoutRepositoryInput[]
+    updateMany?: CommitStatusUpdateManyWithWhereWithoutRepositoryInput | CommitStatusUpdateManyWithWhereWithoutRepositoryInput[]
+    deleteMany?: CommitStatusScalarWhereInput | CommitStatusScalarWhereInput[]
   }
 
   export type RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput = {
@@ -68777,10 +70709,19 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRepositoryCollaboratorsInput, UserUpdateWithoutRepositoryCollaboratorsInput>, UserUncheckedUpdateWithoutRepositoryCollaboratorsInput>
   }
 
+  export type BranchProtectionRuleCreaterequiredChecksInput = {
+    set: string[]
+  }
+
   export type RepositoryCreateNestedOneWithoutBranchRulesInput = {
     create?: XOR<RepositoryCreateWithoutBranchRulesInput, RepositoryUncheckedCreateWithoutBranchRulesInput>
     connectOrCreate?: RepositoryCreateOrConnectWithoutBranchRulesInput
     connect?: RepositoryWhereUniqueInput
+  }
+
+  export type BranchProtectionRuleUpdaterequiredChecksInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type RepositoryUpdateOneRequiredWithoutBranchRulesNestedInput = {
@@ -68789,6 +70730,20 @@ export namespace Prisma {
     upsert?: RepositoryUpsertWithoutBranchRulesInput
     connect?: RepositoryWhereUniqueInput
     update?: XOR<XOR<RepositoryUpdateToOneWithWhereWithoutBranchRulesInput, RepositoryUpdateWithoutBranchRulesInput>, RepositoryUncheckedUpdateWithoutBranchRulesInput>
+  }
+
+  export type RepositoryCreateNestedOneWithoutCommitStatusesInput = {
+    create?: XOR<RepositoryCreateWithoutCommitStatusesInput, RepositoryUncheckedCreateWithoutCommitStatusesInput>
+    connectOrCreate?: RepositoryCreateOrConnectWithoutCommitStatusesInput
+    connect?: RepositoryWhereUniqueInput
+  }
+
+  export type RepositoryUpdateOneRequiredWithoutCommitStatusesNestedInput = {
+    create?: XOR<RepositoryCreateWithoutCommitStatusesInput, RepositoryUncheckedCreateWithoutCommitStatusesInput>
+    connectOrCreate?: RepositoryCreateOrConnectWithoutCommitStatusesInput
+    upsert?: RepositoryUpsertWithoutCommitStatusesInput
+    connect?: RepositoryWhereUniqueInput
+    update?: XOR<XOR<RepositoryUpdateToOneWithWhereWithoutCommitStatusesInput, RepositoryUpdateWithoutCommitStatusesInput>, RepositoryUncheckedUpdateWithoutCommitStatusesInput>
   }
 
   export type RepositoryIssueCreatelabelsInput = {
@@ -68811,6 +70766,18 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutAssignedRepositoryIssuesInput, UserUncheckedCreateWithoutAssignedRepositoryIssuesInput>
     connectOrCreate?: UserCreateOrConnectWithoutAssignedRepositoryIssuesInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutClosedRepositoryIssuesInput = {
+    create?: XOR<UserCreateWithoutClosedRepositoryIssuesInput, UserUncheckedCreateWithoutClosedRepositoryIssuesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutClosedRepositoryIssuesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PullRequestCreateNestedOneWithoutClosedIssuesInput = {
+    create?: XOR<PullRequestCreateWithoutClosedIssuesInput, PullRequestUncheckedCreateWithoutClosedIssuesInput>
+    connectOrCreate?: PullRequestCreateOrConnectWithoutClosedIssuesInput
+    connect?: PullRequestWhereUniqueInput
   }
 
   export type RepositoryIssueCommentCreateNestedManyWithoutIssueInput = {
@@ -68856,6 +70823,26 @@ export namespace Prisma {
     delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAssignedRepositoryIssuesInput, UserUpdateWithoutAssignedRepositoryIssuesInput>, UserUncheckedUpdateWithoutAssignedRepositoryIssuesInput>
+  }
+
+  export type UserUpdateOneWithoutClosedRepositoryIssuesNestedInput = {
+    create?: XOR<UserCreateWithoutClosedRepositoryIssuesInput, UserUncheckedCreateWithoutClosedRepositoryIssuesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutClosedRepositoryIssuesInput
+    upsert?: UserUpsertWithoutClosedRepositoryIssuesInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutClosedRepositoryIssuesInput, UserUpdateWithoutClosedRepositoryIssuesInput>, UserUncheckedUpdateWithoutClosedRepositoryIssuesInput>
+  }
+
+  export type PullRequestUpdateOneWithoutClosedIssuesNestedInput = {
+    create?: XOR<PullRequestCreateWithoutClosedIssuesInput, PullRequestUncheckedCreateWithoutClosedIssuesInput>
+    connectOrCreate?: PullRequestCreateOrConnectWithoutClosedIssuesInput
+    upsert?: PullRequestUpsertWithoutClosedIssuesInput
+    disconnect?: PullRequestWhereInput | boolean
+    delete?: PullRequestWhereInput | boolean
+    connect?: PullRequestWhereUniqueInput
+    update?: XOR<XOR<PullRequestUpdateToOneWithWhereWithoutClosedIssuesInput, PullRequestUpdateWithoutClosedIssuesInput>, PullRequestUncheckedUpdateWithoutClosedIssuesInput>
   }
 
   export type RepositoryIssueCommentUpdateManyWithoutIssueNestedInput = {
@@ -68946,6 +70933,13 @@ export namespace Prisma {
     connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
   }
 
+  export type RepositoryIssueCreateNestedManyWithoutClosedByPRInput = {
+    create?: XOR<RepositoryIssueCreateWithoutClosedByPRInput, RepositoryIssueUncheckedCreateWithoutClosedByPRInput> | RepositoryIssueCreateWithoutClosedByPRInput[] | RepositoryIssueUncheckedCreateWithoutClosedByPRInput[]
+    connectOrCreate?: RepositoryIssueCreateOrConnectWithoutClosedByPRInput | RepositoryIssueCreateOrConnectWithoutClosedByPRInput[]
+    createMany?: RepositoryIssueCreateManyClosedByPRInputEnvelope
+    connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+  }
+
   export type PullRequestReviewUncheckedCreateNestedManyWithoutPullRequestInput = {
     create?: XOR<PullRequestReviewCreateWithoutPullRequestInput, PullRequestReviewUncheckedCreateWithoutPullRequestInput> | PullRequestReviewCreateWithoutPullRequestInput[] | PullRequestReviewUncheckedCreateWithoutPullRequestInput[]
     connectOrCreate?: PullRequestReviewCreateOrConnectWithoutPullRequestInput | PullRequestReviewCreateOrConnectWithoutPullRequestInput[]
@@ -68958,6 +70952,13 @@ export namespace Prisma {
     connectOrCreate?: PullRequestCommentCreateOrConnectWithoutPullRequestInput | PullRequestCommentCreateOrConnectWithoutPullRequestInput[]
     createMany?: PullRequestCommentCreateManyPullRequestInputEnvelope
     connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+  }
+
+  export type RepositoryIssueUncheckedCreateNestedManyWithoutClosedByPRInput = {
+    create?: XOR<RepositoryIssueCreateWithoutClosedByPRInput, RepositoryIssueUncheckedCreateWithoutClosedByPRInput> | RepositoryIssueCreateWithoutClosedByPRInput[] | RepositoryIssueUncheckedCreateWithoutClosedByPRInput[]
+    connectOrCreate?: RepositoryIssueCreateOrConnectWithoutClosedByPRInput | RepositoryIssueCreateOrConnectWithoutClosedByPRInput[]
+    createMany?: RepositoryIssueCreateManyClosedByPRInputEnvelope
+    connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
   }
 
   export type RepositoryUpdateOneRequiredWithoutPullRequestsNestedInput = {
@@ -69014,6 +71015,20 @@ export namespace Prisma {
     deleteMany?: PullRequestCommentScalarWhereInput | PullRequestCommentScalarWhereInput[]
   }
 
+  export type RepositoryIssueUpdateManyWithoutClosedByPRNestedInput = {
+    create?: XOR<RepositoryIssueCreateWithoutClosedByPRInput, RepositoryIssueUncheckedCreateWithoutClosedByPRInput> | RepositoryIssueCreateWithoutClosedByPRInput[] | RepositoryIssueUncheckedCreateWithoutClosedByPRInput[]
+    connectOrCreate?: RepositoryIssueCreateOrConnectWithoutClosedByPRInput | RepositoryIssueCreateOrConnectWithoutClosedByPRInput[]
+    upsert?: RepositoryIssueUpsertWithWhereUniqueWithoutClosedByPRInput | RepositoryIssueUpsertWithWhereUniqueWithoutClosedByPRInput[]
+    createMany?: RepositoryIssueCreateManyClosedByPRInputEnvelope
+    set?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    disconnect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    delete?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    update?: RepositoryIssueUpdateWithWhereUniqueWithoutClosedByPRInput | RepositoryIssueUpdateWithWhereUniqueWithoutClosedByPRInput[]
+    updateMany?: RepositoryIssueUpdateManyWithWhereWithoutClosedByPRInput | RepositoryIssueUpdateManyWithWhereWithoutClosedByPRInput[]
+    deleteMany?: RepositoryIssueScalarWhereInput | RepositoryIssueScalarWhereInput[]
+  }
+
   export type PullRequestReviewUncheckedUpdateManyWithoutPullRequestNestedInput = {
     create?: XOR<PullRequestReviewCreateWithoutPullRequestInput, PullRequestReviewUncheckedCreateWithoutPullRequestInput> | PullRequestReviewCreateWithoutPullRequestInput[] | PullRequestReviewUncheckedCreateWithoutPullRequestInput[]
     connectOrCreate?: PullRequestReviewCreateOrConnectWithoutPullRequestInput | PullRequestReviewCreateOrConnectWithoutPullRequestInput[]
@@ -69040,6 +71055,20 @@ export namespace Prisma {
     update?: PullRequestCommentUpdateWithWhereUniqueWithoutPullRequestInput | PullRequestCommentUpdateWithWhereUniqueWithoutPullRequestInput[]
     updateMany?: PullRequestCommentUpdateManyWithWhereWithoutPullRequestInput | PullRequestCommentUpdateManyWithWhereWithoutPullRequestInput[]
     deleteMany?: PullRequestCommentScalarWhereInput | PullRequestCommentScalarWhereInput[]
+  }
+
+  export type RepositoryIssueUncheckedUpdateManyWithoutClosedByPRNestedInput = {
+    create?: XOR<RepositoryIssueCreateWithoutClosedByPRInput, RepositoryIssueUncheckedCreateWithoutClosedByPRInput> | RepositoryIssueCreateWithoutClosedByPRInput[] | RepositoryIssueUncheckedCreateWithoutClosedByPRInput[]
+    connectOrCreate?: RepositoryIssueCreateOrConnectWithoutClosedByPRInput | RepositoryIssueCreateOrConnectWithoutClosedByPRInput[]
+    upsert?: RepositoryIssueUpsertWithWhereUniqueWithoutClosedByPRInput | RepositoryIssueUpsertWithWhereUniqueWithoutClosedByPRInput[]
+    createMany?: RepositoryIssueCreateManyClosedByPRInputEnvelope
+    set?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    disconnect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    delete?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    connect?: RepositoryIssueWhereUniqueInput | RepositoryIssueWhereUniqueInput[]
+    update?: RepositoryIssueUpdateWithWhereUniqueWithoutClosedByPRInput | RepositoryIssueUpdateWithWhereUniqueWithoutClosedByPRInput[]
+    updateMany?: RepositoryIssueUpdateManyWithWhereWithoutClosedByPRInput | RepositoryIssueUpdateManyWithWhereWithoutClosedByPRInput[]
+    deleteMany?: RepositoryIssueScalarWhereInput | RepositoryIssueScalarWhereInput[]
   }
 
   export type PullRequestCreateNestedOneWithoutReviewsInput = {
@@ -70459,6 +72488,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -70493,6 +72523,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -70593,6 +72624,8 @@ export namespace Prisma {
     closedAt?: Date | string | null
     repository: RepositoryCreateNestedOneWithoutIssuesInput
     assignee?: UserCreateNestedOneWithoutAssignedRepositoryIssuesInput
+    closedBy?: UserCreateNestedOneWithoutClosedRepositoryIssuesInput
+    closedByPR?: PullRequestCreateNestedOneWithoutClosedIssuesInput
     comments?: RepositoryIssueCommentCreateNestedManyWithoutIssueInput
   }
 
@@ -70608,6 +72641,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     closedAt?: Date | string | null
+    closedById?: string | null
+    closedByPRId?: string | null
     comments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutIssueInput
   }
 
@@ -70633,6 +72668,8 @@ export namespace Prisma {
     closedAt?: Date | string | null
     repository: RepositoryCreateNestedOneWithoutIssuesInput
     author: UserCreateNestedOneWithoutRepositoryIssuesInput
+    closedBy?: UserCreateNestedOneWithoutClosedRepositoryIssuesInput
+    closedByPR?: PullRequestCreateNestedOneWithoutClosedIssuesInput
     comments?: RepositoryIssueCommentCreateNestedManyWithoutIssueInput
   }
 
@@ -70648,6 +72685,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     closedAt?: Date | string | null
+    closedById?: string | null
+    closedByPRId?: string | null
     comments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutIssueInput
   }
 
@@ -70658,6 +72697,50 @@ export namespace Prisma {
 
   export type RepositoryIssueCreateManyAssigneeInputEnvelope = {
     data: RepositoryIssueCreateManyAssigneeInput | RepositoryIssueCreateManyAssigneeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RepositoryIssueCreateWithoutClosedByInput = {
+    id?: string
+    number: number
+    title: string
+    body: string
+    status?: string
+    labels?: RepositoryIssueCreatelabelsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    repository: RepositoryCreateNestedOneWithoutIssuesInput
+    author: UserCreateNestedOneWithoutRepositoryIssuesInput
+    assignee?: UserCreateNestedOneWithoutAssignedRepositoryIssuesInput
+    closedByPR?: PullRequestCreateNestedOneWithoutClosedIssuesInput
+    comments?: RepositoryIssueCommentCreateNestedManyWithoutIssueInput
+  }
+
+  export type RepositoryIssueUncheckedCreateWithoutClosedByInput = {
+    id?: string
+    repositoryId: string
+    number: number
+    title: string
+    body: string
+    status?: string
+    authorId: string
+    assigneeId?: string | null
+    labels?: RepositoryIssueCreatelabelsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    closedByPRId?: string | null
+    comments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutIssueInput
+  }
+
+  export type RepositoryIssueCreateOrConnectWithoutClosedByInput = {
+    where: RepositoryIssueWhereUniqueInput
+    create: XOR<RepositoryIssueCreateWithoutClosedByInput, RepositoryIssueUncheckedCreateWithoutClosedByInput>
+  }
+
+  export type RepositoryIssueCreateManyClosedByInputEnvelope = {
+    data: RepositoryIssueCreateManyClosedByInput | RepositoryIssueCreateManyClosedByInput[]
     skipDuplicates?: boolean
   }
 
@@ -70696,6 +72779,8 @@ export namespace Prisma {
     baseBranch?: string
     headBranch: string
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -70703,6 +72788,7 @@ export namespace Prisma {
     mergedBy?: UserCreateNestedOneWithoutPullRequestsMergedInput
     reviews?: PullRequestReviewCreateNestedManyWithoutPullRequestInput
     comments?: PullRequestCommentCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestUncheckedCreateWithoutAuthorInput = {
@@ -70716,11 +72802,14 @@ export namespace Prisma {
     headBranch: string
     mergedById?: string | null
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reviews?: PullRequestReviewUncheckedCreateNestedManyWithoutPullRequestInput
     comments?: PullRequestCommentUncheckedCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestCreateOrConnectWithoutAuthorInput = {
@@ -70742,6 +72831,8 @@ export namespace Prisma {
     baseBranch?: string
     headBranch: string
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -70749,6 +72840,7 @@ export namespace Prisma {
     author: UserCreateNestedOneWithoutPullRequestsAuthoredInput
     reviews?: PullRequestReviewCreateNestedManyWithoutPullRequestInput
     comments?: PullRequestCommentCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestUncheckedCreateWithoutMergedByInput = {
@@ -70762,11 +72854,14 @@ export namespace Prisma {
     headBranch: string
     authorId: string
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reviews?: PullRequestReviewUncheckedCreateNestedManyWithoutPullRequestInput
     comments?: PullRequestCommentUncheckedCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestCreateOrConnectWithoutMergedByInput = {
@@ -71728,6 +73823,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RepositoryIssue"> | Date | string
     updatedAt?: DateTimeFilter<"RepositoryIssue"> | Date | string
     closedAt?: DateTimeNullableFilter<"RepositoryIssue"> | Date | string | null
+    closedById?: StringNullableFilter<"RepositoryIssue"> | string | null
+    closedByPRId?: StringNullableFilter<"RepositoryIssue"> | string | null
   }
 
   export type RepositoryIssueUpsertWithWhereUniqueWithoutAssigneeInput = {
@@ -71744,6 +73841,22 @@ export namespace Prisma {
   export type RepositoryIssueUpdateManyWithWhereWithoutAssigneeInput = {
     where: RepositoryIssueScalarWhereInput
     data: XOR<RepositoryIssueUpdateManyMutationInput, RepositoryIssueUncheckedUpdateManyWithoutAssigneeInput>
+  }
+
+  export type RepositoryIssueUpsertWithWhereUniqueWithoutClosedByInput = {
+    where: RepositoryIssueWhereUniqueInput
+    update: XOR<RepositoryIssueUpdateWithoutClosedByInput, RepositoryIssueUncheckedUpdateWithoutClosedByInput>
+    create: XOR<RepositoryIssueCreateWithoutClosedByInput, RepositoryIssueUncheckedCreateWithoutClosedByInput>
+  }
+
+  export type RepositoryIssueUpdateWithWhereUniqueWithoutClosedByInput = {
+    where: RepositoryIssueWhereUniqueInput
+    data: XOR<RepositoryIssueUpdateWithoutClosedByInput, RepositoryIssueUncheckedUpdateWithoutClosedByInput>
+  }
+
+  export type RepositoryIssueUpdateManyWithWhereWithoutClosedByInput = {
+    where: RepositoryIssueScalarWhereInput
+    data: XOR<RepositoryIssueUpdateManyMutationInput, RepositoryIssueUncheckedUpdateManyWithoutClosedByInput>
   }
 
   export type RepositoryIssueCommentUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -71805,6 +73918,8 @@ export namespace Prisma {
     authorId?: StringFilter<"PullRequest"> | string
     mergedById?: StringNullableFilter<"PullRequest"> | string | null
     mergedAt?: DateTimeNullableFilter<"PullRequest"> | Date | string | null
+    mergeStrategy?: StringNullableFilter<"PullRequest"> | string | null
+    mergeCommitSha?: StringNullableFilter<"PullRequest"> | string | null
     closedAt?: DateTimeNullableFilter<"PullRequest"> | Date | string | null
     createdAt?: DateTimeFilter<"PullRequest"> | Date | string
     updatedAt?: DateTimeFilter<"PullRequest"> | Date | string
@@ -72078,6 +74193,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -72137,6 +74253,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -72212,6 +74329,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -72271,6 +74389,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -72330,6 +74449,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -72389,6 +74509,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -72464,6 +74585,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -72523,6 +74645,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -72582,6 +74705,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -72641,6 +74765,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -72716,6 +74841,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -72775,6 +74901,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -72870,6 +74997,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -72929,6 +75057,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -73021,6 +75150,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -73080,6 +75210,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -73162,6 +75293,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -73221,6 +75353,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -73666,6 +75799,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -73700,6 +75834,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -73776,6 +75911,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -73835,6 +75971,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -74477,6 +76614,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -74536,6 +76674,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -74715,6 +76854,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -74774,6 +76914,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -74962,6 +77103,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -75021,6 +77163,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -75206,6 +77349,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -75265,6 +77409,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -75871,6 +78016,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -75930,6 +78076,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -76044,6 +78191,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -76103,6 +78251,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -76235,6 +78384,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -76294,6 +78444,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -76474,6 +78625,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -76533,6 +78685,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -76637,6 +78790,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -76696,6 +78850,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -76806,6 +78961,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -76865,6 +79021,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -76997,6 +79154,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -77056,6 +79214,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -77210,6 +79369,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -77269,6 +79429,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -77328,6 +79489,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -77387,6 +79549,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -77566,6 +79729,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -77625,6 +79789,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -77800,6 +79965,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -77859,6 +80025,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -77934,6 +80101,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -77993,6 +80161,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -78052,6 +80221,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -78111,6 +80281,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -78186,6 +80357,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -78245,6 +80417,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -78304,6 +80477,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -78363,6 +80537,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -78511,6 +80686,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -78570,6 +80746,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -78708,6 +80885,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -78767,6 +80945,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -78915,6 +81094,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -78974,6 +81154,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -79112,6 +81293,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -79171,6 +81353,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -79319,6 +81502,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -79378,6 +81562,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -79589,6 +81774,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -79648,6 +81834,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -79802,6 +81989,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -79861,6 +82049,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -79993,6 +82182,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -80052,6 +82242,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -80206,6 +82397,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -80265,6 +82457,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -80324,6 +82517,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -80383,6 +82577,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -80499,6 +82694,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -80533,6 +82729,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -80572,6 +82769,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -80606,6 +82804,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -80701,6 +82900,10 @@ export namespace Prisma {
     requiredApprovals?: number
     preventForcePush?: boolean
     preventDeletion?: boolean
+    requireStatusChecks?: boolean
+    requiredChecks?: BranchProtectionRuleCreaterequiredChecksInput | string[]
+    requireUpToDateBranch?: boolean
+    requireConversationResolution?: boolean
     createdAt?: Date | string
   }
 
@@ -80711,6 +82914,10 @@ export namespace Prisma {
     requiredApprovals?: number
     preventForcePush?: boolean
     preventDeletion?: boolean
+    requireStatusChecks?: boolean
+    requiredChecks?: BranchProtectionRuleCreaterequiredChecksInput | string[]
+    requireUpToDateBranch?: boolean
+    requireConversationResolution?: boolean
     createdAt?: Date | string
   }
 
@@ -80721,6 +82928,38 @@ export namespace Prisma {
 
   export type BranchProtectionRuleCreateManyRepositoryInputEnvelope = {
     data: BranchProtectionRuleCreateManyRepositoryInput | BranchProtectionRuleCreateManyRepositoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CommitStatusCreateWithoutRepositoryInput = {
+    id?: string
+    commitSha: string
+    context: string
+    state: string
+    description?: string | null
+    targetUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommitStatusUncheckedCreateWithoutRepositoryInput = {
+    id?: string
+    commitSha: string
+    context: string
+    state: string
+    description?: string | null
+    targetUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommitStatusCreateOrConnectWithoutRepositoryInput = {
+    where: CommitStatusWhereUniqueInput
+    create: XOR<CommitStatusCreateWithoutRepositoryInput, CommitStatusUncheckedCreateWithoutRepositoryInput>
+  }
+
+  export type CommitStatusCreateManyRepositoryInputEnvelope = {
+    data: CommitStatusCreateManyRepositoryInput | CommitStatusCreateManyRepositoryInput[]
     skipDuplicates?: boolean
   }
 
@@ -80736,6 +82975,8 @@ export namespace Prisma {
     closedAt?: Date | string | null
     author: UserCreateNestedOneWithoutRepositoryIssuesInput
     assignee?: UserCreateNestedOneWithoutAssignedRepositoryIssuesInput
+    closedBy?: UserCreateNestedOneWithoutClosedRepositoryIssuesInput
+    closedByPR?: PullRequestCreateNestedOneWithoutClosedIssuesInput
     comments?: RepositoryIssueCommentCreateNestedManyWithoutIssueInput
   }
 
@@ -80751,6 +82992,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     closedAt?: Date | string | null
+    closedById?: string | null
+    closedByPRId?: string | null
     comments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutIssueInput
   }
 
@@ -80773,6 +83016,8 @@ export namespace Prisma {
     baseBranch?: string
     headBranch: string
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -80780,6 +83025,7 @@ export namespace Prisma {
     mergedBy?: UserCreateNestedOneWithoutPullRequestsMergedInput
     reviews?: PullRequestReviewCreateNestedManyWithoutPullRequestInput
     comments?: PullRequestCommentCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestUncheckedCreateWithoutRepositoryInput = {
@@ -80793,11 +83039,14 @@ export namespace Prisma {
     authorId: string
     mergedById?: string | null
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reviews?: PullRequestReviewUncheckedCreateNestedManyWithoutPullRequestInput
     comments?: PullRequestCommentUncheckedCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestCreateOrConnectWithoutRepositoryInput = {
@@ -81006,6 +83255,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -81065,6 +83315,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -81193,6 +83444,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -81227,6 +83479,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -81326,7 +83579,42 @@ export namespace Prisma {
     requiredApprovals?: IntFilter<"BranchProtectionRule"> | number
     preventForcePush?: BoolFilter<"BranchProtectionRule"> | boolean
     preventDeletion?: BoolFilter<"BranchProtectionRule"> | boolean
+    requireStatusChecks?: BoolFilter<"BranchProtectionRule"> | boolean
+    requiredChecks?: StringNullableListFilter<"BranchProtectionRule">
+    requireUpToDateBranch?: BoolFilter<"BranchProtectionRule"> | boolean
+    requireConversationResolution?: BoolFilter<"BranchProtectionRule"> | boolean
     createdAt?: DateTimeFilter<"BranchProtectionRule"> | Date | string
+  }
+
+  export type CommitStatusUpsertWithWhereUniqueWithoutRepositoryInput = {
+    where: CommitStatusWhereUniqueInput
+    update: XOR<CommitStatusUpdateWithoutRepositoryInput, CommitStatusUncheckedUpdateWithoutRepositoryInput>
+    create: XOR<CommitStatusCreateWithoutRepositoryInput, CommitStatusUncheckedCreateWithoutRepositoryInput>
+  }
+
+  export type CommitStatusUpdateWithWhereUniqueWithoutRepositoryInput = {
+    where: CommitStatusWhereUniqueInput
+    data: XOR<CommitStatusUpdateWithoutRepositoryInput, CommitStatusUncheckedUpdateWithoutRepositoryInput>
+  }
+
+  export type CommitStatusUpdateManyWithWhereWithoutRepositoryInput = {
+    where: CommitStatusScalarWhereInput
+    data: XOR<CommitStatusUpdateManyMutationInput, CommitStatusUncheckedUpdateManyWithoutRepositoryInput>
+  }
+
+  export type CommitStatusScalarWhereInput = {
+    AND?: CommitStatusScalarWhereInput | CommitStatusScalarWhereInput[]
+    OR?: CommitStatusScalarWhereInput[]
+    NOT?: CommitStatusScalarWhereInput | CommitStatusScalarWhereInput[]
+    id?: StringFilter<"CommitStatus"> | string
+    repositoryId?: StringFilter<"CommitStatus"> | string
+    commitSha?: StringFilter<"CommitStatus"> | string
+    context?: StringFilter<"CommitStatus"> | string
+    state?: StringFilter<"CommitStatus"> | string
+    description?: StringNullableFilter<"CommitStatus"> | string | null
+    targetUrl?: StringNullableFilter<"CommitStatus"> | string | null
+    createdAt?: DateTimeFilter<"CommitStatus"> | Date | string
+    updatedAt?: DateTimeFilter<"CommitStatus"> | Date | string
   }
 
   export type RepositoryIssueUpsertWithWhereUniqueWithoutRepositoryInput = {
@@ -81503,6 +83791,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -81562,6 +83851,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -81605,6 +83895,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -81639,6 +83930,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -81710,6 +84002,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -81769,6 +84062,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -81818,6 +84112,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -81852,6 +84147,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -81907,6 +84203,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -81966,6 +84263,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -82009,6 +84307,7 @@ export namespace Prisma {
     stars?: RepositoryStarCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -82043,6 +84342,7 @@ export namespace Prisma {
     stars?: RepositoryStarUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -82114,6 +84414,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -82173,6 +84474,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -82222,6 +84524,7 @@ export namespace Prisma {
     stars?: RepositoryStarUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -82256,6 +84559,7 @@ export namespace Prisma {
     stars?: RepositoryStarUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -82290,6 +84594,7 @@ export namespace Prisma {
     stars?: RepositoryStarCreateNestedManyWithoutRepositoryInput
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -82324,6 +84629,7 @@ export namespace Prisma {
     stars?: RepositoryStarUncheckedCreateNestedManyWithoutRepositoryInput
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -82384,6 +84690,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -82443,6 +84750,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -82497,6 +84805,7 @@ export namespace Prisma {
     stars?: RepositoryStarUpdateManyWithoutRepositoryNestedInput
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -82531,6 +84840,7 @@ export namespace Prisma {
     stars?: RepositoryStarUncheckedUpdateManyWithoutRepositoryNestedInput
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -82597,6 +84907,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -82656,6 +84967,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -82694,6 +85006,7 @@ export namespace Prisma {
     stars?: RepositoryStarCreateNestedManyWithoutRepositoryInput
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -82728,6 +85041,7 @@ export namespace Prisma {
     stars?: RepositoryStarUncheckedCreateNestedManyWithoutRepositoryInput
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -82778,6 +85092,7 @@ export namespace Prisma {
     stars?: RepositoryStarUpdateManyWithoutRepositoryNestedInput
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -82812,6 +85127,163 @@ export namespace Prisma {
     stars?: RepositoryStarUncheckedUpdateManyWithoutRepositoryNestedInput
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
+    issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
+    releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
+    webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
+    actionRuns?: RepositoryActionRunUncheckedUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutRepositoryNestedInput
+  }
+
+  export type RepositoryCreateWithoutCommitStatusesInput = {
+    id?: string
+    workspaceId?: string | null
+    name: string
+    slug: string
+    description?: string | null
+    visibility?: $Enums.Visibility
+    defaultBranch?: string
+    gitStoragePath: string
+    archived?: boolean
+    archivedAt?: Date | string | null
+    disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    owner: UserCreateNestedOneWithoutRepositoriesOwnedInput
+    project?: ProjectCreateNestedOneWithoutRepositoriesInput
+    forkedFrom?: RepositoryCreateNestedOneWithoutForksInput
+    forks?: RepositoryCreateNestedManyWithoutForkedFromInput
+    stars?: RepositoryStarCreateNestedManyWithoutRepositoryInput
+    watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
+    collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
+    branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
+    pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
+    releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
+    webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
+    actionRuns?: RepositoryActionRunCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventCreateNestedManyWithoutRepositoryInput
+  }
+
+  export type RepositoryUncheckedCreateWithoutCommitStatusesInput = {
+    id?: string
+    workspaceId?: string | null
+    projectId?: string | null
+    ownerId: string
+    name: string
+    slug: string
+    description?: string | null
+    visibility?: $Enums.Visibility
+    defaultBranch?: string
+    gitStoragePath: string
+    archived?: boolean
+    archivedAt?: Date | string | null
+    disabled?: boolean
+    status?: string
+    deletedAt?: Date | string | null
+    deletionScheduledAt?: Date | string | null
+    purgeAt?: Date | string | null
+    restoredAt?: Date | string | null
+    forkedFromId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    forks?: RepositoryUncheckedCreateNestedManyWithoutForkedFromInput
+    stars?: RepositoryStarUncheckedCreateNestedManyWithoutRepositoryInput
+    watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
+    collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
+    branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
+    releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
+    webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
+    actionRuns?: RepositoryActionRunUncheckedCreateNestedManyWithoutRepositoryInput
+    auditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutRepositoryInput
+  }
+
+  export type RepositoryCreateOrConnectWithoutCommitStatusesInput = {
+    where: RepositoryWhereUniqueInput
+    create: XOR<RepositoryCreateWithoutCommitStatusesInput, RepositoryUncheckedCreateWithoutCommitStatusesInput>
+  }
+
+  export type RepositoryUpsertWithoutCommitStatusesInput = {
+    update: XOR<RepositoryUpdateWithoutCommitStatusesInput, RepositoryUncheckedUpdateWithoutCommitStatusesInput>
+    create: XOR<RepositoryCreateWithoutCommitStatusesInput, RepositoryUncheckedCreateWithoutCommitStatusesInput>
+    where?: RepositoryWhereInput
+  }
+
+  export type RepositoryUpdateToOneWithWhereWithoutCommitStatusesInput = {
+    where?: RepositoryWhereInput
+    data: XOR<RepositoryUpdateWithoutCommitStatusesInput, RepositoryUncheckedUpdateWithoutCommitStatusesInput>
+  }
+
+  export type RepositoryUpdateWithoutCommitStatusesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workspaceId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    defaultBranch?: StringFieldUpdateOperationsInput | string
+    gitStoragePath?: StringFieldUpdateOperationsInput | string
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: UserUpdateOneRequiredWithoutRepositoriesOwnedNestedInput
+    project?: ProjectUpdateOneWithoutRepositoriesNestedInput
+    forkedFrom?: RepositoryUpdateOneWithoutForksNestedInput
+    forks?: RepositoryUpdateManyWithoutForkedFromNestedInput
+    stars?: RepositoryStarUpdateManyWithoutRepositoryNestedInput
+    watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
+    collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
+    branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
+    releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
+    webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
+    actionRuns?: RepositoryActionRunUpdateManyWithoutRepositoryNestedInput
+    auditEvents?: RepositoryAuditEventUpdateManyWithoutRepositoryNestedInput
+  }
+
+  export type RepositoryUncheckedUpdateWithoutCommitStatusesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    workspaceId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    defaultBranch?: StringFieldUpdateOperationsInput | string
+    gitStoragePath?: StringFieldUpdateOperationsInput | string
+    archived?: BoolFieldUpdateOperationsInput | boolean
+    archivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disabled?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletionScheduledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    purgeAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restoredAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    forkedFromId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    forks?: RepositoryUncheckedUpdateManyWithoutForkedFromNestedInput
+    stars?: RepositoryStarUncheckedUpdateManyWithoutRepositoryNestedInput
+    watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
+    collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
+    branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -82847,6 +85319,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
@@ -82881,6 +85354,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
@@ -82940,6 +85414,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherCreateNestedManyWithoutUserInput
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -82999,6 +85474,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutUserInput
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -83063,6 +85539,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherCreateNestedManyWithoutUserInput
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -83122,6 +85599,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutUserInput
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -83137,6 +85615,178 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutAssignedRepositoryIssuesInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutAssignedRepositoryIssuesInput, UserUncheckedCreateWithoutAssignedRepositoryIssuesInput>
+  }
+
+  export type UserCreateWithoutClosedRepositoryIssuesInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    applications?: ApplicationCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
+    repositoriesOwned?: RepositoryCreateNestedManyWithoutOwnerInput
+    repositoryStars?: RepositoryStarCreateNestedManyWithoutUserInput
+    repositoryWatchers?: RepositoryWatcherCreateNestedManyWithoutUserInput
+    repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
+    repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
+    assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
+    pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
+    pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
+    pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
+    pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
+    repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
+    personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutClosedRepositoryIssuesInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentUncheckedCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetUncheckedCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
+    repositoriesOwned?: RepositoryUncheckedCreateNestedManyWithoutOwnerInput
+    repositoryStars?: RepositoryStarUncheckedCreateNestedManyWithoutUserInput
+    repositoryWatchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutUserInput
+    repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
+    repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
+    assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
+    pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
+    pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
+    pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
+    pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
+    repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
+    personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutClosedRepositoryIssuesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutClosedRepositoryIssuesInput, UserUncheckedCreateWithoutClosedRepositoryIssuesInput>
+  }
+
+  export type PullRequestCreateWithoutClosedIssuesInput = {
+    id?: string
+    number: number
+    title: string
+    body: string
+    status?: string
+    baseBranch?: string
+    headBranch: string
+    mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
+    closedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repository: RepositoryCreateNestedOneWithoutPullRequestsInput
+    author: UserCreateNestedOneWithoutPullRequestsAuthoredInput
+    mergedBy?: UserCreateNestedOneWithoutPullRequestsMergedInput
+    reviews?: PullRequestReviewCreateNestedManyWithoutPullRequestInput
+    comments?: PullRequestCommentCreateNestedManyWithoutPullRequestInput
+  }
+
+  export type PullRequestUncheckedCreateWithoutClosedIssuesInput = {
+    id?: string
+    repositoryId: string
+    number: number
+    title: string
+    body: string
+    status?: string
+    baseBranch?: string
+    headBranch: string
+    authorId: string
+    mergedById?: string | null
+    mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
+    closedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    reviews?: PullRequestReviewUncheckedCreateNestedManyWithoutPullRequestInput
+    comments?: PullRequestCommentUncheckedCreateNestedManyWithoutPullRequestInput
+  }
+
+  export type PullRequestCreateOrConnectWithoutClosedIssuesInput = {
+    where: PullRequestWhereUniqueInput
+    create: XOR<PullRequestCreateWithoutClosedIssuesInput, PullRequestUncheckedCreateWithoutClosedIssuesInput>
   }
 
   export type RepositoryIssueCommentCreateWithoutIssueInput = {
@@ -83203,6 +85853,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
@@ -83237,6 +85888,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -83302,6 +85954,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherUpdateManyWithoutUserNestedInput
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -83361,6 +86014,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherUncheckedUpdateManyWithoutUserNestedInput
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -83431,6 +86085,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherUpdateManyWithoutUserNestedInput
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -83490,6 +86145,7 @@ export namespace Prisma {
     repositoryWatchers?: RepositoryWatcherUncheckedUpdateManyWithoutUserNestedInput
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -83500,6 +86156,190 @@ export namespace Prisma {
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUpsertWithoutClosedRepositoryIssuesInput = {
+    update: XOR<UserUpdateWithoutClosedRepositoryIssuesInput, UserUncheckedUpdateWithoutClosedRepositoryIssuesInput>
+    create: XOR<UserCreateWithoutClosedRepositoryIssuesInput, UserUncheckedCreateWithoutClosedRepositoryIssuesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutClosedRepositoryIssuesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutClosedRepositoryIssuesInput, UserUncheckedUpdateWithoutClosedRepositoryIssuesInput>
+  }
+
+  export type UserUpdateWithoutClosedRepositoryIssuesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
+    repositoriesOwned?: RepositoryUpdateManyWithoutOwnerNestedInput
+    repositoryStars?: RepositoryStarUpdateManyWithoutUserNestedInput
+    repositoryWatchers?: RepositoryWatcherUpdateManyWithoutUserNestedInput
+    repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
+    repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
+    assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
+    pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
+    pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
+    pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
+    pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
+    repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
+    personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutClosedRepositoryIssuesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoriesOwned?: RepositoryUncheckedUpdateManyWithoutOwnerNestedInput
+    repositoryStars?: RepositoryStarUncheckedUpdateManyWithoutUserNestedInput
+    repositoryWatchers?: RepositoryWatcherUncheckedUpdateManyWithoutUserNestedInput
+    repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
+    repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
+    assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
+    pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
+    pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
+    pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
+    repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
+    personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PullRequestUpsertWithoutClosedIssuesInput = {
+    update: XOR<PullRequestUpdateWithoutClosedIssuesInput, PullRequestUncheckedUpdateWithoutClosedIssuesInput>
+    create: XOR<PullRequestCreateWithoutClosedIssuesInput, PullRequestUncheckedCreateWithoutClosedIssuesInput>
+    where?: PullRequestWhereInput
+  }
+
+  export type PullRequestUpdateToOneWithWhereWithoutClosedIssuesInput = {
+    where?: PullRequestWhereInput
+    data: XOR<PullRequestUpdateWithoutClosedIssuesInput, PullRequestUncheckedUpdateWithoutClosedIssuesInput>
+  }
+
+  export type PullRequestUpdateWithoutClosedIssuesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    baseBranch?: StringFieldUpdateOperationsInput | string
+    headBranch?: StringFieldUpdateOperationsInput | string
+    mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repository?: RepositoryUpdateOneRequiredWithoutPullRequestsNestedInput
+    author?: UserUpdateOneRequiredWithoutPullRequestsAuthoredNestedInput
+    mergedBy?: UserUpdateOneWithoutPullRequestsMergedNestedInput
+    reviews?: PullRequestReviewUpdateManyWithoutPullRequestNestedInput
+    comments?: PullRequestCommentUpdateManyWithoutPullRequestNestedInput
+  }
+
+  export type PullRequestUncheckedUpdateWithoutClosedIssuesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    baseBranch?: StringFieldUpdateOperationsInput | string
+    headBranch?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    mergedById?: NullableStringFieldUpdateOperationsInput | string | null
+    mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reviews?: PullRequestReviewUncheckedUpdateManyWithoutPullRequestNestedInput
+    comments?: PullRequestCommentUncheckedUpdateManyWithoutPullRequestNestedInput
   }
 
   export type RepositoryIssueCommentUpsertWithWhereUniqueWithoutIssueInput = {
@@ -83531,6 +86371,8 @@ export namespace Prisma {
     repository: RepositoryCreateNestedOneWithoutIssuesInput
     author: UserCreateNestedOneWithoutRepositoryIssuesInput
     assignee?: UserCreateNestedOneWithoutAssignedRepositoryIssuesInput
+    closedBy?: UserCreateNestedOneWithoutClosedRepositoryIssuesInput
+    closedByPR?: PullRequestCreateNestedOneWithoutClosedIssuesInput
   }
 
   export type RepositoryIssueUncheckedCreateWithoutCommentsInput = {
@@ -83546,6 +86388,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     closedAt?: Date | string | null
+    closedById?: string | null
+    closedByPRId?: string | null
   }
 
   export type RepositoryIssueCreateOrConnectWithoutCommentsInput = {
@@ -83601,6 +86445,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
@@ -83660,6 +86505,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
@@ -83700,6 +86546,8 @@ export namespace Prisma {
     repository?: RepositoryUpdateOneRequiredWithoutIssuesNestedInput
     author?: UserUpdateOneRequiredWithoutRepositoryIssuesNestedInput
     assignee?: UserUpdateOneWithoutAssignedRepositoryIssuesNestedInput
+    closedBy?: UserUpdateOneWithoutClosedRepositoryIssuesNestedInput
+    closedByPR?: PullRequestUpdateOneWithoutClosedIssuesNestedInput
   }
 
   export type RepositoryIssueUncheckedUpdateWithoutCommentsInput = {
@@ -83715,6 +86563,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUpsertWithoutRepositoryIssueCommentsInput = {
@@ -83776,6 +86626,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
@@ -83835,6 +86686,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
@@ -83873,6 +86725,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
@@ -83907,6 +86760,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
@@ -83967,6 +86821,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
@@ -84026,6 +86881,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
@@ -84090,6 +86946,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
@@ -84149,6 +87006,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
@@ -84233,6 +87091,50 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RepositoryIssueCreateWithoutClosedByPRInput = {
+    id?: string
+    number: number
+    title: string
+    body: string
+    status?: string
+    labels?: RepositoryIssueCreatelabelsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    repository: RepositoryCreateNestedOneWithoutIssuesInput
+    author: UserCreateNestedOneWithoutRepositoryIssuesInput
+    assignee?: UserCreateNestedOneWithoutAssignedRepositoryIssuesInput
+    closedBy?: UserCreateNestedOneWithoutClosedRepositoryIssuesInput
+    comments?: RepositoryIssueCommentCreateNestedManyWithoutIssueInput
+  }
+
+  export type RepositoryIssueUncheckedCreateWithoutClosedByPRInput = {
+    id?: string
+    repositoryId: string
+    number: number
+    title: string
+    body: string
+    status?: string
+    authorId: string
+    assigneeId?: string | null
+    labels?: RepositoryIssueCreatelabelsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    closedById?: string | null
+    comments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutIssueInput
+  }
+
+  export type RepositoryIssueCreateOrConnectWithoutClosedByPRInput = {
+    where: RepositoryIssueWhereUniqueInput
+    create: XOR<RepositoryIssueCreateWithoutClosedByPRInput, RepositoryIssueUncheckedCreateWithoutClosedByPRInput>
+  }
+
+  export type RepositoryIssueCreateManyClosedByPRInputEnvelope = {
+    data: RepositoryIssueCreateManyClosedByPRInput | RepositoryIssueCreateManyClosedByPRInput[]
+    skipDuplicates?: boolean
+  }
+
   export type RepositoryUpsertWithoutPullRequestsInput = {
     update: XOR<RepositoryUpdateWithoutPullRequestsInput, RepositoryUncheckedUpdateWithoutPullRequestsInput>
     create: XOR<RepositoryCreateWithoutPullRequestsInput, RepositoryUncheckedCreateWithoutPullRequestsInput>
@@ -84271,6 +87173,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
@@ -84305,6 +87208,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -84371,6 +87275,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
@@ -84430,6 +87335,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
@@ -84500,6 +87406,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
@@ -84559,6 +87466,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
@@ -84602,6 +87510,22 @@ export namespace Prisma {
     data: XOR<PullRequestCommentUpdateManyMutationInput, PullRequestCommentUncheckedUpdateManyWithoutPullRequestInput>
   }
 
+  export type RepositoryIssueUpsertWithWhereUniqueWithoutClosedByPRInput = {
+    where: RepositoryIssueWhereUniqueInput
+    update: XOR<RepositoryIssueUpdateWithoutClosedByPRInput, RepositoryIssueUncheckedUpdateWithoutClosedByPRInput>
+    create: XOR<RepositoryIssueCreateWithoutClosedByPRInput, RepositoryIssueUncheckedCreateWithoutClosedByPRInput>
+  }
+
+  export type RepositoryIssueUpdateWithWhereUniqueWithoutClosedByPRInput = {
+    where: RepositoryIssueWhereUniqueInput
+    data: XOR<RepositoryIssueUpdateWithoutClosedByPRInput, RepositoryIssueUncheckedUpdateWithoutClosedByPRInput>
+  }
+
+  export type RepositoryIssueUpdateManyWithWhereWithoutClosedByPRInput = {
+    where: RepositoryIssueScalarWhereInput
+    data: XOR<RepositoryIssueUpdateManyMutationInput, RepositoryIssueUncheckedUpdateManyWithoutClosedByPRInput>
+  }
+
   export type PullRequestCreateWithoutReviewsInput = {
     id?: string
     number: number
@@ -84611,6 +87535,8 @@ export namespace Prisma {
     baseBranch?: string
     headBranch: string
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -84618,6 +87544,7 @@ export namespace Prisma {
     author: UserCreateNestedOneWithoutPullRequestsAuthoredInput
     mergedBy?: UserCreateNestedOneWithoutPullRequestsMergedInput
     comments?: PullRequestCommentCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestUncheckedCreateWithoutReviewsInput = {
@@ -84632,10 +87559,13 @@ export namespace Prisma {
     authorId: string
     mergedById?: string | null
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: PullRequestCommentUncheckedCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestCreateOrConnectWithoutReviewsInput = {
@@ -84691,6 +87621,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -84750,6 +87681,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -84786,6 +87718,8 @@ export namespace Prisma {
     baseBranch?: StringFieldUpdateOperationsInput | string
     headBranch?: StringFieldUpdateOperationsInput | string
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -84793,6 +87727,7 @@ export namespace Prisma {
     author?: UserUpdateOneRequiredWithoutPullRequestsAuthoredNestedInput
     mergedBy?: UserUpdateOneWithoutPullRequestsMergedNestedInput
     comments?: PullRequestCommentUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type PullRequestUncheckedUpdateWithoutReviewsInput = {
@@ -84807,10 +87742,13 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     mergedById?: NullableStringFieldUpdateOperationsInput | string | null
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: PullRequestCommentUncheckedUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type UserUpsertWithoutPullRequestReviewsInput = {
@@ -84872,6 +87810,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -84931,6 +87870,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -84951,6 +87891,8 @@ export namespace Prisma {
     baseBranch?: string
     headBranch: string
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -84958,6 +87900,7 @@ export namespace Prisma {
     author: UserCreateNestedOneWithoutPullRequestsAuthoredInput
     mergedBy?: UserCreateNestedOneWithoutPullRequestsMergedInput
     reviews?: PullRequestReviewCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestUncheckedCreateWithoutCommentsInput = {
@@ -84972,10 +87915,13 @@ export namespace Prisma {
     authorId: string
     mergedById?: string | null
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reviews?: PullRequestReviewUncheckedCreateNestedManyWithoutPullRequestInput
+    closedIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByPRInput
   }
 
   export type PullRequestCreateOrConnectWithoutCommentsInput = {
@@ -85031,6 +87977,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -85090,6 +88037,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -85233,6 +88181,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -85292,6 +88241,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -85328,6 +88278,8 @@ export namespace Prisma {
     baseBranch?: StringFieldUpdateOperationsInput | string
     headBranch?: StringFieldUpdateOperationsInput | string
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -85335,6 +88287,7 @@ export namespace Prisma {
     author?: UserUpdateOneRequiredWithoutPullRequestsAuthoredNestedInput
     mergedBy?: UserUpdateOneWithoutPullRequestsMergedNestedInput
     reviews?: PullRequestReviewUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type PullRequestUncheckedUpdateWithoutCommentsInput = {
@@ -85349,10 +88302,13 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     mergedById?: NullableStringFieldUpdateOperationsInput | string | null
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: PullRequestReviewUncheckedUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type UserUpsertWithoutPullRequestCommentsInput = {
@@ -85414,6 +88370,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -85473,6 +88430,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -85602,6 +88560,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -85661,6 +88620,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -85699,6 +88659,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookCreateNestedManyWithoutRepositoryInput
@@ -85733,6 +88694,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     webhooks?: RepositoryWebhookUncheckedCreateNestedManyWithoutRepositoryInput
@@ -85793,6 +88755,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -85852,6 +88815,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -85906,6 +88870,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUpdateManyWithoutRepositoryNestedInput
@@ -85940,6 +88905,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     webhooks?: RepositoryWebhookUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -86006,6 +88972,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -86065,6 +89032,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -86103,6 +89071,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -86137,6 +89106,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -86219,6 +89189,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -86253,6 +89224,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -86374,6 +89346,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -86408,6 +89381,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -86458,6 +89432,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -86492,6 +89467,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -86526,6 +89502,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseCreateNestedManyWithoutRepositoryInput
@@ -86560,6 +89537,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutRepositoryInput
     collaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutRepositoryInput
     branchRules?: BranchProtectionRuleUncheckedCreateNestedManyWithoutRepositoryInput
+    commitStatuses?: CommitStatusUncheckedCreateNestedManyWithoutRepositoryInput
     issues?: RepositoryIssueUncheckedCreateNestedManyWithoutRepositoryInput
     pullRequests?: PullRequestUncheckedCreateNestedManyWithoutRepositoryInput
     releases?: RepositoryReleaseUncheckedCreateNestedManyWithoutRepositoryInput
@@ -86620,6 +89598,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -86679,6 +89658,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -86733,6 +89713,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -86767,6 +89748,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -86833,6 +89815,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -86892,6 +89875,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -86951,6 +89935,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -87010,6 +89995,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -87085,6 +90071,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -87144,6 +90131,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -87203,6 +90191,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
@@ -87262,6 +90251,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
     repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
@@ -87337,6 +90327,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
@@ -87396,6 +90387,7 @@ export namespace Prisma {
     repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
     repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
     assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
     repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
@@ -87631,6 +90623,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     closedAt?: Date | string | null
+    closedById?: string | null
+    closedByPRId?: string | null
   }
 
   export type RepositoryIssueCreateManyAssigneeInput = {
@@ -87645,6 +90639,24 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     closedAt?: Date | string | null
+    closedById?: string | null
+    closedByPRId?: string | null
+  }
+
+  export type RepositoryIssueCreateManyClosedByInput = {
+    id?: string
+    repositoryId: string
+    number: number
+    title: string
+    body: string
+    status?: string
+    authorId: string
+    assigneeId?: string | null
+    labels?: RepositoryIssueCreatelabelsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    closedByPRId?: string | null
   }
 
   export type RepositoryIssueCommentCreateManyAuthorInput = {
@@ -87666,6 +90678,8 @@ export namespace Prisma {
     headBranch: string
     mergedById?: string | null
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -87682,6 +90696,8 @@ export namespace Prisma {
     headBranch: string
     authorId: string
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -88334,6 +91350,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -88368,6 +91385,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -88471,6 +91489,8 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     repository?: RepositoryUpdateOneRequiredWithoutIssuesNestedInput
     assignee?: UserUpdateOneWithoutAssignedRepositoryIssuesNestedInput
+    closedBy?: UserUpdateOneWithoutClosedRepositoryIssuesNestedInput
+    closedByPR?: PullRequestUpdateOneWithoutClosedIssuesNestedInput
     comments?: RepositoryIssueCommentUpdateManyWithoutIssueNestedInput
   }
 
@@ -88486,6 +91506,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: RepositoryIssueCommentUncheckedUpdateManyWithoutIssueNestedInput
   }
 
@@ -88501,6 +91523,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RepositoryIssueUpdateWithoutAssigneeInput = {
@@ -88515,6 +91539,8 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     repository?: RepositoryUpdateOneRequiredWithoutIssuesNestedInput
     author?: UserUpdateOneRequiredWithoutRepositoryIssuesNestedInput
+    closedBy?: UserUpdateOneWithoutClosedRepositoryIssuesNestedInput
+    closedByPR?: PullRequestUpdateOneWithoutClosedIssuesNestedInput
     comments?: RepositoryIssueCommentUpdateManyWithoutIssueNestedInput
   }
 
@@ -88530,6 +91556,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: RepositoryIssueCommentUncheckedUpdateManyWithoutIssueNestedInput
   }
 
@@ -88545,6 +91573,58 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RepositoryIssueUpdateWithoutClosedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    labels?: RepositoryIssueUpdatelabelsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    repository?: RepositoryUpdateOneRequiredWithoutIssuesNestedInput
+    author?: UserUpdateOneRequiredWithoutRepositoryIssuesNestedInput
+    assignee?: UserUpdateOneWithoutAssignedRepositoryIssuesNestedInput
+    closedByPR?: PullRequestUpdateOneWithoutClosedIssuesNestedInput
+    comments?: RepositoryIssueCommentUpdateManyWithoutIssueNestedInput
+  }
+
+  export type RepositoryIssueUncheckedUpdateWithoutClosedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    labels?: RepositoryIssueUpdatelabelsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: RepositoryIssueCommentUncheckedUpdateManyWithoutIssueNestedInput
+  }
+
+  export type RepositoryIssueUncheckedUpdateManyWithoutClosedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    labels?: RepositoryIssueUpdatelabelsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RepositoryIssueCommentUpdateWithoutAuthorInput = {
@@ -88580,6 +91660,8 @@ export namespace Prisma {
     baseBranch?: StringFieldUpdateOperationsInput | string
     headBranch?: StringFieldUpdateOperationsInput | string
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -88587,6 +91669,7 @@ export namespace Prisma {
     mergedBy?: UserUpdateOneWithoutPullRequestsMergedNestedInput
     reviews?: PullRequestReviewUpdateManyWithoutPullRequestNestedInput
     comments?: PullRequestCommentUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type PullRequestUncheckedUpdateWithoutAuthorInput = {
@@ -88600,11 +91683,14 @@ export namespace Prisma {
     headBranch?: StringFieldUpdateOperationsInput | string
     mergedById?: NullableStringFieldUpdateOperationsInput | string | null
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: PullRequestReviewUncheckedUpdateManyWithoutPullRequestNestedInput
     comments?: PullRequestCommentUncheckedUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type PullRequestUncheckedUpdateManyWithoutAuthorInput = {
@@ -88618,6 +91704,8 @@ export namespace Prisma {
     headBranch?: StringFieldUpdateOperationsInput | string
     mergedById?: NullableStringFieldUpdateOperationsInput | string | null
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -88632,6 +91720,8 @@ export namespace Prisma {
     baseBranch?: StringFieldUpdateOperationsInput | string
     headBranch?: StringFieldUpdateOperationsInput | string
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -88639,6 +91729,7 @@ export namespace Prisma {
     author?: UserUpdateOneRequiredWithoutPullRequestsAuthoredNestedInput
     reviews?: PullRequestReviewUpdateManyWithoutPullRequestNestedInput
     comments?: PullRequestCommentUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type PullRequestUncheckedUpdateWithoutMergedByInput = {
@@ -88652,11 +91743,14 @@ export namespace Prisma {
     headBranch?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: PullRequestReviewUncheckedUpdateManyWithoutPullRequestNestedInput
     comments?: PullRequestCommentUncheckedUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type PullRequestUncheckedUpdateManyWithoutMergedByInput = {
@@ -88670,6 +91764,8 @@ export namespace Prisma {
     headBranch?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -89532,6 +92628,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -89566,6 +92663,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -89881,7 +92979,22 @@ export namespace Prisma {
     requiredApprovals?: number
     preventForcePush?: boolean
     preventDeletion?: boolean
+    requireStatusChecks?: boolean
+    requiredChecks?: BranchProtectionRuleCreaterequiredChecksInput | string[]
+    requireUpToDateBranch?: boolean
+    requireConversationResolution?: boolean
     createdAt?: Date | string
+  }
+
+  export type CommitStatusCreateManyRepositoryInput = {
+    id?: string
+    commitSha: string
+    context: string
+    state: string
+    description?: string | null
+    targetUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type RepositoryIssueCreateManyRepositoryInput = {
@@ -89896,6 +93009,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     closedAt?: Date | string | null
+    closedById?: string | null
+    closedByPRId?: string | null
   }
 
   export type PullRequestCreateManyRepositoryInput = {
@@ -89909,6 +93024,8 @@ export namespace Prisma {
     authorId: string
     mergedById?: string | null
     mergedAt?: Date | string | null
+    mergeStrategy?: string | null
+    mergeCommitSha?: string | null
     closedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -89988,6 +93105,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUpdateManyWithoutRepositoryNestedInput
@@ -90022,6 +93140,7 @@ export namespace Prisma {
     watchers?: RepositoryWatcherUncheckedUpdateManyWithoutRepositoryNestedInput
     collaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutRepositoryNestedInput
     branchRules?: BranchProtectionRuleUncheckedUpdateManyWithoutRepositoryNestedInput
+    commitStatuses?: CommitStatusUncheckedUpdateManyWithoutRepositoryNestedInput
     issues?: RepositoryIssueUncheckedUpdateManyWithoutRepositoryNestedInput
     pullRequests?: PullRequestUncheckedUpdateManyWithoutRepositoryNestedInput
     releases?: RepositoryReleaseUncheckedUpdateManyWithoutRepositoryNestedInput
@@ -90120,6 +93239,10 @@ export namespace Prisma {
     requiredApprovals?: IntFieldUpdateOperationsInput | number
     preventForcePush?: BoolFieldUpdateOperationsInput | boolean
     preventDeletion?: BoolFieldUpdateOperationsInput | boolean
+    requireStatusChecks?: BoolFieldUpdateOperationsInput | boolean
+    requiredChecks?: BranchProtectionRuleUpdaterequiredChecksInput | string[]
+    requireUpToDateBranch?: BoolFieldUpdateOperationsInput | boolean
+    requireConversationResolution?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -90130,6 +93253,10 @@ export namespace Prisma {
     requiredApprovals?: IntFieldUpdateOperationsInput | number
     preventForcePush?: BoolFieldUpdateOperationsInput | boolean
     preventDeletion?: BoolFieldUpdateOperationsInput | boolean
+    requireStatusChecks?: BoolFieldUpdateOperationsInput | boolean
+    requiredChecks?: BranchProtectionRuleUpdaterequiredChecksInput | string[]
+    requireUpToDateBranch?: BoolFieldUpdateOperationsInput | boolean
+    requireConversationResolution?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -90140,7 +93267,44 @@ export namespace Prisma {
     requiredApprovals?: IntFieldUpdateOperationsInput | number
     preventForcePush?: BoolFieldUpdateOperationsInput | boolean
     preventDeletion?: BoolFieldUpdateOperationsInput | boolean
+    requireStatusChecks?: BoolFieldUpdateOperationsInput | boolean
+    requiredChecks?: BranchProtectionRuleUpdaterequiredChecksInput | string[]
+    requireUpToDateBranch?: BoolFieldUpdateOperationsInput | boolean
+    requireConversationResolution?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommitStatusUpdateWithoutRepositoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commitSha?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    targetUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommitStatusUncheckedUpdateWithoutRepositoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commitSha?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    targetUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommitStatusUncheckedUpdateManyWithoutRepositoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commitSha?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    targetUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RepositoryIssueUpdateWithoutRepositoryInput = {
@@ -90155,6 +93319,8 @@ export namespace Prisma {
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     author?: UserUpdateOneRequiredWithoutRepositoryIssuesNestedInput
     assignee?: UserUpdateOneWithoutAssignedRepositoryIssuesNestedInput
+    closedBy?: UserUpdateOneWithoutClosedRepositoryIssuesNestedInput
+    closedByPR?: PullRequestUpdateOneWithoutClosedIssuesNestedInput
     comments?: RepositoryIssueCommentUpdateManyWithoutIssueNestedInput
   }
 
@@ -90170,6 +93336,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
     comments?: RepositoryIssueCommentUncheckedUpdateManyWithoutIssueNestedInput
   }
 
@@ -90185,6 +93353,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    closedByPRId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PullRequestUpdateWithoutRepositoryInput = {
@@ -90196,6 +93366,8 @@ export namespace Prisma {
     baseBranch?: StringFieldUpdateOperationsInput | string
     headBranch?: StringFieldUpdateOperationsInput | string
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -90203,6 +93375,7 @@ export namespace Prisma {
     mergedBy?: UserUpdateOneWithoutPullRequestsMergedNestedInput
     reviews?: PullRequestReviewUpdateManyWithoutPullRequestNestedInput
     comments?: PullRequestCommentUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type PullRequestUncheckedUpdateWithoutRepositoryInput = {
@@ -90216,11 +93389,14 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     mergedById?: NullableStringFieldUpdateOperationsInput | string | null
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: PullRequestReviewUncheckedUpdateManyWithoutPullRequestNestedInput
     comments?: PullRequestCommentUncheckedUpdateManyWithoutPullRequestNestedInput
+    closedIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByPRNestedInput
   }
 
   export type PullRequestUncheckedUpdateManyWithoutRepositoryInput = {
@@ -90234,6 +93410,8 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     mergedById?: NullableStringFieldUpdateOperationsInput | string | null
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mergeStrategy?: NullableStringFieldUpdateOperationsInput | string | null
+    mergeCommitSha?: NullableStringFieldUpdateOperationsInput | string | null
     closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -90440,6 +93618,22 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type RepositoryIssueCreateManyClosedByPRInput = {
+    id?: string
+    repositoryId: string
+    number: number
+    title: string
+    body: string
+    status?: string
+    authorId: string
+    assigneeId?: string | null
+    labels?: RepositoryIssueCreatelabelsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    closedAt?: Date | string | null
+    closedById?: string | null
+  }
+
   export type PullRequestReviewUpdateWithoutPullRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
@@ -90509,6 +93703,56 @@ export namespace Prisma {
     resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryIssueUpdateWithoutClosedByPRInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    labels?: RepositoryIssueUpdatelabelsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    repository?: RepositoryUpdateOneRequiredWithoutIssuesNestedInput
+    author?: UserUpdateOneRequiredWithoutRepositoryIssuesNestedInput
+    assignee?: UserUpdateOneWithoutAssignedRepositoryIssuesNestedInput
+    closedBy?: UserUpdateOneWithoutClosedRepositoryIssuesNestedInput
+    comments?: RepositoryIssueCommentUpdateManyWithoutIssueNestedInput
+  }
+
+  export type RepositoryIssueUncheckedUpdateWithoutClosedByPRInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    labels?: RepositoryIssueUpdatelabelsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: RepositoryIssueCommentUncheckedUpdateManyWithoutIssueNestedInput
+  }
+
+  export type RepositoryIssueUncheckedUpdateManyWithoutClosedByPRInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    assigneeId?: NullableStringFieldUpdateOperationsInput | string | null
+    labels?: RepositoryIssueUpdatelabelsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    closedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closedById?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PullRequestCommentCreateManyParentInput = {

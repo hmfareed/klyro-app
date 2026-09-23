@@ -16,7 +16,7 @@ export async function GET(req: Request, context: RouteContext) {
   if (!viewer.canRead) return apiError("FORBIDDEN", "Private repository", null, 403);
 
   try {
-    const branches = await getBranches(repository.gitStoragePath, repository.defaultBranch);
+    const branches = await getBranches(repository.gitStoragePath, repository.defaultBranch, true);
     return apiOk({ branches, defaultBranch: repository.defaultBranch });
   } catch (err: any) {
     return apiError("GIT_ERROR", err.message || "Failed to list branches", null, 500);

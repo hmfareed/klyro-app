@@ -162,6 +162,7 @@ model User {
   repositoryCollaborators  RepositoryCollaborator[]
   repositoryIssues         RepositoryIssue[]        @relation("IssueAuthor")
   assignedRepositoryIssues RepositoryIssue[]        @relation("IssueAssignee")
+  closedRepositoryIssues   RepositoryIssue[]        @relation("IssueClosedBy")
   repositoryIssueComments  RepositoryIssueComment[]
   pullRequestsAuthored     PullRequest[]            @relation("PRAuthor")
   pullRequestsMerged       PullRequest[]            @relation("PRMergedBy")
@@ -625,16 +626,17 @@ model Repository {
   forkedFrom Repository?  @relation("RepositoryForks", fields: [forkedFromId], references: [id], onDelete: SetNull)
   forks      Repository[] @relation("RepositoryForks")
 
-  stars         RepositoryStar[]
-  watchers      RepositoryWatcher[]
-  collaborators RepositoryCollaborator[]
-  branchRules   BranchProtectionRule[]
-  issues        RepositoryIssue[]
-  pullRequests  PullRequest[]
-  releases      RepositoryRelease[]
-  webhooks      RepositoryWebhook[]
-  actionRuns    RepositoryActionRun[]
-  auditEvents   RepositoryAuditEvent[]
+  stars          RepositoryStar[]
+  watchers       RepositoryWatcher[]
+  collaborators  RepositoryCollaborator[]
+  branchRules    BranchProtectionRule[]
+  commitStatuses CommitStatus[]
+  issues         RepositoryIssue[]
+  pullRequests   PullRequest[]
+  releases       RepositoryRelease[]
+  webhooks       RepositoryWebhook[]
+  actionRuns     RepositoryActionRun[]
+  auditEvents    RepositoryAuditEvent[]
 
   @@unique([ownerId, slug])
   @@index([slug])
@@ -689,18 +691,39 @@ model RepositoryCollaborator {
 }
 
 model BranchProtectionRule {
-  id                 String   @id @default(cuid())
-  repositoryId       String
-  pattern            String   @default("main")
-  requirePullRequest Boolean  @default(true)
-  requiredApprovals  Int      @default(1)
-  preventForcePush   Boolean  @default(true)
-  preventDeletion    Boolean  @default(true)
-  createdAt          DateTime @default(now())
+  id                            String   @id @default(cuid())
+  repositoryId                  String
+  pattern                       String   @default("main")
+  requirePullRequest            Boolean  @default(true)
+  requiredApprovals             Int      @default(1)
+  preventForcePush              Boolean  @default(true)
+  preventDeletion               Boolean  @default(true)
+  requireStatusChecks           Boolean  @default(false)
+  requiredChecks                String[] @default([])
+  requireUpToDateBranch         Boolean  @default(false)
+  requireConversationResolution Boolean  @default(false)
+  createdAt                     DateTime @default(now())
 
   repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 
   @@index([repositoryId])
+}
+
+model CommitStatus {
+  id           String   @id @default(cuid())
+  repositoryId String
+  commitSha    String
+  context      String // e.g. "ci/build", "test", "lint", "security"
+  state        String // PENDING, SUCCESS, FAILURE, ERROR
+  description  String?
+  targetUrl    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+
+  @@unique([repositoryId, commitSha, context])
+  @@index([repositoryId, commitSha])
 }
 
 model RepositoryIssue {
@@ -716,16 +739,22 @@ model RepositoryIssue {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   closedAt     DateTime?
+  closedById   String?
+  closedByPRId String?
 
   repository Repository               @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
   author     User                     @relation("IssueAuthor", fields: [authorId], references: [id], onDelete: Cascade)
   assignee   User?                    @relation("IssueAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+  closedBy   User?                    @relation("IssueClosedBy", fields: [closedById], references: [id], onDelete: SetNull)
+  closedByPR PullRequest?             @relation("PRClosedIssues", fields: [closedByPRId], references: [id], onDelete: SetNull)
   comments   RepositoryIssueComment[]
 
   @@unique([repositoryId, number])
   @@index([repositoryId, status])
   @@index([authorId])
   @@index([assigneeId])
+  @@index([closedById])
+  @@index([closedByPRId])
 }
 
 model RepositoryIssueComment {
@@ -744,26 +773,29 @@ model RepositoryIssueComment {
 }
 
 model PullRequest {
-  id           String    @id @default(cuid())
-  repositoryId String
-  number       Int
-  title        String
-  body         String    @db.Text
-  status       String    @default("OPEN") // OPEN, MERGED, CLOSED
-  baseBranch   String    @default("main")
-  headBranch   String
-  authorId     String
-  mergedById   String?
-  mergedAt     DateTime?
-  closedAt     DateTime?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  id             String    @id @default(cuid())
+  repositoryId   String
+  number         Int
+  title          String
+  body           String    @db.Text
+  status         String    @default("OPEN") // OPEN, MERGED, CLOSED
+  baseBranch     String    @default("main")
+  headBranch     String
+  authorId       String
+  mergedById     String?
+  mergedAt       DateTime?
+  mergeStrategy  String? // MERGE_COMMIT, SQUASH, REBASE
+  mergeCommitSha String?
+  closedAt       DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
-  repository Repository           @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
-  author     User                 @relation("PRAuthor", fields: [authorId], references: [id], onDelete: Cascade)
-  mergedBy   User?                @relation("PRMergedBy", fields: [mergedById], references: [id], onDelete: SetNull)
-  reviews    PullRequestReview[]
-  comments   PullRequestComment[]
+  repository   Repository           @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  author       User                 @relation("PRAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  mergedBy     User?                @relation("PRMergedBy", fields: [mergedById], references: [id], onDelete: SetNull)
+  reviews      PullRequestReview[]
+  comments     PullRequestComment[]
+  closedIssues RepositoryIssue[]    @relation("PRClosedIssues")
 
   @@unique([repositoryId, number])
   @@index([repositoryId, status])

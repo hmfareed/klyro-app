@@ -20,6 +20,7 @@ import {
   Archive,
   AlertTriangle,
   RotateCcw,
+  Layers,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -81,6 +82,7 @@ export function RepoHeader({
     { id: "code", label: "Code", icon: Code, count: undefined },
     { id: "issues", label: "Issues", icon: CircleDot, count: repository._count?.issues },
     { id: "pulls", label: "Pull Requests", icon: GitPullRequest, count: repository._count?.pullRequests },
+    { id: "graph", label: "Graph", icon: Layers, count: undefined },
     { id: "actions", label: "Actions", icon: PlaySquare, count: undefined },
     { id: "releases", label: "Releases", icon: Tag, count: repository._count?.releases },
     ...(viewer.canAdmin ? [{ id: "settings", label: "Settings", icon: Settings, count: undefined }] : []),
