@@ -3,6 +3,8 @@ import { prisma } from "@/shared/db/prisma";
 import { getSessionUserId } from "@/shared/auth/session";
 import { createNotification } from "@/shared/notifications/create";
 import { apiError, apiOk } from "@/shared/api/errors";
+import { recordActivityEvent } from "@/server/events";
+import { ActivityEventType } from "@/generated/prisma";
 
 const applySchema = z.object({
   roleId: z.string().min(1),
@@ -73,6 +75,20 @@ export async function POST(req: Request, ctx: { params: Promise<{ slug: string }
     title: `New application for ${role.title}`,
     body: `${application.applicant.displayName || application.applicant.username} applied to join ${project.title}.`,
     linkUrl: `/projects/${project.slug}/applications`,
+  });
+
+  // Record Activity Event
+  await recordActivityEvent({
+    actorId: userId,
+    projectId: project.id,
+    type: ActivityEventType.COLLABORATOR_INVITED,
+    targetType: "Application",
+    targetId: application.id,
+    visibility: project.visibility,
+    metadata: {
+      roleTitle: role.title,
+      applicantUsername: application.applicant.username,
+    },
   });
 
   return apiOk({ application }, 201);

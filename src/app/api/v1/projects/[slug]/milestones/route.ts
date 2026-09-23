@@ -3,6 +3,8 @@ import { prisma } from "@/shared/db/prisma";
 import { getSessionUserId } from "@/shared/auth/session";
 import { requirePermission } from "@/shared/permissions/project";
 import { apiError, apiOk } from "@/shared/api/errors";
+import { recordActivityEvent } from "@/server/events";
+import { ActivityEventType } from "@/generated/prisma";
 
 const createMilestoneSchema = z.object({
   title: z.string().min(2).max(100),
@@ -81,6 +83,18 @@ export async function POST(req: Request, ctx: { params: Promise<{ slug: string }
       description: parsed.data.description?.trim() ?? null,
       dueDate: parsed.data.dueDate ? new Date(parsed.data.dueDate) : null,
       order: parsed.data.order,
+    },
+  });
+
+  await recordActivityEvent({
+    actorId: userId,
+    projectId: project.id,
+    type: ActivityEventType.MILESTONE_CREATED,
+    targetType: "Milestone",
+    targetId: milestone.id,
+    metadata: {
+      milestoneTitle: milestone.title,
+      description: milestone.description,
     },
   });
 

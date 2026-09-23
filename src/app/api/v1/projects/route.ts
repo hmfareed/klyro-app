@@ -2,6 +2,8 @@ import { z } from "zod";
 import { prisma } from "@/shared/db/prisma";
 import { getSessionUserId } from "@/shared/auth/session";
 import { apiError, apiOk } from "@/shared/api/errors";
+import { recordActivityEvent } from "@/server/events";
+import { ActivityEventType } from "@/generated/prisma";
 
 // GET /api/v1/projects
 // If ?feed=explore -> public project discovery (status: RECRUITING or IN_PROGRESS, visibility: PUBLIC)
@@ -164,6 +166,30 @@ export async function POST(req: Request) {
         data: { event: "project_created", userId, projectId: project.id },
       });
     } catch { /* analytics optional */ }
+
+    // Centralized event emission
+    await recordActivityEvent({
+      actorId: userId,
+      projectId: project.id,
+      type: ActivityEventType.PROJECT_CREATED,
+      visibility: parsed.data.visibility,
+      metadata: {
+        headline: "Project created",
+        tagline: parsed.data.tagline?.trim() || parsed.data.title.trim(),
+      },
+    });
+
+    if (parsed.data.roles && parsed.data.roles.length > 0) {
+      await recordActivityEvent({
+        actorId: userId,
+        projectId: project.id,
+        type: ActivityEventType.PROJECT_RECRUITING,
+        visibility: parsed.data.visibility,
+        metadata: {
+          roles: parsed.data.roles.map((r) => r.title.trim()),
+        },
+      });
+    }
 
     return apiOk({ project }, 201);
   } catch (err) {

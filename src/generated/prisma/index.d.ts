@@ -113,6 +113,31 @@ export type PlatformAdmin = $Result.DefaultSelection<Prisma.$PlatformAdminPayloa
  * 
  */
 export type AnalyticsEvent = $Result.DefaultSelection<Prisma.$AnalyticsEventPayload>
+/**
+ * Model ActivityEvent
+ * 
+ */
+export type ActivityEvent = $Result.DefaultSelection<Prisma.$ActivityEventPayload>
+/**
+ * Model ProjectFollower
+ * 
+ */
+export type ProjectFollower = $Result.DefaultSelection<Prisma.$ProjectFollowerPayload>
+/**
+ * Model ProjectStar
+ * 
+ */
+export type ProjectStar = $Result.DefaultSelection<Prisma.$ProjectStarPayload>
+/**
+ * Model Release
+ * 
+ */
+export type Release = $Result.DefaultSelection<Prisma.$ReleasePayload>
+/**
+ * Model ProjectUpdate
+ * 
+ */
+export type ProjectUpdate = $Result.DefaultSelection<Prisma.$ProjectUpdatePayload>
 
 /**
  * Enums
@@ -254,6 +279,39 @@ export const PlatformAdminRole: {
 
 export type PlatformAdminRole = (typeof PlatformAdminRole)[keyof typeof PlatformAdminRole]
 
+
+export const ActivityEventType: {
+  PROJECT_CREATED: 'PROJECT_CREATED',
+  PROJECT_UPDATED: 'PROJECT_UPDATED',
+  PROJECT_PUBLISHED: 'PROJECT_PUBLISHED',
+  PROJECT_STARRED: 'PROJECT_STARRED',
+  PROJECT_FOLLOWED: 'PROJECT_FOLLOWED',
+  MEMBER_JOINED: 'MEMBER_JOINED',
+  MEMBER_LEFT: 'MEMBER_LEFT',
+  COLLABORATOR_INVITED: 'COLLABORATOR_INVITED',
+  COLLABORATOR_ACCEPTED: 'COLLABORATOR_ACCEPTED',
+  TASK_CREATED: 'TASK_CREATED',
+  TASK_COMPLETED: 'TASK_COMPLETED',
+  MILESTONE_CREATED: 'MILESTONE_CREATED',
+  MILESTONE_COMPLETED: 'MILESTONE_COMPLETED',
+  ISSUE_CREATED: 'ISSUE_CREATED',
+  ISSUE_RESOLVED: 'ISSUE_RESOLVED',
+  PULL_REQUEST_OPENED: 'PULL_REQUEST_OPENED',
+  PULL_REQUEST_MERGED: 'PULL_REQUEST_MERGED',
+  RELEASE_CREATED: 'RELEASE_CREATED',
+  DISCUSSION_CREATED: 'DISCUSSION_CREATED',
+  DISCUSSION_REPLIED: 'DISCUSSION_REPLIED',
+  REPOSITORY_CREATED: 'REPOSITORY_CREATED',
+  REPOSITORY_UPDATED: 'REPOSITORY_UPDATED',
+  PROJECT_RECRUITING: 'PROJECT_RECRUITING',
+  PROJECT_RECRUITING_CLOSED: 'PROJECT_RECRUITING_CLOSED',
+  CONTRIBUTOR_ADDED: 'CONTRIBUTOR_ADDED',
+  BUILD_LAUNCHED: 'BUILD_LAUNCHED',
+  POST_UPDATE: 'POST_UPDATE'
+};
+
+export type ActivityEventType = (typeof ActivityEventType)[keyof typeof ActivityEventType]
+
 }
 
 export type UserStatus = $Enums.UserStatus
@@ -311,6 +369,10 @@ export const IpModel: typeof $Enums.IpModel
 export type PlatformAdminRole = $Enums.PlatformAdminRole
 
 export const PlatformAdminRole: typeof $Enums.PlatformAdminRole
+
+export type ActivityEventType = $Enums.ActivityEventType
+
+export const ActivityEventType: typeof $Enums.ActivityEventType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -629,6 +691,56 @@ export class PrismaClient<
     * ```
     */
   get analyticsEvent(): Prisma.AnalyticsEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.activityEvent`: Exposes CRUD operations for the **ActivityEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ActivityEvents
+    * const activityEvents = await prisma.activityEvent.findMany()
+    * ```
+    */
+  get activityEvent(): Prisma.ActivityEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectFollower`: Exposes CRUD operations for the **ProjectFollower** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectFollowers
+    * const projectFollowers = await prisma.projectFollower.findMany()
+    * ```
+    */
+  get projectFollower(): Prisma.ProjectFollowerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectStar`: Exposes CRUD operations for the **ProjectStar** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectStars
+    * const projectStars = await prisma.projectStar.findMany()
+    * ```
+    */
+  get projectStar(): Prisma.ProjectStarDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.release`: Exposes CRUD operations for the **Release** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Releases
+    * const releases = await prisma.release.findMany()
+    * ```
+    */
+  get release(): Prisma.ReleaseDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectUpdate`: Exposes CRUD operations for the **ProjectUpdate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectUpdates
+    * const projectUpdates = await prisma.projectUpdate.findMany()
+    * ```
+    */
+  get projectUpdate(): Prisma.ProjectUpdateDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1089,7 +1201,12 @@ export namespace Prisma {
     ContributionRecord: 'ContributionRecord',
     Notification: 'Notification',
     PlatformAdmin: 'PlatformAdmin',
-    AnalyticsEvent: 'AnalyticsEvent'
+    AnalyticsEvent: 'AnalyticsEvent',
+    ActivityEvent: 'ActivityEvent',
+    ProjectFollower: 'ProjectFollower',
+    ProjectStar: 'ProjectStar',
+    Release: 'Release',
+    ProjectUpdate: 'ProjectUpdate'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1108,7 +1225,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "application" | "milestone" | "task" | "taskAssignee" | "discussionThread" | "discussionComment" | "fileAsset" | "contributionRecord" | "notification" | "platformAdmin" | "analyticsEvent"
+      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "application" | "milestone" | "task" | "taskAssignee" | "discussionThread" | "discussionComment" | "fileAsset" | "contributionRecord" | "notification" | "platformAdmin" | "analyticsEvent" | "activityEvent" | "projectFollower" | "projectStar" | "release" | "projectUpdate"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2592,6 +2709,376 @@ export namespace Prisma {
           }
         }
       }
+      ActivityEvent: {
+        payload: Prisma.$ActivityEventPayload<ExtArgs>
+        fields: Prisma.ActivityEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ActivityEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ActivityEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload>
+          }
+          findFirst: {
+            args: Prisma.ActivityEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ActivityEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload>
+          }
+          findMany: {
+            args: Prisma.ActivityEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload>[]
+          }
+          create: {
+            args: Prisma.ActivityEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload>
+          }
+          createMany: {
+            args: Prisma.ActivityEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ActivityEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload>[]
+          }
+          delete: {
+            args: Prisma.ActivityEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload>
+          }
+          update: {
+            args: Prisma.ActivityEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.ActivityEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ActivityEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ActivityEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.ActivityEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityEventPayload>
+          }
+          aggregate: {
+            args: Prisma.ActivityEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateActivityEvent>
+          }
+          groupBy: {
+            args: Prisma.ActivityEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ActivityEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ActivityEventCountArgs<ExtArgs>
+            result: $Utils.Optional<ActivityEventCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectFollower: {
+        payload: Prisma.$ProjectFollowerPayload<ExtArgs>
+        fields: Prisma.ProjectFollowerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectFollowerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectFollowerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectFollowerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectFollowerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectFollowerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectFollowerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectFollowerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectFollowerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectFollowerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload>
+          }
+          update: {
+            args: Prisma.ProjectFollowerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectFollowerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectFollowerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectFollowerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectFollowerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFollowerPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectFollowerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectFollower>
+          }
+          groupBy: {
+            args: Prisma.ProjectFollowerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectFollowerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectFollowerCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectFollowerCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectStar: {
+        payload: Prisma.$ProjectStarPayload<ExtArgs>
+        fields: Prisma.ProjectStarFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectStarFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectStarFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectStarFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectStarFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectStarFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectStarCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectStarCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectStarCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectStarDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload>
+          }
+          update: {
+            args: Prisma.ProjectStarUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectStarDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectStarUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectStarUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectStarUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectStarPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectStarAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectStar>
+          }
+          groupBy: {
+            args: Prisma.ProjectStarGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectStarGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectStarCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectStarCountAggregateOutputType> | number
+          }
+        }
+      }
+      Release: {
+        payload: Prisma.$ReleasePayload<ExtArgs>
+        fields: Prisma.ReleaseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ReleaseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ReleaseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload>
+          }
+          findFirst: {
+            args: Prisma.ReleaseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ReleaseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload>
+          }
+          findMany: {
+            args: Prisma.ReleaseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload>[]
+          }
+          create: {
+            args: Prisma.ReleaseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload>
+          }
+          createMany: {
+            args: Prisma.ReleaseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ReleaseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload>[]
+          }
+          delete: {
+            args: Prisma.ReleaseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload>
+          }
+          update: {
+            args: Prisma.ReleaseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload>
+          }
+          deleteMany: {
+            args: Prisma.ReleaseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ReleaseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ReleaseUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload>[]
+          }
+          upsert: {
+            args: Prisma.ReleaseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReleasePayload>
+          }
+          aggregate: {
+            args: Prisma.ReleaseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRelease>
+          }
+          groupBy: {
+            args: Prisma.ReleaseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReleaseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ReleaseCountArgs<ExtArgs>
+            result: $Utils.Optional<ReleaseCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectUpdate: {
+        payload: Prisma.$ProjectUpdatePayload<ExtArgs>
+        fields: Prisma.ProjectUpdateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectUpdateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectUpdateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectUpdateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectUpdateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload>
+          }
+          findMany: {
+            args: Prisma.ProjectUpdateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload>[]
+          }
+          create: {
+            args: Prisma.ProjectUpdateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload>
+          }
+          createMany: {
+            args: Prisma.ProjectUpdateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProjectUpdateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload>[]
+          }
+          delete: {
+            args: Prisma.ProjectUpdateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload>
+          }
+          update: {
+            args: Prisma.ProjectUpdateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectUpdateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectUpdateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProjectUpdateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload>[]
+          }
+          upsert: {
+            args: Prisma.ProjectUpdateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectUpdatePayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectUpdateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectUpdate>
+          }
+          groupBy: {
+            args: Prisma.ProjectUpdateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectUpdateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectUpdateCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectUpdateCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2708,6 +3195,11 @@ export namespace Prisma {
     notification?: NotificationOmit
     platformAdmin?: PlatformAdminOmit
     analyticsEvent?: AnalyticsEventOmit
+    activityEvent?: ActivityEventOmit
+    projectFollower?: ProjectFollowerOmit
+    projectStar?: ProjectStarOmit
+    release?: ReleaseOmit
+    projectUpdate?: ProjectUpdateOmit
   }
 
   /* Types for Logging */
@@ -2801,6 +3293,11 @@ export namespace Prisma {
     contributionRecords: number
     notifications: number
     usernameHistory: number
+    activityEvents: number
+    followedProjects: number
+    starredProjects: number
+    releasesAuthored: number
+    projectUpdates: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2817,6 +3314,11 @@ export namespace Prisma {
     contributionRecords?: boolean | UserCountOutputTypeCountContributionRecordsArgs
     notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
     usernameHistory?: boolean | UserCountOutputTypeCountUsernameHistoryArgs
+    activityEvents?: boolean | UserCountOutputTypeCountActivityEventsArgs
+    followedProjects?: boolean | UserCountOutputTypeCountFollowedProjectsArgs
+    starredProjects?: boolean | UserCountOutputTypeCountStarredProjectsArgs
+    releasesAuthored?: boolean | UserCountOutputTypeCountReleasesAuthoredArgs
+    projectUpdates?: boolean | UserCountOutputTypeCountProjectUpdatesArgs
   }
 
   // Custom InputTypes
@@ -2921,6 +3423,41 @@ export namespace Prisma {
     where?: UsernameHistoryWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountActivityEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ActivityEventWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFollowedProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectFollowerWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountStarredProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectStarWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountReleasesAuthoredArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReleaseWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountProjectUpdatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectUpdateWhereInput
+  }
+
 
   /**
    * Count Type SkillCountOutputType
@@ -2966,6 +3503,11 @@ export namespace Prisma {
     threads: number
     files: number
     contributionRecords: number
+    activityEvents: number
+    followers: number
+    stars: number
+    releases: number
+    updates: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2977,6 +3519,11 @@ export namespace Prisma {
     threads?: boolean | ProjectCountOutputTypeCountThreadsArgs
     files?: boolean | ProjectCountOutputTypeCountFilesArgs
     contributionRecords?: boolean | ProjectCountOutputTypeCountContributionRecordsArgs
+    activityEvents?: boolean | ProjectCountOutputTypeCountActivityEventsArgs
+    followers?: boolean | ProjectCountOutputTypeCountFollowersArgs
+    stars?: boolean | ProjectCountOutputTypeCountStarsArgs
+    releases?: boolean | ProjectCountOutputTypeCountReleasesArgs
+    updates?: boolean | ProjectCountOutputTypeCountUpdatesArgs
   }
 
   // Custom InputTypes
@@ -3044,6 +3591,41 @@ export namespace Prisma {
    */
   export type ProjectCountOutputTypeCountContributionRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ContributionRecordWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountActivityEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ActivityEventWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountFollowersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectFollowerWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountStarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectStarWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountReleasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReleaseWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountUpdatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectUpdateWhereInput
   }
 
 
@@ -3541,6 +4123,11 @@ export namespace Prisma {
     notifications?: boolean | User$notificationsArgs<ExtArgs>
     usernameHistory?: boolean | User$usernameHistoryArgs<ExtArgs>
     platformAdmin?: boolean | User$platformAdminArgs<ExtArgs>
+    activityEvents?: boolean | User$activityEventsArgs<ExtArgs>
+    followedProjects?: boolean | User$followedProjectsArgs<ExtArgs>
+    starredProjects?: boolean | User$starredProjectsArgs<ExtArgs>
+    releasesAuthored?: boolean | User$releasesAuthoredArgs<ExtArgs>
+    projectUpdates?: boolean | User$projectUpdatesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3635,6 +4222,11 @@ export namespace Prisma {
     notifications?: boolean | User$notificationsArgs<ExtArgs>
     usernameHistory?: boolean | User$usernameHistoryArgs<ExtArgs>
     platformAdmin?: boolean | User$platformAdminArgs<ExtArgs>
+    activityEvents?: boolean | User$activityEventsArgs<ExtArgs>
+    followedProjects?: boolean | User$followedProjectsArgs<ExtArgs>
+    starredProjects?: boolean | User$starredProjectsArgs<ExtArgs>
+    releasesAuthored?: boolean | User$releasesAuthoredArgs<ExtArgs>
+    projectUpdates?: boolean | User$projectUpdatesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3657,6 +4249,11 @@ export namespace Prisma {
       notifications: Prisma.$NotificationPayload<ExtArgs>[]
       usernameHistory: Prisma.$UsernameHistoryPayload<ExtArgs>[]
       platformAdmin: Prisma.$PlatformAdminPayload<ExtArgs> | null
+      activityEvents: Prisma.$ActivityEventPayload<ExtArgs>[]
+      followedProjects: Prisma.$ProjectFollowerPayload<ExtArgs>[]
+      starredProjects: Prisma.$ProjectStarPayload<ExtArgs>[]
+      releasesAuthored: Prisma.$ReleasePayload<ExtArgs>[]
+      projectUpdates: Prisma.$ProjectUpdatePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4089,6 +4686,11 @@ export namespace Prisma {
     notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     usernameHistory<T extends User$usernameHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$usernameHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsernameHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     platformAdmin<T extends User$platformAdminArgs<ExtArgs> = {}>(args?: Subset<T, User$platformAdminArgs<ExtArgs>>): Prisma__PlatformAdminClient<$Result.GetResult<Prisma.$PlatformAdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    activityEvents<T extends User$activityEventsArgs<ExtArgs> = {}>(args?: Subset<T, User$activityEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    followedProjects<T extends User$followedProjectsArgs<ExtArgs> = {}>(args?: Subset<T, User$followedProjectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    starredProjects<T extends User$starredProjectsArgs<ExtArgs> = {}>(args?: Subset<T, User$starredProjectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    releasesAuthored<T extends User$releasesAuthoredArgs<ExtArgs> = {}>(args?: Subset<T, User$releasesAuthoredArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    projectUpdates<T extends User$projectUpdatesArgs<ExtArgs> = {}>(args?: Subset<T, User$projectUpdatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4856,6 +5458,126 @@ export namespace Prisma {
      */
     include?: PlatformAdminInclude<ExtArgs> | null
     where?: PlatformAdminWhereInput
+  }
+
+  /**
+   * User.activityEvents
+   */
+  export type User$activityEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    where?: ActivityEventWhereInput
+    orderBy?: ActivityEventOrderByWithRelationInput | ActivityEventOrderByWithRelationInput[]
+    cursor?: ActivityEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ActivityEventScalarFieldEnum | ActivityEventScalarFieldEnum[]
+  }
+
+  /**
+   * User.followedProjects
+   */
+  export type User$followedProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    where?: ProjectFollowerWhereInput
+    orderBy?: ProjectFollowerOrderByWithRelationInput | ProjectFollowerOrderByWithRelationInput[]
+    cursor?: ProjectFollowerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectFollowerScalarFieldEnum | ProjectFollowerScalarFieldEnum[]
+  }
+
+  /**
+   * User.starredProjects
+   */
+  export type User$starredProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    where?: ProjectStarWhereInput
+    orderBy?: ProjectStarOrderByWithRelationInput | ProjectStarOrderByWithRelationInput[]
+    cursor?: ProjectStarWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectStarScalarFieldEnum | ProjectStarScalarFieldEnum[]
+  }
+
+  /**
+   * User.releasesAuthored
+   */
+  export type User$releasesAuthoredArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    where?: ReleaseWhereInput
+    orderBy?: ReleaseOrderByWithRelationInput | ReleaseOrderByWithRelationInput[]
+    cursor?: ReleaseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReleaseScalarFieldEnum | ReleaseScalarFieldEnum[]
+  }
+
+  /**
+   * User.projectUpdates
+   */
+  export type User$projectUpdatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    where?: ProjectUpdateWhereInput
+    orderBy?: ProjectUpdateOrderByWithRelationInput | ProjectUpdateOrderByWithRelationInput[]
+    cursor?: ProjectUpdateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectUpdateScalarFieldEnum | ProjectUpdateScalarFieldEnum[]
   }
 
   /**
@@ -10447,6 +11169,11 @@ export namespace Prisma {
     threads?: boolean | Project$threadsArgs<ExtArgs>
     files?: boolean | Project$filesArgs<ExtArgs>
     contributionRecords?: boolean | Project$contributionRecordsArgs<ExtArgs>
+    activityEvents?: boolean | Project$activityEventsArgs<ExtArgs>
+    followers?: boolean | Project$followersArgs<ExtArgs>
+    stars?: boolean | Project$starsArgs<ExtArgs>
+    releases?: boolean | Project$releasesArgs<ExtArgs>
+    updates?: boolean | Project$updatesArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -10526,6 +11253,11 @@ export namespace Prisma {
     threads?: boolean | Project$threadsArgs<ExtArgs>
     files?: boolean | Project$filesArgs<ExtArgs>
     contributionRecords?: boolean | Project$contributionRecordsArgs<ExtArgs>
+    activityEvents?: boolean | Project$activityEventsArgs<ExtArgs>
+    followers?: boolean | Project$followersArgs<ExtArgs>
+    stars?: boolean | Project$starsArgs<ExtArgs>
+    releases?: boolean | Project$releasesArgs<ExtArgs>
+    updates?: boolean | Project$updatesArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10547,6 +11279,11 @@ export namespace Prisma {
       threads: Prisma.$DiscussionThreadPayload<ExtArgs>[]
       files: Prisma.$FileAssetPayload<ExtArgs>[]
       contributionRecords: Prisma.$ContributionRecordPayload<ExtArgs>[]
+      activityEvents: Prisma.$ActivityEventPayload<ExtArgs>[]
+      followers: Prisma.$ProjectFollowerPayload<ExtArgs>[]
+      stars: Prisma.$ProjectStarPayload<ExtArgs>[]
+      releases: Prisma.$ReleasePayload<ExtArgs>[]
+      updates: Prisma.$ProjectUpdatePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10970,6 +11707,11 @@ export namespace Prisma {
     threads<T extends Project$threadsArgs<ExtArgs> = {}>(args?: Subset<T, Project$threadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiscussionThreadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     files<T extends Project$filesArgs<ExtArgs> = {}>(args?: Subset<T, Project$filesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FileAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contributionRecords<T extends Project$contributionRecordsArgs<ExtArgs> = {}>(args?: Subset<T, Project$contributionRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContributionRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    activityEvents<T extends Project$activityEventsArgs<ExtArgs> = {}>(args?: Subset<T, Project$activityEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    followers<T extends Project$followersArgs<ExtArgs> = {}>(args?: Subset<T, Project$followersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    stars<T extends Project$starsArgs<ExtArgs> = {}>(args?: Subset<T, Project$starsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    releases<T extends Project$releasesArgs<ExtArgs> = {}>(args?: Subset<T, Project$releasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    updates<T extends Project$updatesArgs<ExtArgs> = {}>(args?: Subset<T, Project$updatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11602,6 +12344,126 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ContributionRecordScalarFieldEnum | ContributionRecordScalarFieldEnum[]
+  }
+
+  /**
+   * Project.activityEvents
+   */
+  export type Project$activityEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    where?: ActivityEventWhereInput
+    orderBy?: ActivityEventOrderByWithRelationInput | ActivityEventOrderByWithRelationInput[]
+    cursor?: ActivityEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ActivityEventScalarFieldEnum | ActivityEventScalarFieldEnum[]
+  }
+
+  /**
+   * Project.followers
+   */
+  export type Project$followersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    where?: ProjectFollowerWhereInput
+    orderBy?: ProjectFollowerOrderByWithRelationInput | ProjectFollowerOrderByWithRelationInput[]
+    cursor?: ProjectFollowerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectFollowerScalarFieldEnum | ProjectFollowerScalarFieldEnum[]
+  }
+
+  /**
+   * Project.stars
+   */
+  export type Project$starsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    where?: ProjectStarWhereInput
+    orderBy?: ProjectStarOrderByWithRelationInput | ProjectStarOrderByWithRelationInput[]
+    cursor?: ProjectStarWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectStarScalarFieldEnum | ProjectStarScalarFieldEnum[]
+  }
+
+  /**
+   * Project.releases
+   */
+  export type Project$releasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    where?: ReleaseWhereInput
+    orderBy?: ReleaseOrderByWithRelationInput | ReleaseOrderByWithRelationInput[]
+    cursor?: ReleaseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReleaseScalarFieldEnum | ReleaseScalarFieldEnum[]
+  }
+
+  /**
+   * Project.updates
+   */
+  export type Project$updatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    where?: ProjectUpdateWhereInput
+    orderBy?: ProjectUpdateOrderByWithRelationInput | ProjectUpdateOrderByWithRelationInput[]
+    cursor?: ProjectUpdateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectUpdateScalarFieldEnum | ProjectUpdateScalarFieldEnum[]
   }
 
   /**
@@ -26148,6 +27010,5423 @@ export namespace Prisma {
 
 
   /**
+   * Model ActivityEvent
+   */
+
+  export type AggregateActivityEvent = {
+    _count: ActivityEventCountAggregateOutputType | null
+    _min: ActivityEventMinAggregateOutputType | null
+    _max: ActivityEventMaxAggregateOutputType | null
+  }
+
+  export type ActivityEventMinAggregateOutputType = {
+    id: string | null
+    actorId: string | null
+    projectId: string | null
+    type: $Enums.ActivityEventType | null
+    targetType: string | null
+    targetId: string | null
+    visibility: $Enums.Visibility | null
+    createdAt: Date | null
+    expiresAt: Date | null
+  }
+
+  export type ActivityEventMaxAggregateOutputType = {
+    id: string | null
+    actorId: string | null
+    projectId: string | null
+    type: $Enums.ActivityEventType | null
+    targetType: string | null
+    targetId: string | null
+    visibility: $Enums.Visibility | null
+    createdAt: Date | null
+    expiresAt: Date | null
+  }
+
+  export type ActivityEventCountAggregateOutputType = {
+    id: number
+    actorId: number
+    projectId: number
+    type: number
+    targetType: number
+    targetId: number
+    metadata: number
+    visibility: number
+    createdAt: number
+    expiresAt: number
+    _all: number
+  }
+
+
+  export type ActivityEventMinAggregateInputType = {
+    id?: true
+    actorId?: true
+    projectId?: true
+    type?: true
+    targetType?: true
+    targetId?: true
+    visibility?: true
+    createdAt?: true
+    expiresAt?: true
+  }
+
+  export type ActivityEventMaxAggregateInputType = {
+    id?: true
+    actorId?: true
+    projectId?: true
+    type?: true
+    targetType?: true
+    targetId?: true
+    visibility?: true
+    createdAt?: true
+    expiresAt?: true
+  }
+
+  export type ActivityEventCountAggregateInputType = {
+    id?: true
+    actorId?: true
+    projectId?: true
+    type?: true
+    targetType?: true
+    targetId?: true
+    metadata?: true
+    visibility?: true
+    createdAt?: true
+    expiresAt?: true
+    _all?: true
+  }
+
+  export type ActivityEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ActivityEvent to aggregate.
+     */
+    where?: ActivityEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivityEvents to fetch.
+     */
+    orderBy?: ActivityEventOrderByWithRelationInput | ActivityEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ActivityEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivityEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivityEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ActivityEvents
+    **/
+    _count?: true | ActivityEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ActivityEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ActivityEventMaxAggregateInputType
+  }
+
+  export type GetActivityEventAggregateType<T extends ActivityEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateActivityEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateActivityEvent[P]>
+      : GetScalarType<T[P], AggregateActivityEvent[P]>
+  }
+
+
+
+
+  export type ActivityEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ActivityEventWhereInput
+    orderBy?: ActivityEventOrderByWithAggregationInput | ActivityEventOrderByWithAggregationInput[]
+    by: ActivityEventScalarFieldEnum[] | ActivityEventScalarFieldEnum
+    having?: ActivityEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ActivityEventCountAggregateInputType | true
+    _min?: ActivityEventMinAggregateInputType
+    _max?: ActivityEventMaxAggregateInputType
+  }
+
+  export type ActivityEventGroupByOutputType = {
+    id: string
+    actorId: string
+    projectId: string
+    type: $Enums.ActivityEventType
+    targetType: string | null
+    targetId: string | null
+    metadata: JsonValue | null
+    visibility: $Enums.Visibility
+    createdAt: Date
+    expiresAt: Date | null
+    _count: ActivityEventCountAggregateOutputType | null
+    _min: ActivityEventMinAggregateOutputType | null
+    _max: ActivityEventMaxAggregateOutputType | null
+  }
+
+  type GetActivityEventGroupByPayload<T extends ActivityEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ActivityEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ActivityEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ActivityEventGroupByOutputType[P]>
+            : GetScalarType<T[P], ActivityEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ActivityEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    actorId?: boolean
+    projectId?: boolean
+    type?: boolean
+    targetType?: boolean
+    targetId?: boolean
+    metadata?: boolean
+    visibility?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["activityEvent"]>
+
+  export type ActivityEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    actorId?: boolean
+    projectId?: boolean
+    type?: boolean
+    targetType?: boolean
+    targetId?: boolean
+    metadata?: boolean
+    visibility?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["activityEvent"]>
+
+  export type ActivityEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    actorId?: boolean
+    projectId?: boolean
+    type?: boolean
+    targetType?: boolean
+    targetId?: boolean
+    metadata?: boolean
+    visibility?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["activityEvent"]>
+
+  export type ActivityEventSelectScalar = {
+    id?: boolean
+    actorId?: boolean
+    projectId?: boolean
+    type?: boolean
+    targetType?: boolean
+    targetId?: boolean
+    metadata?: boolean
+    visibility?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+  }
+
+  export type ActivityEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "actorId" | "projectId" | "type" | "targetType" | "targetId" | "metadata" | "visibility" | "createdAt" | "expiresAt", ExtArgs["result"]["activityEvent"]>
+  export type ActivityEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ActivityEventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ActivityEventIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    actor?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ActivityEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ActivityEvent"
+    objects: {
+      actor: Prisma.$UserPayload<ExtArgs>
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      actorId: string
+      projectId: string
+      type: $Enums.ActivityEventType
+      targetType: string | null
+      targetId: string | null
+      metadata: Prisma.JsonValue | null
+      visibility: $Enums.Visibility
+      createdAt: Date
+      expiresAt: Date | null
+    }, ExtArgs["result"]["activityEvent"]>
+    composites: {}
+  }
+
+  type ActivityEventGetPayload<S extends boolean | null | undefined | ActivityEventDefaultArgs> = $Result.GetResult<Prisma.$ActivityEventPayload, S>
+
+  type ActivityEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ActivityEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ActivityEventCountAggregateInputType | true
+    }
+
+  export interface ActivityEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ActivityEvent'], meta: { name: 'ActivityEvent' } }
+    /**
+     * Find zero or one ActivityEvent that matches the filter.
+     * @param {ActivityEventFindUniqueArgs} args - Arguments to find a ActivityEvent
+     * @example
+     * // Get one ActivityEvent
+     * const activityEvent = await prisma.activityEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ActivityEventFindUniqueArgs>(args: SelectSubset<T, ActivityEventFindUniqueArgs<ExtArgs>>): Prisma__ActivityEventClient<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ActivityEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ActivityEventFindUniqueOrThrowArgs} args - Arguments to find a ActivityEvent
+     * @example
+     * // Get one ActivityEvent
+     * const activityEvent = await prisma.activityEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ActivityEventFindUniqueOrThrowArgs>(args: SelectSubset<T, ActivityEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ActivityEventClient<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ActivityEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityEventFindFirstArgs} args - Arguments to find a ActivityEvent
+     * @example
+     * // Get one ActivityEvent
+     * const activityEvent = await prisma.activityEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ActivityEventFindFirstArgs>(args?: SelectSubset<T, ActivityEventFindFirstArgs<ExtArgs>>): Prisma__ActivityEventClient<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ActivityEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityEventFindFirstOrThrowArgs} args - Arguments to find a ActivityEvent
+     * @example
+     * // Get one ActivityEvent
+     * const activityEvent = await prisma.activityEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ActivityEventFindFirstOrThrowArgs>(args?: SelectSubset<T, ActivityEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__ActivityEventClient<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ActivityEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ActivityEvents
+     * const activityEvents = await prisma.activityEvent.findMany()
+     * 
+     * // Get first 10 ActivityEvents
+     * const activityEvents = await prisma.activityEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const activityEventWithIdOnly = await prisma.activityEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ActivityEventFindManyArgs>(args?: SelectSubset<T, ActivityEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ActivityEvent.
+     * @param {ActivityEventCreateArgs} args - Arguments to create a ActivityEvent.
+     * @example
+     * // Create one ActivityEvent
+     * const ActivityEvent = await prisma.activityEvent.create({
+     *   data: {
+     *     // ... data to create a ActivityEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends ActivityEventCreateArgs>(args: SelectSubset<T, ActivityEventCreateArgs<ExtArgs>>): Prisma__ActivityEventClient<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ActivityEvents.
+     * @param {ActivityEventCreateManyArgs} args - Arguments to create many ActivityEvents.
+     * @example
+     * // Create many ActivityEvents
+     * const activityEvent = await prisma.activityEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ActivityEventCreateManyArgs>(args?: SelectSubset<T, ActivityEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ActivityEvents and returns the data saved in the database.
+     * @param {ActivityEventCreateManyAndReturnArgs} args - Arguments to create many ActivityEvents.
+     * @example
+     * // Create many ActivityEvents
+     * const activityEvent = await prisma.activityEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ActivityEvents and only return the `id`
+     * const activityEventWithIdOnly = await prisma.activityEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ActivityEventCreateManyAndReturnArgs>(args?: SelectSubset<T, ActivityEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ActivityEvent.
+     * @param {ActivityEventDeleteArgs} args - Arguments to delete one ActivityEvent.
+     * @example
+     * // Delete one ActivityEvent
+     * const ActivityEvent = await prisma.activityEvent.delete({
+     *   where: {
+     *     // ... filter to delete one ActivityEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ActivityEventDeleteArgs>(args: SelectSubset<T, ActivityEventDeleteArgs<ExtArgs>>): Prisma__ActivityEventClient<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ActivityEvent.
+     * @param {ActivityEventUpdateArgs} args - Arguments to update one ActivityEvent.
+     * @example
+     * // Update one ActivityEvent
+     * const activityEvent = await prisma.activityEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ActivityEventUpdateArgs>(args: SelectSubset<T, ActivityEventUpdateArgs<ExtArgs>>): Prisma__ActivityEventClient<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ActivityEvents.
+     * @param {ActivityEventDeleteManyArgs} args - Arguments to filter ActivityEvents to delete.
+     * @example
+     * // Delete a few ActivityEvents
+     * const { count } = await prisma.activityEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ActivityEventDeleteManyArgs>(args?: SelectSubset<T, ActivityEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ActivityEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ActivityEvents
+     * const activityEvent = await prisma.activityEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ActivityEventUpdateManyArgs>(args: SelectSubset<T, ActivityEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ActivityEvents and returns the data updated in the database.
+     * @param {ActivityEventUpdateManyAndReturnArgs} args - Arguments to update many ActivityEvents.
+     * @example
+     * // Update many ActivityEvents
+     * const activityEvent = await prisma.activityEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ActivityEvents and only return the `id`
+     * const activityEventWithIdOnly = await prisma.activityEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ActivityEventUpdateManyAndReturnArgs>(args: SelectSubset<T, ActivityEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ActivityEvent.
+     * @param {ActivityEventUpsertArgs} args - Arguments to update or create a ActivityEvent.
+     * @example
+     * // Update or create a ActivityEvent
+     * const activityEvent = await prisma.activityEvent.upsert({
+     *   create: {
+     *     // ... data to create a ActivityEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ActivityEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ActivityEventUpsertArgs>(args: SelectSubset<T, ActivityEventUpsertArgs<ExtArgs>>): Prisma__ActivityEventClient<$Result.GetResult<Prisma.$ActivityEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ActivityEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityEventCountArgs} args - Arguments to filter ActivityEvents to count.
+     * @example
+     * // Count the number of ActivityEvents
+     * const count = await prisma.activityEvent.count({
+     *   where: {
+     *     // ... the filter for the ActivityEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends ActivityEventCountArgs>(
+      args?: Subset<T, ActivityEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ActivityEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ActivityEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ActivityEventAggregateArgs>(args: Subset<T, ActivityEventAggregateArgs>): Prisma.PrismaPromise<GetActivityEventAggregateType<T>>
+
+    /**
+     * Group by ActivityEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ActivityEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ActivityEventGroupByArgs['orderBy'] }
+        : { orderBy?: ActivityEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ActivityEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetActivityEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ActivityEvent model
+   */
+  readonly fields: ActivityEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ActivityEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ActivityEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    actor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ActivityEvent model
+   */
+  interface ActivityEventFieldRefs {
+    readonly id: FieldRef<"ActivityEvent", 'String'>
+    readonly actorId: FieldRef<"ActivityEvent", 'String'>
+    readonly projectId: FieldRef<"ActivityEvent", 'String'>
+    readonly type: FieldRef<"ActivityEvent", 'ActivityEventType'>
+    readonly targetType: FieldRef<"ActivityEvent", 'String'>
+    readonly targetId: FieldRef<"ActivityEvent", 'String'>
+    readonly metadata: FieldRef<"ActivityEvent", 'Json'>
+    readonly visibility: FieldRef<"ActivityEvent", 'Visibility'>
+    readonly createdAt: FieldRef<"ActivityEvent", 'DateTime'>
+    readonly expiresAt: FieldRef<"ActivityEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ActivityEvent findUnique
+   */
+  export type ActivityEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    /**
+     * Filter, which ActivityEvent to fetch.
+     */
+    where: ActivityEventWhereUniqueInput
+  }
+
+  /**
+   * ActivityEvent findUniqueOrThrow
+   */
+  export type ActivityEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    /**
+     * Filter, which ActivityEvent to fetch.
+     */
+    where: ActivityEventWhereUniqueInput
+  }
+
+  /**
+   * ActivityEvent findFirst
+   */
+  export type ActivityEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    /**
+     * Filter, which ActivityEvent to fetch.
+     */
+    where?: ActivityEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivityEvents to fetch.
+     */
+    orderBy?: ActivityEventOrderByWithRelationInput | ActivityEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ActivityEvents.
+     */
+    cursor?: ActivityEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivityEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivityEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ActivityEvents.
+     */
+    distinct?: ActivityEventScalarFieldEnum | ActivityEventScalarFieldEnum[]
+  }
+
+  /**
+   * ActivityEvent findFirstOrThrow
+   */
+  export type ActivityEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    /**
+     * Filter, which ActivityEvent to fetch.
+     */
+    where?: ActivityEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivityEvents to fetch.
+     */
+    orderBy?: ActivityEventOrderByWithRelationInput | ActivityEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ActivityEvents.
+     */
+    cursor?: ActivityEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivityEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivityEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ActivityEvents.
+     */
+    distinct?: ActivityEventScalarFieldEnum | ActivityEventScalarFieldEnum[]
+  }
+
+  /**
+   * ActivityEvent findMany
+   */
+  export type ActivityEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    /**
+     * Filter, which ActivityEvents to fetch.
+     */
+    where?: ActivityEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivityEvents to fetch.
+     */
+    orderBy?: ActivityEventOrderByWithRelationInput | ActivityEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ActivityEvents.
+     */
+    cursor?: ActivityEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivityEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivityEvents.
+     */
+    skip?: number
+    distinct?: ActivityEventScalarFieldEnum | ActivityEventScalarFieldEnum[]
+  }
+
+  /**
+   * ActivityEvent create
+   */
+  export type ActivityEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ActivityEvent.
+     */
+    data: XOR<ActivityEventCreateInput, ActivityEventUncheckedCreateInput>
+  }
+
+  /**
+   * ActivityEvent createMany
+   */
+  export type ActivityEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ActivityEvents.
+     */
+    data: ActivityEventCreateManyInput | ActivityEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ActivityEvent createManyAndReturn
+   */
+  export type ActivityEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many ActivityEvents.
+     */
+    data: ActivityEventCreateManyInput | ActivityEventCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ActivityEvent update
+   */
+  export type ActivityEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ActivityEvent.
+     */
+    data: XOR<ActivityEventUpdateInput, ActivityEventUncheckedUpdateInput>
+    /**
+     * Choose, which ActivityEvent to update.
+     */
+    where: ActivityEventWhereUniqueInput
+  }
+
+  /**
+   * ActivityEvent updateMany
+   */
+  export type ActivityEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ActivityEvents.
+     */
+    data: XOR<ActivityEventUpdateManyMutationInput, ActivityEventUncheckedUpdateManyInput>
+    /**
+     * Filter which ActivityEvents to update
+     */
+    where?: ActivityEventWhereInput
+    /**
+     * Limit how many ActivityEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ActivityEvent updateManyAndReturn
+   */
+  export type ActivityEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * The data used to update ActivityEvents.
+     */
+    data: XOR<ActivityEventUpdateManyMutationInput, ActivityEventUncheckedUpdateManyInput>
+    /**
+     * Filter which ActivityEvents to update
+     */
+    where?: ActivityEventWhereInput
+    /**
+     * Limit how many ActivityEvents to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ActivityEvent upsert
+   */
+  export type ActivityEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ActivityEvent to update in case it exists.
+     */
+    where: ActivityEventWhereUniqueInput
+    /**
+     * In case the ActivityEvent found by the `where` argument doesn't exist, create a new ActivityEvent with this data.
+     */
+    create: XOR<ActivityEventCreateInput, ActivityEventUncheckedCreateInput>
+    /**
+     * In case the ActivityEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ActivityEventUpdateInput, ActivityEventUncheckedUpdateInput>
+  }
+
+  /**
+   * ActivityEvent delete
+   */
+  export type ActivityEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+    /**
+     * Filter which ActivityEvent to delete.
+     */
+    where: ActivityEventWhereUniqueInput
+  }
+
+  /**
+   * ActivityEvent deleteMany
+   */
+  export type ActivityEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ActivityEvents to delete
+     */
+    where?: ActivityEventWhereInput
+    /**
+     * Limit how many ActivityEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ActivityEvent without action
+   */
+  export type ActivityEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityEvent
+     */
+    select?: ActivityEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityEvent
+     */
+    omit?: ActivityEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivityEventInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectFollower
+   */
+
+  export type AggregateProjectFollower = {
+    _count: ProjectFollowerCountAggregateOutputType | null
+    _min: ProjectFollowerMinAggregateOutputType | null
+    _max: ProjectFollowerMaxAggregateOutputType | null
+  }
+
+  export type ProjectFollowerMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    projectId: string | null
+    createdAt: Date | null
+  }
+
+  export type ProjectFollowerMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    projectId: string | null
+    createdAt: Date | null
+  }
+
+  export type ProjectFollowerCountAggregateOutputType = {
+    id: number
+    userId: number
+    projectId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ProjectFollowerMinAggregateInputType = {
+    id?: true
+    userId?: true
+    projectId?: true
+    createdAt?: true
+  }
+
+  export type ProjectFollowerMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    projectId?: true
+    createdAt?: true
+  }
+
+  export type ProjectFollowerCountAggregateInputType = {
+    id?: true
+    userId?: true
+    projectId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ProjectFollowerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectFollower to aggregate.
+     */
+    where?: ProjectFollowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFollowers to fetch.
+     */
+    orderBy?: ProjectFollowerOrderByWithRelationInput | ProjectFollowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectFollowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFollowers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFollowers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectFollowers
+    **/
+    _count?: true | ProjectFollowerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectFollowerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectFollowerMaxAggregateInputType
+  }
+
+  export type GetProjectFollowerAggregateType<T extends ProjectFollowerAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectFollower]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectFollower[P]>
+      : GetScalarType<T[P], AggregateProjectFollower[P]>
+  }
+
+
+
+
+  export type ProjectFollowerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectFollowerWhereInput
+    orderBy?: ProjectFollowerOrderByWithAggregationInput | ProjectFollowerOrderByWithAggregationInput[]
+    by: ProjectFollowerScalarFieldEnum[] | ProjectFollowerScalarFieldEnum
+    having?: ProjectFollowerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectFollowerCountAggregateInputType | true
+    _min?: ProjectFollowerMinAggregateInputType
+    _max?: ProjectFollowerMaxAggregateInputType
+  }
+
+  export type ProjectFollowerGroupByOutputType = {
+    id: string
+    userId: string
+    projectId: string
+    createdAt: Date
+    _count: ProjectFollowerCountAggregateOutputType | null
+    _min: ProjectFollowerMinAggregateOutputType | null
+    _max: ProjectFollowerMaxAggregateOutputType | null
+  }
+
+  type GetProjectFollowerGroupByPayload<T extends ProjectFollowerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectFollowerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectFollowerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectFollowerGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectFollowerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectFollowerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    projectId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectFollower"]>
+
+  export type ProjectFollowerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    projectId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectFollower"]>
+
+  export type ProjectFollowerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    projectId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectFollower"]>
+
+  export type ProjectFollowerSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    projectId?: boolean
+    createdAt?: boolean
+  }
+
+  export type ProjectFollowerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "projectId" | "createdAt", ExtArgs["result"]["projectFollower"]>
+  export type ProjectFollowerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ProjectFollowerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ProjectFollowerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectFollowerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectFollower"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      projectId: string
+      createdAt: Date
+    }, ExtArgs["result"]["projectFollower"]>
+    composites: {}
+  }
+
+  type ProjectFollowerGetPayload<S extends boolean | null | undefined | ProjectFollowerDefaultArgs> = $Result.GetResult<Prisma.$ProjectFollowerPayload, S>
+
+  type ProjectFollowerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectFollowerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectFollowerCountAggregateInputType | true
+    }
+
+  export interface ProjectFollowerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectFollower'], meta: { name: 'ProjectFollower' } }
+    /**
+     * Find zero or one ProjectFollower that matches the filter.
+     * @param {ProjectFollowerFindUniqueArgs} args - Arguments to find a ProjectFollower
+     * @example
+     * // Get one ProjectFollower
+     * const projectFollower = await prisma.projectFollower.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectFollowerFindUniqueArgs>(args: SelectSubset<T, ProjectFollowerFindUniqueArgs<ExtArgs>>): Prisma__ProjectFollowerClient<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectFollower that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectFollowerFindUniqueOrThrowArgs} args - Arguments to find a ProjectFollower
+     * @example
+     * // Get one ProjectFollower
+     * const projectFollower = await prisma.projectFollower.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectFollowerFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectFollowerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectFollowerClient<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectFollower that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFollowerFindFirstArgs} args - Arguments to find a ProjectFollower
+     * @example
+     * // Get one ProjectFollower
+     * const projectFollower = await prisma.projectFollower.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectFollowerFindFirstArgs>(args?: SelectSubset<T, ProjectFollowerFindFirstArgs<ExtArgs>>): Prisma__ProjectFollowerClient<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectFollower that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFollowerFindFirstOrThrowArgs} args - Arguments to find a ProjectFollower
+     * @example
+     * // Get one ProjectFollower
+     * const projectFollower = await prisma.projectFollower.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectFollowerFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectFollowerFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectFollowerClient<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectFollowers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFollowerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectFollowers
+     * const projectFollowers = await prisma.projectFollower.findMany()
+     * 
+     * // Get first 10 ProjectFollowers
+     * const projectFollowers = await prisma.projectFollower.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectFollowerWithIdOnly = await prisma.projectFollower.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectFollowerFindManyArgs>(args?: SelectSubset<T, ProjectFollowerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectFollower.
+     * @param {ProjectFollowerCreateArgs} args - Arguments to create a ProjectFollower.
+     * @example
+     * // Create one ProjectFollower
+     * const ProjectFollower = await prisma.projectFollower.create({
+     *   data: {
+     *     // ... data to create a ProjectFollower
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectFollowerCreateArgs>(args: SelectSubset<T, ProjectFollowerCreateArgs<ExtArgs>>): Prisma__ProjectFollowerClient<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectFollowers.
+     * @param {ProjectFollowerCreateManyArgs} args - Arguments to create many ProjectFollowers.
+     * @example
+     * // Create many ProjectFollowers
+     * const projectFollower = await prisma.projectFollower.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectFollowerCreateManyArgs>(args?: SelectSubset<T, ProjectFollowerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProjectFollowers and returns the data saved in the database.
+     * @param {ProjectFollowerCreateManyAndReturnArgs} args - Arguments to create many ProjectFollowers.
+     * @example
+     * // Create many ProjectFollowers
+     * const projectFollower = await prisma.projectFollower.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProjectFollowers and only return the `id`
+     * const projectFollowerWithIdOnly = await prisma.projectFollower.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectFollowerCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectFollowerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProjectFollower.
+     * @param {ProjectFollowerDeleteArgs} args - Arguments to delete one ProjectFollower.
+     * @example
+     * // Delete one ProjectFollower
+     * const ProjectFollower = await prisma.projectFollower.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectFollower
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectFollowerDeleteArgs>(args: SelectSubset<T, ProjectFollowerDeleteArgs<ExtArgs>>): Prisma__ProjectFollowerClient<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectFollower.
+     * @param {ProjectFollowerUpdateArgs} args - Arguments to update one ProjectFollower.
+     * @example
+     * // Update one ProjectFollower
+     * const projectFollower = await prisma.projectFollower.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectFollowerUpdateArgs>(args: SelectSubset<T, ProjectFollowerUpdateArgs<ExtArgs>>): Prisma__ProjectFollowerClient<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectFollowers.
+     * @param {ProjectFollowerDeleteManyArgs} args - Arguments to filter ProjectFollowers to delete.
+     * @example
+     * // Delete a few ProjectFollowers
+     * const { count } = await prisma.projectFollower.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectFollowerDeleteManyArgs>(args?: SelectSubset<T, ProjectFollowerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectFollowers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFollowerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectFollowers
+     * const projectFollower = await prisma.projectFollower.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectFollowerUpdateManyArgs>(args: SelectSubset<T, ProjectFollowerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectFollowers and returns the data updated in the database.
+     * @param {ProjectFollowerUpdateManyAndReturnArgs} args - Arguments to update many ProjectFollowers.
+     * @example
+     * // Update many ProjectFollowers
+     * const projectFollower = await prisma.projectFollower.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProjectFollowers and only return the `id`
+     * const projectFollowerWithIdOnly = await prisma.projectFollower.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectFollowerUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectFollowerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProjectFollower.
+     * @param {ProjectFollowerUpsertArgs} args - Arguments to update or create a ProjectFollower.
+     * @example
+     * // Update or create a ProjectFollower
+     * const projectFollower = await prisma.projectFollower.upsert({
+     *   create: {
+     *     // ... data to create a ProjectFollower
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectFollower we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectFollowerUpsertArgs>(args: SelectSubset<T, ProjectFollowerUpsertArgs<ExtArgs>>): Prisma__ProjectFollowerClient<$Result.GetResult<Prisma.$ProjectFollowerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectFollowers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFollowerCountArgs} args - Arguments to filter ProjectFollowers to count.
+     * @example
+     * // Count the number of ProjectFollowers
+     * const count = await prisma.projectFollower.count({
+     *   where: {
+     *     // ... the filter for the ProjectFollowers we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectFollowerCountArgs>(
+      args?: Subset<T, ProjectFollowerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectFollowerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectFollower.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFollowerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectFollowerAggregateArgs>(args: Subset<T, ProjectFollowerAggregateArgs>): Prisma.PrismaPromise<GetProjectFollowerAggregateType<T>>
+
+    /**
+     * Group by ProjectFollower.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFollowerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectFollowerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectFollowerGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectFollowerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectFollowerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectFollowerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectFollower model
+   */
+  readonly fields: ProjectFollowerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectFollower.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectFollowerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectFollower model
+   */
+  interface ProjectFollowerFieldRefs {
+    readonly id: FieldRef<"ProjectFollower", 'String'>
+    readonly userId: FieldRef<"ProjectFollower", 'String'>
+    readonly projectId: FieldRef<"ProjectFollower", 'String'>
+    readonly createdAt: FieldRef<"ProjectFollower", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectFollower findUnique
+   */
+  export type ProjectFollowerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFollower to fetch.
+     */
+    where: ProjectFollowerWhereUniqueInput
+  }
+
+  /**
+   * ProjectFollower findUniqueOrThrow
+   */
+  export type ProjectFollowerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFollower to fetch.
+     */
+    where: ProjectFollowerWhereUniqueInput
+  }
+
+  /**
+   * ProjectFollower findFirst
+   */
+  export type ProjectFollowerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFollower to fetch.
+     */
+    where?: ProjectFollowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFollowers to fetch.
+     */
+    orderBy?: ProjectFollowerOrderByWithRelationInput | ProjectFollowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectFollowers.
+     */
+    cursor?: ProjectFollowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFollowers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFollowers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectFollowers.
+     */
+    distinct?: ProjectFollowerScalarFieldEnum | ProjectFollowerScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectFollower findFirstOrThrow
+   */
+  export type ProjectFollowerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFollower to fetch.
+     */
+    where?: ProjectFollowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFollowers to fetch.
+     */
+    orderBy?: ProjectFollowerOrderByWithRelationInput | ProjectFollowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectFollowers.
+     */
+    cursor?: ProjectFollowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFollowers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFollowers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectFollowers.
+     */
+    distinct?: ProjectFollowerScalarFieldEnum | ProjectFollowerScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectFollower findMany
+   */
+  export type ProjectFollowerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFollowers to fetch.
+     */
+    where?: ProjectFollowerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFollowers to fetch.
+     */
+    orderBy?: ProjectFollowerOrderByWithRelationInput | ProjectFollowerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectFollowers.
+     */
+    cursor?: ProjectFollowerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFollowers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFollowers.
+     */
+    skip?: number
+    distinct?: ProjectFollowerScalarFieldEnum | ProjectFollowerScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectFollower create
+   */
+  export type ProjectFollowerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectFollower.
+     */
+    data: XOR<ProjectFollowerCreateInput, ProjectFollowerUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectFollower createMany
+   */
+  export type ProjectFollowerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectFollowers.
+     */
+    data: ProjectFollowerCreateManyInput | ProjectFollowerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectFollower createManyAndReturn
+   */
+  export type ProjectFollowerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProjectFollowers.
+     */
+    data: ProjectFollowerCreateManyInput | ProjectFollowerCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectFollower update
+   */
+  export type ProjectFollowerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectFollower.
+     */
+    data: XOR<ProjectFollowerUpdateInput, ProjectFollowerUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectFollower to update.
+     */
+    where: ProjectFollowerWhereUniqueInput
+  }
+
+  /**
+   * ProjectFollower updateMany
+   */
+  export type ProjectFollowerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectFollowers.
+     */
+    data: XOR<ProjectFollowerUpdateManyMutationInput, ProjectFollowerUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectFollowers to update
+     */
+    where?: ProjectFollowerWhereInput
+    /**
+     * Limit how many ProjectFollowers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectFollower updateManyAndReturn
+   */
+  export type ProjectFollowerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * The data used to update ProjectFollowers.
+     */
+    data: XOR<ProjectFollowerUpdateManyMutationInput, ProjectFollowerUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectFollowers to update
+     */
+    where?: ProjectFollowerWhereInput
+    /**
+     * Limit how many ProjectFollowers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectFollower upsert
+   */
+  export type ProjectFollowerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectFollower to update in case it exists.
+     */
+    where: ProjectFollowerWhereUniqueInput
+    /**
+     * In case the ProjectFollower found by the `where` argument doesn't exist, create a new ProjectFollower with this data.
+     */
+    create: XOR<ProjectFollowerCreateInput, ProjectFollowerUncheckedCreateInput>
+    /**
+     * In case the ProjectFollower was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectFollowerUpdateInput, ProjectFollowerUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectFollower delete
+   */
+  export type ProjectFollowerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectFollower to delete.
+     */
+    where: ProjectFollowerWhereUniqueInput
+  }
+
+  /**
+   * ProjectFollower deleteMany
+   */
+  export type ProjectFollowerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectFollowers to delete
+     */
+    where?: ProjectFollowerWhereInput
+    /**
+     * Limit how many ProjectFollowers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectFollower without action
+   */
+  export type ProjectFollowerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFollower
+     */
+    select?: ProjectFollowerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFollower
+     */
+    omit?: ProjectFollowerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFollowerInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectStar
+   */
+
+  export type AggregateProjectStar = {
+    _count: ProjectStarCountAggregateOutputType | null
+    _min: ProjectStarMinAggregateOutputType | null
+    _max: ProjectStarMaxAggregateOutputType | null
+  }
+
+  export type ProjectStarMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    projectId: string | null
+    createdAt: Date | null
+  }
+
+  export type ProjectStarMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    projectId: string | null
+    createdAt: Date | null
+  }
+
+  export type ProjectStarCountAggregateOutputType = {
+    id: number
+    userId: number
+    projectId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ProjectStarMinAggregateInputType = {
+    id?: true
+    userId?: true
+    projectId?: true
+    createdAt?: true
+  }
+
+  export type ProjectStarMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    projectId?: true
+    createdAt?: true
+  }
+
+  export type ProjectStarCountAggregateInputType = {
+    id?: true
+    userId?: true
+    projectId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ProjectStarAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectStar to aggregate.
+     */
+    where?: ProjectStarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectStars to fetch.
+     */
+    orderBy?: ProjectStarOrderByWithRelationInput | ProjectStarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectStarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectStars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectStars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectStars
+    **/
+    _count?: true | ProjectStarCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectStarMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectStarMaxAggregateInputType
+  }
+
+  export type GetProjectStarAggregateType<T extends ProjectStarAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectStar]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectStar[P]>
+      : GetScalarType<T[P], AggregateProjectStar[P]>
+  }
+
+
+
+
+  export type ProjectStarGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectStarWhereInput
+    orderBy?: ProjectStarOrderByWithAggregationInput | ProjectStarOrderByWithAggregationInput[]
+    by: ProjectStarScalarFieldEnum[] | ProjectStarScalarFieldEnum
+    having?: ProjectStarScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectStarCountAggregateInputType | true
+    _min?: ProjectStarMinAggregateInputType
+    _max?: ProjectStarMaxAggregateInputType
+  }
+
+  export type ProjectStarGroupByOutputType = {
+    id: string
+    userId: string
+    projectId: string
+    createdAt: Date
+    _count: ProjectStarCountAggregateOutputType | null
+    _min: ProjectStarMinAggregateOutputType | null
+    _max: ProjectStarMaxAggregateOutputType | null
+  }
+
+  type GetProjectStarGroupByPayload<T extends ProjectStarGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectStarGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectStarGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectStarGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectStarGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectStarSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    projectId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectStar"]>
+
+  export type ProjectStarSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    projectId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectStar"]>
+
+  export type ProjectStarSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    projectId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectStar"]>
+
+  export type ProjectStarSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    projectId?: boolean
+    createdAt?: boolean
+  }
+
+  export type ProjectStarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "projectId" | "createdAt", ExtArgs["result"]["projectStar"]>
+  export type ProjectStarInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ProjectStarIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ProjectStarIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectStarPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectStar"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      projectId: string
+      createdAt: Date
+    }, ExtArgs["result"]["projectStar"]>
+    composites: {}
+  }
+
+  type ProjectStarGetPayload<S extends boolean | null | undefined | ProjectStarDefaultArgs> = $Result.GetResult<Prisma.$ProjectStarPayload, S>
+
+  type ProjectStarCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectStarFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectStarCountAggregateInputType | true
+    }
+
+  export interface ProjectStarDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectStar'], meta: { name: 'ProjectStar' } }
+    /**
+     * Find zero or one ProjectStar that matches the filter.
+     * @param {ProjectStarFindUniqueArgs} args - Arguments to find a ProjectStar
+     * @example
+     * // Get one ProjectStar
+     * const projectStar = await prisma.projectStar.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectStarFindUniqueArgs>(args: SelectSubset<T, ProjectStarFindUniqueArgs<ExtArgs>>): Prisma__ProjectStarClient<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectStar that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectStarFindUniqueOrThrowArgs} args - Arguments to find a ProjectStar
+     * @example
+     * // Get one ProjectStar
+     * const projectStar = await prisma.projectStar.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectStarFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectStarFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectStarClient<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectStar that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectStarFindFirstArgs} args - Arguments to find a ProjectStar
+     * @example
+     * // Get one ProjectStar
+     * const projectStar = await prisma.projectStar.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectStarFindFirstArgs>(args?: SelectSubset<T, ProjectStarFindFirstArgs<ExtArgs>>): Prisma__ProjectStarClient<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectStar that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectStarFindFirstOrThrowArgs} args - Arguments to find a ProjectStar
+     * @example
+     * // Get one ProjectStar
+     * const projectStar = await prisma.projectStar.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectStarFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectStarFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectStarClient<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectStars that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectStarFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectStars
+     * const projectStars = await prisma.projectStar.findMany()
+     * 
+     * // Get first 10 ProjectStars
+     * const projectStars = await prisma.projectStar.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectStarWithIdOnly = await prisma.projectStar.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectStarFindManyArgs>(args?: SelectSubset<T, ProjectStarFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectStar.
+     * @param {ProjectStarCreateArgs} args - Arguments to create a ProjectStar.
+     * @example
+     * // Create one ProjectStar
+     * const ProjectStar = await prisma.projectStar.create({
+     *   data: {
+     *     // ... data to create a ProjectStar
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectStarCreateArgs>(args: SelectSubset<T, ProjectStarCreateArgs<ExtArgs>>): Prisma__ProjectStarClient<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectStars.
+     * @param {ProjectStarCreateManyArgs} args - Arguments to create many ProjectStars.
+     * @example
+     * // Create many ProjectStars
+     * const projectStar = await prisma.projectStar.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectStarCreateManyArgs>(args?: SelectSubset<T, ProjectStarCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProjectStars and returns the data saved in the database.
+     * @param {ProjectStarCreateManyAndReturnArgs} args - Arguments to create many ProjectStars.
+     * @example
+     * // Create many ProjectStars
+     * const projectStar = await prisma.projectStar.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProjectStars and only return the `id`
+     * const projectStarWithIdOnly = await prisma.projectStar.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectStarCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectStarCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProjectStar.
+     * @param {ProjectStarDeleteArgs} args - Arguments to delete one ProjectStar.
+     * @example
+     * // Delete one ProjectStar
+     * const ProjectStar = await prisma.projectStar.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectStar
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectStarDeleteArgs>(args: SelectSubset<T, ProjectStarDeleteArgs<ExtArgs>>): Prisma__ProjectStarClient<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectStar.
+     * @param {ProjectStarUpdateArgs} args - Arguments to update one ProjectStar.
+     * @example
+     * // Update one ProjectStar
+     * const projectStar = await prisma.projectStar.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectStarUpdateArgs>(args: SelectSubset<T, ProjectStarUpdateArgs<ExtArgs>>): Prisma__ProjectStarClient<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectStars.
+     * @param {ProjectStarDeleteManyArgs} args - Arguments to filter ProjectStars to delete.
+     * @example
+     * // Delete a few ProjectStars
+     * const { count } = await prisma.projectStar.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectStarDeleteManyArgs>(args?: SelectSubset<T, ProjectStarDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectStars.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectStarUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectStars
+     * const projectStar = await prisma.projectStar.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectStarUpdateManyArgs>(args: SelectSubset<T, ProjectStarUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectStars and returns the data updated in the database.
+     * @param {ProjectStarUpdateManyAndReturnArgs} args - Arguments to update many ProjectStars.
+     * @example
+     * // Update many ProjectStars
+     * const projectStar = await prisma.projectStar.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProjectStars and only return the `id`
+     * const projectStarWithIdOnly = await prisma.projectStar.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectStarUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectStarUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProjectStar.
+     * @param {ProjectStarUpsertArgs} args - Arguments to update or create a ProjectStar.
+     * @example
+     * // Update or create a ProjectStar
+     * const projectStar = await prisma.projectStar.upsert({
+     *   create: {
+     *     // ... data to create a ProjectStar
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectStar we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectStarUpsertArgs>(args: SelectSubset<T, ProjectStarUpsertArgs<ExtArgs>>): Prisma__ProjectStarClient<$Result.GetResult<Prisma.$ProjectStarPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectStars.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectStarCountArgs} args - Arguments to filter ProjectStars to count.
+     * @example
+     * // Count the number of ProjectStars
+     * const count = await prisma.projectStar.count({
+     *   where: {
+     *     // ... the filter for the ProjectStars we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectStarCountArgs>(
+      args?: Subset<T, ProjectStarCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectStarCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectStar.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectStarAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectStarAggregateArgs>(args: Subset<T, ProjectStarAggregateArgs>): Prisma.PrismaPromise<GetProjectStarAggregateType<T>>
+
+    /**
+     * Group by ProjectStar.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectStarGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectStarGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectStarGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectStarGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectStarGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectStarGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectStar model
+   */
+  readonly fields: ProjectStarFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectStar.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectStarClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectStar model
+   */
+  interface ProjectStarFieldRefs {
+    readonly id: FieldRef<"ProjectStar", 'String'>
+    readonly userId: FieldRef<"ProjectStar", 'String'>
+    readonly projectId: FieldRef<"ProjectStar", 'String'>
+    readonly createdAt: FieldRef<"ProjectStar", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectStar findUnique
+   */
+  export type ProjectStarFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectStar to fetch.
+     */
+    where: ProjectStarWhereUniqueInput
+  }
+
+  /**
+   * ProjectStar findUniqueOrThrow
+   */
+  export type ProjectStarFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectStar to fetch.
+     */
+    where: ProjectStarWhereUniqueInput
+  }
+
+  /**
+   * ProjectStar findFirst
+   */
+  export type ProjectStarFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectStar to fetch.
+     */
+    where?: ProjectStarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectStars to fetch.
+     */
+    orderBy?: ProjectStarOrderByWithRelationInput | ProjectStarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectStars.
+     */
+    cursor?: ProjectStarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectStars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectStars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectStars.
+     */
+    distinct?: ProjectStarScalarFieldEnum | ProjectStarScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectStar findFirstOrThrow
+   */
+  export type ProjectStarFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectStar to fetch.
+     */
+    where?: ProjectStarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectStars to fetch.
+     */
+    orderBy?: ProjectStarOrderByWithRelationInput | ProjectStarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectStars.
+     */
+    cursor?: ProjectStarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectStars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectStars.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectStars.
+     */
+    distinct?: ProjectStarScalarFieldEnum | ProjectStarScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectStar findMany
+   */
+  export type ProjectStarFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectStars to fetch.
+     */
+    where?: ProjectStarWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectStars to fetch.
+     */
+    orderBy?: ProjectStarOrderByWithRelationInput | ProjectStarOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectStars.
+     */
+    cursor?: ProjectStarWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectStars from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectStars.
+     */
+    skip?: number
+    distinct?: ProjectStarScalarFieldEnum | ProjectStarScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectStar create
+   */
+  export type ProjectStarCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectStar.
+     */
+    data: XOR<ProjectStarCreateInput, ProjectStarUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectStar createMany
+   */
+  export type ProjectStarCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectStars.
+     */
+    data: ProjectStarCreateManyInput | ProjectStarCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectStar createManyAndReturn
+   */
+  export type ProjectStarCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProjectStars.
+     */
+    data: ProjectStarCreateManyInput | ProjectStarCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectStar update
+   */
+  export type ProjectStarUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectStar.
+     */
+    data: XOR<ProjectStarUpdateInput, ProjectStarUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectStar to update.
+     */
+    where: ProjectStarWhereUniqueInput
+  }
+
+  /**
+   * ProjectStar updateMany
+   */
+  export type ProjectStarUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectStars.
+     */
+    data: XOR<ProjectStarUpdateManyMutationInput, ProjectStarUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectStars to update
+     */
+    where?: ProjectStarWhereInput
+    /**
+     * Limit how many ProjectStars to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectStar updateManyAndReturn
+   */
+  export type ProjectStarUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * The data used to update ProjectStars.
+     */
+    data: XOR<ProjectStarUpdateManyMutationInput, ProjectStarUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectStars to update
+     */
+    where?: ProjectStarWhereInput
+    /**
+     * Limit how many ProjectStars to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectStar upsert
+   */
+  export type ProjectStarUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectStar to update in case it exists.
+     */
+    where: ProjectStarWhereUniqueInput
+    /**
+     * In case the ProjectStar found by the `where` argument doesn't exist, create a new ProjectStar with this data.
+     */
+    create: XOR<ProjectStarCreateInput, ProjectStarUncheckedCreateInput>
+    /**
+     * In case the ProjectStar was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectStarUpdateInput, ProjectStarUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectStar delete
+   */
+  export type ProjectStarDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectStar to delete.
+     */
+    where: ProjectStarWhereUniqueInput
+  }
+
+  /**
+   * ProjectStar deleteMany
+   */
+  export type ProjectStarDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectStars to delete
+     */
+    where?: ProjectStarWhereInput
+    /**
+     * Limit how many ProjectStars to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectStar without action
+   */
+  export type ProjectStarDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectStar
+     */
+    select?: ProjectStarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectStar
+     */
+    omit?: ProjectStarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectStarInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Release
+   */
+
+  export type AggregateRelease = {
+    _count: ReleaseCountAggregateOutputType | null
+    _min: ReleaseMinAggregateOutputType | null
+    _max: ReleaseMaxAggregateOutputType | null
+  }
+
+  export type ReleaseMinAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    version: string | null
+    title: string | null
+    description: string | null
+    releaseNotes: string | null
+    createdById: string | null
+    createdAt: Date | null
+  }
+
+  export type ReleaseMaxAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    version: string | null
+    title: string | null
+    description: string | null
+    releaseNotes: string | null
+    createdById: string | null
+    createdAt: Date | null
+  }
+
+  export type ReleaseCountAggregateOutputType = {
+    id: number
+    projectId: number
+    version: number
+    title: number
+    description: number
+    releaseNotes: number
+    createdById: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ReleaseMinAggregateInputType = {
+    id?: true
+    projectId?: true
+    version?: true
+    title?: true
+    description?: true
+    releaseNotes?: true
+    createdById?: true
+    createdAt?: true
+  }
+
+  export type ReleaseMaxAggregateInputType = {
+    id?: true
+    projectId?: true
+    version?: true
+    title?: true
+    description?: true
+    releaseNotes?: true
+    createdById?: true
+    createdAt?: true
+  }
+
+  export type ReleaseCountAggregateInputType = {
+    id?: true
+    projectId?: true
+    version?: true
+    title?: true
+    description?: true
+    releaseNotes?: true
+    createdById?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ReleaseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Release to aggregate.
+     */
+    where?: ReleaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Releases to fetch.
+     */
+    orderBy?: ReleaseOrderByWithRelationInput | ReleaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ReleaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Releases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Releases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Releases
+    **/
+    _count?: true | ReleaseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReleaseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReleaseMaxAggregateInputType
+  }
+
+  export type GetReleaseAggregateType<T extends ReleaseAggregateArgs> = {
+        [P in keyof T & keyof AggregateRelease]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRelease[P]>
+      : GetScalarType<T[P], AggregateRelease[P]>
+  }
+
+
+
+
+  export type ReleaseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReleaseWhereInput
+    orderBy?: ReleaseOrderByWithAggregationInput | ReleaseOrderByWithAggregationInput[]
+    by: ReleaseScalarFieldEnum[] | ReleaseScalarFieldEnum
+    having?: ReleaseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReleaseCountAggregateInputType | true
+    _min?: ReleaseMinAggregateInputType
+    _max?: ReleaseMaxAggregateInputType
+  }
+
+  export type ReleaseGroupByOutputType = {
+    id: string
+    projectId: string
+    version: string
+    title: string
+    description: string | null
+    releaseNotes: string | null
+    createdById: string
+    createdAt: Date
+    _count: ReleaseCountAggregateOutputType | null
+    _min: ReleaseMinAggregateOutputType | null
+    _max: ReleaseMaxAggregateOutputType | null
+  }
+
+  type GetReleaseGroupByPayload<T extends ReleaseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReleaseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReleaseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReleaseGroupByOutputType[P]>
+            : GetScalarType<T[P], ReleaseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ReleaseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    version?: boolean
+    title?: boolean
+    description?: boolean
+    releaseNotes?: boolean
+    createdById?: boolean
+    createdAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["release"]>
+
+  export type ReleaseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    version?: boolean
+    title?: boolean
+    description?: boolean
+    releaseNotes?: boolean
+    createdById?: boolean
+    createdAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["release"]>
+
+  export type ReleaseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    version?: boolean
+    title?: boolean
+    description?: boolean
+    releaseNotes?: boolean
+    createdById?: boolean
+    createdAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["release"]>
+
+  export type ReleaseSelectScalar = {
+    id?: boolean
+    projectId?: boolean
+    version?: boolean
+    title?: boolean
+    description?: boolean
+    releaseNotes?: boolean
+    createdById?: boolean
+    createdAt?: boolean
+  }
+
+  export type ReleaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "version" | "title" | "description" | "releaseNotes" | "createdById" | "createdAt", ExtArgs["result"]["release"]>
+  export type ReleaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ReleaseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ReleaseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ReleasePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Release"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+      createdBy: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      projectId: string
+      version: string
+      title: string
+      description: string | null
+      releaseNotes: string | null
+      createdById: string
+      createdAt: Date
+    }, ExtArgs["result"]["release"]>
+    composites: {}
+  }
+
+  type ReleaseGetPayload<S extends boolean | null | undefined | ReleaseDefaultArgs> = $Result.GetResult<Prisma.$ReleasePayload, S>
+
+  type ReleaseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ReleaseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ReleaseCountAggregateInputType | true
+    }
+
+  export interface ReleaseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Release'], meta: { name: 'Release' } }
+    /**
+     * Find zero or one Release that matches the filter.
+     * @param {ReleaseFindUniqueArgs} args - Arguments to find a Release
+     * @example
+     * // Get one Release
+     * const release = await prisma.release.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ReleaseFindUniqueArgs>(args: SelectSubset<T, ReleaseFindUniqueArgs<ExtArgs>>): Prisma__ReleaseClient<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Release that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ReleaseFindUniqueOrThrowArgs} args - Arguments to find a Release
+     * @example
+     * // Get one Release
+     * const release = await prisma.release.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ReleaseFindUniqueOrThrowArgs>(args: SelectSubset<T, ReleaseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReleaseClient<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Release that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReleaseFindFirstArgs} args - Arguments to find a Release
+     * @example
+     * // Get one Release
+     * const release = await prisma.release.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ReleaseFindFirstArgs>(args?: SelectSubset<T, ReleaseFindFirstArgs<ExtArgs>>): Prisma__ReleaseClient<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Release that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReleaseFindFirstOrThrowArgs} args - Arguments to find a Release
+     * @example
+     * // Get one Release
+     * const release = await prisma.release.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ReleaseFindFirstOrThrowArgs>(args?: SelectSubset<T, ReleaseFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReleaseClient<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Releases that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReleaseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Releases
+     * const releases = await prisma.release.findMany()
+     * 
+     * // Get first 10 Releases
+     * const releases = await prisma.release.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const releaseWithIdOnly = await prisma.release.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ReleaseFindManyArgs>(args?: SelectSubset<T, ReleaseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Release.
+     * @param {ReleaseCreateArgs} args - Arguments to create a Release.
+     * @example
+     * // Create one Release
+     * const Release = await prisma.release.create({
+     *   data: {
+     *     // ... data to create a Release
+     *   }
+     * })
+     * 
+     */
+    create<T extends ReleaseCreateArgs>(args: SelectSubset<T, ReleaseCreateArgs<ExtArgs>>): Prisma__ReleaseClient<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Releases.
+     * @param {ReleaseCreateManyArgs} args - Arguments to create many Releases.
+     * @example
+     * // Create many Releases
+     * const release = await prisma.release.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ReleaseCreateManyArgs>(args?: SelectSubset<T, ReleaseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Releases and returns the data saved in the database.
+     * @param {ReleaseCreateManyAndReturnArgs} args - Arguments to create many Releases.
+     * @example
+     * // Create many Releases
+     * const release = await prisma.release.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Releases and only return the `id`
+     * const releaseWithIdOnly = await prisma.release.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ReleaseCreateManyAndReturnArgs>(args?: SelectSubset<T, ReleaseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Release.
+     * @param {ReleaseDeleteArgs} args - Arguments to delete one Release.
+     * @example
+     * // Delete one Release
+     * const Release = await prisma.release.delete({
+     *   where: {
+     *     // ... filter to delete one Release
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ReleaseDeleteArgs>(args: SelectSubset<T, ReleaseDeleteArgs<ExtArgs>>): Prisma__ReleaseClient<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Release.
+     * @param {ReleaseUpdateArgs} args - Arguments to update one Release.
+     * @example
+     * // Update one Release
+     * const release = await prisma.release.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ReleaseUpdateArgs>(args: SelectSubset<T, ReleaseUpdateArgs<ExtArgs>>): Prisma__ReleaseClient<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Releases.
+     * @param {ReleaseDeleteManyArgs} args - Arguments to filter Releases to delete.
+     * @example
+     * // Delete a few Releases
+     * const { count } = await prisma.release.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ReleaseDeleteManyArgs>(args?: SelectSubset<T, ReleaseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Releases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReleaseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Releases
+     * const release = await prisma.release.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ReleaseUpdateManyArgs>(args: SelectSubset<T, ReleaseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Releases and returns the data updated in the database.
+     * @param {ReleaseUpdateManyAndReturnArgs} args - Arguments to update many Releases.
+     * @example
+     * // Update many Releases
+     * const release = await prisma.release.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Releases and only return the `id`
+     * const releaseWithIdOnly = await prisma.release.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ReleaseUpdateManyAndReturnArgs>(args: SelectSubset<T, ReleaseUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Release.
+     * @param {ReleaseUpsertArgs} args - Arguments to update or create a Release.
+     * @example
+     * // Update or create a Release
+     * const release = await prisma.release.upsert({
+     *   create: {
+     *     // ... data to create a Release
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Release we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ReleaseUpsertArgs>(args: SelectSubset<T, ReleaseUpsertArgs<ExtArgs>>): Prisma__ReleaseClient<$Result.GetResult<Prisma.$ReleasePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Releases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReleaseCountArgs} args - Arguments to filter Releases to count.
+     * @example
+     * // Count the number of Releases
+     * const count = await prisma.release.count({
+     *   where: {
+     *     // ... the filter for the Releases we want to count
+     *   }
+     * })
+    **/
+    count<T extends ReleaseCountArgs>(
+      args?: Subset<T, ReleaseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReleaseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Release.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReleaseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReleaseAggregateArgs>(args: Subset<T, ReleaseAggregateArgs>): Prisma.PrismaPromise<GetReleaseAggregateType<T>>
+
+    /**
+     * Group by Release.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReleaseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ReleaseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ReleaseGroupByArgs['orderBy'] }
+        : { orderBy?: ReleaseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ReleaseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReleaseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Release model
+   */
+  readonly fields: ReleaseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Release.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ReleaseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    createdBy<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Release model
+   */
+  interface ReleaseFieldRefs {
+    readonly id: FieldRef<"Release", 'String'>
+    readonly projectId: FieldRef<"Release", 'String'>
+    readonly version: FieldRef<"Release", 'String'>
+    readonly title: FieldRef<"Release", 'String'>
+    readonly description: FieldRef<"Release", 'String'>
+    readonly releaseNotes: FieldRef<"Release", 'String'>
+    readonly createdById: FieldRef<"Release", 'String'>
+    readonly createdAt: FieldRef<"Release", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Release findUnique
+   */
+  export type ReleaseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    /**
+     * Filter, which Release to fetch.
+     */
+    where: ReleaseWhereUniqueInput
+  }
+
+  /**
+   * Release findUniqueOrThrow
+   */
+  export type ReleaseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    /**
+     * Filter, which Release to fetch.
+     */
+    where: ReleaseWhereUniqueInput
+  }
+
+  /**
+   * Release findFirst
+   */
+  export type ReleaseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    /**
+     * Filter, which Release to fetch.
+     */
+    where?: ReleaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Releases to fetch.
+     */
+    orderBy?: ReleaseOrderByWithRelationInput | ReleaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Releases.
+     */
+    cursor?: ReleaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Releases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Releases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Releases.
+     */
+    distinct?: ReleaseScalarFieldEnum | ReleaseScalarFieldEnum[]
+  }
+
+  /**
+   * Release findFirstOrThrow
+   */
+  export type ReleaseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    /**
+     * Filter, which Release to fetch.
+     */
+    where?: ReleaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Releases to fetch.
+     */
+    orderBy?: ReleaseOrderByWithRelationInput | ReleaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Releases.
+     */
+    cursor?: ReleaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Releases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Releases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Releases.
+     */
+    distinct?: ReleaseScalarFieldEnum | ReleaseScalarFieldEnum[]
+  }
+
+  /**
+   * Release findMany
+   */
+  export type ReleaseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    /**
+     * Filter, which Releases to fetch.
+     */
+    where?: ReleaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Releases to fetch.
+     */
+    orderBy?: ReleaseOrderByWithRelationInput | ReleaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Releases.
+     */
+    cursor?: ReleaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Releases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Releases.
+     */
+    skip?: number
+    distinct?: ReleaseScalarFieldEnum | ReleaseScalarFieldEnum[]
+  }
+
+  /**
+   * Release create
+   */
+  export type ReleaseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Release.
+     */
+    data: XOR<ReleaseCreateInput, ReleaseUncheckedCreateInput>
+  }
+
+  /**
+   * Release createMany
+   */
+  export type ReleaseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Releases.
+     */
+    data: ReleaseCreateManyInput | ReleaseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Release createManyAndReturn
+   */
+  export type ReleaseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * The data used to create many Releases.
+     */
+    data: ReleaseCreateManyInput | ReleaseCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Release update
+   */
+  export type ReleaseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Release.
+     */
+    data: XOR<ReleaseUpdateInput, ReleaseUncheckedUpdateInput>
+    /**
+     * Choose, which Release to update.
+     */
+    where: ReleaseWhereUniqueInput
+  }
+
+  /**
+   * Release updateMany
+   */
+  export type ReleaseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Releases.
+     */
+    data: XOR<ReleaseUpdateManyMutationInput, ReleaseUncheckedUpdateManyInput>
+    /**
+     * Filter which Releases to update
+     */
+    where?: ReleaseWhereInput
+    /**
+     * Limit how many Releases to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Release updateManyAndReturn
+   */
+  export type ReleaseUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * The data used to update Releases.
+     */
+    data: XOR<ReleaseUpdateManyMutationInput, ReleaseUncheckedUpdateManyInput>
+    /**
+     * Filter which Releases to update
+     */
+    where?: ReleaseWhereInput
+    /**
+     * Limit how many Releases to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Release upsert
+   */
+  export type ReleaseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Release to update in case it exists.
+     */
+    where: ReleaseWhereUniqueInput
+    /**
+     * In case the Release found by the `where` argument doesn't exist, create a new Release with this data.
+     */
+    create: XOR<ReleaseCreateInput, ReleaseUncheckedCreateInput>
+    /**
+     * In case the Release was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ReleaseUpdateInput, ReleaseUncheckedUpdateInput>
+  }
+
+  /**
+   * Release delete
+   */
+  export type ReleaseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+    /**
+     * Filter which Release to delete.
+     */
+    where: ReleaseWhereUniqueInput
+  }
+
+  /**
+   * Release deleteMany
+   */
+  export type ReleaseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Releases to delete
+     */
+    where?: ReleaseWhereInput
+    /**
+     * Limit how many Releases to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Release without action
+   */
+  export type ReleaseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Release
+     */
+    select?: ReleaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Release
+     */
+    omit?: ReleaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReleaseInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectUpdate
+   */
+
+  export type AggregateProjectUpdate = {
+    _count: ProjectUpdateCountAggregateOutputType | null
+    _min: ProjectUpdateMinAggregateOutputType | null
+    _max: ProjectUpdateMaxAggregateOutputType | null
+  }
+
+  export type ProjectUpdateMinAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    authorId: string | null
+    title: string | null
+    body: string | null
+    createdAt: Date | null
+  }
+
+  export type ProjectUpdateMaxAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    authorId: string | null
+    title: string | null
+    body: string | null
+    createdAt: Date | null
+  }
+
+  export type ProjectUpdateCountAggregateOutputType = {
+    id: number
+    projectId: number
+    authorId: number
+    title: number
+    body: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ProjectUpdateMinAggregateInputType = {
+    id?: true
+    projectId?: true
+    authorId?: true
+    title?: true
+    body?: true
+    createdAt?: true
+  }
+
+  export type ProjectUpdateMaxAggregateInputType = {
+    id?: true
+    projectId?: true
+    authorId?: true
+    title?: true
+    body?: true
+    createdAt?: true
+  }
+
+  export type ProjectUpdateCountAggregateInputType = {
+    id?: true
+    projectId?: true
+    authorId?: true
+    title?: true
+    body?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ProjectUpdateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectUpdate to aggregate.
+     */
+    where?: ProjectUpdateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectUpdates to fetch.
+     */
+    orderBy?: ProjectUpdateOrderByWithRelationInput | ProjectUpdateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectUpdateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectUpdates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectUpdates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectUpdates
+    **/
+    _count?: true | ProjectUpdateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectUpdateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectUpdateMaxAggregateInputType
+  }
+
+  export type GetProjectUpdateAggregateType<T extends ProjectUpdateAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectUpdate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectUpdate[P]>
+      : GetScalarType<T[P], AggregateProjectUpdate[P]>
+  }
+
+
+
+
+  export type ProjectUpdateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectUpdateWhereInput
+    orderBy?: ProjectUpdateOrderByWithAggregationInput | ProjectUpdateOrderByWithAggregationInput[]
+    by: ProjectUpdateScalarFieldEnum[] | ProjectUpdateScalarFieldEnum
+    having?: ProjectUpdateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectUpdateCountAggregateInputType | true
+    _min?: ProjectUpdateMinAggregateInputType
+    _max?: ProjectUpdateMaxAggregateInputType
+  }
+
+  export type ProjectUpdateGroupByOutputType = {
+    id: string
+    projectId: string
+    authorId: string
+    title: string
+    body: string
+    createdAt: Date
+    _count: ProjectUpdateCountAggregateOutputType | null
+    _min: ProjectUpdateMinAggregateOutputType | null
+    _max: ProjectUpdateMaxAggregateOutputType | null
+  }
+
+  type GetProjectUpdateGroupByPayload<T extends ProjectUpdateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectUpdateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectUpdateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectUpdateGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectUpdateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectUpdateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    authorId?: boolean
+    title?: boolean
+    body?: boolean
+    createdAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectUpdate"]>
+
+  export type ProjectUpdateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    authorId?: boolean
+    title?: boolean
+    body?: boolean
+    createdAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectUpdate"]>
+
+  export type ProjectUpdateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    authorId?: boolean
+    title?: boolean
+    body?: boolean
+    createdAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectUpdate"]>
+
+  export type ProjectUpdateSelectScalar = {
+    id?: boolean
+    projectId?: boolean
+    authorId?: boolean
+    title?: boolean
+    body?: boolean
+    createdAt?: boolean
+  }
+
+  export type ProjectUpdateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "authorId" | "title" | "body" | "createdAt", ExtArgs["result"]["projectUpdate"]>
+  export type ProjectUpdateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ProjectUpdateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ProjectUpdateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectUpdatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectUpdate"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+      author: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      projectId: string
+      authorId: string
+      title: string
+      body: string
+      createdAt: Date
+    }, ExtArgs["result"]["projectUpdate"]>
+    composites: {}
+  }
+
+  type ProjectUpdateGetPayload<S extends boolean | null | undefined | ProjectUpdateDefaultArgs> = $Result.GetResult<Prisma.$ProjectUpdatePayload, S>
+
+  type ProjectUpdateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectUpdateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectUpdateCountAggregateInputType | true
+    }
+
+  export interface ProjectUpdateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectUpdate'], meta: { name: 'ProjectUpdate' } }
+    /**
+     * Find zero or one ProjectUpdate that matches the filter.
+     * @param {ProjectUpdateFindUniqueArgs} args - Arguments to find a ProjectUpdate
+     * @example
+     * // Get one ProjectUpdate
+     * const projectUpdate = await prisma.projectUpdate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectUpdateFindUniqueArgs>(args: SelectSubset<T, ProjectUpdateFindUniqueArgs<ExtArgs>>): Prisma__ProjectUpdateClient<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectUpdate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectUpdateFindUniqueOrThrowArgs} args - Arguments to find a ProjectUpdate
+     * @example
+     * // Get one ProjectUpdate
+     * const projectUpdate = await prisma.projectUpdate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectUpdateFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectUpdateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectUpdateClient<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectUpdate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectUpdateFindFirstArgs} args - Arguments to find a ProjectUpdate
+     * @example
+     * // Get one ProjectUpdate
+     * const projectUpdate = await prisma.projectUpdate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectUpdateFindFirstArgs>(args?: SelectSubset<T, ProjectUpdateFindFirstArgs<ExtArgs>>): Prisma__ProjectUpdateClient<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectUpdate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectUpdateFindFirstOrThrowArgs} args - Arguments to find a ProjectUpdate
+     * @example
+     * // Get one ProjectUpdate
+     * const projectUpdate = await prisma.projectUpdate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectUpdateFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectUpdateFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectUpdateClient<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectUpdates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectUpdateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectUpdates
+     * const projectUpdates = await prisma.projectUpdate.findMany()
+     * 
+     * // Get first 10 ProjectUpdates
+     * const projectUpdates = await prisma.projectUpdate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectUpdateWithIdOnly = await prisma.projectUpdate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectUpdateFindManyArgs>(args?: SelectSubset<T, ProjectUpdateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectUpdate.
+     * @param {ProjectUpdateCreateArgs} args - Arguments to create a ProjectUpdate.
+     * @example
+     * // Create one ProjectUpdate
+     * const ProjectUpdate = await prisma.projectUpdate.create({
+     *   data: {
+     *     // ... data to create a ProjectUpdate
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectUpdateCreateArgs>(args: SelectSubset<T, ProjectUpdateCreateArgs<ExtArgs>>): Prisma__ProjectUpdateClient<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectUpdates.
+     * @param {ProjectUpdateCreateManyArgs} args - Arguments to create many ProjectUpdates.
+     * @example
+     * // Create many ProjectUpdates
+     * const projectUpdate = await prisma.projectUpdate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectUpdateCreateManyArgs>(args?: SelectSubset<T, ProjectUpdateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProjectUpdates and returns the data saved in the database.
+     * @param {ProjectUpdateCreateManyAndReturnArgs} args - Arguments to create many ProjectUpdates.
+     * @example
+     * // Create many ProjectUpdates
+     * const projectUpdate = await prisma.projectUpdate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProjectUpdates and only return the `id`
+     * const projectUpdateWithIdOnly = await prisma.projectUpdate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProjectUpdateCreateManyAndReturnArgs>(args?: SelectSubset<T, ProjectUpdateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProjectUpdate.
+     * @param {ProjectUpdateDeleteArgs} args - Arguments to delete one ProjectUpdate.
+     * @example
+     * // Delete one ProjectUpdate
+     * const ProjectUpdate = await prisma.projectUpdate.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectUpdate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectUpdateDeleteArgs>(args: SelectSubset<T, ProjectUpdateDeleteArgs<ExtArgs>>): Prisma__ProjectUpdateClient<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectUpdate.
+     * @param {ProjectUpdateUpdateArgs} args - Arguments to update one ProjectUpdate.
+     * @example
+     * // Update one ProjectUpdate
+     * const projectUpdate = await prisma.projectUpdate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectUpdateUpdateArgs>(args: SelectSubset<T, ProjectUpdateUpdateArgs<ExtArgs>>): Prisma__ProjectUpdateClient<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectUpdates.
+     * @param {ProjectUpdateDeleteManyArgs} args - Arguments to filter ProjectUpdates to delete.
+     * @example
+     * // Delete a few ProjectUpdates
+     * const { count } = await prisma.projectUpdate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectUpdateDeleteManyArgs>(args?: SelectSubset<T, ProjectUpdateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectUpdates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectUpdateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectUpdates
+     * const projectUpdate = await prisma.projectUpdate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectUpdateUpdateManyArgs>(args: SelectSubset<T, ProjectUpdateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectUpdates and returns the data updated in the database.
+     * @param {ProjectUpdateUpdateManyAndReturnArgs} args - Arguments to update many ProjectUpdates.
+     * @example
+     * // Update many ProjectUpdates
+     * const projectUpdate = await prisma.projectUpdate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProjectUpdates and only return the `id`
+     * const projectUpdateWithIdOnly = await prisma.projectUpdate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProjectUpdateUpdateManyAndReturnArgs>(args: SelectSubset<T, ProjectUpdateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProjectUpdate.
+     * @param {ProjectUpdateUpsertArgs} args - Arguments to update or create a ProjectUpdate.
+     * @example
+     * // Update or create a ProjectUpdate
+     * const projectUpdate = await prisma.projectUpdate.upsert({
+     *   create: {
+     *     // ... data to create a ProjectUpdate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectUpdate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectUpdateUpsertArgs>(args: SelectSubset<T, ProjectUpdateUpsertArgs<ExtArgs>>): Prisma__ProjectUpdateClient<$Result.GetResult<Prisma.$ProjectUpdatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectUpdates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectUpdateCountArgs} args - Arguments to filter ProjectUpdates to count.
+     * @example
+     * // Count the number of ProjectUpdates
+     * const count = await prisma.projectUpdate.count({
+     *   where: {
+     *     // ... the filter for the ProjectUpdates we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectUpdateCountArgs>(
+      args?: Subset<T, ProjectUpdateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectUpdateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectUpdate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectUpdateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectUpdateAggregateArgs>(args: Subset<T, ProjectUpdateAggregateArgs>): Prisma.PrismaPromise<GetProjectUpdateAggregateType<T>>
+
+    /**
+     * Group by ProjectUpdate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectUpdateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectUpdateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectUpdateGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectUpdateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectUpdateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectUpdateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectUpdate model
+   */
+  readonly fields: ProjectUpdateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectUpdate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectUpdateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectUpdate model
+   */
+  interface ProjectUpdateFieldRefs {
+    readonly id: FieldRef<"ProjectUpdate", 'String'>
+    readonly projectId: FieldRef<"ProjectUpdate", 'String'>
+    readonly authorId: FieldRef<"ProjectUpdate", 'String'>
+    readonly title: FieldRef<"ProjectUpdate", 'String'>
+    readonly body: FieldRef<"ProjectUpdate", 'String'>
+    readonly createdAt: FieldRef<"ProjectUpdate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectUpdate findUnique
+   */
+  export type ProjectUpdateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectUpdate to fetch.
+     */
+    where: ProjectUpdateWhereUniqueInput
+  }
+
+  /**
+   * ProjectUpdate findUniqueOrThrow
+   */
+  export type ProjectUpdateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectUpdate to fetch.
+     */
+    where: ProjectUpdateWhereUniqueInput
+  }
+
+  /**
+   * ProjectUpdate findFirst
+   */
+  export type ProjectUpdateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectUpdate to fetch.
+     */
+    where?: ProjectUpdateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectUpdates to fetch.
+     */
+    orderBy?: ProjectUpdateOrderByWithRelationInput | ProjectUpdateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectUpdates.
+     */
+    cursor?: ProjectUpdateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectUpdates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectUpdates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectUpdates.
+     */
+    distinct?: ProjectUpdateScalarFieldEnum | ProjectUpdateScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectUpdate findFirstOrThrow
+   */
+  export type ProjectUpdateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectUpdate to fetch.
+     */
+    where?: ProjectUpdateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectUpdates to fetch.
+     */
+    orderBy?: ProjectUpdateOrderByWithRelationInput | ProjectUpdateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectUpdates.
+     */
+    cursor?: ProjectUpdateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectUpdates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectUpdates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectUpdates.
+     */
+    distinct?: ProjectUpdateScalarFieldEnum | ProjectUpdateScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectUpdate findMany
+   */
+  export type ProjectUpdateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectUpdates to fetch.
+     */
+    where?: ProjectUpdateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectUpdates to fetch.
+     */
+    orderBy?: ProjectUpdateOrderByWithRelationInput | ProjectUpdateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectUpdates.
+     */
+    cursor?: ProjectUpdateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectUpdates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectUpdates.
+     */
+    skip?: number
+    distinct?: ProjectUpdateScalarFieldEnum | ProjectUpdateScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectUpdate create
+   */
+  export type ProjectUpdateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectUpdate.
+     */
+    data: XOR<ProjectUpdateCreateInput, ProjectUpdateUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectUpdate createMany
+   */
+  export type ProjectUpdateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectUpdates.
+     */
+    data: ProjectUpdateCreateManyInput | ProjectUpdateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectUpdate createManyAndReturn
+   */
+  export type ProjectUpdateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProjectUpdates.
+     */
+    data: ProjectUpdateCreateManyInput | ProjectUpdateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectUpdate update
+   */
+  export type ProjectUpdateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectUpdate.
+     */
+    data: XOR<ProjectUpdateUpdateInput, ProjectUpdateUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectUpdate to update.
+     */
+    where: ProjectUpdateWhereUniqueInput
+  }
+
+  /**
+   * ProjectUpdate updateMany
+   */
+  export type ProjectUpdateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectUpdates.
+     */
+    data: XOR<ProjectUpdateUpdateManyMutationInput, ProjectUpdateUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectUpdates to update
+     */
+    where?: ProjectUpdateWhereInput
+    /**
+     * Limit how many ProjectUpdates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectUpdate updateManyAndReturn
+   */
+  export type ProjectUpdateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * The data used to update ProjectUpdates.
+     */
+    data: XOR<ProjectUpdateUpdateManyMutationInput, ProjectUpdateUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectUpdates to update
+     */
+    where?: ProjectUpdateWhereInput
+    /**
+     * Limit how many ProjectUpdates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProjectUpdate upsert
+   */
+  export type ProjectUpdateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectUpdate to update in case it exists.
+     */
+    where: ProjectUpdateWhereUniqueInput
+    /**
+     * In case the ProjectUpdate found by the `where` argument doesn't exist, create a new ProjectUpdate with this data.
+     */
+    create: XOR<ProjectUpdateCreateInput, ProjectUpdateUncheckedCreateInput>
+    /**
+     * In case the ProjectUpdate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectUpdateUpdateInput, ProjectUpdateUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectUpdate delete
+   */
+  export type ProjectUpdateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectUpdate to delete.
+     */
+    where: ProjectUpdateWhereUniqueInput
+  }
+
+  /**
+   * ProjectUpdate deleteMany
+   */
+  export type ProjectUpdateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectUpdates to delete
+     */
+    where?: ProjectUpdateWhereInput
+    /**
+     * Limit how many ProjectUpdates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectUpdate without action
+   */
+  export type ProjectUpdateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectUpdate
+     */
+    select?: ProjectUpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectUpdate
+     */
+    omit?: ProjectUpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectUpdateInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -26441,6 +32720,68 @@ export namespace Prisma {
   };
 
   export type AnalyticsEventScalarFieldEnum = (typeof AnalyticsEventScalarFieldEnum)[keyof typeof AnalyticsEventScalarFieldEnum]
+
+
+  export const ActivityEventScalarFieldEnum: {
+    id: 'id',
+    actorId: 'actorId',
+    projectId: 'projectId',
+    type: 'type',
+    targetType: 'targetType',
+    targetId: 'targetId',
+    metadata: 'metadata',
+    visibility: 'visibility',
+    createdAt: 'createdAt',
+    expiresAt: 'expiresAt'
+  };
+
+  export type ActivityEventScalarFieldEnum = (typeof ActivityEventScalarFieldEnum)[keyof typeof ActivityEventScalarFieldEnum]
+
+
+  export const ProjectFollowerScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    projectId: 'projectId',
+    createdAt: 'createdAt'
+  };
+
+  export type ProjectFollowerScalarFieldEnum = (typeof ProjectFollowerScalarFieldEnum)[keyof typeof ProjectFollowerScalarFieldEnum]
+
+
+  export const ProjectStarScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    projectId: 'projectId',
+    createdAt: 'createdAt'
+  };
+
+  export type ProjectStarScalarFieldEnum = (typeof ProjectStarScalarFieldEnum)[keyof typeof ProjectStarScalarFieldEnum]
+
+
+  export const ReleaseScalarFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    version: 'version',
+    title: 'title',
+    description: 'description',
+    releaseNotes: 'releaseNotes',
+    createdById: 'createdById',
+    createdAt: 'createdAt'
+  };
+
+  export type ReleaseScalarFieldEnum = (typeof ReleaseScalarFieldEnum)[keyof typeof ReleaseScalarFieldEnum]
+
+
+  export const ProjectUpdateScalarFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    authorId: 'authorId',
+    title: 'title',
+    body: 'body',
+    createdAt: 'createdAt'
+  };
+
+  export type ProjectUpdateScalarFieldEnum = (typeof ProjectUpdateScalarFieldEnum)[keyof typeof ProjectUpdateScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -26756,6 +33097,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ActivityEventType'
+   */
+  export type EnumActivityEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActivityEventType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ActivityEventType[]'
+   */
+  export type ListEnumActivityEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActivityEventType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -26812,6 +33167,11 @@ export namespace Prisma {
     notifications?: NotificationListRelationFilter
     usernameHistory?: UsernameHistoryListRelationFilter
     platformAdmin?: XOR<PlatformAdminNullableScalarRelationFilter, PlatformAdminWhereInput> | null
+    activityEvents?: ActivityEventListRelationFilter
+    followedProjects?: ProjectFollowerListRelationFilter
+    starredProjects?: ProjectStarListRelationFilter
+    releasesAuthored?: ReleaseListRelationFilter
+    projectUpdates?: ProjectUpdateListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -26851,6 +33211,11 @@ export namespace Prisma {
     notifications?: NotificationOrderByRelationAggregateInput
     usernameHistory?: UsernameHistoryOrderByRelationAggregateInput
     platformAdmin?: PlatformAdminOrderByWithRelationInput
+    activityEvents?: ActivityEventOrderByRelationAggregateInput
+    followedProjects?: ProjectFollowerOrderByRelationAggregateInput
+    starredProjects?: ProjectStarOrderByRelationAggregateInput
+    releasesAuthored?: ReleaseOrderByRelationAggregateInput
+    projectUpdates?: ProjectUpdateOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -26893,6 +33258,11 @@ export namespace Prisma {
     notifications?: NotificationListRelationFilter
     usernameHistory?: UsernameHistoryListRelationFilter
     platformAdmin?: XOR<PlatformAdminNullableScalarRelationFilter, PlatformAdminWhereInput> | null
+    activityEvents?: ActivityEventListRelationFilter
+    followedProjects?: ProjectFollowerListRelationFilter
+    starredProjects?: ProjectStarListRelationFilter
+    releasesAuthored?: ReleaseListRelationFilter
+    projectUpdates?: ProjectUpdateListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -27259,6 +33629,11 @@ export namespace Prisma {
     threads?: DiscussionThreadListRelationFilter
     files?: FileAssetListRelationFilter
     contributionRecords?: ContributionRecordListRelationFilter
+    activityEvents?: ActivityEventListRelationFilter
+    followers?: ProjectFollowerListRelationFilter
+    stars?: ProjectStarListRelationFilter
+    releases?: ReleaseListRelationFilter
+    updates?: ProjectUpdateListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -27289,6 +33664,11 @@ export namespace Prisma {
     threads?: DiscussionThreadOrderByRelationAggregateInput
     files?: FileAssetOrderByRelationAggregateInput
     contributionRecords?: ContributionRecordOrderByRelationAggregateInput
+    activityEvents?: ActivityEventOrderByRelationAggregateInput
+    followers?: ProjectFollowerOrderByRelationAggregateInput
+    stars?: ProjectStarOrderByRelationAggregateInput
+    releases?: ReleaseOrderByRelationAggregateInput
+    updates?: ProjectUpdateOrderByRelationAggregateInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -27322,6 +33702,11 @@ export namespace Prisma {
     threads?: DiscussionThreadListRelationFilter
     files?: FileAssetListRelationFilter
     contributionRecords?: ContributionRecordListRelationFilter
+    activityEvents?: ActivityEventListRelationFilter
+    followers?: ProjectFollowerListRelationFilter
+    stars?: ProjectStarListRelationFilter
+    releases?: ReleaseListRelationFilter
+    updates?: ProjectUpdateListRelationFilter
   }, "id" | "slug">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -28308,6 +34693,333 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"AnalyticsEvent"> | Date | string
   }
 
+  export type ActivityEventWhereInput = {
+    AND?: ActivityEventWhereInput | ActivityEventWhereInput[]
+    OR?: ActivityEventWhereInput[]
+    NOT?: ActivityEventWhereInput | ActivityEventWhereInput[]
+    id?: StringFilter<"ActivityEvent"> | string
+    actorId?: StringFilter<"ActivityEvent"> | string
+    projectId?: StringFilter<"ActivityEvent"> | string
+    type?: EnumActivityEventTypeFilter<"ActivityEvent"> | $Enums.ActivityEventType
+    targetType?: StringNullableFilter<"ActivityEvent"> | string | null
+    targetId?: StringNullableFilter<"ActivityEvent"> | string | null
+    metadata?: JsonNullableFilter<"ActivityEvent">
+    visibility?: EnumVisibilityFilter<"ActivityEvent"> | $Enums.Visibility
+    createdAt?: DateTimeFilter<"ActivityEvent"> | Date | string
+    expiresAt?: DateTimeNullableFilter<"ActivityEvent"> | Date | string | null
+    actor?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ActivityEventOrderByWithRelationInput = {
+    id?: SortOrder
+    actorId?: SortOrder
+    projectId?: SortOrder
+    type?: SortOrder
+    targetType?: SortOrderInput | SortOrder
+    targetId?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    visibility?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrderInput | SortOrder
+    actor?: UserOrderByWithRelationInput
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type ActivityEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ActivityEventWhereInput | ActivityEventWhereInput[]
+    OR?: ActivityEventWhereInput[]
+    NOT?: ActivityEventWhereInput | ActivityEventWhereInput[]
+    actorId?: StringFilter<"ActivityEvent"> | string
+    projectId?: StringFilter<"ActivityEvent"> | string
+    type?: EnumActivityEventTypeFilter<"ActivityEvent"> | $Enums.ActivityEventType
+    targetType?: StringNullableFilter<"ActivityEvent"> | string | null
+    targetId?: StringNullableFilter<"ActivityEvent"> | string | null
+    metadata?: JsonNullableFilter<"ActivityEvent">
+    visibility?: EnumVisibilityFilter<"ActivityEvent"> | $Enums.Visibility
+    createdAt?: DateTimeFilter<"ActivityEvent"> | Date | string
+    expiresAt?: DateTimeNullableFilter<"ActivityEvent"> | Date | string | null
+    actor?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type ActivityEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    actorId?: SortOrder
+    projectId?: SortOrder
+    type?: SortOrder
+    targetType?: SortOrderInput | SortOrder
+    targetId?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
+    visibility?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrderInput | SortOrder
+    _count?: ActivityEventCountOrderByAggregateInput
+    _max?: ActivityEventMaxOrderByAggregateInput
+    _min?: ActivityEventMinOrderByAggregateInput
+  }
+
+  export type ActivityEventScalarWhereWithAggregatesInput = {
+    AND?: ActivityEventScalarWhereWithAggregatesInput | ActivityEventScalarWhereWithAggregatesInput[]
+    OR?: ActivityEventScalarWhereWithAggregatesInput[]
+    NOT?: ActivityEventScalarWhereWithAggregatesInput | ActivityEventScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ActivityEvent"> | string
+    actorId?: StringWithAggregatesFilter<"ActivityEvent"> | string
+    projectId?: StringWithAggregatesFilter<"ActivityEvent"> | string
+    type?: EnumActivityEventTypeWithAggregatesFilter<"ActivityEvent"> | $Enums.ActivityEventType
+    targetType?: StringNullableWithAggregatesFilter<"ActivityEvent"> | string | null
+    targetId?: StringNullableWithAggregatesFilter<"ActivityEvent"> | string | null
+    metadata?: JsonNullableWithAggregatesFilter<"ActivityEvent">
+    visibility?: EnumVisibilityWithAggregatesFilter<"ActivityEvent"> | $Enums.Visibility
+    createdAt?: DateTimeWithAggregatesFilter<"ActivityEvent"> | Date | string
+    expiresAt?: DateTimeNullableWithAggregatesFilter<"ActivityEvent"> | Date | string | null
+  }
+
+  export type ProjectFollowerWhereInput = {
+    AND?: ProjectFollowerWhereInput | ProjectFollowerWhereInput[]
+    OR?: ProjectFollowerWhereInput[]
+    NOT?: ProjectFollowerWhereInput | ProjectFollowerWhereInput[]
+    id?: StringFilter<"ProjectFollower"> | string
+    userId?: StringFilter<"ProjectFollower"> | string
+    projectId?: StringFilter<"ProjectFollower"> | string
+    createdAt?: DateTimeFilter<"ProjectFollower"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ProjectFollowerOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type ProjectFollowerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_projectId?: ProjectFollowerUserIdProjectIdCompoundUniqueInput
+    AND?: ProjectFollowerWhereInput | ProjectFollowerWhereInput[]
+    OR?: ProjectFollowerWhereInput[]
+    NOT?: ProjectFollowerWhereInput | ProjectFollowerWhereInput[]
+    userId?: StringFilter<"ProjectFollower"> | string
+    projectId?: StringFilter<"ProjectFollower"> | string
+    createdAt?: DateTimeFilter<"ProjectFollower"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id" | "userId_projectId">
+
+  export type ProjectFollowerOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+    _count?: ProjectFollowerCountOrderByAggregateInput
+    _max?: ProjectFollowerMaxOrderByAggregateInput
+    _min?: ProjectFollowerMinOrderByAggregateInput
+  }
+
+  export type ProjectFollowerScalarWhereWithAggregatesInput = {
+    AND?: ProjectFollowerScalarWhereWithAggregatesInput | ProjectFollowerScalarWhereWithAggregatesInput[]
+    OR?: ProjectFollowerScalarWhereWithAggregatesInput[]
+    NOT?: ProjectFollowerScalarWhereWithAggregatesInput | ProjectFollowerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProjectFollower"> | string
+    userId?: StringWithAggregatesFilter<"ProjectFollower"> | string
+    projectId?: StringWithAggregatesFilter<"ProjectFollower"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ProjectFollower"> | Date | string
+  }
+
+  export type ProjectStarWhereInput = {
+    AND?: ProjectStarWhereInput | ProjectStarWhereInput[]
+    OR?: ProjectStarWhereInput[]
+    NOT?: ProjectStarWhereInput | ProjectStarWhereInput[]
+    id?: StringFilter<"ProjectStar"> | string
+    userId?: StringFilter<"ProjectStar"> | string
+    projectId?: StringFilter<"ProjectStar"> | string
+    createdAt?: DateTimeFilter<"ProjectStar"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ProjectStarOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type ProjectStarWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId_projectId?: ProjectStarUserIdProjectIdCompoundUniqueInput
+    AND?: ProjectStarWhereInput | ProjectStarWhereInput[]
+    OR?: ProjectStarWhereInput[]
+    NOT?: ProjectStarWhereInput | ProjectStarWhereInput[]
+    userId?: StringFilter<"ProjectStar"> | string
+    projectId?: StringFilter<"ProjectStar"> | string
+    createdAt?: DateTimeFilter<"ProjectStar"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id" | "userId_projectId">
+
+  export type ProjectStarOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+    _count?: ProjectStarCountOrderByAggregateInput
+    _max?: ProjectStarMaxOrderByAggregateInput
+    _min?: ProjectStarMinOrderByAggregateInput
+  }
+
+  export type ProjectStarScalarWhereWithAggregatesInput = {
+    AND?: ProjectStarScalarWhereWithAggregatesInput | ProjectStarScalarWhereWithAggregatesInput[]
+    OR?: ProjectStarScalarWhereWithAggregatesInput[]
+    NOT?: ProjectStarScalarWhereWithAggregatesInput | ProjectStarScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProjectStar"> | string
+    userId?: StringWithAggregatesFilter<"ProjectStar"> | string
+    projectId?: StringWithAggregatesFilter<"ProjectStar"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ProjectStar"> | Date | string
+  }
+
+  export type ReleaseWhereInput = {
+    AND?: ReleaseWhereInput | ReleaseWhereInput[]
+    OR?: ReleaseWhereInput[]
+    NOT?: ReleaseWhereInput | ReleaseWhereInput[]
+    id?: StringFilter<"Release"> | string
+    projectId?: StringFilter<"Release"> | string
+    version?: StringFilter<"Release"> | string
+    title?: StringFilter<"Release"> | string
+    description?: StringNullableFilter<"Release"> | string | null
+    releaseNotes?: StringNullableFilter<"Release"> | string | null
+    createdById?: StringFilter<"Release"> | string
+    createdAt?: DateTimeFilter<"Release"> | Date | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    createdBy?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ReleaseOrderByWithRelationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    version?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    releaseNotes?: SortOrderInput | SortOrder
+    createdById?: SortOrder
+    createdAt?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+    createdBy?: UserOrderByWithRelationInput
+  }
+
+  export type ReleaseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ReleaseWhereInput | ReleaseWhereInput[]
+    OR?: ReleaseWhereInput[]
+    NOT?: ReleaseWhereInput | ReleaseWhereInput[]
+    projectId?: StringFilter<"Release"> | string
+    version?: StringFilter<"Release"> | string
+    title?: StringFilter<"Release"> | string
+    description?: StringNullableFilter<"Release"> | string | null
+    releaseNotes?: StringNullableFilter<"Release"> | string | null
+    createdById?: StringFilter<"Release"> | string
+    createdAt?: DateTimeFilter<"Release"> | Date | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    createdBy?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ReleaseOrderByWithAggregationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    version?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    releaseNotes?: SortOrderInput | SortOrder
+    createdById?: SortOrder
+    createdAt?: SortOrder
+    _count?: ReleaseCountOrderByAggregateInput
+    _max?: ReleaseMaxOrderByAggregateInput
+    _min?: ReleaseMinOrderByAggregateInput
+  }
+
+  export type ReleaseScalarWhereWithAggregatesInput = {
+    AND?: ReleaseScalarWhereWithAggregatesInput | ReleaseScalarWhereWithAggregatesInput[]
+    OR?: ReleaseScalarWhereWithAggregatesInput[]
+    NOT?: ReleaseScalarWhereWithAggregatesInput | ReleaseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Release"> | string
+    projectId?: StringWithAggregatesFilter<"Release"> | string
+    version?: StringWithAggregatesFilter<"Release"> | string
+    title?: StringWithAggregatesFilter<"Release"> | string
+    description?: StringNullableWithAggregatesFilter<"Release"> | string | null
+    releaseNotes?: StringNullableWithAggregatesFilter<"Release"> | string | null
+    createdById?: StringWithAggregatesFilter<"Release"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Release"> | Date | string
+  }
+
+  export type ProjectUpdateWhereInput = {
+    AND?: ProjectUpdateWhereInput | ProjectUpdateWhereInput[]
+    OR?: ProjectUpdateWhereInput[]
+    NOT?: ProjectUpdateWhereInput | ProjectUpdateWhereInput[]
+    id?: StringFilter<"ProjectUpdate"> | string
+    projectId?: StringFilter<"ProjectUpdate"> | string
+    authorId?: StringFilter<"ProjectUpdate"> | string
+    title?: StringFilter<"ProjectUpdate"> | string
+    body?: StringFilter<"ProjectUpdate"> | string
+    createdAt?: DateTimeFilter<"ProjectUpdate"> | Date | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ProjectUpdateOrderByWithRelationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    authorId?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+    author?: UserOrderByWithRelationInput
+  }
+
+  export type ProjectUpdateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProjectUpdateWhereInput | ProjectUpdateWhereInput[]
+    OR?: ProjectUpdateWhereInput[]
+    NOT?: ProjectUpdateWhereInput | ProjectUpdateWhereInput[]
+    projectId?: StringFilter<"ProjectUpdate"> | string
+    authorId?: StringFilter<"ProjectUpdate"> | string
+    title?: StringFilter<"ProjectUpdate"> | string
+    body?: StringFilter<"ProjectUpdate"> | string
+    createdAt?: DateTimeFilter<"ProjectUpdate"> | Date | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ProjectUpdateOrderByWithAggregationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    authorId?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+    _count?: ProjectUpdateCountOrderByAggregateInput
+    _max?: ProjectUpdateMaxOrderByAggregateInput
+    _min?: ProjectUpdateMinOrderByAggregateInput
+  }
+
+  export type ProjectUpdateScalarWhereWithAggregatesInput = {
+    AND?: ProjectUpdateScalarWhereWithAggregatesInput | ProjectUpdateScalarWhereWithAggregatesInput[]
+    OR?: ProjectUpdateScalarWhereWithAggregatesInput[]
+    NOT?: ProjectUpdateScalarWhereWithAggregatesInput | ProjectUpdateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProjectUpdate"> | string
+    projectId?: StringWithAggregatesFilter<"ProjectUpdate"> | string
+    authorId?: StringWithAggregatesFilter<"ProjectUpdate"> | string
+    title?: StringWithAggregatesFilter<"ProjectUpdate"> | string
+    body?: StringWithAggregatesFilter<"ProjectUpdate"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ProjectUpdate"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -28345,6 +35057,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -28384,6 +35101,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUpdateInput = {
@@ -28423,6 +35145,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -28462,6 +35189,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -28838,6 +35570,11 @@ export namespace Prisma {
     threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
     files?: FileAssetCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -28867,6 +35604,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
     files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
@@ -28896,6 +35638,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
     files?: FileAssetUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -28925,6 +35672,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
     files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -29950,6 +36702,325 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ActivityEventCreateInput = {
+    id?: string
+    type: $Enums.ActivityEventType
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: $Enums.Visibility
+    createdAt?: Date | string
+    expiresAt?: Date | string | null
+    actor: UserCreateNestedOneWithoutActivityEventsInput
+    project: ProjectCreateNestedOneWithoutActivityEventsInput
+  }
+
+  export type ActivityEventUncheckedCreateInput = {
+    id?: string
+    actorId: string
+    projectId: string
+    type: $Enums.ActivityEventType
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: $Enums.Visibility
+    createdAt?: Date | string
+    expiresAt?: Date | string | null
+  }
+
+  export type ActivityEventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumActivityEventTypeFieldUpdateOperationsInput | $Enums.ActivityEventType
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actor?: UserUpdateOneRequiredWithoutActivityEventsNestedInput
+    project?: ProjectUpdateOneRequiredWithoutActivityEventsNestedInput
+  }
+
+  export type ActivityEventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumActivityEventTypeFieldUpdateOperationsInput | $Enums.ActivityEventType
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ActivityEventCreateManyInput = {
+    id?: string
+    actorId: string
+    projectId: string
+    type: $Enums.ActivityEventType
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: $Enums.Visibility
+    createdAt?: Date | string
+    expiresAt?: Date | string | null
+  }
+
+  export type ActivityEventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumActivityEventTypeFieldUpdateOperationsInput | $Enums.ActivityEventType
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ActivityEventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumActivityEventTypeFieldUpdateOperationsInput | $Enums.ActivityEventType
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ProjectFollowerCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutFollowedProjectsInput
+    project: ProjectCreateNestedOneWithoutFollowersInput
+  }
+
+  export type ProjectFollowerUncheckedCreateInput = {
+    id?: string
+    userId: string
+    projectId: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectFollowerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFollowedProjectsNestedInput
+    project?: ProjectUpdateOneRequiredWithoutFollowersNestedInput
+  }
+
+  export type ProjectFollowerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectFollowerCreateManyInput = {
+    id?: string
+    userId: string
+    projectId: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectFollowerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectFollowerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectStarCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutStarredProjectsInput
+    project: ProjectCreateNestedOneWithoutStarsInput
+  }
+
+  export type ProjectStarUncheckedCreateInput = {
+    id?: string
+    userId: string
+    projectId: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectStarUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutStarredProjectsNestedInput
+    project?: ProjectUpdateOneRequiredWithoutStarsNestedInput
+  }
+
+  export type ProjectStarUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectStarCreateManyInput = {
+    id?: string
+    userId: string
+    projectId: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectStarUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectStarUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReleaseCreateInput = {
+    id?: string
+    version: string
+    title: string
+    description?: string | null
+    releaseNotes?: string | null
+    createdAt?: Date | string
+    project: ProjectCreateNestedOneWithoutReleasesInput
+    createdBy: UserCreateNestedOneWithoutReleasesAuthoredInput
+  }
+
+  export type ReleaseUncheckedCreateInput = {
+    id?: string
+    projectId: string
+    version: string
+    title: string
+    description?: string | null
+    releaseNotes?: string | null
+    createdById: string
+    createdAt?: Date | string
+  }
+
+  export type ReleaseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutReleasesNestedInput
+    createdBy?: UserUpdateOneRequiredWithoutReleasesAuthoredNestedInput
+  }
+
+  export type ReleaseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReleaseCreateManyInput = {
+    id?: string
+    projectId: string
+    version: string
+    title: string
+    description?: string | null
+    releaseNotes?: string | null
+    createdById: string
+    createdAt?: Date | string
+  }
+
+  export type ReleaseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReleaseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUpdateCreateInput = {
+    id?: string
+    title: string
+    body: string
+    createdAt?: Date | string
+    project: ProjectCreateNestedOneWithoutUpdatesInput
+    author: UserCreateNestedOneWithoutProjectUpdatesInput
+  }
+
+  export type ProjectUpdateUncheckedCreateInput = {
+    id?: string
+    projectId: string
+    authorId: string
+    title: string
+    body: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectUpdateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutUpdatesNestedInput
+    author?: UserUpdateOneRequiredWithoutProjectUpdatesNestedInput
+  }
+
+  export type ProjectUpdateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUpdateCreateManyInput = {
+    id?: string
+    projectId: string
+    authorId: string
+    title: string
+    body: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectUpdateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUpdateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -30122,6 +37193,36 @@ export namespace Prisma {
     isNot?: PlatformAdminWhereInput | null
   }
 
+  export type ActivityEventListRelationFilter = {
+    every?: ActivityEventWhereInput
+    some?: ActivityEventWhereInput
+    none?: ActivityEventWhereInput
+  }
+
+  export type ProjectFollowerListRelationFilter = {
+    every?: ProjectFollowerWhereInput
+    some?: ProjectFollowerWhereInput
+    none?: ProjectFollowerWhereInput
+  }
+
+  export type ProjectStarListRelationFilter = {
+    every?: ProjectStarWhereInput
+    some?: ProjectStarWhereInput
+    none?: ProjectStarWhereInput
+  }
+
+  export type ReleaseListRelationFilter = {
+    every?: ReleaseWhereInput
+    some?: ReleaseWhereInput
+    none?: ReleaseWhereInput
+  }
+
+  export type ProjectUpdateListRelationFilter = {
+    every?: ProjectUpdateWhereInput
+    some?: ProjectUpdateWhereInput
+    none?: ProjectUpdateWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -30176,6 +37277,26 @@ export namespace Prisma {
   }
 
   export type UsernameHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ActivityEventOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectFollowerOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectStarOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ReleaseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectUpdateOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -31371,6 +38492,172 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type EnumActivityEventTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ActivityEventType | EnumActivityEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ActivityEventType[] | ListEnumActivityEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ActivityEventType[] | ListEnumActivityEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumActivityEventTypeFilter<$PrismaModel> | $Enums.ActivityEventType
+  }
+
+  export type ActivityEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    actorId?: SortOrder
+    projectId?: SortOrder
+    type?: SortOrder
+    targetType?: SortOrder
+    targetId?: SortOrder
+    metadata?: SortOrder
+    visibility?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type ActivityEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    actorId?: SortOrder
+    projectId?: SortOrder
+    type?: SortOrder
+    targetType?: SortOrder
+    targetId?: SortOrder
+    visibility?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type ActivityEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    actorId?: SortOrder
+    projectId?: SortOrder
+    type?: SortOrder
+    targetType?: SortOrder
+    targetId?: SortOrder
+    visibility?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+  }
+
+  export type EnumActivityEventTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ActivityEventType | EnumActivityEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ActivityEventType[] | ListEnumActivityEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ActivityEventType[] | ListEnumActivityEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumActivityEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.ActivityEventType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumActivityEventTypeFilter<$PrismaModel>
+    _max?: NestedEnumActivityEventTypeFilter<$PrismaModel>
+  }
+
+  export type ProjectFollowerUserIdProjectIdCompoundUniqueInput = {
+    userId: string
+    projectId: string
+  }
+
+  export type ProjectFollowerCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProjectFollowerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProjectFollowerMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProjectStarUserIdProjectIdCompoundUniqueInput = {
+    userId: string
+    projectId: string
+  }
+
+  export type ProjectStarCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProjectStarMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProjectStarMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    projectId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ReleaseCountOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    version?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    releaseNotes?: SortOrder
+    createdById?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ReleaseMaxOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    version?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    releaseNotes?: SortOrder
+    createdById?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ReleaseMinOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    version?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    releaseNotes?: SortOrder
+    createdById?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProjectUpdateCountOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    authorId?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProjectUpdateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    authorId?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProjectUpdateMinOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    authorId?: SortOrder
+    title?: SortOrder
+    body?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type OAuthAccountCreateNestedManyWithoutUserInput = {
     create?: XOR<OAuthAccountCreateWithoutUserInput, OAuthAccountUncheckedCreateWithoutUserInput> | OAuthAccountCreateWithoutUserInput[] | OAuthAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OAuthAccountCreateOrConnectWithoutUserInput | OAuthAccountCreateOrConnectWithoutUserInput[]
@@ -31468,6 +38755,41 @@ export namespace Prisma {
     connect?: PlatformAdminWhereUniqueInput
   }
 
+  export type ActivityEventCreateNestedManyWithoutActorInput = {
+    create?: XOR<ActivityEventCreateWithoutActorInput, ActivityEventUncheckedCreateWithoutActorInput> | ActivityEventCreateWithoutActorInput[] | ActivityEventUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: ActivityEventCreateOrConnectWithoutActorInput | ActivityEventCreateOrConnectWithoutActorInput[]
+    createMany?: ActivityEventCreateManyActorInputEnvelope
+    connect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+  }
+
+  export type ProjectFollowerCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProjectFollowerCreateWithoutUserInput, ProjectFollowerUncheckedCreateWithoutUserInput> | ProjectFollowerCreateWithoutUserInput[] | ProjectFollowerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectFollowerCreateOrConnectWithoutUserInput | ProjectFollowerCreateOrConnectWithoutUserInput[]
+    createMany?: ProjectFollowerCreateManyUserInputEnvelope
+    connect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+  }
+
+  export type ProjectStarCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProjectStarCreateWithoutUserInput, ProjectStarUncheckedCreateWithoutUserInput> | ProjectStarCreateWithoutUserInput[] | ProjectStarUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectStarCreateOrConnectWithoutUserInput | ProjectStarCreateOrConnectWithoutUserInput[]
+    createMany?: ProjectStarCreateManyUserInputEnvelope
+    connect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+  }
+
+  export type ReleaseCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<ReleaseCreateWithoutCreatedByInput, ReleaseUncheckedCreateWithoutCreatedByInput> | ReleaseCreateWithoutCreatedByInput[] | ReleaseUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: ReleaseCreateOrConnectWithoutCreatedByInput | ReleaseCreateOrConnectWithoutCreatedByInput[]
+    createMany?: ReleaseCreateManyCreatedByInputEnvelope
+    connect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+  }
+
+  export type ProjectUpdateCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<ProjectUpdateCreateWithoutAuthorInput, ProjectUpdateUncheckedCreateWithoutAuthorInput> | ProjectUpdateCreateWithoutAuthorInput[] | ProjectUpdateUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: ProjectUpdateCreateOrConnectWithoutAuthorInput | ProjectUpdateCreateOrConnectWithoutAuthorInput[]
+    createMany?: ProjectUpdateCreateManyAuthorInputEnvelope
+    connect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+  }
+
   export type OAuthAccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<OAuthAccountCreateWithoutUserInput, OAuthAccountUncheckedCreateWithoutUserInput> | OAuthAccountCreateWithoutUserInput[] | OAuthAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OAuthAccountCreateOrConnectWithoutUserInput | OAuthAccountCreateOrConnectWithoutUserInput[]
@@ -31563,6 +38885,41 @@ export namespace Prisma {
     create?: XOR<PlatformAdminCreateWithoutUserInput, PlatformAdminUncheckedCreateWithoutUserInput>
     connectOrCreate?: PlatformAdminCreateOrConnectWithoutUserInput
     connect?: PlatformAdminWhereUniqueInput
+  }
+
+  export type ActivityEventUncheckedCreateNestedManyWithoutActorInput = {
+    create?: XOR<ActivityEventCreateWithoutActorInput, ActivityEventUncheckedCreateWithoutActorInput> | ActivityEventCreateWithoutActorInput[] | ActivityEventUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: ActivityEventCreateOrConnectWithoutActorInput | ActivityEventCreateOrConnectWithoutActorInput[]
+    createMany?: ActivityEventCreateManyActorInputEnvelope
+    connect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+  }
+
+  export type ProjectFollowerUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProjectFollowerCreateWithoutUserInput, ProjectFollowerUncheckedCreateWithoutUserInput> | ProjectFollowerCreateWithoutUserInput[] | ProjectFollowerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectFollowerCreateOrConnectWithoutUserInput | ProjectFollowerCreateOrConnectWithoutUserInput[]
+    createMany?: ProjectFollowerCreateManyUserInputEnvelope
+    connect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+  }
+
+  export type ProjectStarUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProjectStarCreateWithoutUserInput, ProjectStarUncheckedCreateWithoutUserInput> | ProjectStarCreateWithoutUserInput[] | ProjectStarUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectStarCreateOrConnectWithoutUserInput | ProjectStarCreateOrConnectWithoutUserInput[]
+    createMany?: ProjectStarCreateManyUserInputEnvelope
+    connect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+  }
+
+  export type ReleaseUncheckedCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<ReleaseCreateWithoutCreatedByInput, ReleaseUncheckedCreateWithoutCreatedByInput> | ReleaseCreateWithoutCreatedByInput[] | ReleaseUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: ReleaseCreateOrConnectWithoutCreatedByInput | ReleaseCreateOrConnectWithoutCreatedByInput[]
+    createMany?: ReleaseCreateManyCreatedByInputEnvelope
+    connect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+  }
+
+  export type ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<ProjectUpdateCreateWithoutAuthorInput, ProjectUpdateUncheckedCreateWithoutAuthorInput> | ProjectUpdateCreateWithoutAuthorInput[] | ProjectUpdateUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: ProjectUpdateCreateOrConnectWithoutAuthorInput | ProjectUpdateCreateOrConnectWithoutAuthorInput[]
+    createMany?: ProjectUpdateCreateManyAuthorInputEnvelope
+    connect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -31797,6 +39154,76 @@ export namespace Prisma {
     update?: XOR<XOR<PlatformAdminUpdateToOneWithWhereWithoutUserInput, PlatformAdminUpdateWithoutUserInput>, PlatformAdminUncheckedUpdateWithoutUserInput>
   }
 
+  export type ActivityEventUpdateManyWithoutActorNestedInput = {
+    create?: XOR<ActivityEventCreateWithoutActorInput, ActivityEventUncheckedCreateWithoutActorInput> | ActivityEventCreateWithoutActorInput[] | ActivityEventUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: ActivityEventCreateOrConnectWithoutActorInput | ActivityEventCreateOrConnectWithoutActorInput[]
+    upsert?: ActivityEventUpsertWithWhereUniqueWithoutActorInput | ActivityEventUpsertWithWhereUniqueWithoutActorInput[]
+    createMany?: ActivityEventCreateManyActorInputEnvelope
+    set?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    disconnect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    delete?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    connect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    update?: ActivityEventUpdateWithWhereUniqueWithoutActorInput | ActivityEventUpdateWithWhereUniqueWithoutActorInput[]
+    updateMany?: ActivityEventUpdateManyWithWhereWithoutActorInput | ActivityEventUpdateManyWithWhereWithoutActorInput[]
+    deleteMany?: ActivityEventScalarWhereInput | ActivityEventScalarWhereInput[]
+  }
+
+  export type ProjectFollowerUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProjectFollowerCreateWithoutUserInput, ProjectFollowerUncheckedCreateWithoutUserInput> | ProjectFollowerCreateWithoutUserInput[] | ProjectFollowerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectFollowerCreateOrConnectWithoutUserInput | ProjectFollowerCreateOrConnectWithoutUserInput[]
+    upsert?: ProjectFollowerUpsertWithWhereUniqueWithoutUserInput | ProjectFollowerUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProjectFollowerCreateManyUserInputEnvelope
+    set?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    disconnect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    delete?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    connect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    update?: ProjectFollowerUpdateWithWhereUniqueWithoutUserInput | ProjectFollowerUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProjectFollowerUpdateManyWithWhereWithoutUserInput | ProjectFollowerUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProjectFollowerScalarWhereInput | ProjectFollowerScalarWhereInput[]
+  }
+
+  export type ProjectStarUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProjectStarCreateWithoutUserInput, ProjectStarUncheckedCreateWithoutUserInput> | ProjectStarCreateWithoutUserInput[] | ProjectStarUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectStarCreateOrConnectWithoutUserInput | ProjectStarCreateOrConnectWithoutUserInput[]
+    upsert?: ProjectStarUpsertWithWhereUniqueWithoutUserInput | ProjectStarUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProjectStarCreateManyUserInputEnvelope
+    set?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    disconnect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    delete?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    connect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    update?: ProjectStarUpdateWithWhereUniqueWithoutUserInput | ProjectStarUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProjectStarUpdateManyWithWhereWithoutUserInput | ProjectStarUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProjectStarScalarWhereInput | ProjectStarScalarWhereInput[]
+  }
+
+  export type ReleaseUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<ReleaseCreateWithoutCreatedByInput, ReleaseUncheckedCreateWithoutCreatedByInput> | ReleaseCreateWithoutCreatedByInput[] | ReleaseUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: ReleaseCreateOrConnectWithoutCreatedByInput | ReleaseCreateOrConnectWithoutCreatedByInput[]
+    upsert?: ReleaseUpsertWithWhereUniqueWithoutCreatedByInput | ReleaseUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: ReleaseCreateManyCreatedByInputEnvelope
+    set?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    disconnect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    delete?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    connect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    update?: ReleaseUpdateWithWhereUniqueWithoutCreatedByInput | ReleaseUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: ReleaseUpdateManyWithWhereWithoutCreatedByInput | ReleaseUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: ReleaseScalarWhereInput | ReleaseScalarWhereInput[]
+  }
+
+  export type ProjectUpdateUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<ProjectUpdateCreateWithoutAuthorInput, ProjectUpdateUncheckedCreateWithoutAuthorInput> | ProjectUpdateCreateWithoutAuthorInput[] | ProjectUpdateUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: ProjectUpdateCreateOrConnectWithoutAuthorInput | ProjectUpdateCreateOrConnectWithoutAuthorInput[]
+    upsert?: ProjectUpdateUpsertWithWhereUniqueWithoutAuthorInput | ProjectUpdateUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: ProjectUpdateCreateManyAuthorInputEnvelope
+    set?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    disconnect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    delete?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    connect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    update?: ProjectUpdateUpdateWithWhereUniqueWithoutAuthorInput | ProjectUpdateUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: ProjectUpdateUpdateManyWithWhereWithoutAuthorInput | ProjectUpdateUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: ProjectUpdateScalarWhereInput | ProjectUpdateScalarWhereInput[]
+  }
+
   export type OAuthAccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<OAuthAccountCreateWithoutUserInput, OAuthAccountUncheckedCreateWithoutUserInput> | OAuthAccountCreateWithoutUserInput[] | OAuthAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OAuthAccountCreateOrConnectWithoutUserInput | OAuthAccountCreateOrConnectWithoutUserInput[]
@@ -31989,6 +39416,76 @@ export namespace Prisma {
     update?: XOR<XOR<PlatformAdminUpdateToOneWithWhereWithoutUserInput, PlatformAdminUpdateWithoutUserInput>, PlatformAdminUncheckedUpdateWithoutUserInput>
   }
 
+  export type ActivityEventUncheckedUpdateManyWithoutActorNestedInput = {
+    create?: XOR<ActivityEventCreateWithoutActorInput, ActivityEventUncheckedCreateWithoutActorInput> | ActivityEventCreateWithoutActorInput[] | ActivityEventUncheckedCreateWithoutActorInput[]
+    connectOrCreate?: ActivityEventCreateOrConnectWithoutActorInput | ActivityEventCreateOrConnectWithoutActorInput[]
+    upsert?: ActivityEventUpsertWithWhereUniqueWithoutActorInput | ActivityEventUpsertWithWhereUniqueWithoutActorInput[]
+    createMany?: ActivityEventCreateManyActorInputEnvelope
+    set?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    disconnect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    delete?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    connect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    update?: ActivityEventUpdateWithWhereUniqueWithoutActorInput | ActivityEventUpdateWithWhereUniqueWithoutActorInput[]
+    updateMany?: ActivityEventUpdateManyWithWhereWithoutActorInput | ActivityEventUpdateManyWithWhereWithoutActorInput[]
+    deleteMany?: ActivityEventScalarWhereInput | ActivityEventScalarWhereInput[]
+  }
+
+  export type ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProjectFollowerCreateWithoutUserInput, ProjectFollowerUncheckedCreateWithoutUserInput> | ProjectFollowerCreateWithoutUserInput[] | ProjectFollowerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectFollowerCreateOrConnectWithoutUserInput | ProjectFollowerCreateOrConnectWithoutUserInput[]
+    upsert?: ProjectFollowerUpsertWithWhereUniqueWithoutUserInput | ProjectFollowerUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProjectFollowerCreateManyUserInputEnvelope
+    set?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    disconnect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    delete?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    connect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    update?: ProjectFollowerUpdateWithWhereUniqueWithoutUserInput | ProjectFollowerUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProjectFollowerUpdateManyWithWhereWithoutUserInput | ProjectFollowerUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProjectFollowerScalarWhereInput | ProjectFollowerScalarWhereInput[]
+  }
+
+  export type ProjectStarUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProjectStarCreateWithoutUserInput, ProjectStarUncheckedCreateWithoutUserInput> | ProjectStarCreateWithoutUserInput[] | ProjectStarUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectStarCreateOrConnectWithoutUserInput | ProjectStarCreateOrConnectWithoutUserInput[]
+    upsert?: ProjectStarUpsertWithWhereUniqueWithoutUserInput | ProjectStarUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProjectStarCreateManyUserInputEnvelope
+    set?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    disconnect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    delete?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    connect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    update?: ProjectStarUpdateWithWhereUniqueWithoutUserInput | ProjectStarUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProjectStarUpdateManyWithWhereWithoutUserInput | ProjectStarUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProjectStarScalarWhereInput | ProjectStarScalarWhereInput[]
+  }
+
+  export type ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<ReleaseCreateWithoutCreatedByInput, ReleaseUncheckedCreateWithoutCreatedByInput> | ReleaseCreateWithoutCreatedByInput[] | ReleaseUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: ReleaseCreateOrConnectWithoutCreatedByInput | ReleaseCreateOrConnectWithoutCreatedByInput[]
+    upsert?: ReleaseUpsertWithWhereUniqueWithoutCreatedByInput | ReleaseUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: ReleaseCreateManyCreatedByInputEnvelope
+    set?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    disconnect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    delete?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    connect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    update?: ReleaseUpdateWithWhereUniqueWithoutCreatedByInput | ReleaseUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: ReleaseUpdateManyWithWhereWithoutCreatedByInput | ReleaseUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: ReleaseScalarWhereInput | ReleaseScalarWhereInput[]
+  }
+
+  export type ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<ProjectUpdateCreateWithoutAuthorInput, ProjectUpdateUncheckedCreateWithoutAuthorInput> | ProjectUpdateCreateWithoutAuthorInput[] | ProjectUpdateUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: ProjectUpdateCreateOrConnectWithoutAuthorInput | ProjectUpdateCreateOrConnectWithoutAuthorInput[]
+    upsert?: ProjectUpdateUpsertWithWhereUniqueWithoutAuthorInput | ProjectUpdateUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: ProjectUpdateCreateManyAuthorInputEnvelope
+    set?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    disconnect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    delete?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    connect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    update?: ProjectUpdateUpdateWithWhereUniqueWithoutAuthorInput | ProjectUpdateUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: ProjectUpdateUpdateManyWithWhereWithoutAuthorInput | ProjectUpdateUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: ProjectUpdateScalarWhereInput | ProjectUpdateScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutUsernameHistoryInput = {
     create?: XOR<UserCreateWithoutUsernameHistoryInput, UserUncheckedCreateWithoutUsernameHistoryInput>
     connectOrCreate?: UserCreateOrConnectWithoutUsernameHistoryInput
@@ -32171,6 +39668,41 @@ export namespace Prisma {
     connect?: ContributionRecordWhereUniqueInput | ContributionRecordWhereUniqueInput[]
   }
 
+  export type ActivityEventCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ActivityEventCreateWithoutProjectInput, ActivityEventUncheckedCreateWithoutProjectInput> | ActivityEventCreateWithoutProjectInput[] | ActivityEventUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ActivityEventCreateOrConnectWithoutProjectInput | ActivityEventCreateOrConnectWithoutProjectInput[]
+    createMany?: ActivityEventCreateManyProjectInputEnvelope
+    connect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+  }
+
+  export type ProjectFollowerCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectFollowerCreateWithoutProjectInput, ProjectFollowerUncheckedCreateWithoutProjectInput> | ProjectFollowerCreateWithoutProjectInput[] | ProjectFollowerUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFollowerCreateOrConnectWithoutProjectInput | ProjectFollowerCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectFollowerCreateManyProjectInputEnvelope
+    connect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+  }
+
+  export type ProjectStarCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectStarCreateWithoutProjectInput, ProjectStarUncheckedCreateWithoutProjectInput> | ProjectStarCreateWithoutProjectInput[] | ProjectStarUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectStarCreateOrConnectWithoutProjectInput | ProjectStarCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectStarCreateManyProjectInputEnvelope
+    connect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+  }
+
+  export type ReleaseCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ReleaseCreateWithoutProjectInput, ReleaseUncheckedCreateWithoutProjectInput> | ReleaseCreateWithoutProjectInput[] | ReleaseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ReleaseCreateOrConnectWithoutProjectInput | ReleaseCreateOrConnectWithoutProjectInput[]
+    createMany?: ReleaseCreateManyProjectInputEnvelope
+    connect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+  }
+
+  export type ProjectUpdateCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectUpdateCreateWithoutProjectInput, ProjectUpdateUncheckedCreateWithoutProjectInput> | ProjectUpdateCreateWithoutProjectInput[] | ProjectUpdateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectUpdateCreateOrConnectWithoutProjectInput | ProjectUpdateCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectUpdateCreateManyProjectInputEnvelope
+    connect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+  }
+
   export type RoleUncheckedCreateNestedManyWithoutProjectInput = {
     create?: XOR<RoleCreateWithoutProjectInput, RoleUncheckedCreateWithoutProjectInput> | RoleCreateWithoutProjectInput[] | RoleUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: RoleCreateOrConnectWithoutProjectInput | RoleCreateOrConnectWithoutProjectInput[]
@@ -32225,6 +39757,41 @@ export namespace Prisma {
     connectOrCreate?: ContributionRecordCreateOrConnectWithoutProjectInput | ContributionRecordCreateOrConnectWithoutProjectInput[]
     createMany?: ContributionRecordCreateManyProjectInputEnvelope
     connect?: ContributionRecordWhereUniqueInput | ContributionRecordWhereUniqueInput[]
+  }
+
+  export type ActivityEventUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ActivityEventCreateWithoutProjectInput, ActivityEventUncheckedCreateWithoutProjectInput> | ActivityEventCreateWithoutProjectInput[] | ActivityEventUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ActivityEventCreateOrConnectWithoutProjectInput | ActivityEventCreateOrConnectWithoutProjectInput[]
+    createMany?: ActivityEventCreateManyProjectInputEnvelope
+    connect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+  }
+
+  export type ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectFollowerCreateWithoutProjectInput, ProjectFollowerUncheckedCreateWithoutProjectInput> | ProjectFollowerCreateWithoutProjectInput[] | ProjectFollowerUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFollowerCreateOrConnectWithoutProjectInput | ProjectFollowerCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectFollowerCreateManyProjectInputEnvelope
+    connect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+  }
+
+  export type ProjectStarUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectStarCreateWithoutProjectInput, ProjectStarUncheckedCreateWithoutProjectInput> | ProjectStarCreateWithoutProjectInput[] | ProjectStarUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectStarCreateOrConnectWithoutProjectInput | ProjectStarCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectStarCreateManyProjectInputEnvelope
+    connect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+  }
+
+  export type ReleaseUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ReleaseCreateWithoutProjectInput, ReleaseUncheckedCreateWithoutProjectInput> | ReleaseCreateWithoutProjectInput[] | ReleaseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ReleaseCreateOrConnectWithoutProjectInput | ReleaseCreateOrConnectWithoutProjectInput[]
+    createMany?: ReleaseCreateManyProjectInputEnvelope
+    connect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+  }
+
+  export type ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectUpdateCreateWithoutProjectInput, ProjectUpdateUncheckedCreateWithoutProjectInput> | ProjectUpdateCreateWithoutProjectInput[] | ProjectUpdateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectUpdateCreateOrConnectWithoutProjectInput | ProjectUpdateCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectUpdateCreateManyProjectInputEnvelope
+    connect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
   }
 
   export type EnumProjectStatusFieldUpdateOperationsInput = {
@@ -32364,6 +39931,76 @@ export namespace Prisma {
     deleteMany?: ContributionRecordScalarWhereInput | ContributionRecordScalarWhereInput[]
   }
 
+  export type ActivityEventUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ActivityEventCreateWithoutProjectInput, ActivityEventUncheckedCreateWithoutProjectInput> | ActivityEventCreateWithoutProjectInput[] | ActivityEventUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ActivityEventCreateOrConnectWithoutProjectInput | ActivityEventCreateOrConnectWithoutProjectInput[]
+    upsert?: ActivityEventUpsertWithWhereUniqueWithoutProjectInput | ActivityEventUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ActivityEventCreateManyProjectInputEnvelope
+    set?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    disconnect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    delete?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    connect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    update?: ActivityEventUpdateWithWhereUniqueWithoutProjectInput | ActivityEventUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ActivityEventUpdateManyWithWhereWithoutProjectInput | ActivityEventUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ActivityEventScalarWhereInput | ActivityEventScalarWhereInput[]
+  }
+
+  export type ProjectFollowerUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectFollowerCreateWithoutProjectInput, ProjectFollowerUncheckedCreateWithoutProjectInput> | ProjectFollowerCreateWithoutProjectInput[] | ProjectFollowerUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFollowerCreateOrConnectWithoutProjectInput | ProjectFollowerCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectFollowerUpsertWithWhereUniqueWithoutProjectInput | ProjectFollowerUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectFollowerCreateManyProjectInputEnvelope
+    set?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    disconnect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    delete?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    connect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    update?: ProjectFollowerUpdateWithWhereUniqueWithoutProjectInput | ProjectFollowerUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectFollowerUpdateManyWithWhereWithoutProjectInput | ProjectFollowerUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectFollowerScalarWhereInput | ProjectFollowerScalarWhereInput[]
+  }
+
+  export type ProjectStarUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectStarCreateWithoutProjectInput, ProjectStarUncheckedCreateWithoutProjectInput> | ProjectStarCreateWithoutProjectInput[] | ProjectStarUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectStarCreateOrConnectWithoutProjectInput | ProjectStarCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectStarUpsertWithWhereUniqueWithoutProjectInput | ProjectStarUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectStarCreateManyProjectInputEnvelope
+    set?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    disconnect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    delete?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    connect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    update?: ProjectStarUpdateWithWhereUniqueWithoutProjectInput | ProjectStarUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectStarUpdateManyWithWhereWithoutProjectInput | ProjectStarUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectStarScalarWhereInput | ProjectStarScalarWhereInput[]
+  }
+
+  export type ReleaseUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ReleaseCreateWithoutProjectInput, ReleaseUncheckedCreateWithoutProjectInput> | ReleaseCreateWithoutProjectInput[] | ReleaseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ReleaseCreateOrConnectWithoutProjectInput | ReleaseCreateOrConnectWithoutProjectInput[]
+    upsert?: ReleaseUpsertWithWhereUniqueWithoutProjectInput | ReleaseUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ReleaseCreateManyProjectInputEnvelope
+    set?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    disconnect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    delete?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    connect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    update?: ReleaseUpdateWithWhereUniqueWithoutProjectInput | ReleaseUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ReleaseUpdateManyWithWhereWithoutProjectInput | ReleaseUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ReleaseScalarWhereInput | ReleaseScalarWhereInput[]
+  }
+
+  export type ProjectUpdateUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectUpdateCreateWithoutProjectInput, ProjectUpdateUncheckedCreateWithoutProjectInput> | ProjectUpdateCreateWithoutProjectInput[] | ProjectUpdateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectUpdateCreateOrConnectWithoutProjectInput | ProjectUpdateCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectUpdateUpsertWithWhereUniqueWithoutProjectInput | ProjectUpdateUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectUpdateCreateManyProjectInputEnvelope
+    set?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    disconnect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    delete?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    connect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    update?: ProjectUpdateUpdateWithWhereUniqueWithoutProjectInput | ProjectUpdateUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectUpdateUpdateManyWithWhereWithoutProjectInput | ProjectUpdateUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectUpdateScalarWhereInput | ProjectUpdateScalarWhereInput[]
+  }
+
   export type RoleUncheckedUpdateManyWithoutProjectNestedInput = {
     create?: XOR<RoleCreateWithoutProjectInput, RoleUncheckedCreateWithoutProjectInput> | RoleCreateWithoutProjectInput[] | RoleUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: RoleCreateOrConnectWithoutProjectInput | RoleCreateOrConnectWithoutProjectInput[]
@@ -32474,6 +40111,76 @@ export namespace Prisma {
     update?: ContributionRecordUpdateWithWhereUniqueWithoutProjectInput | ContributionRecordUpdateWithWhereUniqueWithoutProjectInput[]
     updateMany?: ContributionRecordUpdateManyWithWhereWithoutProjectInput | ContributionRecordUpdateManyWithWhereWithoutProjectInput[]
     deleteMany?: ContributionRecordScalarWhereInput | ContributionRecordScalarWhereInput[]
+  }
+
+  export type ActivityEventUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ActivityEventCreateWithoutProjectInput, ActivityEventUncheckedCreateWithoutProjectInput> | ActivityEventCreateWithoutProjectInput[] | ActivityEventUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ActivityEventCreateOrConnectWithoutProjectInput | ActivityEventCreateOrConnectWithoutProjectInput[]
+    upsert?: ActivityEventUpsertWithWhereUniqueWithoutProjectInput | ActivityEventUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ActivityEventCreateManyProjectInputEnvelope
+    set?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    disconnect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    delete?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    connect?: ActivityEventWhereUniqueInput | ActivityEventWhereUniqueInput[]
+    update?: ActivityEventUpdateWithWhereUniqueWithoutProjectInput | ActivityEventUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ActivityEventUpdateManyWithWhereWithoutProjectInput | ActivityEventUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ActivityEventScalarWhereInput | ActivityEventScalarWhereInput[]
+  }
+
+  export type ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectFollowerCreateWithoutProjectInput, ProjectFollowerUncheckedCreateWithoutProjectInput> | ProjectFollowerCreateWithoutProjectInput[] | ProjectFollowerUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFollowerCreateOrConnectWithoutProjectInput | ProjectFollowerCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectFollowerUpsertWithWhereUniqueWithoutProjectInput | ProjectFollowerUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectFollowerCreateManyProjectInputEnvelope
+    set?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    disconnect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    delete?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    connect?: ProjectFollowerWhereUniqueInput | ProjectFollowerWhereUniqueInput[]
+    update?: ProjectFollowerUpdateWithWhereUniqueWithoutProjectInput | ProjectFollowerUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectFollowerUpdateManyWithWhereWithoutProjectInput | ProjectFollowerUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectFollowerScalarWhereInput | ProjectFollowerScalarWhereInput[]
+  }
+
+  export type ProjectStarUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectStarCreateWithoutProjectInput, ProjectStarUncheckedCreateWithoutProjectInput> | ProjectStarCreateWithoutProjectInput[] | ProjectStarUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectStarCreateOrConnectWithoutProjectInput | ProjectStarCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectStarUpsertWithWhereUniqueWithoutProjectInput | ProjectStarUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectStarCreateManyProjectInputEnvelope
+    set?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    disconnect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    delete?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    connect?: ProjectStarWhereUniqueInput | ProjectStarWhereUniqueInput[]
+    update?: ProjectStarUpdateWithWhereUniqueWithoutProjectInput | ProjectStarUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectStarUpdateManyWithWhereWithoutProjectInput | ProjectStarUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectStarScalarWhereInput | ProjectStarScalarWhereInput[]
+  }
+
+  export type ReleaseUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ReleaseCreateWithoutProjectInput, ReleaseUncheckedCreateWithoutProjectInput> | ReleaseCreateWithoutProjectInput[] | ReleaseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ReleaseCreateOrConnectWithoutProjectInput | ReleaseCreateOrConnectWithoutProjectInput[]
+    upsert?: ReleaseUpsertWithWhereUniqueWithoutProjectInput | ReleaseUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ReleaseCreateManyProjectInputEnvelope
+    set?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    disconnect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    delete?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    connect?: ReleaseWhereUniqueInput | ReleaseWhereUniqueInput[]
+    update?: ReleaseUpdateWithWhereUniqueWithoutProjectInput | ReleaseUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ReleaseUpdateManyWithWhereWithoutProjectInput | ReleaseUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ReleaseScalarWhereInput | ReleaseScalarWhereInput[]
+  }
+
+  export type ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectUpdateCreateWithoutProjectInput, ProjectUpdateUncheckedCreateWithoutProjectInput> | ProjectUpdateCreateWithoutProjectInput[] | ProjectUpdateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectUpdateCreateOrConnectWithoutProjectInput | ProjectUpdateCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectUpdateUpsertWithWhereUniqueWithoutProjectInput | ProjectUpdateUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectUpdateCreateManyProjectInputEnvelope
+    set?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    disconnect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    delete?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    connect?: ProjectUpdateWhereUniqueInput | ProjectUpdateWhereUniqueInput[]
+    update?: ProjectUpdateUpdateWithWhereUniqueWithoutProjectInput | ProjectUpdateUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectUpdateUpdateManyWithWhereWithoutProjectInput | ProjectUpdateUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectUpdateScalarWhereInput | ProjectUpdateScalarWhereInput[]
   }
 
   export type ProjectCreateNestedOneWithoutRolesInput = {
@@ -33082,6 +40789,150 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPlatformAdminInput, UserUpdateWithoutPlatformAdminInput>, UserUncheckedUpdateWithoutPlatformAdminInput>
   }
 
+  export type UserCreateNestedOneWithoutActivityEventsInput = {
+    create?: XOR<UserCreateWithoutActivityEventsInput, UserUncheckedCreateWithoutActivityEventsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutActivityEventsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProjectCreateNestedOneWithoutActivityEventsInput = {
+    create?: XOR<ProjectCreateWithoutActivityEventsInput, ProjectUncheckedCreateWithoutActivityEventsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutActivityEventsInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type EnumActivityEventTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ActivityEventType
+  }
+
+  export type UserUpdateOneRequiredWithoutActivityEventsNestedInput = {
+    create?: XOR<UserCreateWithoutActivityEventsInput, UserUncheckedCreateWithoutActivityEventsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutActivityEventsInput
+    upsert?: UserUpsertWithoutActivityEventsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutActivityEventsInput, UserUpdateWithoutActivityEventsInput>, UserUncheckedUpdateWithoutActivityEventsInput>
+  }
+
+  export type ProjectUpdateOneRequiredWithoutActivityEventsNestedInput = {
+    create?: XOR<ProjectCreateWithoutActivityEventsInput, ProjectUncheckedCreateWithoutActivityEventsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutActivityEventsInput
+    upsert?: ProjectUpsertWithoutActivityEventsInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutActivityEventsInput, ProjectUpdateWithoutActivityEventsInput>, ProjectUncheckedUpdateWithoutActivityEventsInput>
+  }
+
+  export type UserCreateNestedOneWithoutFollowedProjectsInput = {
+    create?: XOR<UserCreateWithoutFollowedProjectsInput, UserUncheckedCreateWithoutFollowedProjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFollowedProjectsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProjectCreateNestedOneWithoutFollowersInput = {
+    create?: XOR<ProjectCreateWithoutFollowersInput, ProjectUncheckedCreateWithoutFollowersInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutFollowersInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutFollowedProjectsNestedInput = {
+    create?: XOR<UserCreateWithoutFollowedProjectsInput, UserUncheckedCreateWithoutFollowedProjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFollowedProjectsInput
+    upsert?: UserUpsertWithoutFollowedProjectsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFollowedProjectsInput, UserUpdateWithoutFollowedProjectsInput>, UserUncheckedUpdateWithoutFollowedProjectsInput>
+  }
+
+  export type ProjectUpdateOneRequiredWithoutFollowersNestedInput = {
+    create?: XOR<ProjectCreateWithoutFollowersInput, ProjectUncheckedCreateWithoutFollowersInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutFollowersInput
+    upsert?: ProjectUpsertWithoutFollowersInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutFollowersInput, ProjectUpdateWithoutFollowersInput>, ProjectUncheckedUpdateWithoutFollowersInput>
+  }
+
+  export type UserCreateNestedOneWithoutStarredProjectsInput = {
+    create?: XOR<UserCreateWithoutStarredProjectsInput, UserUncheckedCreateWithoutStarredProjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStarredProjectsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProjectCreateNestedOneWithoutStarsInput = {
+    create?: XOR<ProjectCreateWithoutStarsInput, ProjectUncheckedCreateWithoutStarsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutStarsInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutStarredProjectsNestedInput = {
+    create?: XOR<UserCreateWithoutStarredProjectsInput, UserUncheckedCreateWithoutStarredProjectsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStarredProjectsInput
+    upsert?: UserUpsertWithoutStarredProjectsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStarredProjectsInput, UserUpdateWithoutStarredProjectsInput>, UserUncheckedUpdateWithoutStarredProjectsInput>
+  }
+
+  export type ProjectUpdateOneRequiredWithoutStarsNestedInput = {
+    create?: XOR<ProjectCreateWithoutStarsInput, ProjectUncheckedCreateWithoutStarsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutStarsInput
+    upsert?: ProjectUpsertWithoutStarsInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutStarsInput, ProjectUpdateWithoutStarsInput>, ProjectUncheckedUpdateWithoutStarsInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutReleasesInput = {
+    create?: XOR<ProjectCreateWithoutReleasesInput, ProjectUncheckedCreateWithoutReleasesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutReleasesInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutReleasesAuthoredInput = {
+    create?: XOR<UserCreateWithoutReleasesAuthoredInput, UserUncheckedCreateWithoutReleasesAuthoredInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReleasesAuthoredInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutReleasesNestedInput = {
+    create?: XOR<ProjectCreateWithoutReleasesInput, ProjectUncheckedCreateWithoutReleasesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutReleasesInput
+    upsert?: ProjectUpsertWithoutReleasesInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutReleasesInput, ProjectUpdateWithoutReleasesInput>, ProjectUncheckedUpdateWithoutReleasesInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutReleasesAuthoredNestedInput = {
+    create?: XOR<UserCreateWithoutReleasesAuthoredInput, UserUncheckedCreateWithoutReleasesAuthoredInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReleasesAuthoredInput
+    upsert?: UserUpsertWithoutReleasesAuthoredInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReleasesAuthoredInput, UserUpdateWithoutReleasesAuthoredInput>, UserUncheckedUpdateWithoutReleasesAuthoredInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutUpdatesInput = {
+    create?: XOR<ProjectCreateWithoutUpdatesInput, ProjectUncheckedCreateWithoutUpdatesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutUpdatesInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutProjectUpdatesInput = {
+    create?: XOR<UserCreateWithoutProjectUpdatesInput, UserUncheckedCreateWithoutProjectUpdatesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProjectUpdatesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutUpdatesNestedInput = {
+    create?: XOR<ProjectCreateWithoutUpdatesInput, ProjectUncheckedCreateWithoutUpdatesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutUpdatesInput
+    upsert?: ProjectUpsertWithoutUpdatesInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutUpdatesInput, ProjectUpdateWithoutUpdatesInput>, ProjectUncheckedUpdateWithoutUpdatesInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutProjectUpdatesNestedInput = {
+    create?: XOR<UserCreateWithoutProjectUpdatesInput, UserUncheckedCreateWithoutProjectUpdatesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProjectUpdatesInput
+    upsert?: UserUpsertWithoutProjectUpdatesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectUpdatesInput, UserUpdateWithoutProjectUpdatesInput>, UserUncheckedUpdateWithoutProjectUpdatesInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -33540,6 +41391,23 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedEnumActivityEventTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ActivityEventType | EnumActivityEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ActivityEventType[] | ListEnumActivityEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ActivityEventType[] | ListEnumActivityEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumActivityEventTypeFilter<$PrismaModel> | $Enums.ActivityEventType
+  }
+
+  export type NestedEnumActivityEventTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ActivityEventType | EnumActivityEventTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ActivityEventType[] | ListEnumActivityEventTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ActivityEventType[] | ListEnumActivityEventTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumActivityEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.ActivityEventType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumActivityEventTypeFilter<$PrismaModel>
+    _max?: NestedEnumActivityEventTypeFilter<$PrismaModel>
+  }
+
   export type OAuthAccountCreateWithoutUserInput = {
     id?: string
     provider: string
@@ -33642,6 +41510,11 @@ export namespace Prisma {
     threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
     files?: FileAssetCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutOwnerInput = {
@@ -33670,6 +41543,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
     files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutOwnerInput = {
@@ -33957,6 +41835,140 @@ export namespace Prisma {
   export type PlatformAdminCreateOrConnectWithoutUserInput = {
     where: PlatformAdminWhereUniqueInput
     create: XOR<PlatformAdminCreateWithoutUserInput, PlatformAdminUncheckedCreateWithoutUserInput>
+  }
+
+  export type ActivityEventCreateWithoutActorInput = {
+    id?: string
+    type: $Enums.ActivityEventType
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: $Enums.Visibility
+    createdAt?: Date | string
+    expiresAt?: Date | string | null
+    project: ProjectCreateNestedOneWithoutActivityEventsInput
+  }
+
+  export type ActivityEventUncheckedCreateWithoutActorInput = {
+    id?: string
+    projectId: string
+    type: $Enums.ActivityEventType
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: $Enums.Visibility
+    createdAt?: Date | string
+    expiresAt?: Date | string | null
+  }
+
+  export type ActivityEventCreateOrConnectWithoutActorInput = {
+    where: ActivityEventWhereUniqueInput
+    create: XOR<ActivityEventCreateWithoutActorInput, ActivityEventUncheckedCreateWithoutActorInput>
+  }
+
+  export type ActivityEventCreateManyActorInputEnvelope = {
+    data: ActivityEventCreateManyActorInput | ActivityEventCreateManyActorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectFollowerCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    project: ProjectCreateNestedOneWithoutFollowersInput
+  }
+
+  export type ProjectFollowerUncheckedCreateWithoutUserInput = {
+    id?: string
+    projectId: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectFollowerCreateOrConnectWithoutUserInput = {
+    where: ProjectFollowerWhereUniqueInput
+    create: XOR<ProjectFollowerCreateWithoutUserInput, ProjectFollowerUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProjectFollowerCreateManyUserInputEnvelope = {
+    data: ProjectFollowerCreateManyUserInput | ProjectFollowerCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectStarCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    project: ProjectCreateNestedOneWithoutStarsInput
+  }
+
+  export type ProjectStarUncheckedCreateWithoutUserInput = {
+    id?: string
+    projectId: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectStarCreateOrConnectWithoutUserInput = {
+    where: ProjectStarWhereUniqueInput
+    create: XOR<ProjectStarCreateWithoutUserInput, ProjectStarUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProjectStarCreateManyUserInputEnvelope = {
+    data: ProjectStarCreateManyUserInput | ProjectStarCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReleaseCreateWithoutCreatedByInput = {
+    id?: string
+    version: string
+    title: string
+    description?: string | null
+    releaseNotes?: string | null
+    createdAt?: Date | string
+    project: ProjectCreateNestedOneWithoutReleasesInput
+  }
+
+  export type ReleaseUncheckedCreateWithoutCreatedByInput = {
+    id?: string
+    projectId: string
+    version: string
+    title: string
+    description?: string | null
+    releaseNotes?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ReleaseCreateOrConnectWithoutCreatedByInput = {
+    where: ReleaseWhereUniqueInput
+    create: XOR<ReleaseCreateWithoutCreatedByInput, ReleaseUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type ReleaseCreateManyCreatedByInputEnvelope = {
+    data: ReleaseCreateManyCreatedByInput | ReleaseCreateManyCreatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectUpdateCreateWithoutAuthorInput = {
+    id?: string
+    title: string
+    body: string
+    createdAt?: Date | string
+    project: ProjectCreateNestedOneWithoutUpdatesInput
+  }
+
+  export type ProjectUpdateUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    projectId: string
+    title: string
+    body: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectUpdateCreateOrConnectWithoutAuthorInput = {
+    where: ProjectUpdateWhereUniqueInput
+    create: XOR<ProjectUpdateCreateWithoutAuthorInput, ProjectUpdateUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type ProjectUpdateCreateManyAuthorInputEnvelope = {
+    data: ProjectUpdateCreateManyAuthorInput | ProjectUpdateCreateManyAuthorInput[]
+    skipDuplicates?: boolean
   }
 
   export type OAuthAccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -34369,6 +42381,148 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ActivityEventUpsertWithWhereUniqueWithoutActorInput = {
+    where: ActivityEventWhereUniqueInput
+    update: XOR<ActivityEventUpdateWithoutActorInput, ActivityEventUncheckedUpdateWithoutActorInput>
+    create: XOR<ActivityEventCreateWithoutActorInput, ActivityEventUncheckedCreateWithoutActorInput>
+  }
+
+  export type ActivityEventUpdateWithWhereUniqueWithoutActorInput = {
+    where: ActivityEventWhereUniqueInput
+    data: XOR<ActivityEventUpdateWithoutActorInput, ActivityEventUncheckedUpdateWithoutActorInput>
+  }
+
+  export type ActivityEventUpdateManyWithWhereWithoutActorInput = {
+    where: ActivityEventScalarWhereInput
+    data: XOR<ActivityEventUpdateManyMutationInput, ActivityEventUncheckedUpdateManyWithoutActorInput>
+  }
+
+  export type ActivityEventScalarWhereInput = {
+    AND?: ActivityEventScalarWhereInput | ActivityEventScalarWhereInput[]
+    OR?: ActivityEventScalarWhereInput[]
+    NOT?: ActivityEventScalarWhereInput | ActivityEventScalarWhereInput[]
+    id?: StringFilter<"ActivityEvent"> | string
+    actorId?: StringFilter<"ActivityEvent"> | string
+    projectId?: StringFilter<"ActivityEvent"> | string
+    type?: EnumActivityEventTypeFilter<"ActivityEvent"> | $Enums.ActivityEventType
+    targetType?: StringNullableFilter<"ActivityEvent"> | string | null
+    targetId?: StringNullableFilter<"ActivityEvent"> | string | null
+    metadata?: JsonNullableFilter<"ActivityEvent">
+    visibility?: EnumVisibilityFilter<"ActivityEvent"> | $Enums.Visibility
+    createdAt?: DateTimeFilter<"ActivityEvent"> | Date | string
+    expiresAt?: DateTimeNullableFilter<"ActivityEvent"> | Date | string | null
+  }
+
+  export type ProjectFollowerUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProjectFollowerWhereUniqueInput
+    update: XOR<ProjectFollowerUpdateWithoutUserInput, ProjectFollowerUncheckedUpdateWithoutUserInput>
+    create: XOR<ProjectFollowerCreateWithoutUserInput, ProjectFollowerUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProjectFollowerUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProjectFollowerWhereUniqueInput
+    data: XOR<ProjectFollowerUpdateWithoutUserInput, ProjectFollowerUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProjectFollowerUpdateManyWithWhereWithoutUserInput = {
+    where: ProjectFollowerScalarWhereInput
+    data: XOR<ProjectFollowerUpdateManyMutationInput, ProjectFollowerUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ProjectFollowerScalarWhereInput = {
+    AND?: ProjectFollowerScalarWhereInput | ProjectFollowerScalarWhereInput[]
+    OR?: ProjectFollowerScalarWhereInput[]
+    NOT?: ProjectFollowerScalarWhereInput | ProjectFollowerScalarWhereInput[]
+    id?: StringFilter<"ProjectFollower"> | string
+    userId?: StringFilter<"ProjectFollower"> | string
+    projectId?: StringFilter<"ProjectFollower"> | string
+    createdAt?: DateTimeFilter<"ProjectFollower"> | Date | string
+  }
+
+  export type ProjectStarUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProjectStarWhereUniqueInput
+    update: XOR<ProjectStarUpdateWithoutUserInput, ProjectStarUncheckedUpdateWithoutUserInput>
+    create: XOR<ProjectStarCreateWithoutUserInput, ProjectStarUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProjectStarUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProjectStarWhereUniqueInput
+    data: XOR<ProjectStarUpdateWithoutUserInput, ProjectStarUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProjectStarUpdateManyWithWhereWithoutUserInput = {
+    where: ProjectStarScalarWhereInput
+    data: XOR<ProjectStarUpdateManyMutationInput, ProjectStarUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ProjectStarScalarWhereInput = {
+    AND?: ProjectStarScalarWhereInput | ProjectStarScalarWhereInput[]
+    OR?: ProjectStarScalarWhereInput[]
+    NOT?: ProjectStarScalarWhereInput | ProjectStarScalarWhereInput[]
+    id?: StringFilter<"ProjectStar"> | string
+    userId?: StringFilter<"ProjectStar"> | string
+    projectId?: StringFilter<"ProjectStar"> | string
+    createdAt?: DateTimeFilter<"ProjectStar"> | Date | string
+  }
+
+  export type ReleaseUpsertWithWhereUniqueWithoutCreatedByInput = {
+    where: ReleaseWhereUniqueInput
+    update: XOR<ReleaseUpdateWithoutCreatedByInput, ReleaseUncheckedUpdateWithoutCreatedByInput>
+    create: XOR<ReleaseCreateWithoutCreatedByInput, ReleaseUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type ReleaseUpdateWithWhereUniqueWithoutCreatedByInput = {
+    where: ReleaseWhereUniqueInput
+    data: XOR<ReleaseUpdateWithoutCreatedByInput, ReleaseUncheckedUpdateWithoutCreatedByInput>
+  }
+
+  export type ReleaseUpdateManyWithWhereWithoutCreatedByInput = {
+    where: ReleaseScalarWhereInput
+    data: XOR<ReleaseUpdateManyMutationInput, ReleaseUncheckedUpdateManyWithoutCreatedByInput>
+  }
+
+  export type ReleaseScalarWhereInput = {
+    AND?: ReleaseScalarWhereInput | ReleaseScalarWhereInput[]
+    OR?: ReleaseScalarWhereInput[]
+    NOT?: ReleaseScalarWhereInput | ReleaseScalarWhereInput[]
+    id?: StringFilter<"Release"> | string
+    projectId?: StringFilter<"Release"> | string
+    version?: StringFilter<"Release"> | string
+    title?: StringFilter<"Release"> | string
+    description?: StringNullableFilter<"Release"> | string | null
+    releaseNotes?: StringNullableFilter<"Release"> | string | null
+    createdById?: StringFilter<"Release"> | string
+    createdAt?: DateTimeFilter<"Release"> | Date | string
+  }
+
+  export type ProjectUpdateUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: ProjectUpdateWhereUniqueInput
+    update: XOR<ProjectUpdateUpdateWithoutAuthorInput, ProjectUpdateUncheckedUpdateWithoutAuthorInput>
+    create: XOR<ProjectUpdateCreateWithoutAuthorInput, ProjectUpdateUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type ProjectUpdateUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: ProjectUpdateWhereUniqueInput
+    data: XOR<ProjectUpdateUpdateWithoutAuthorInput, ProjectUpdateUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type ProjectUpdateUpdateManyWithWhereWithoutAuthorInput = {
+    where: ProjectUpdateScalarWhereInput
+    data: XOR<ProjectUpdateUpdateManyMutationInput, ProjectUpdateUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type ProjectUpdateScalarWhereInput = {
+    AND?: ProjectUpdateScalarWhereInput | ProjectUpdateScalarWhereInput[]
+    OR?: ProjectUpdateScalarWhereInput[]
+    NOT?: ProjectUpdateScalarWhereInput | ProjectUpdateScalarWhereInput[]
+    id?: StringFilter<"ProjectUpdate"> | string
+    projectId?: StringFilter<"ProjectUpdate"> | string
+    authorId?: StringFilter<"ProjectUpdate"> | string
+    title?: StringFilter<"ProjectUpdate"> | string
+    body?: StringFilter<"ProjectUpdate"> | string
+    createdAt?: DateTimeFilter<"ProjectUpdate"> | Date | string
+  }
+
   export type UserCreateWithoutUsernameHistoryInput = {
     id?: string
     email: string
@@ -34405,6 +42559,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutUsernameHistoryInput = {
@@ -34443,6 +42602,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutUsernameHistoryInput = {
@@ -34497,6 +42661,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUsernameHistoryInput = {
@@ -34535,6 +42704,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateWithoutOauthAccountsInput = {
@@ -34573,6 +42747,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutOauthAccountsInput = {
@@ -34611,6 +42790,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutOauthAccountsInput = {
@@ -34665,6 +42849,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOauthAccountsInput = {
@@ -34703,6 +42892,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -34741,6 +42935,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -34779,6 +42978,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -34833,6 +43037,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -34871,6 +43080,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type SkillOnUserCreateWithoutSkillInput = {
@@ -34945,6 +43159,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutSkillsInput = {
@@ -34983,6 +43202,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutSkillsInput = {
@@ -35054,6 +43278,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSkillsInput = {
@@ -35092,6 +43321,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type SkillUpsertWithoutUsersInput = {
@@ -35153,6 +43387,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutProjectsOwnedInput = {
@@ -35191,6 +43430,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutProjectsOwnedInput = {
@@ -35466,6 +43710,140 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ActivityEventCreateWithoutProjectInput = {
+    id?: string
+    type: $Enums.ActivityEventType
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: $Enums.Visibility
+    createdAt?: Date | string
+    expiresAt?: Date | string | null
+    actor: UserCreateNestedOneWithoutActivityEventsInput
+  }
+
+  export type ActivityEventUncheckedCreateWithoutProjectInput = {
+    id?: string
+    actorId: string
+    type: $Enums.ActivityEventType
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: $Enums.Visibility
+    createdAt?: Date | string
+    expiresAt?: Date | string | null
+  }
+
+  export type ActivityEventCreateOrConnectWithoutProjectInput = {
+    where: ActivityEventWhereUniqueInput
+    create: XOR<ActivityEventCreateWithoutProjectInput, ActivityEventUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ActivityEventCreateManyProjectInputEnvelope = {
+    data: ActivityEventCreateManyProjectInput | ActivityEventCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectFollowerCreateWithoutProjectInput = {
+    id?: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutFollowedProjectsInput
+  }
+
+  export type ProjectFollowerUncheckedCreateWithoutProjectInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectFollowerCreateOrConnectWithoutProjectInput = {
+    where: ProjectFollowerWhereUniqueInput
+    create: XOR<ProjectFollowerCreateWithoutProjectInput, ProjectFollowerUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectFollowerCreateManyProjectInputEnvelope = {
+    data: ProjectFollowerCreateManyProjectInput | ProjectFollowerCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectStarCreateWithoutProjectInput = {
+    id?: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutStarredProjectsInput
+  }
+
+  export type ProjectStarUncheckedCreateWithoutProjectInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectStarCreateOrConnectWithoutProjectInput = {
+    where: ProjectStarWhereUniqueInput
+    create: XOR<ProjectStarCreateWithoutProjectInput, ProjectStarUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectStarCreateManyProjectInputEnvelope = {
+    data: ProjectStarCreateManyProjectInput | ProjectStarCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReleaseCreateWithoutProjectInput = {
+    id?: string
+    version: string
+    title: string
+    description?: string | null
+    releaseNotes?: string | null
+    createdAt?: Date | string
+    createdBy: UserCreateNestedOneWithoutReleasesAuthoredInput
+  }
+
+  export type ReleaseUncheckedCreateWithoutProjectInput = {
+    id?: string
+    version: string
+    title: string
+    description?: string | null
+    releaseNotes?: string | null
+    createdById: string
+    createdAt?: Date | string
+  }
+
+  export type ReleaseCreateOrConnectWithoutProjectInput = {
+    where: ReleaseWhereUniqueInput
+    create: XOR<ReleaseCreateWithoutProjectInput, ReleaseUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ReleaseCreateManyProjectInputEnvelope = {
+    data: ReleaseCreateManyProjectInput | ReleaseCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectUpdateCreateWithoutProjectInput = {
+    id?: string
+    title: string
+    body: string
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutProjectUpdatesInput
+  }
+
+  export type ProjectUpdateUncheckedCreateWithoutProjectInput = {
+    id?: string
+    authorId: string
+    title: string
+    body: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectUpdateCreateOrConnectWithoutProjectInput = {
+    where: ProjectUpdateWhereUniqueInput
+    create: XOR<ProjectUpdateCreateWithoutProjectInput, ProjectUpdateUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectUpdateCreateManyProjectInputEnvelope = {
+    data: ProjectUpdateCreateManyProjectInput | ProjectUpdateCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutProjectsOwnedInput = {
     update: XOR<UserUpdateWithoutProjectsOwnedInput, UserUncheckedUpdateWithoutProjectsOwnedInput>
     create: XOR<UserCreateWithoutProjectsOwnedInput, UserUncheckedCreateWithoutProjectsOwnedInput>
@@ -35513,6 +43891,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectsOwnedInput = {
@@ -35551,6 +43934,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type RoleUpsertWithWhereUniqueWithoutProjectInput = {
@@ -35725,6 +44113,86 @@ export namespace Prisma {
     data: XOR<ContributionRecordUpdateManyMutationInput, ContributionRecordUncheckedUpdateManyWithoutProjectInput>
   }
 
+  export type ActivityEventUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ActivityEventWhereUniqueInput
+    update: XOR<ActivityEventUpdateWithoutProjectInput, ActivityEventUncheckedUpdateWithoutProjectInput>
+    create: XOR<ActivityEventCreateWithoutProjectInput, ActivityEventUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ActivityEventUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ActivityEventWhereUniqueInput
+    data: XOR<ActivityEventUpdateWithoutProjectInput, ActivityEventUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ActivityEventUpdateManyWithWhereWithoutProjectInput = {
+    where: ActivityEventScalarWhereInput
+    data: XOR<ActivityEventUpdateManyMutationInput, ActivityEventUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectFollowerUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectFollowerWhereUniqueInput
+    update: XOR<ProjectFollowerUpdateWithoutProjectInput, ProjectFollowerUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectFollowerCreateWithoutProjectInput, ProjectFollowerUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectFollowerUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectFollowerWhereUniqueInput
+    data: XOR<ProjectFollowerUpdateWithoutProjectInput, ProjectFollowerUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectFollowerUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectFollowerScalarWhereInput
+    data: XOR<ProjectFollowerUpdateManyMutationInput, ProjectFollowerUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectStarUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectStarWhereUniqueInput
+    update: XOR<ProjectStarUpdateWithoutProjectInput, ProjectStarUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectStarCreateWithoutProjectInput, ProjectStarUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectStarUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectStarWhereUniqueInput
+    data: XOR<ProjectStarUpdateWithoutProjectInput, ProjectStarUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectStarUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectStarScalarWhereInput
+    data: XOR<ProjectStarUpdateManyMutationInput, ProjectStarUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ReleaseUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ReleaseWhereUniqueInput
+    update: XOR<ReleaseUpdateWithoutProjectInput, ReleaseUncheckedUpdateWithoutProjectInput>
+    create: XOR<ReleaseCreateWithoutProjectInput, ReleaseUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ReleaseUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ReleaseWhereUniqueInput
+    data: XOR<ReleaseUpdateWithoutProjectInput, ReleaseUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ReleaseUpdateManyWithWhereWithoutProjectInput = {
+    where: ReleaseScalarWhereInput
+    data: XOR<ReleaseUpdateManyMutationInput, ReleaseUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectUpdateUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectUpdateWhereUniqueInput
+    update: XOR<ProjectUpdateUpdateWithoutProjectInput, ProjectUpdateUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectUpdateCreateWithoutProjectInput, ProjectUpdateUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectUpdateUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectUpdateWhereUniqueInput
+    data: XOR<ProjectUpdateUpdateWithoutProjectInput, ProjectUpdateUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectUpdateUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectUpdateScalarWhereInput
+    data: XOR<ProjectUpdateUpdateManyMutationInput, ProjectUpdateUncheckedUpdateManyWithoutProjectInput>
+  }
+
   export type ProjectCreateWithoutRolesInput = {
     id?: string
     slug: string
@@ -35751,6 +44219,11 @@ export namespace Prisma {
     threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
     files?: FileAssetCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutRolesInput = {
@@ -35779,6 +44252,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
     files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutRolesInput = {
@@ -35881,6 +44359,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
     files?: FileAssetUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutRolesInput = {
@@ -35909,6 +44392,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
     files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type TeamMemberUpsertWithWhereUniqueWithoutRoleInput = {
@@ -35969,6 +44457,11 @@ export namespace Prisma {
     threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
     files?: FileAssetCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutMembersInput = {
@@ -35997,6 +44490,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
     files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutMembersInput = {
@@ -36040,6 +44538,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -36078,6 +44581,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -36147,6 +44655,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
     files?: FileAssetUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutMembersInput = {
@@ -36175,6 +44688,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
     files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutMembershipsInput = {
@@ -36224,6 +44742,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -36262,6 +44785,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type RoleUpsertWithoutMembersInput = {
@@ -36321,6 +44849,11 @@ export namespace Prisma {
     threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
     files?: FileAssetCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutApplicationsInput = {
@@ -36349,6 +44882,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
     files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutApplicationsInput = {
@@ -36417,6 +44955,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutApplicationsInput = {
@@ -36455,6 +44998,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutApplicationsInput = {
@@ -36499,6 +45047,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
     files?: FileAssetUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutApplicationsInput = {
@@ -36527,6 +45080,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
     files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type RoleUpsertWithoutApplicationsInput = {
@@ -36607,6 +45165,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApplicationsInput = {
@@ -36645,6 +45208,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type ProjectCreateWithoutMilestonesInput = {
@@ -36673,6 +45241,11 @@ export namespace Prisma {
     threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
     files?: FileAssetCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutMilestonesInput = {
@@ -36701,6 +45274,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
     files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutMilestonesInput = {
@@ -36821,6 +45399,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
     files?: FileAssetUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutMilestonesInput = {
@@ -36849,6 +45432,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
     files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type TaskUpsertWithWhereUniqueWithoutMilestoneInput = {
@@ -36909,6 +45497,11 @@ export namespace Prisma {
     threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
     files?: FileAssetCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutTasksInput = {
@@ -36937,6 +45530,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
     files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutTasksInput = {
@@ -37030,6 +45628,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
     files?: FileAssetUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutTasksInput = {
@@ -37058,6 +45661,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
     files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type MilestoneUpsertWithoutTasksInput = {
@@ -37182,6 +45790,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutAssignedTasksInput = {
@@ -37220,6 +45833,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutAssignedTasksInput = {
@@ -37313,6 +45931,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignedTasksInput = {
@@ -37351,6 +45974,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type ProjectCreateWithoutThreadsInput = {
@@ -37379,6 +46007,11 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutProjectInput
     files?: FileAssetCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutThreadsInput = {
@@ -37407,6 +46040,11 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
     files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutThreadsInput = {
@@ -37450,6 +46088,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionThreadsInput = {
@@ -37488,6 +46131,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionThreadsInput = {
@@ -37558,6 +46206,11 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutProjectNestedInput
     files?: FileAssetUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutThreadsInput = {
@@ -37586,6 +46239,11 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
     files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutDiscussionThreadsInput = {
@@ -37635,6 +46293,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionThreadsInput = {
@@ -37673,6 +46336,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type DiscussionCommentUpsertWithWhereUniqueWithoutThreadInput = {
@@ -37756,6 +46424,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionCommentsInput = {
@@ -37794,6 +46467,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionCommentsInput = {
@@ -37883,6 +46561,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionCommentsInput = {
@@ -37921,6 +46604,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type ProjectCreateWithoutFilesInput = {
@@ -37949,6 +46637,11 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutProjectInput
     threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutFilesInput = {
@@ -37977,6 +46670,11 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
     threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutFilesInput = {
@@ -38020,6 +46718,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutUploadedFilesInput = {
@@ -38058,6 +46761,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutUploadedFilesInput = {
@@ -38102,6 +46810,11 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutProjectNestedInput
     threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutFilesInput = {
@@ -38130,6 +46843,11 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
     threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutUploadedFilesInput = {
@@ -38179,6 +46897,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUploadedFilesInput = {
@@ -38217,6 +46940,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateWithoutContributionRecordsInput = {
@@ -38255,6 +46983,11 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutContributionRecordsInput = {
@@ -38293,6 +47026,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutContributionRecordsInput = {
@@ -38326,6 +47064,11 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutProjectInput
     threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
     files?: FileAssetCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutContributionRecordsInput = {
@@ -38354,6 +47097,11 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
     threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
     files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutContributionRecordsInput = {
@@ -38439,6 +47187,11 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutContributionRecordsInput = {
@@ -38477,6 +47230,11 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type ProjectUpsertWithoutContributionRecordsInput = {
@@ -38516,6 +47274,11 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutProjectNestedInput
     threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
     files?: FileAssetUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutContributionRecordsInput = {
@@ -38544,6 +47307,11 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
     threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
     files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type MilestoneUpsertWithoutContributionRecordsInput = {
@@ -38619,6 +47387,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -38657,6 +47430,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
     platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -38711,6 +47489,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -38749,6 +47532,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
     platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateWithoutPlatformAdminInput = {
@@ -38787,6 +47575,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutPlatformAdminInput = {
@@ -38825,6 +47618,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutPlatformAdminInput = {
@@ -38879,6 +47677,11 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlatformAdminInput = {
@@ -38917,6 +47720,1691 @@ export namespace Prisma {
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserCreateWithoutActivityEventsInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    applications?: ApplicationCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserUncheckedCreateWithoutActivityEventsInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentUncheckedCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetUncheckedCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserCreateOrConnectWithoutActivityEventsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutActivityEventsInput, UserUncheckedCreateWithoutActivityEventsInput>
+  }
+
+  export type ProjectCreateWithoutActivityEventsInput = {
+    id?: string
+    slug: string
+    title: string
+    tagline: string
+    description: string
+    category: string
+    status?: $Enums.ProjectStatus
+    visibility?: $Enums.Visibility
+    coverImageUrl?: string | null
+    techStack?: ProjectCreatetechStackInput | string[]
+    commitmentLevel?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
+    owner: UserCreateNestedOneWithoutProjectsOwnedInput
+    roles?: RoleCreateNestedManyWithoutProjectInput
+    members?: TeamMemberCreateNestedManyWithoutProjectInput
+    applications?: ApplicationCreateNestedManyWithoutProjectInput
+    milestones?: MilestoneCreateNestedManyWithoutProjectInput
+    tasks?: TaskCreateNestedManyWithoutProjectInput
+    threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
+    files?: FileAssetCreateNestedManyWithoutProjectInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutActivityEventsInput = {
+    id?: string
+    ownerId: string
+    slug: string
+    title: string
+    tagline: string
+    description: string
+    category: string
+    status?: $Enums.ProjectStatus
+    visibility?: $Enums.Visibility
+    coverImageUrl?: string | null
+    techStack?: ProjectCreatetechStackInput | string[]
+    commitmentLevel?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
+    roles?: RoleUncheckedCreateNestedManyWithoutProjectInput
+    members?: TeamMemberUncheckedCreateNestedManyWithoutProjectInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutProjectInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutProjectInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
+    files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutActivityEventsInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutActivityEventsInput, ProjectUncheckedCreateWithoutActivityEventsInput>
+  }
+
+  export type UserUpsertWithoutActivityEventsInput = {
+    update: XOR<UserUpdateWithoutActivityEventsInput, UserUncheckedUpdateWithoutActivityEventsInput>
+    create: XOR<UserCreateWithoutActivityEventsInput, UserUncheckedCreateWithoutActivityEventsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutActivityEventsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutActivityEventsInput, UserUncheckedUpdateWithoutActivityEventsInput>
+  }
+
+  export type UserUpdateWithoutActivityEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutActivityEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type ProjectUpsertWithoutActivityEventsInput = {
+    update: XOR<ProjectUpdateWithoutActivityEventsInput, ProjectUncheckedUpdateWithoutActivityEventsInput>
+    create: XOR<ProjectCreateWithoutActivityEventsInput, ProjectUncheckedCreateWithoutActivityEventsInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutActivityEventsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutActivityEventsInput, ProjectUncheckedUpdateWithoutActivityEventsInput>
+  }
+
+  export type ProjectUpdateWithoutActivityEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ProjectUpdatetechStackInput | string[]
+    commitmentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutProjectsOwnedNestedInput
+    roles?: RoleUpdateManyWithoutProjectNestedInput
+    members?: TeamMemberUpdateManyWithoutProjectNestedInput
+    applications?: ApplicationUpdateManyWithoutProjectNestedInput
+    milestones?: MilestoneUpdateManyWithoutProjectNestedInput
+    tasks?: TaskUpdateManyWithoutProjectNestedInput
+    threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
+    files?: FileAssetUpdateManyWithoutProjectNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutActivityEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ProjectUpdatetechStackInput | string[]
+    commitmentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: RoleUncheckedUpdateManyWithoutProjectNestedInput
+    members?: TeamMemberUncheckedUpdateManyWithoutProjectNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutProjectNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutProjectNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
+    files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type UserCreateWithoutFollowedProjectsInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    applications?: ApplicationCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserUncheckedCreateWithoutFollowedProjectsInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentUncheckedCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetUncheckedCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserCreateOrConnectWithoutFollowedProjectsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFollowedProjectsInput, UserUncheckedCreateWithoutFollowedProjectsInput>
+  }
+
+  export type ProjectCreateWithoutFollowersInput = {
+    id?: string
+    slug: string
+    title: string
+    tagline: string
+    description: string
+    category: string
+    status?: $Enums.ProjectStatus
+    visibility?: $Enums.Visibility
+    coverImageUrl?: string | null
+    techStack?: ProjectCreatetechStackInput | string[]
+    commitmentLevel?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
+    owner: UserCreateNestedOneWithoutProjectsOwnedInput
+    roles?: RoleCreateNestedManyWithoutProjectInput
+    members?: TeamMemberCreateNestedManyWithoutProjectInput
+    applications?: ApplicationCreateNestedManyWithoutProjectInput
+    milestones?: MilestoneCreateNestedManyWithoutProjectInput
+    tasks?: TaskCreateNestedManyWithoutProjectInput
+    threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
+    files?: FileAssetCreateNestedManyWithoutProjectInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutFollowersInput = {
+    id?: string
+    ownerId: string
+    slug: string
+    title: string
+    tagline: string
+    description: string
+    category: string
+    status?: $Enums.ProjectStatus
+    visibility?: $Enums.Visibility
+    coverImageUrl?: string | null
+    techStack?: ProjectCreatetechStackInput | string[]
+    commitmentLevel?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
+    roles?: RoleUncheckedCreateNestedManyWithoutProjectInput
+    members?: TeamMemberUncheckedCreateNestedManyWithoutProjectInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutProjectInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutProjectInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
+    files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutFollowersInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutFollowersInput, ProjectUncheckedCreateWithoutFollowersInput>
+  }
+
+  export type UserUpsertWithoutFollowedProjectsInput = {
+    update: XOR<UserUpdateWithoutFollowedProjectsInput, UserUncheckedUpdateWithoutFollowedProjectsInput>
+    create: XOR<UserCreateWithoutFollowedProjectsInput, UserUncheckedCreateWithoutFollowedProjectsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFollowedProjectsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFollowedProjectsInput, UserUncheckedUpdateWithoutFollowedProjectsInput>
+  }
+
+  export type UserUpdateWithoutFollowedProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFollowedProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type ProjectUpsertWithoutFollowersInput = {
+    update: XOR<ProjectUpdateWithoutFollowersInput, ProjectUncheckedUpdateWithoutFollowersInput>
+    create: XOR<ProjectCreateWithoutFollowersInput, ProjectUncheckedCreateWithoutFollowersInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutFollowersInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutFollowersInput, ProjectUncheckedUpdateWithoutFollowersInput>
+  }
+
+  export type ProjectUpdateWithoutFollowersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ProjectUpdatetechStackInput | string[]
+    commitmentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutProjectsOwnedNestedInput
+    roles?: RoleUpdateManyWithoutProjectNestedInput
+    members?: TeamMemberUpdateManyWithoutProjectNestedInput
+    applications?: ApplicationUpdateManyWithoutProjectNestedInput
+    milestones?: MilestoneUpdateManyWithoutProjectNestedInput
+    tasks?: TaskUpdateManyWithoutProjectNestedInput
+    threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
+    files?: FileAssetUpdateManyWithoutProjectNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutFollowersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ProjectUpdatetechStackInput | string[]
+    commitmentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: RoleUncheckedUpdateManyWithoutProjectNestedInput
+    members?: TeamMemberUncheckedUpdateManyWithoutProjectNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutProjectNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutProjectNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
+    files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type UserCreateWithoutStarredProjectsInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    applications?: ApplicationCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserUncheckedCreateWithoutStarredProjectsInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentUncheckedCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetUncheckedCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserCreateOrConnectWithoutStarredProjectsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutStarredProjectsInput, UserUncheckedCreateWithoutStarredProjectsInput>
+  }
+
+  export type ProjectCreateWithoutStarsInput = {
+    id?: string
+    slug: string
+    title: string
+    tagline: string
+    description: string
+    category: string
+    status?: $Enums.ProjectStatus
+    visibility?: $Enums.Visibility
+    coverImageUrl?: string | null
+    techStack?: ProjectCreatetechStackInput | string[]
+    commitmentLevel?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
+    owner: UserCreateNestedOneWithoutProjectsOwnedInput
+    roles?: RoleCreateNestedManyWithoutProjectInput
+    members?: TeamMemberCreateNestedManyWithoutProjectInput
+    applications?: ApplicationCreateNestedManyWithoutProjectInput
+    milestones?: MilestoneCreateNestedManyWithoutProjectInput
+    tasks?: TaskCreateNestedManyWithoutProjectInput
+    threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
+    files?: FileAssetCreateNestedManyWithoutProjectInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutStarsInput = {
+    id?: string
+    ownerId: string
+    slug: string
+    title: string
+    tagline: string
+    description: string
+    category: string
+    status?: $Enums.ProjectStatus
+    visibility?: $Enums.Visibility
+    coverImageUrl?: string | null
+    techStack?: ProjectCreatetechStackInput | string[]
+    commitmentLevel?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
+    roles?: RoleUncheckedCreateNestedManyWithoutProjectInput
+    members?: TeamMemberUncheckedCreateNestedManyWithoutProjectInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutProjectInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutProjectInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
+    files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutStarsInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutStarsInput, ProjectUncheckedCreateWithoutStarsInput>
+  }
+
+  export type UserUpsertWithoutStarredProjectsInput = {
+    update: XOR<UserUpdateWithoutStarredProjectsInput, UserUncheckedUpdateWithoutStarredProjectsInput>
+    create: XOR<UserCreateWithoutStarredProjectsInput, UserUncheckedCreateWithoutStarredProjectsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutStarredProjectsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutStarredProjectsInput, UserUncheckedUpdateWithoutStarredProjectsInput>
+  }
+
+  export type UserUpdateWithoutStarredProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutStarredProjectsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type ProjectUpsertWithoutStarsInput = {
+    update: XOR<ProjectUpdateWithoutStarsInput, ProjectUncheckedUpdateWithoutStarsInput>
+    create: XOR<ProjectCreateWithoutStarsInput, ProjectUncheckedCreateWithoutStarsInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutStarsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutStarsInput, ProjectUncheckedUpdateWithoutStarsInput>
+  }
+
+  export type ProjectUpdateWithoutStarsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ProjectUpdatetechStackInput | string[]
+    commitmentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutProjectsOwnedNestedInput
+    roles?: RoleUpdateManyWithoutProjectNestedInput
+    members?: TeamMemberUpdateManyWithoutProjectNestedInput
+    applications?: ApplicationUpdateManyWithoutProjectNestedInput
+    milestones?: MilestoneUpdateManyWithoutProjectNestedInput
+    tasks?: TaskUpdateManyWithoutProjectNestedInput
+    threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
+    files?: FileAssetUpdateManyWithoutProjectNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutStarsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ProjectUpdatetechStackInput | string[]
+    commitmentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: RoleUncheckedUpdateManyWithoutProjectNestedInput
+    members?: TeamMemberUncheckedUpdateManyWithoutProjectNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutProjectNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutProjectNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
+    files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateWithoutReleasesInput = {
+    id?: string
+    slug: string
+    title: string
+    tagline: string
+    description: string
+    category: string
+    status?: $Enums.ProjectStatus
+    visibility?: $Enums.Visibility
+    coverImageUrl?: string | null
+    techStack?: ProjectCreatetechStackInput | string[]
+    commitmentLevel?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
+    owner: UserCreateNestedOneWithoutProjectsOwnedInput
+    roles?: RoleCreateNestedManyWithoutProjectInput
+    members?: TeamMemberCreateNestedManyWithoutProjectInput
+    applications?: ApplicationCreateNestedManyWithoutProjectInput
+    milestones?: MilestoneCreateNestedManyWithoutProjectInput
+    tasks?: TaskCreateNestedManyWithoutProjectInput
+    threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
+    files?: FileAssetCreateNestedManyWithoutProjectInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutReleasesInput = {
+    id?: string
+    ownerId: string
+    slug: string
+    title: string
+    tagline: string
+    description: string
+    category: string
+    status?: $Enums.ProjectStatus
+    visibility?: $Enums.Visibility
+    coverImageUrl?: string | null
+    techStack?: ProjectCreatetechStackInput | string[]
+    commitmentLevel?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
+    roles?: RoleUncheckedCreateNestedManyWithoutProjectInput
+    members?: TeamMemberUncheckedCreateNestedManyWithoutProjectInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutProjectInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutProjectInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
+    files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    updates?: ProjectUpdateUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutReleasesInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutReleasesInput, ProjectUncheckedCreateWithoutReleasesInput>
+  }
+
+  export type UserCreateWithoutReleasesAuthoredInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    applications?: ApplicationCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserUncheckedCreateWithoutReleasesAuthoredInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentUncheckedCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetUncheckedCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserCreateOrConnectWithoutReleasesAuthoredInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutReleasesAuthoredInput, UserUncheckedCreateWithoutReleasesAuthoredInput>
+  }
+
+  export type ProjectUpsertWithoutReleasesInput = {
+    update: XOR<ProjectUpdateWithoutReleasesInput, ProjectUncheckedUpdateWithoutReleasesInput>
+    create: XOR<ProjectCreateWithoutReleasesInput, ProjectUncheckedCreateWithoutReleasesInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutReleasesInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutReleasesInput, ProjectUncheckedUpdateWithoutReleasesInput>
+  }
+
+  export type ProjectUpdateWithoutReleasesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ProjectUpdatetechStackInput | string[]
+    commitmentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutProjectsOwnedNestedInput
+    roles?: RoleUpdateManyWithoutProjectNestedInput
+    members?: TeamMemberUpdateManyWithoutProjectNestedInput
+    applications?: ApplicationUpdateManyWithoutProjectNestedInput
+    milestones?: MilestoneUpdateManyWithoutProjectNestedInput
+    tasks?: TaskUpdateManyWithoutProjectNestedInput
+    threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
+    files?: FileAssetUpdateManyWithoutProjectNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutReleasesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ProjectUpdatetechStackInput | string[]
+    commitmentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: RoleUncheckedUpdateManyWithoutProjectNestedInput
+    members?: TeamMemberUncheckedUpdateManyWithoutProjectNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutProjectNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutProjectNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
+    files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type UserUpsertWithoutReleasesAuthoredInput = {
+    update: XOR<UserUpdateWithoutReleasesAuthoredInput, UserUncheckedUpdateWithoutReleasesAuthoredInput>
+    create: XOR<UserCreateWithoutReleasesAuthoredInput, UserUncheckedCreateWithoutReleasesAuthoredInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutReleasesAuthoredInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutReleasesAuthoredInput, UserUncheckedUpdateWithoutReleasesAuthoredInput>
+  }
+
+  export type UserUpdateWithoutReleasesAuthoredInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutReleasesAuthoredInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type ProjectCreateWithoutUpdatesInput = {
+    id?: string
+    slug: string
+    title: string
+    tagline: string
+    description: string
+    category: string
+    status?: $Enums.ProjectStatus
+    visibility?: $Enums.Visibility
+    coverImageUrl?: string | null
+    techStack?: ProjectCreatetechStackInput | string[]
+    commitmentLevel?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
+    owner: UserCreateNestedOneWithoutProjectsOwnedInput
+    roles?: RoleCreateNestedManyWithoutProjectInput
+    members?: TeamMemberCreateNestedManyWithoutProjectInput
+    applications?: ApplicationCreateNestedManyWithoutProjectInput
+    milestones?: MilestoneCreateNestedManyWithoutProjectInput
+    tasks?: TaskCreateNestedManyWithoutProjectInput
+    threads?: DiscussionThreadCreateNestedManyWithoutProjectInput
+    files?: FileAssetCreateNestedManyWithoutProjectInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarCreateNestedManyWithoutProjectInput
+    releases?: ReleaseCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutUpdatesInput = {
+    id?: string
+    ownerId: string
+    slug: string
+    title: string
+    tagline: string
+    description: string
+    category: string
+    status?: $Enums.ProjectStatus
+    visibility?: $Enums.Visibility
+    coverImageUrl?: string | null
+    techStack?: ProjectCreatetechStackInput | string[]
+    commitmentLevel?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    completedAt?: Date | string | null
+    ipModel?: $Enums.IpModel
+    openSourceLicense?: string | null
+    ipSummary?: string | null
+    roles?: RoleUncheckedCreateNestedManyWithoutProjectInput
+    members?: TeamMemberUncheckedCreateNestedManyWithoutProjectInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutProjectInput
+    milestones?: MilestoneUncheckedCreateNestedManyWithoutProjectInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
+    threads?: DiscussionThreadUncheckedCreateNestedManyWithoutProjectInput
+    files?: FileAssetUncheckedCreateNestedManyWithoutProjectInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutProjectInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutProjectInput
+    followers?: ProjectFollowerUncheckedCreateNestedManyWithoutProjectInput
+    stars?: ProjectStarUncheckedCreateNestedManyWithoutProjectInput
+    releases?: ReleaseUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutUpdatesInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutUpdatesInput, ProjectUncheckedCreateWithoutUpdatesInput>
+  }
+
+  export type UserCreateWithoutProjectUpdatesInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    applications?: ApplicationCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+  }
+
+  export type UserUncheckedCreateWithoutProjectUpdatesInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentUncheckedCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetUncheckedCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+  }
+
+  export type UserCreateOrConnectWithoutProjectUpdatesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProjectUpdatesInput, UserUncheckedCreateWithoutProjectUpdatesInput>
+  }
+
+  export type ProjectUpsertWithoutUpdatesInput = {
+    update: XOR<ProjectUpdateWithoutUpdatesInput, ProjectUncheckedUpdateWithoutUpdatesInput>
+    create: XOR<ProjectCreateWithoutUpdatesInput, ProjectUncheckedCreateWithoutUpdatesInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutUpdatesInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutUpdatesInput, ProjectUncheckedUpdateWithoutUpdatesInput>
+  }
+
+  export type ProjectUpdateWithoutUpdatesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ProjectUpdatetechStackInput | string[]
+    commitmentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    owner?: UserUpdateOneRequiredWithoutProjectsOwnedNestedInput
+    roles?: RoleUpdateManyWithoutProjectNestedInput
+    members?: TeamMemberUpdateManyWithoutProjectNestedInput
+    applications?: ApplicationUpdateManyWithoutProjectNestedInput
+    milestones?: MilestoneUpdateManyWithoutProjectNestedInput
+    tasks?: TaskUpdateManyWithoutProjectNestedInput
+    threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
+    files?: FileAssetUpdateManyWithoutProjectNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutUpdatesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    tagline?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    coverImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    techStack?: ProjectUpdatetechStackInput | string[]
+    commitmentLevel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    ipModel?: EnumIpModelFieldUpdateOperationsInput | $Enums.IpModel
+    openSourceLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    ipSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: RoleUncheckedUpdateManyWithoutProjectNestedInput
+    members?: TeamMemberUncheckedUpdateManyWithoutProjectNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutProjectNestedInput
+    milestones?: MilestoneUncheckedUpdateManyWithoutProjectNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+    threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
+    files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type UserUpsertWithoutProjectUpdatesInput = {
+    update: XOR<UserUpdateWithoutProjectUpdatesInput, UserUncheckedUpdateWithoutProjectUpdatesInput>
+    create: XOR<UserCreateWithoutProjectUpdatesInput, UserUncheckedCreateWithoutProjectUpdatesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutProjectUpdatesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProjectUpdatesInput, UserUncheckedUpdateWithoutProjectUpdatesInput>
+  }
+
+  export type UserUpdateWithoutProjectUpdatesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutProjectUpdatesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
   }
 
   export type OAuthAccountCreateManyUserInput = {
@@ -39046,6 +49534,48 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type ActivityEventCreateManyActorInput = {
+    id?: string
+    projectId: string
+    type: $Enums.ActivityEventType
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: $Enums.Visibility
+    createdAt?: Date | string
+    expiresAt?: Date | string | null
+  }
+
+  export type ProjectFollowerCreateManyUserInput = {
+    id?: string
+    projectId: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectStarCreateManyUserInput = {
+    id?: string
+    projectId: string
+    createdAt?: Date | string
+  }
+
+  export type ReleaseCreateManyCreatedByInput = {
+    id?: string
+    projectId: string
+    version: string
+    title: string
+    description?: string | null
+    releaseNotes?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ProjectUpdateCreateManyAuthorInput = {
+    id?: string
+    projectId: string
+    title: string
+    body: string
+    createdAt?: Date | string
+  }
+
   export type OAuthAccountUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
@@ -39141,6 +49671,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUpdateManyWithoutProjectNestedInput
     files?: FileAssetUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutOwnerInput = {
@@ -39169,6 +49704,11 @@ export namespace Prisma {
     threads?: DiscussionThreadUncheckedUpdateManyWithoutProjectNestedInput
     files?: FileAssetUncheckedUpdateManyWithoutProjectNestedInput
     contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutProjectNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutProjectNestedInput
+    followers?: ProjectFollowerUncheckedUpdateManyWithoutProjectNestedInput
+    stars?: ProjectStarUncheckedUpdateManyWithoutProjectNestedInput
+    releases?: ReleaseUncheckedUpdateManyWithoutProjectNestedInput
+    updates?: ProjectUpdateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutOwnerInput = {
@@ -39445,6 +49985,132 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ActivityEventUpdateWithoutActorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumActivityEventTypeFieldUpdateOperationsInput | $Enums.ActivityEventType
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    project?: ProjectUpdateOneRequiredWithoutActivityEventsNestedInput
+  }
+
+  export type ActivityEventUncheckedUpdateWithoutActorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumActivityEventTypeFieldUpdateOperationsInput | $Enums.ActivityEventType
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ActivityEventUncheckedUpdateManyWithoutActorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumActivityEventTypeFieldUpdateOperationsInput | $Enums.ActivityEventType
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ProjectFollowerUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutFollowersNestedInput
+  }
+
+  export type ProjectFollowerUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectFollowerUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectStarUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutStarsNestedInput
+  }
+
+  export type ProjectStarUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectStarUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReleaseUpdateWithoutCreatedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutReleasesNestedInput
+  }
+
+  export type ReleaseUncheckedUpdateWithoutCreatedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReleaseUncheckedUpdateManyWithoutCreatedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUpdateUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutUpdatesNestedInput
+  }
+
+  export type ProjectUpdateUncheckedUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUpdateUncheckedUpdateManyWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type SkillOnUserCreateManySkillInput = {
     userId: string
     level?: $Enums.SkillLevel
@@ -39551,6 +50217,48 @@ export namespace Prisma {
     issuedAt?: Date | string
     recordHash: string
     isFinal?: boolean
+  }
+
+  export type ActivityEventCreateManyProjectInput = {
+    id?: string
+    actorId: string
+    type: $Enums.ActivityEventType
+    targetType?: string | null
+    targetId?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: $Enums.Visibility
+    createdAt?: Date | string
+    expiresAt?: Date | string | null
+  }
+
+  export type ProjectFollowerCreateManyProjectInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectStarCreateManyProjectInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type ReleaseCreateManyProjectInput = {
+    id?: string
+    version: string
+    title: string
+    description?: string | null
+    releaseNotes?: string | null
+    createdById: string
+    createdAt?: Date | string
+  }
+
+  export type ProjectUpdateCreateManyProjectInput = {
+    id?: string
+    authorId: string
+    title: string
+    body: string
+    createdAt?: Date | string
   }
 
   export type RoleUpdateWithoutProjectInput = {
@@ -39827,6 +50535,132 @@ export namespace Prisma {
     issuedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     recordHash?: StringFieldUpdateOperationsInput | string
     isFinal?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ActivityEventUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumActivityEventTypeFieldUpdateOperationsInput | $Enums.ActivityEventType
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    actor?: UserUpdateOneRequiredWithoutActivityEventsNestedInput
+  }
+
+  export type ActivityEventUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    type?: EnumActivityEventTypeFieldUpdateOperationsInput | $Enums.ActivityEventType
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ActivityEventUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    actorId?: StringFieldUpdateOperationsInput | string
+    type?: EnumActivityEventTypeFieldUpdateOperationsInput | $Enums.ActivityEventType
+    targetType?: NullableStringFieldUpdateOperationsInput | string | null
+    targetId?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    visibility?: EnumVisibilityFieldUpdateOperationsInput | $Enums.Visibility
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ProjectFollowerUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFollowedProjectsNestedInput
+  }
+
+  export type ProjectFollowerUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectFollowerUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectStarUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutStarredProjectsNestedInput
+  }
+
+  export type ProjectStarUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectStarUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReleaseUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: UserUpdateOneRequiredWithoutReleasesAuthoredNestedInput
+  }
+
+  export type ReleaseUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReleaseUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    version?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUpdateUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutProjectUpdatesNestedInput
+  }
+
+  export type ProjectUpdateUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProjectUpdateUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TeamMemberCreateManyRoleInput = {

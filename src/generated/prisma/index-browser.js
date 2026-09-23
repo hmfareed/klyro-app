@@ -343,6 +343,53 @@ exports.Prisma.AnalyticsEventScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ActivityEventScalarFieldEnum = {
+  id: 'id',
+  actorId: 'actorId',
+  projectId: 'projectId',
+  type: 'type',
+  targetType: 'targetType',
+  targetId: 'targetId',
+  metadata: 'metadata',
+  visibility: 'visibility',
+  createdAt: 'createdAt',
+  expiresAt: 'expiresAt'
+};
+
+exports.Prisma.ProjectFollowerScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  projectId: 'projectId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ProjectStarScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  projectId: 'projectId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ReleaseScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  version: 'version',
+  title: 'title',
+  description: 'description',
+  releaseNotes: 'releaseNotes',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ProjectUpdateScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  authorId: 'authorId',
+  title: 'title',
+  body: 'body',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -467,6 +514,36 @@ exports.PlatformAdminRole = exports.$Enums.PlatformAdminRole = {
   SUPPORT: 'SUPPORT'
 };
 
+exports.ActivityEventType = exports.$Enums.ActivityEventType = {
+  PROJECT_CREATED: 'PROJECT_CREATED',
+  PROJECT_UPDATED: 'PROJECT_UPDATED',
+  PROJECT_PUBLISHED: 'PROJECT_PUBLISHED',
+  PROJECT_STARRED: 'PROJECT_STARRED',
+  PROJECT_FOLLOWED: 'PROJECT_FOLLOWED',
+  MEMBER_JOINED: 'MEMBER_JOINED',
+  MEMBER_LEFT: 'MEMBER_LEFT',
+  COLLABORATOR_INVITED: 'COLLABORATOR_INVITED',
+  COLLABORATOR_ACCEPTED: 'COLLABORATOR_ACCEPTED',
+  TASK_CREATED: 'TASK_CREATED',
+  TASK_COMPLETED: 'TASK_COMPLETED',
+  MILESTONE_CREATED: 'MILESTONE_CREATED',
+  MILESTONE_COMPLETED: 'MILESTONE_COMPLETED',
+  ISSUE_CREATED: 'ISSUE_CREATED',
+  ISSUE_RESOLVED: 'ISSUE_RESOLVED',
+  PULL_REQUEST_OPENED: 'PULL_REQUEST_OPENED',
+  PULL_REQUEST_MERGED: 'PULL_REQUEST_MERGED',
+  RELEASE_CREATED: 'RELEASE_CREATED',
+  DISCUSSION_CREATED: 'DISCUSSION_CREATED',
+  DISCUSSION_REPLIED: 'DISCUSSION_REPLIED',
+  REPOSITORY_CREATED: 'REPOSITORY_CREATED',
+  REPOSITORY_UPDATED: 'REPOSITORY_UPDATED',
+  PROJECT_RECRUITING: 'PROJECT_RECRUITING',
+  PROJECT_RECRUITING_CLOSED: 'PROJECT_RECRUITING_CLOSED',
+  CONTRIBUTOR_ADDED: 'CONTRIBUTOR_ADDED',
+  BUILD_LAUNCHED: 'BUILD_LAUNCHED',
+  POST_UPDATE: 'POST_UPDATE'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   UsernameHistory: 'UsernameHistory',
@@ -487,7 +564,12 @@ exports.Prisma.ModelName = {
   ContributionRecord: 'ContributionRecord',
   Notification: 'Notification',
   PlatformAdmin: 'PlatformAdmin',
-  AnalyticsEvent: 'AnalyticsEvent'
+  AnalyticsEvent: 'AnalyticsEvent',
+  ActivityEvent: 'ActivityEvent',
+  ProjectFollower: 'ProjectFollower',
+  ProjectStar: 'ProjectStar',
+  Release: 'Release',
+  ProjectUpdate: 'ProjectUpdate'
 };
 
 /**

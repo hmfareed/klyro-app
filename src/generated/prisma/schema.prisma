@@ -151,6 +151,11 @@ model User {
   notifications       Notification[]
   usernameHistory     UsernameHistory[]
   platformAdmin       PlatformAdmin?
+  activityEvents      ActivityEvent[]
+  followedProjects    ProjectFollower[]
+  starredProjects     ProjectStar[]
+  releasesAuthored    Release[]
+  projectUpdates      ProjectUpdate[]
 
   @@index([username])
 }
@@ -241,6 +246,11 @@ model Project {
   threads             DiscussionThread[]
   files               FileAsset[]
   contributionRecords ContributionRecord[]
+  activityEvents      ActivityEvent[]
+  followers           ProjectFollower[]
+  stars               ProjectStar[]
+  releases            Release[]
+  updates             ProjectUpdate[]
 
   @@index([ownerId])
   @@index([status, visibility])
@@ -454,4 +464,114 @@ model AnalyticsEvent {
 
   @@index([event, createdAt])
   @@index([userId])
+}
+
+enum ActivityEventType {
+  PROJECT_CREATED
+  PROJECT_UPDATED
+  PROJECT_PUBLISHED
+  PROJECT_STARRED
+  PROJECT_FOLLOWED
+  MEMBER_JOINED
+  MEMBER_LEFT
+  COLLABORATOR_INVITED
+  COLLABORATOR_ACCEPTED
+  TASK_CREATED
+  TASK_COMPLETED
+  MILESTONE_CREATED
+  MILESTONE_COMPLETED
+  ISSUE_CREATED
+  ISSUE_RESOLVED
+  PULL_REQUEST_OPENED
+  PULL_REQUEST_MERGED
+  RELEASE_CREATED
+  DISCUSSION_CREATED
+  DISCUSSION_REPLIED
+  REPOSITORY_CREATED
+  REPOSITORY_UPDATED
+  PROJECT_RECRUITING
+  PROJECT_RECRUITING_CLOSED
+  CONTRIBUTOR_ADDED
+  BUILD_LAUNCHED
+  POST_UPDATE
+}
+
+model ActivityEvent {
+  id         String            @id @default(cuid())
+  actorId    String
+  projectId  String
+  type       ActivityEventType
+  targetType String?
+  targetId   String?
+  metadata   Json?
+  visibility Visibility        @default(PUBLIC)
+  createdAt  DateTime          @default(now())
+  expiresAt  DateTime?
+
+  actor   User    @relation(fields: [actorId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([createdAt])
+  @@index([type, createdAt])
+  @@index([projectId, createdAt])
+  @@index([actorId, createdAt])
+  @@index([visibility, createdAt])
+}
+
+model ProjectFollower {
+  id        String   @id @default(cuid())
+  userId    String
+  projectId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, projectId])
+  @@index([userId])
+  @@index([projectId])
+}
+
+model ProjectStar {
+  id        String   @id @default(cuid())
+  userId    String
+  projectId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, projectId])
+  @@index([userId])
+  @@index([projectId])
+}
+
+model Release {
+  id           String   @id @default(cuid())
+  projectId    String
+  version      String
+  title        String
+  description  String?  @db.Text
+  releaseNotes String?  @db.Text
+  createdById  String
+  createdAt    DateTime @default(now())
+
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdBy User    @relation(fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@index([projectId, createdAt])
+}
+
+model ProjectUpdate {
+  id        String   @id @default(cuid())
+  projectId String
+  authorId  String
+  title     String
+  body      String   @db.Text
+  createdAt DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  author  User    @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, createdAt])
 }
