@@ -13,6 +13,7 @@
     "worker": "tsx worker/index.ts"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
     "@neon/config": "^1.7.2",
     "@neon/env": "^1.4.3",
     "@node-rs/argon2": "^2.2.1",
@@ -27,6 +28,7 @@
     "next": "16.3.5",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "ssh2": "^1.17.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {
@@ -36,6 +38,7 @@
     "@types/node": "^20.19.43",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/ssh2": "^1.15.6",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
     "prisma": "^6.19.3",

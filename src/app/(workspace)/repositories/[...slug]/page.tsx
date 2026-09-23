@@ -262,11 +262,17 @@ function RepositoryShell({ params }: RepoDashboardProps) {
                   repo={repoName}
                   refName={activeBranch}
                   filePath={blobFile}
+                  isProtectedBranch={Boolean(
+                    repository?.branchRules?.some(
+                      (r: any) => r.pattern === activeBranch && r.requirePullRequest
+                    )
+                  )}
                   onNavigateBack={() => setBlobFile(null)}
                   onViewBlame={() => setIsBlame(true)}
                   onViewHistory={() => {
                     setActiveTab("commits");
                   }}
+                  onBranchChange={(b) => setActiveBranch(b)}
                 />
               )
             ) : (

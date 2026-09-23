@@ -143,23 +143,26 @@ export async function seedInitialCommit(
 }
 
 /**
- * Create a new commit on an existing branch with a parent commit
+ * Create a new commit on an existing branch or a new branch with a parent commit
  */
 export async function createCommitOnBranch(
   storagePath: string,
   options: {
     branch: string;
-    files: Array<{ path: string; content: string }>;
+    newBranch?: string;
+    files?: Array<{ path: string; content: string }>;
+    deletedPaths?: string[];
     message: string;
     author?: { name: string; email: string };
   }
-): Promise<string> {
-  const branch = options.branch;
+): Promise<{ commitSha: string; targetBranch: string; parentSha: string }> {
+  const baseBranch = options.branch;
+  const targetBranch = options.newBranch ? options.newBranch.trim() : baseBranch;
   const authorName = options.author?.name || "Klyro";
   const authorEmail = options.author?.email || "bot@klyro.dev";
   const message = options.message || "Update files";
 
-  const { stdout: parentShaOut } = await runGit(storagePath, ["rev-parse", branch]);
+  const { stdout: parentShaOut } = await runGit(storagePath, ["rev-parse", baseBranch]);
   const parentSha = parentShaOut.trim();
 
   const tempIndexFile = path.join(os.tmpdir(), `klyro_idx_${randomBytes(8).toString("hex")}`);
@@ -177,29 +180,56 @@ export async function createCommitOnBranch(
     // Read the parent commit tree into the temporary index
     await execFileAsync("git", ["read-tree", parentSha], { cwd: storagePath, env });
 
-    // Hash and update each file into the index
-    for (const file of options.files) {
-      const tempBlobFile = path.join(os.tmpdir(), `klyro_blob_${randomBytes(8).toString("hex")}`);
-      await fs.writeFile(tempBlobFile, file.content, "utf8");
-      try {
-        const { stdout: blobSha } = await execFileAsync("git", ["hash-object", "-w", tempBlobFile], {
-          cwd: storagePath,
-          env: { ...process.env, GIT_DIR: storagePath },
-          encoding: "utf8",
-        });
+    // 1. Remove deleted files from the index
+    if (options.deletedPaths && options.deletedPaths.length > 0) {
+      const deleteLines = options.deletedPaths
+        .filter(Boolean)
+        .map((delPath) => `0 0000000000000000000000000000000000000000\t${delPath}`)
+        .join("\n") + "\n";
 
-        const cleanBlobSha = blobSha.trim();
-        await execFileAsync(
-          "git",
-          ["update-index", "--add", "--cacheinfo", "100644", cleanBlobSha, file.path],
-          { cwd: storagePath, env }
-        );
-      } finally {
-        await fs.rm(tempBlobFile, { force: true }).catch(() => {});
+      await new Promise<void>((resolve, reject) => {
+        const child = spawn("git", ["update-index", "--index-info"], {
+          cwd: storagePath,
+          env,
+        });
+        let stderr = "";
+        child.stderr.on("data", (d) => {
+          stderr += d;
+        });
+        child.on("close", (code) => {
+          if (code === 0) resolve();
+          else reject(new Error(stderr || `Failed to remove paths with code ${code}`));
+        });
+        child.stdin.write(deleteLines);
+        child.stdin.end();
+      });
+    }
+
+    // 2. Hash and update added/modified files into the index
+    if (options.files && options.files.length > 0) {
+      for (const file of options.files) {
+        const tempBlobFile = path.join(os.tmpdir(), `klyro_blob_${randomBytes(8).toString("hex")}`);
+        await fs.writeFile(tempBlobFile, file.content, "utf8");
+        try {
+          const { stdout: blobSha } = await execFileAsync("git", ["hash-object", "-w", tempBlobFile], {
+            cwd: storagePath,
+            env: { ...process.env, GIT_DIR: storagePath },
+            encoding: "utf8",
+          });
+
+          const cleanBlobSha = blobSha.trim();
+          await execFileAsync(
+            "git",
+            ["update-index", "--add", "--cacheinfo", "100644", cleanBlobSha, file.path],
+            { cwd: storagePath, env }
+          );
+        } finally {
+          await fs.rm(tempBlobFile, { force: true }).catch(() => {});
+        }
       }
     }
 
-    // Write updated tree
+    // 3. Write updated tree
     const { stdout: treeSha } = await execFileAsync("git", ["write-tree"], {
       cwd: storagePath,
       env,
@@ -208,7 +238,7 @@ export async function createCommitOnBranch(
 
     const cleanTreeSha = treeSha.trim();
 
-    // Create commit with parent
+    // 4. Create commit with parent
     const { stdout: commitSha } = await execFileAsync(
       "git",
       ["commit-tree", cleanTreeSha, "-p", parentSha, "-m", message],
@@ -217,10 +247,10 @@ export async function createCommitOnBranch(
 
     const cleanCommitSha = commitSha.trim();
 
-    // Update branch ref
-    await runGit(storagePath, ["update-ref", `refs/heads/${branch}`, cleanCommitSha]);
+    // 5. Update target branch ref
+    await runGit(storagePath, ["update-ref", `refs/heads/${targetBranch}`, cleanCommitSha]);
 
-    return cleanCommitSha;
+    return { commitSha: cleanCommitSha, targetBranch, parentSha };
   } finally {
     await fs.rm(tempIndexFile, { force: true }).catch(() => {});
   }

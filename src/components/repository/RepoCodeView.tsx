@@ -11,9 +11,12 @@ import {
   ChevronDown,
   Terminal,
   BookOpen,
+  Plus,
+  FilePlus,
 } from "lucide-react";
 import { MarkdownViewer } from "./MarkdownViewer";
 import { RepoGoToFileModal } from "./RepoGoToFileModal";
+import { RepoWebEditor } from "./RepoWebEditor";
 
 interface RepoCodeViewProps {
   repository: any;
@@ -44,6 +47,12 @@ export function RepoCodeView({
   const [branchDropdown, setBranchDropdown] = useState(false);
   const [branchSearch, setBranchSearch] = useState("");
   const [goToFileOpen, setGoToFileOpen] = useState(false);
+  const [addFileMenu, setAddFileMenu] = useState(false);
+  const [isCreatingFile, setIsCreatingFile] = useState(false);
+
+  const isProtectedBranch = Boolean(
+    repository?.branchRules?.some((r: any) => r.pattern === currentBranch && r.requirePullRequest)
+  );
 
   // Keyboard shortcut 'T' to open Go To File modal
   useEffect(() => {
@@ -119,6 +128,28 @@ export function RepoCodeView({
     ? branches.filter((b: any) => b.name.toLowerCase().includes(branchSearch.toLowerCase()))
     : branches;
 
+  if (isCreatingFile) {
+    return (
+      <RepoWebEditor
+        owner={owner}
+        repo={repo}
+        refName={currentBranch}
+        initialFilePath={currentPath ? `${currentPath}/` : ""}
+        isNewFile={true}
+        isProtectedBranch={isProtectedBranch}
+        onCancel={() => setIsCreatingFile(false)}
+        onCommitted={({ branch, isNewBranch, filePath }) => {
+          setIsCreatingFile(false);
+          if (isNewBranch) {
+            onBranchChange(branch);
+          }
+          loadTree();
+          onOpenFile(filePath);
+        }}
+      />
+    );
+  }
+
   // Empty repository state
   if (!loading && (!treeData?.entries || treeData.entries.length === 0) && !currentPath) {
     const cloneUrl = `${typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"}/repositories/${owner}/${repo}.git`;
@@ -129,7 +160,16 @@ export function RepoCodeView({
             <Terminal size={24} className="text-indigo-400" />
             <div>
               <h2 className="text-lg font-bold text-white">This repository is empty</h2>
-              <p className="text-xs text-slate-400">Push your first commit from your computer to get started.</p>
+              <p className="text-xs text-slate-400">
+                Push your first commit from your computer or{" "}
+                <button
+                  onClick={() => setIsCreatingFile(true)}
+                  className="text-indigo-400 font-semibold underline hover:text-indigo-300 cursor-pointer"
+                >
+                  create a new file
+                </button>{" "}
+                directly in the browser.
+              </p>
             </div>
           </div>
 
@@ -253,8 +293,38 @@ export function RepoCodeView({
           </div>
         </div>
 
-        {/* Go to file & Commits buttons */}
+        {/* Go to file, Add file & Commits buttons */}
         <div className="flex items-center gap-2">
+          {/* Add file button */}
+          <div className="relative">
+            <button
+              onClick={() => setAddFileMenu(!addFileMenu)}
+              className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
+            >
+              <Plus size={13} />
+              <span>Add file</span>
+              <ChevronDown size={11} className="text-slate-400" />
+            </button>
+
+            {addFileMenu && (
+              <div
+                className="absolute right-0 top-full mt-1.5 w-44 rounded-xl border border-white/10 bg-zinc-950 p-1.5 shadow-2xl z-40 animate-in fade-in zoom-in-95 duration-100"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => {
+                    setAddFileMenu(false);
+                    setIsCreatingFile(true);
+                  }}
+                  className="flex items-center gap-2 w-full rounded-lg px-2.5 py-1.5 text-xs text-left text-slate-300 hover:bg-white/5 hover:text-white transition-colors cursor-pointer"
+                >
+                  <FilePlus size={13} className="text-indigo-400" />
+                  <span>Create new file</span>
+                </button>
+              </div>
+            )}
+          </div>
+
           <button
             onClick={() => setGoToFileOpen(true)}
             className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"

@@ -1,16 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Copy, Check, FileText, Download, History, Eye } from "lucide-react";
+import {
+  Copy,
+  Check,
+  FileText,
+  Download,
+  History,
+  Eye,
+  Edit3,
+  Trash2,
+  AlertTriangle,
+} from "lucide-react";
+import { RepoWebEditor } from "./RepoWebEditor";
+import { RepoCommitModal } from "./RepoCommitModal";
 
 interface RepoBlobViewProps {
   owner: string;
   repo: string;
   refName: string;
   filePath: string;
+  isProtectedBranch?: boolean;
   onNavigateBack: () => void;
   onViewBlame: () => void;
   onViewHistory: () => void;
+  onBranchChange?: (branch: string) => void;
 }
 
 export function RepoBlobView({
@@ -18,9 +32,11 @@ export function RepoBlobView({
   repo,
   refName,
   filePath,
+  isProtectedBranch = false,
   onNavigateBack,
   onViewBlame,
   onViewHistory,
+  onBranchChange,
 }: RepoBlobViewProps) {
   const [fileData, setFileData] = useState<{
     content: string;
@@ -30,8 +46,10 @@ export function RepoBlobView({
   } | null>(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  useEffect(() => {
+  const loadFile = () => {
     setLoading(true);
     fetch(`/api/v1/repositories/${owner}/${repo}/blob?ref=${refName}&path=${filePath}`)
       .then((res) => (res.ok ? res.json() : null))
@@ -40,6 +58,10 @@ export function RepoBlobView({
       })
       .catch(() => {})
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    loadFile();
   }, [owner, repo, refName, filePath]);
 
   const copyContent = () => {
@@ -54,6 +76,58 @@ export function RepoBlobView({
     if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   };
+
+  const handleDeleteSubmit = async (data: {
+    message: string;
+    description: string;
+    newBranch: string | null;
+  }) => {
+    const res = await fetch(`/api/v1/repositories/${owner}/${repo}/commits/create`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        branch: refName,
+        newBranch: data.newBranch,
+        deletedPaths: [filePath],
+        message: data.message || `Delete ${filePath.split("/").pop()}`,
+        description: data.description,
+      }),
+    });
+
+    const json = await res.json().catch(() => null);
+    if (!res.ok) {
+      throw new Error(json?.error?.message || "Failed to delete file");
+    }
+
+    if (data.newBranch && onBranchChange) {
+      onBranchChange(data.newBranch);
+    }
+    onNavigateBack();
+  };
+
+  // If in web editor mode, render the Monaco Editor
+  if (isEditing && fileData) {
+    return (
+      <RepoWebEditor
+        owner={owner}
+        repo={repo}
+        refName={refName}
+        initialFilePath={filePath}
+        initialContent={fileData.content}
+        isNewFile={false}
+        isProtectedBranch={isProtectedBranch}
+        onCancel={() => setIsEditing(false)}
+        onCommitted={({ branch, isNewBranch }) => {
+          setIsEditing(false);
+          if (isNewBranch && onBranchChange) {
+            onBranchChange(branch);
+          } else {
+            loadFile();
+          }
+        }}
+      />
+    );
+  }
 
   const rawUrl = `/api/v1/repositories/${owner}/${repo}/raw?ref=${refName}&path=${filePath}`;
 
@@ -76,6 +150,18 @@ export function RepoBlobView({
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Edit file button */}
+          {!fileData?.isBinary && (
+            <button
+              onClick={() => setIsEditing(true)}
+              className="flex items-center gap-1.5 rounded-xl bg-indigo-600/20 border border-indigo-500/40 px-3 py-1.5 text-xs font-semibold text-indigo-300 hover:bg-indigo-600/30 hover:text-white transition-colors cursor-pointer shadow-sm"
+              title="Edit this file in browser"
+            >
+              <Edit3 size={13} />
+              <span>Edit file</span>
+            </button>
+          )}
+
           <button
             onClick={onViewHistory}
             className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
@@ -109,6 +195,15 @@ export function RepoBlobView({
           >
             {copied ? <Check size={13} className="text-emerald-400" /> : <Copy size={13} />}
             <span>{copied ? "Copied" : "Copy"}</span>
+          </button>
+
+          {/* Delete file button */}
+          <button
+            onClick={() => setShowDeleteModal(true)}
+            className="flex items-center gap-1.5 rounded-xl border border-red-500/20 bg-red-950/20 px-2.5 py-1.5 text-xs font-semibold text-red-400 hover:bg-red-950/40 hover:text-red-300 transition-colors cursor-pointer"
+            title="Delete this file"
+          >
+            <Trash2 size={13} />
           </button>
         </div>
       </div>
@@ -162,6 +257,17 @@ export function RepoBlobView({
       ) : (
         <p className="p-8 text-center text-xs text-slate-500">File not found.</p>
       )}
+
+      {/* Delete File Commit Modal */}
+      <RepoCommitModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onCommit={handleDeleteSubmit}
+        defaultMessage={`Delete ${filePath.split("/").pop()}`}
+        currentBranch={refName}
+        isProtectedBranch={isProtectedBranch}
+        suggestedNewBranch={`${owner}-patch-delete`}
+      />
     </div>
   );
 }
