@@ -13,6 +13,7 @@ import {
   FolderGit2,
   LogOut,
   Sparkles,
+  Key,
 } from "lucide-react";
 import { BrandMark } from "@/components/Brand";
 import { NotificationBell } from "@/components/workspace/NotificationBell";
@@ -222,6 +223,15 @@ export function TopBar() {
                 >
                   <Sparkles size={15} className="text-amber-400" />
                   <span>Explore Directory</span>
+                </Link>
+
+                <Link
+                  href="/settings/tokens"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-zinc-300 hover:bg-zinc-900 hover:text-white transition-colors"
+                >
+                  <Key size={15} className="text-amber-400" />
+                  <span>Developer Tokens</span>
                 </Link>
 
                 <Link

@@ -169,6 +169,7 @@ model User {
   pullRequestComments     PullRequestComment[]
   repositoryReleases      RepositoryRelease[]
   repositoryAuditEvents   RepositoryAuditEvent[]
+  personalAccessTokens    PersonalAccessToken[]
 
   @@index([username])
 }
@@ -887,6 +888,23 @@ model RepositoryAuditEvent {
 
   @@index([repositoryId, createdAt])
   @@index([actorId, createdAt])
+}
+
+model PersonalAccessToken {
+  id          String    @id @default(cuid())
+  userId      String
+  name        String
+  tokenPrefix String    // e.g. "klyro_pat_abcd..."
+  tokenHash   String    @unique // SHA-256 hash of the full token
+  scopes      String[]  @default(["repo:read", "repo:write"])
+  expiresAt   DateTime?
+  lastUsedAt  DateTime?
+  createdAt   DateTime  @default(now())
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([tokenHash])
 }
 
 

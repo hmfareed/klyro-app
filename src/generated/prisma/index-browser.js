@@ -573,6 +573,18 @@ exports.Prisma.RepositoryAuditEventScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.PersonalAccessTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  tokenPrefix: 'tokenPrefix',
+  tokenHash: 'tokenHash',
+  scopes: 'scopes',
+  expiresAt: 'expiresAt',
+  lastUsedAt: 'lastUsedAt',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -767,7 +779,8 @@ exports.Prisma.ModelName = {
   RepositoryWebhook: 'RepositoryWebhook',
   RepositoryWebhookDelivery: 'RepositoryWebhookDelivery',
   RepositoryActionRun: 'RepositoryActionRun',
-  RepositoryAuditEvent: 'RepositoryAuditEvent'
+  RepositoryAuditEvent: 'RepositoryAuditEvent',
+  PersonalAccessToken: 'PersonalAccessToken'
 };
 
 /**

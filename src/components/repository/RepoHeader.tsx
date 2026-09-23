@@ -67,7 +67,7 @@ export function RepoHeader({
   const daysRemaining = Math.max(0, Math.ceil((purgeTime - Date.now()) / (1000 * 60 * 60 * 24)));
 
   const appUrl = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
-  const httpsUrl = `${appUrl}/repositories/${repository.owner.username}/${repository.slug}.git`;
+  const httpsUrl = `${appUrl}/${repository.owner.username}/${repository.slug}.git`;
   const sshUrl = `git@klyro.dev:${repository.owner.username}/${repository.slug}.git`;
   const currentCloneUrl = cloneMode === "https" ? httpsUrl : sshUrl;
 
@@ -251,7 +251,7 @@ export function RepoHeader({
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-2 mb-3">
+                <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-2 mb-2">
                   <input
                     type="text"
                     readOnly
@@ -260,11 +260,22 @@ export function RepoHeader({
                   />
                   <button
                     onClick={copyCloneUrl}
-                    className="rounded-lg p-1.5 text-slate-400 hover:bg-white/10 hover:text-white transition-colors"
+                    className="rounded-lg p-1.5 text-slate-400 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
                     title="Copy to clipboard"
                   >
                     {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
                   </button>
+                </div>
+
+                <div className="mb-3 rounded-xl border border-indigo-500/20 bg-indigo-950/30 p-2.5 text-[11px] text-indigo-300">
+                  <p className="font-semibold text-white mb-0.5">Authentication:</p>
+                  <p className="text-slate-400 text-[10px] leading-relaxed">
+                    Use your Klyro username and a{" "}
+                    <Link href="/settings/tokens" className="text-indigo-400 underline hover:text-indigo-300 font-medium">
+                      Personal Access Token (PAT)
+                    </Link>{" "}
+                    as your password when pushing or cloning private repos.
+                  </p>
                 </div>
 
                 <a

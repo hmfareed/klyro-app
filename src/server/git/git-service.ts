@@ -52,8 +52,10 @@ export async function runGit(
 export async function initBareRepo(storagePath: string, defaultBranch = "main"): Promise<void> {
   await fs.mkdir(path.dirname(storagePath), { recursive: true });
   await execFileAsync("git", ["init", "--bare", "-b", defaultBranch, storagePath]);
-  // Configure repo config for server use
+  // Configure repo config for server and smart HTTP use
   await runGit(storagePath, ["config", "core.logAllRefUpdates", "true"]);
+  await runGit(storagePath, ["config", "http.receivepack", "true"]);
+  await runGit(storagePath, ["config", "http.uploadpack", "true"]);
 }
 
 /**
