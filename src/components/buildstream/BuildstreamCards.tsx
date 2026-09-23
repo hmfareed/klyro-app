@@ -70,6 +70,7 @@ function TechRow({ tech }: { tech: string[] }) {
 export function StreamCard({ event, onApply, onStarToggle, onFollowToggle }: BuildstreamCardProps) {
   const p = event.project;
   const authorName = p.author.isCurrentUser ? "You" : p.author.displayName || p.author.username;
+  const repoUrl = p.author?.username ? `/repositories/${p.author.username}/${p.slug}` : `/repositories/${p.slug}`;
   const [starred, setStarred] = useState(p.isStarredByViewer);
   const [starsCount, setStarsCount] = useState(p.starsCount);
   const [followed, setFollowed] = useState(p.isFollowedByViewer);
@@ -124,7 +125,7 @@ export function StreamCard({ event, onApply, onStarToggle, onFollowToggle }: Bui
       {event.kind === "opportunity" ? (
         <div className="mt-3">
           <Link
-            href={`/repositories/${p.slug}`}
+            href={repoUrl}
             className="text-base font-bold text-white hover:text-indigo-300 transition-colors"
           >
             {p.title}
@@ -154,7 +155,7 @@ export function StreamCard({ event, onApply, onStarToggle, onFollowToggle }: Bui
 
           <div className="mt-4 flex items-center gap-2">
             <Link
-              href={`/repositories/${p.slug}`}
+              href={`/projects/${p.slug}`}
               className="rounded-xl border border-zinc-700 px-3.5 py-2 text-xs font-semibold text-zinc-200 hover:border-zinc-500 hover:text-white transition-colors"
             >
               View Project
@@ -188,7 +189,7 @@ export function StreamCard({ event, onApply, onStarToggle, onFollowToggle }: Bui
             starsCount={starsCount}
             onToggleStar={handleToggleStar}
             primaryLabel="View release"
-            primaryHref={`/repositories/${p.slug}`}
+            primaryHref={repoUrl}
           />
         </div>
       ) : event.kind === "milestone" ? (
@@ -231,7 +232,7 @@ export function StreamCard({ event, onApply, onStarToggle, onFollowToggle }: Bui
             <p className="text-[11px] text-zinc-400 truncate">{event.body || p.title}</p>
           </div>
           <Link
-            href={`/repositories/${p.slug}`}
+            href={repoUrl}
             className="shrink-0 rounded-xl border border-zinc-700 px-3 py-1.5 text-xs font-semibold text-zinc-200 hover:border-zinc-500 hover:text-white transition-colors"
           >
             View build
@@ -248,7 +249,7 @@ export function StreamCard({ event, onApply, onStarToggle, onFollowToggle }: Bui
             starsCount={starsCount}
             onToggleStar={handleToggleStar}
             primaryLabel="Join discussion"
-            primaryHref={`/repositories/${p.slug}`}
+            primaryHref={repoUrl}
           />
         </div>
       ) : (
@@ -260,7 +261,7 @@ export function StreamCard({ event, onApply, onStarToggle, onFollowToggle }: Bui
             </span>
             <div className="min-w-0">
               <Link
-                href={`/repositories/${p.slug}`}
+                href={repoUrl}
                 className="block truncate text-sm font-bold text-white hover:text-indigo-300 transition-colors"
               >
                 {p.title}
@@ -301,7 +302,7 @@ export function StreamCard({ event, onApply, onStarToggle, onFollowToggle }: Bui
             starsCount={starsCount}
             onToggleStar={handleToggleStar}
             primaryLabel="Explore build"
-            primaryHref={`/repositories/${p.slug}`}
+            primaryHref={repoUrl}
           />
         </div>
       )}

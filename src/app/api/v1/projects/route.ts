@@ -4,6 +4,11 @@ import { getSessionUserId } from "@/shared/auth/session";
 import { apiError, apiOk } from "@/shared/api/errors";
 import { recordActivityEvent } from "@/server/events";
 import { ActivityEventType } from "@/generated/prisma";
+import {
+  initBareRepo,
+  seedInitialCommit,
+  getRepoStoragePath,
+} from "@/server/git/git-service";
 
 // GET /api/v1/projects
 // If ?feed=explore -> public project discovery (status: RECRUITING or IN_PROGRESS, visibility: PUBLIC)
@@ -160,6 +165,51 @@ export async function POST(req: Request) {
       },
       select: { id: true, slug: true, title: true },
     });
+
+    // Automatically provision initial Git repository for the project
+    try {
+      const ownerUser = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { username: true, displayName: true, email: true },
+      });
+
+      const repo = await prisma.repository.create({
+        data: {
+          ownerId: userId,
+          projectId: project.id,
+          name: parsed.data.title.trim(),
+          slug,
+          description: parsed.data.description?.trim() || parsed.data.tagline?.trim() || `Repository for ${parsed.data.title.trim()}`,
+          visibility: (parsed.data.visibility === "PRIVATE" ? "PRIVATE" : "PUBLIC") as any,
+          defaultBranch: "main",
+          gitStoragePath: "",
+        },
+      });
+
+      const storagePath = getRepoStoragePath(repo.id);
+      await initBareRepo(storagePath, "main");
+      await seedInitialCommit(storagePath, {
+        defaultBranch: "main",
+        files: [
+          {
+            path: "README.md",
+            content: `# ${parsed.data.title.trim()}\n\n${parsed.data.description?.trim() || parsed.data.tagline?.trim() || "Welcome to your new repository."}\n`,
+          },
+        ],
+        message: "Initial commit",
+        author: {
+          name: ownerUser?.displayName || ownerUser?.username || "Builder",
+          email: ownerUser?.email || "bot@klyro.dev",
+        },
+      });
+
+      await prisma.repository.update({
+        where: { id: repo.id },
+        data: { gitStoragePath: storagePath },
+      });
+    } catch (repoErr) {
+      console.error("[Projects] Auto-provision repository error:", repoErr);
+    }
 
     try {
       await prisma.analyticsEvent.create({

@@ -105,11 +105,16 @@ function RepositoryShell({ params }: RepoDashboardProps) {
     fetch(url)
       .then((res) => (res.ok ? res.json() : null))
       .then((d) => {
-        if (d?.data?.repository) {
-          setRepository(d.data.repository);
-          setViewer(d.data.viewer);
-          if (d.data.repository.defaultBranch && !fourth) {
-            setActiveBranch(d.data.repository.defaultBranch);
+        const repoData = d?.data?.repository || d?.repository;
+        const viewerData = d?.data?.viewer || d?.viewer;
+        if (repoData) {
+          setRepository(repoData);
+          setViewer(viewerData);
+          if (repoData.defaultBranch && !fourth) {
+            setActiveBranch(repoData.defaultBranch);
+          }
+          if (!hasOwnerAndRepo && repoData.owner?.username) {
+            router.replace(`/repositories/${repoData.owner.username}/${repoData.slug}`, { scroll: false });
           }
         }
       })
