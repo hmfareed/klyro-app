@@ -1,0 +1,239 @@
+"use client";
+
+import { useState } from "react";
+import {
+  Code,
+  CircleDot,
+  GitPullRequest,
+  PlaySquare,
+  Tag,
+  Settings,
+  Star,
+  Eye,
+  GitFork,
+  Lock,
+  Globe,
+  Copy,
+  Check,
+  Download,
+  Terminal,
+} from "lucide-react";
+import Link from "next/link";
+
+interface RepoHeaderProps {
+  repository: any;
+  viewer: any;
+  activeTab: string;
+  onTabChange: (tab: string) => void;
+  onStarToggle: () => void;
+  onWatchToggle: () => void;
+  onFork: () => void;
+}
+
+export function RepoHeader({
+  repository,
+  viewer,
+  activeTab,
+  onTabChange,
+  onStarToggle,
+  onWatchToggle,
+  onFork,
+}: RepoHeaderProps) {
+  const [showCodeMenu, setShowCodeMenu] = useState(false);
+  const [cloneMode, setCloneMode] = useState<"https" | "ssh">("https");
+  const [copied, setCopied] = useState(false);
+
+  const appUrl = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
+  const httpsUrl = `${appUrl}/repositories/${repository.owner.username}/${repository.slug}.git`;
+  const sshUrl = `git@klyro.dev:${repository.owner.username}/${repository.slug}.git`;
+  const currentCloneUrl = cloneMode === "https" ? httpsUrl : sshUrl;
+
+  const copyCloneUrl = () => {
+    navigator.clipboard.writeText(currentCloneUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const TABS = [
+    { id: "code", label: "Code", icon: Code, count: undefined },
+    { id: "issues", label: "Issues", icon: CircleDot, count: repository._count?.issues },
+    { id: "pulls", label: "Pull Requests", icon: GitPullRequest, count: repository._count?.pullRequests },
+    { id: "actions", label: "Actions", icon: PlaySquare, count: undefined },
+    { id: "releases", label: "Releases", icon: Tag, count: repository._count?.releases },
+    ...(viewer.canAdmin ? [{ id: "settings", label: "Settings", icon: Settings, count: undefined }] : []),
+  ];
+
+  return (
+    <div className="border-b border-white/10 bg-[#090d1f] px-6 pt-5 pb-0">
+      {/* Top Identity & Action Row */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4">
+        <div>
+          {/* Breadcrumb path */}
+          <div className="flex items-center gap-2 text-sm text-slate-400 mb-1">
+            <span className="hover:text-white transition-colors">{repository.owner.username}</span>
+            <span>/</span>
+            <span className="font-bold text-base text-white">{repository.name}</span>
+            <span className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-slate-300 ml-1">
+              {repository.visibility === "PRIVATE" ? <Lock size={10} /> : <Globe size={10} />}
+              {repository.visibility}
+            </span>
+          </div>
+
+          {repository.forkedFrom && (
+            <p className="text-[11px] text-slate-500 mb-1">
+              forked from{" "}
+              <Link
+                href={`/repositories/${repository.forkedFrom.owner.username}/${repository.forkedFrom.slug}`}
+                className="text-indigo-400 hover:underline"
+              >
+                {repository.forkedFrom.owner.username}/{repository.forkedFrom.name}
+              </Link>
+            </p>
+          )}
+
+          {repository.description && (
+            <p className="text-xs text-slate-300 mt-1 line-clamp-1">{repository.description}</p>
+          )}
+        </div>
+
+        {/* Action Buttons: Watch, Fork, Star, Code Dropdown */}
+        <div className="flex items-center gap-2 shrink-0">
+          {/* Watch Button */}
+          <button
+            onClick={onWatchToggle}
+            className={`flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold transition-all ${
+              viewer.isWatching
+                ? "border-indigo-500/50 bg-indigo-500/10 text-indigo-300"
+                : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white"
+            }`}
+          >
+            <Eye size={13} />
+            <span>{viewer.isWatching ? "Watching" : "Watch"}</span>
+            <span className="rounded bg-white/10 px-1.5 py-0.2 text-[10px] font-bold text-slate-300 ml-0.5">
+              {repository._count?.watchers || 0}
+            </span>
+          </button>
+
+          {/* Fork Button */}
+          <button
+            onClick={onFork}
+            className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10 hover:text-white transition-all"
+          >
+            <GitFork size={13} />
+            <span>Fork</span>
+            <span className="rounded bg-white/10 px-1.5 py-0.2 text-[10px] font-bold text-slate-300 ml-0.5">
+              {repository._count?.forks || 0}
+            </span>
+          </button>
+
+          {/* Star Button */}
+          <button
+            onClick={onStarToggle}
+            className={`flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold transition-all ${
+              viewer.isStarred
+                ? "border-amber-500/50 bg-amber-500/10 text-amber-300"
+                : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white"
+            }`}
+          >
+            <Star size={13} className={viewer.isStarred ? "fill-amber-400 text-amber-400" : ""} />
+            <span>{viewer.isStarred ? "Starred" : "Star"}</span>
+            <span className="rounded bg-white/10 px-1.5 py-0.2 text-[10px] font-bold text-slate-300 ml-0.5">
+              {repository._count?.stars || 0}
+            </span>
+          </button>
+
+          {/* Code Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setShowCodeMenu(!showCodeMenu)}
+              className="flex items-center gap-1.5 rounded-xl bg-indigo-600 px-3.5 py-1.5 text-xs font-semibold text-white shadow-lg hover:bg-indigo-500 transition-all cursor-pointer"
+            >
+              <Code size={13} />
+              <span>Code</span>
+              <span className="text-[10px]">▼</span>
+            </button>
+
+            {showCodeMenu && (
+              <div
+                className="absolute right-0 top-full mt-2 w-80 rounded-2xl border border-white/10 bg-zinc-950 p-4 shadow-2xl z-50"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
+                  <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                    <Terminal size={14} className="text-indigo-400" /> Clone repository
+                  </span>
+                  <div className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 p-0.5">
+                    <button
+                      onClick={() => setCloneMode("https")}
+                      className={`rounded px-2 py-0.5 text-[10px] font-semibold transition-colors ${
+                        cloneMode === "https" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"
+                      }`}
+                    >
+                      HTTPS
+                    </button>
+                    <button
+                      onClick={() => setCloneMode("ssh")}
+                      className={`rounded px-2 py-0.5 text-[10px] font-semibold transition-colors ${
+                        cloneMode === "ssh" ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-white"
+                      }`}
+                    >
+                      SSH
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-2 mb-3">
+                  <input
+                    type="text"
+                    readOnly
+                    value={currentCloneUrl}
+                    className="w-full bg-transparent font-mono text-[11px] text-slate-300 focus:outline-none select-all"
+                  />
+                  <button
+                    onClick={copyCloneUrl}
+                    className="rounded-lg p-1.5 text-slate-400 hover:bg-white/10 hover:text-white transition-colors"
+                    title="Copy to clipboard"
+                  >
+                    {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
+                  </button>
+                </div>
+
+                <a
+                  href={`/api/v1/repositories/${repository.owner.username}/${repository.slug}/archive-zip?ref=${repository.defaultBranch}`}
+                  className="flex items-center justify-center gap-2 w-full rounded-xl border border-white/10 bg-white/5 py-2 text-xs font-semibold text-slate-200 hover:bg-white/10 hover:text-white transition-colors"
+                >
+                  <Download size={14} /> Download ZIP
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation Tabs */}
+      <div className="flex items-center gap-1 overflow-x-auto">
+        {TABS.map((tab) => {
+          const Icon = tab.icon;
+          const active = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => onTabChange(tab.id)}
+              className={`flex items-center gap-2 border-b-2 px-3.5 py-2.5 text-xs font-semibold transition-colors whitespace-nowrap cursor-pointer ${
+                active ? "border-indigo-500 text-white" : "border-transparent text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              <Icon size={14} />
+              <span>{tab.label}</span>
+              {tab.count !== undefined && tab.count > 0 && (
+                <span className="rounded-full bg-white/10 px-1.5 py-0.2 text-[10px] font-bold text-slate-300">
+                  {tab.count}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}

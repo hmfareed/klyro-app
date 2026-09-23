@@ -137,25 +137,37 @@ model User {
   // 29 §4: lightweight community affiliation (school/bootcamp/club, self-reported).
   community             String?
 
-  oauthAccounts       OAuthAccount[]
-  sessions            Session[]
-  skills              SkillOnUser[]
-  projectsOwned       Project[]            @relation("ProjectOwner")
-  memberships         TeamMember[]
-  applications        Application[]
-  assignedTasks       TaskAssignee[]
-  discussionThreads   DiscussionThread[]
-  discussionComments  DiscussionComment[]
-  uploadedFiles       FileAsset[]
-  contributionRecords ContributionRecord[]
-  notifications       Notification[]
-  usernameHistory     UsernameHistory[]
-  platformAdmin       PlatformAdmin?
-  activityEvents      ActivityEvent[]
-  followedProjects    ProjectFollower[]
-  starredProjects     ProjectStar[]
-  releasesAuthored    Release[]
-  projectUpdates      ProjectUpdate[]
+  oauthAccounts            OAuthAccount[]
+  sessions                 Session[]
+  skills                   SkillOnUser[]
+  projectsOwned            Project[]                @relation("ProjectOwner")
+  memberships              TeamMember[]
+  applications             Application[]
+  assignedTasks            TaskAssignee[]
+  discussionThreads        DiscussionThread[]
+  discussionComments       DiscussionComment[]
+  uploadedFiles            FileAsset[]
+  contributionRecords      ContributionRecord[]
+  notifications            Notification[]
+  usernameHistory          UsernameHistory[]
+  platformAdmin            PlatformAdmin?
+  activityEvents           ActivityEvent[]
+  followedProjects         ProjectFollower[]
+  starredProjects          ProjectStar[]
+  releasesAuthored         Release[]
+  projectUpdates           ProjectUpdate[]
+  repositoriesOwned        Repository[]             @relation("RepositoryOwner")
+  repositoryStars          RepositoryStar[]
+  repositoryWatchers       RepositoryWatcher[]
+  repositoryCollaborators  RepositoryCollaborator[]
+  repositoryIssues         RepositoryIssue[]        @relation("IssueAuthor")
+  assignedRepositoryIssues RepositoryIssue[]        @relation("IssueAssignee")
+  repositoryIssueComments  RepositoryIssueComment[]
+  pullRequestsAuthored     PullRequest[]            @relation("PRAuthor")
+  pullRequestsMerged       PullRequest[]            @relation("PRMergedBy")
+  pullRequestReviews       PullRequestReview[]
+  pullRequestComments      PullRequestComment[]
+  repositoryReleases       RepositoryRelease[]
 
   @@index([username])
 }
@@ -251,6 +263,7 @@ model Project {
   stars               ProjectStar[]
   releases            Release[]
   updates             ProjectUpdate[]
+  repositories        Repository[]
 
   @@index([ownerId])
   @@index([status, visibility])
@@ -574,4 +587,276 @@ model ProjectUpdate {
   author  User    @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
   @@index([projectId, createdAt])
+}
+
+// ==========================================
+// KLYRO REPOSITORY SYSTEM (Repo Architecture)
+// ==========================================
+
+model Repository {
+  id             String     @id @default(cuid())
+  workspaceId    String?
+  projectId      String?
+  ownerId        String
+  name           String
+  slug           String
+  description    String?    @db.Text
+  visibility     Visibility @default(PUBLIC)
+  defaultBranch  String     @default("main")
+  gitStoragePath String
+  archived       Boolean    @default(false)
+  disabled       Boolean    @default(false)
+  forkedFromId   String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  owner      User         @relation("RepositoryOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  project    Project?     @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  forkedFrom Repository?  @relation("RepositoryForks", fields: [forkedFromId], references: [id], onDelete: SetNull)
+  forks      Repository[] @relation("RepositoryForks")
+
+  stars         RepositoryStar[]
+  watchers      RepositoryWatcher[]
+  collaborators RepositoryCollaborator[]
+  branchRules   BranchProtectionRule[]
+  issues        RepositoryIssue[]
+  pullRequests  PullRequest[]
+  releases      RepositoryRelease[]
+  webhooks      RepositoryWebhook[]
+  actionRuns    RepositoryActionRun[]
+
+  @@unique([ownerId, slug])
+  @@index([slug])
+  @@index([projectId])
+  @@index([ownerId])
+  @@index([visibility])
+}
+
+model RepositoryStar {
+  id           String   @id @default(cuid())
+  userId       String
+  repositoryId String
+  createdAt    DateTime @default(now())
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, repositoryId])
+  @@index([userId])
+  @@index([repositoryId])
+}
+
+model RepositoryWatcher {
+  id           String   @id @default(cuid())
+  userId       String
+  repositoryId String
+  level        String   @default("ALL") // ALL, PARTICIPATING, IGNORE
+  createdAt    DateTime @default(now())
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, repositoryId])
+  @@index([userId])
+  @@index([repositoryId])
+}
+
+model RepositoryCollaborator {
+  id           String          @id @default(cuid())
+  repositoryId String
+  userId       String
+  role         PermissionLevel @default(CONTRIBUTOR)
+  createdAt    DateTime        @default(now())
+
+  repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([repositoryId, userId])
+  @@index([repositoryId])
+  @@index([userId])
+}
+
+model BranchProtectionRule {
+  id                 String   @id @default(cuid())
+  repositoryId       String
+  pattern            String   @default("main")
+  requirePullRequest Boolean  @default(true)
+  requiredApprovals  Int      @default(1)
+  preventForcePush   Boolean  @default(true)
+  preventDeletion    Boolean  @default(true)
+  createdAt          DateTime @default(now())
+
+  repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+
+  @@index([repositoryId])
+}
+
+model RepositoryIssue {
+  id           String    @id @default(cuid())
+  repositoryId String
+  number       Int
+  title        String
+  body         String    @db.Text
+  status       String    @default("OPEN") // OPEN, CLOSED
+  authorId     String
+  assigneeId   String?
+  labels       String[]  @default([])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  closedAt     DateTime?
+
+  repository Repository               @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  author     User                     @relation("IssueAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  assignee   User?                    @relation("IssueAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+  comments   RepositoryIssueComment[]
+
+  @@unique([repositoryId, number])
+  @@index([repositoryId, status])
+  @@index([authorId])
+  @@index([assigneeId])
+}
+
+model RepositoryIssueComment {
+  id        String   @id @default(cuid())
+  issueId   String
+  authorId  String
+  body      String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  issue  RepositoryIssue @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  author User            @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([issueId, createdAt])
+  @@index([authorId])
+}
+
+model PullRequest {
+  id           String    @id @default(cuid())
+  repositoryId String
+  number       Int
+  title        String
+  body         String    @db.Text
+  status       String    @default("OPEN") // OPEN, MERGED, CLOSED
+  baseBranch   String    @default("main")
+  headBranch   String
+  authorId     String
+  mergedById   String?
+  mergedAt     DateTime?
+  closedAt     DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  repository Repository           @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  author     User                 @relation("PRAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  mergedBy   User?                @relation("PRMergedBy", fields: [mergedById], references: [id], onDelete: SetNull)
+  reviews    PullRequestReview[]
+  comments   PullRequestComment[]
+
+  @@unique([repositoryId, number])
+  @@index([repositoryId, status])
+  @@index([authorId])
+}
+
+model PullRequestReview {
+  id            String   @id @default(cuid())
+  pullRequestId String
+  reviewerId    String
+  state         String // APPROVED, CHANGES_REQUESTED, COMMENTED
+  body          String?  @db.Text
+  createdAt     DateTime @default(now())
+
+  pullRequest PullRequest @relation(fields: [pullRequestId], references: [id], onDelete: Cascade)
+  reviewer    User        @relation(fields: [reviewerId], references: [id], onDelete: Cascade)
+
+  @@index([pullRequestId])
+  @@index([reviewerId])
+}
+
+model PullRequestComment {
+  id            String   @id @default(cuid())
+  pullRequestId String
+  authorId      String
+  body          String   @db.Text
+  diffPath      String?
+  diffLine      Int?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  pullRequest PullRequest @relation(fields: [pullRequestId], references: [id], onDelete: Cascade)
+  author      User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([pullRequestId, createdAt])
+  @@index([authorId])
+}
+
+model RepositoryRelease {
+  id              String   @id @default(cuid())
+  repositoryId    String
+  tagName         String
+  targetCommitish String   @default("main")
+  name            String
+  body            String?  @db.Text
+  isDraft         Boolean  @default(false)
+  isPrerelease    Boolean  @default(false)
+  authorId        String
+  publishedAt     DateTime @default(now())
+  createdAt       DateTime @default(now())
+
+  repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  author     User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@unique([repositoryId, tagName])
+  @@index([repositoryId])
+  @@index([authorId])
+}
+
+model RepositoryWebhook {
+  id           String   @id @default(cuid())
+  repositoryId String
+  url          String
+  secret       String?
+  events       String[] @default(["push", "pull_request", "issues", "release"])
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+
+  repository Repository                  @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  deliveries RepositoryWebhookDelivery[]
+
+  @@index([repositoryId])
+}
+
+model RepositoryWebhookDelivery {
+  id           String   @id @default(cuid())
+  webhookId    String
+  event        String
+  payload      Json
+  statusCode   Int?
+  responseBody String?  @db.Text
+  durationMs   Int?
+  error        String?
+  createdAt    DateTime @default(now())
+
+  webhook RepositoryWebhook @relation(fields: [webhookId], references: [id], onDelete: Cascade)
+
+  @@index([webhookId, createdAt])
+}
+
+model RepositoryActionRun {
+  id           String    @id @default(cuid())
+  repositoryId String
+  workflowName String
+  commitSha    String
+  branch       String
+  event        String
+  status       String    @default("SUCCESS") // QUEUED, RUNNING, SUCCESS, FAILURE, CANCELLED
+  logs         String?   @db.Text
+  durationMs   Int       @default(0)
+  startedAt    DateTime  @default(now())
+  completedAt  DateTime?
+  createdAt    DateTime  @default(now())
+
+  repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+
+  @@index([repositoryId, createdAt])
 }

@@ -390,6 +390,170 @@ exports.Prisma.ProjectUpdateScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.RepositoryScalarFieldEnum = {
+  id: 'id',
+  workspaceId: 'workspaceId',
+  projectId: 'projectId',
+  ownerId: 'ownerId',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  visibility: 'visibility',
+  defaultBranch: 'defaultBranch',
+  gitStoragePath: 'gitStoragePath',
+  archived: 'archived',
+  disabled: 'disabled',
+  forkedFromId: 'forkedFromId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RepositoryStarScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  repositoryId: 'repositoryId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RepositoryWatcherScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  repositoryId: 'repositoryId',
+  level: 'level',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RepositoryCollaboratorScalarFieldEnum = {
+  id: 'id',
+  repositoryId: 'repositoryId',
+  userId: 'userId',
+  role: 'role',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.BranchProtectionRuleScalarFieldEnum = {
+  id: 'id',
+  repositoryId: 'repositoryId',
+  pattern: 'pattern',
+  requirePullRequest: 'requirePullRequest',
+  requiredApprovals: 'requiredApprovals',
+  preventForcePush: 'preventForcePush',
+  preventDeletion: 'preventDeletion',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RepositoryIssueScalarFieldEnum = {
+  id: 'id',
+  repositoryId: 'repositoryId',
+  number: 'number',
+  title: 'title',
+  body: 'body',
+  status: 'status',
+  authorId: 'authorId',
+  assigneeId: 'assigneeId',
+  labels: 'labels',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  closedAt: 'closedAt'
+};
+
+exports.Prisma.RepositoryIssueCommentScalarFieldEnum = {
+  id: 'id',
+  issueId: 'issueId',
+  authorId: 'authorId',
+  body: 'body',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PullRequestScalarFieldEnum = {
+  id: 'id',
+  repositoryId: 'repositoryId',
+  number: 'number',
+  title: 'title',
+  body: 'body',
+  status: 'status',
+  baseBranch: 'baseBranch',
+  headBranch: 'headBranch',
+  authorId: 'authorId',
+  mergedById: 'mergedById',
+  mergedAt: 'mergedAt',
+  closedAt: 'closedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PullRequestReviewScalarFieldEnum = {
+  id: 'id',
+  pullRequestId: 'pullRequestId',
+  reviewerId: 'reviewerId',
+  state: 'state',
+  body: 'body',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PullRequestCommentScalarFieldEnum = {
+  id: 'id',
+  pullRequestId: 'pullRequestId',
+  authorId: 'authorId',
+  body: 'body',
+  diffPath: 'diffPath',
+  diffLine: 'diffLine',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RepositoryReleaseScalarFieldEnum = {
+  id: 'id',
+  repositoryId: 'repositoryId',
+  tagName: 'tagName',
+  targetCommitish: 'targetCommitish',
+  name: 'name',
+  body: 'body',
+  isDraft: 'isDraft',
+  isPrerelease: 'isPrerelease',
+  authorId: 'authorId',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RepositoryWebhookScalarFieldEnum = {
+  id: 'id',
+  repositoryId: 'repositoryId',
+  url: 'url',
+  secret: 'secret',
+  events: 'events',
+  active: 'active',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RepositoryWebhookDeliveryScalarFieldEnum = {
+  id: 'id',
+  webhookId: 'webhookId',
+  event: 'event',
+  payload: 'payload',
+  statusCode: 'statusCode',
+  responseBody: 'responseBody',
+  durationMs: 'durationMs',
+  error: 'error',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RepositoryActionRunScalarFieldEnum = {
+  id: 'id',
+  repositoryId: 'repositoryId',
+  workflowName: 'workflowName',
+  commitSha: 'commitSha',
+  branch: 'branch',
+  event: 'event',
+  status: 'status',
+  logs: 'logs',
+  durationMs: 'durationMs',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -569,7 +733,21 @@ exports.Prisma.ModelName = {
   ProjectFollower: 'ProjectFollower',
   ProjectStar: 'ProjectStar',
   Release: 'Release',
-  ProjectUpdate: 'ProjectUpdate'
+  ProjectUpdate: 'ProjectUpdate',
+  Repository: 'Repository',
+  RepositoryStar: 'RepositoryStar',
+  RepositoryWatcher: 'RepositoryWatcher',
+  RepositoryCollaborator: 'RepositoryCollaborator',
+  BranchProtectionRule: 'BranchProtectionRule',
+  RepositoryIssue: 'RepositoryIssue',
+  RepositoryIssueComment: 'RepositoryIssueComment',
+  PullRequest: 'PullRequest',
+  PullRequestReview: 'PullRequestReview',
+  PullRequestComment: 'PullRequestComment',
+  RepositoryRelease: 'RepositoryRelease',
+  RepositoryWebhook: 'RepositoryWebhook',
+  RepositoryWebhookDelivery: 'RepositoryWebhookDelivery',
+  RepositoryActionRun: 'RepositoryActionRun'
 };
 
 /**
