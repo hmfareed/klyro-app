@@ -218,6 +218,11 @@ export type RepositoryAuditEvent = $Result.DefaultSelection<Prisma.$RepositoryAu
  * 
  */
 export type PersonalAccessToken = $Result.DefaultSelection<Prisma.$PersonalAccessTokenPayload>
+/**
+ * Model UserSshKey
+ * 
+ */
+export type UserSshKey = $Result.DefaultSelection<Prisma.$UserSshKeyPayload>
 
 /**
  * Enums
@@ -981,6 +986,16 @@ export class PrismaClient<
     * ```
     */
   get personalAccessToken(): Prisma.PersonalAccessTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userSshKey`: Exposes CRUD operations for the **UserSshKey** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserSshKeys
+    * const userSshKeys = await prisma.userSshKey.findMany()
+    * ```
+    */
+  get userSshKey(): Prisma.UserSshKeyDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1462,7 +1477,8 @@ export namespace Prisma {
     RepositoryWebhookDelivery: 'RepositoryWebhookDelivery',
     RepositoryActionRun: 'RepositoryActionRun',
     RepositoryAuditEvent: 'RepositoryAuditEvent',
-    PersonalAccessToken: 'PersonalAccessToken'
+    PersonalAccessToken: 'PersonalAccessToken',
+    UserSshKey: 'UserSshKey'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1481,7 +1497,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "application" | "milestone" | "task" | "taskAssignee" | "discussionThread" | "discussionComment" | "fileAsset" | "contributionRecord" | "notification" | "platformAdmin" | "analyticsEvent" | "activityEvent" | "projectFollower" | "projectStar" | "release" | "projectUpdate" | "repository" | "repositoryStar" | "repositoryWatcher" | "repositoryCollaborator" | "branchProtectionRule" | "repositoryIssue" | "repositoryIssueComment" | "pullRequest" | "pullRequestReview" | "pullRequestComment" | "repositoryRelease" | "repositoryWebhook" | "repositoryWebhookDelivery" | "repositoryActionRun" | "repositoryAuditEvent" | "personalAccessToken"
+      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "application" | "milestone" | "task" | "taskAssignee" | "discussionThread" | "discussionComment" | "fileAsset" | "contributionRecord" | "notification" | "platformAdmin" | "analyticsEvent" | "activityEvent" | "projectFollower" | "projectStar" | "release" | "projectUpdate" | "repository" | "repositoryStar" | "repositoryWatcher" | "repositoryCollaborator" | "branchProtectionRule" | "repositoryIssue" | "repositoryIssueComment" | "pullRequest" | "pullRequestReview" | "pullRequestComment" | "repositoryRelease" | "repositoryWebhook" | "repositoryWebhookDelivery" | "repositoryActionRun" | "repositoryAuditEvent" | "personalAccessToken" | "userSshKey"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4519,6 +4535,80 @@ export namespace Prisma {
           }
         }
       }
+      UserSshKey: {
+        payload: Prisma.$UserSshKeyPayload<ExtArgs>
+        fields: Prisma.UserSshKeyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserSshKeyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserSshKeyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload>
+          }
+          findFirst: {
+            args: Prisma.UserSshKeyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserSshKeyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload>
+          }
+          findMany: {
+            args: Prisma.UserSshKeyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload>[]
+          }
+          create: {
+            args: Prisma.UserSshKeyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload>
+          }
+          createMany: {
+            args: Prisma.UserSshKeyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserSshKeyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload>[]
+          }
+          delete: {
+            args: Prisma.UserSshKeyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload>
+          }
+          update: {
+            args: Prisma.UserSshKeyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserSshKeyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserSshKeyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserSshKeyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserSshKeyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSshKeyPayload>
+          }
+          aggregate: {
+            args: Prisma.UserSshKeyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserSshKey>
+          }
+          groupBy: {
+            args: Prisma.UserSshKeyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserSshKeyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserSshKeyCountArgs<ExtArgs>
+            result: $Utils.Optional<UserSshKeyCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4656,6 +4746,7 @@ export namespace Prisma {
     repositoryActionRun?: RepositoryActionRunOmit
     repositoryAuditEvent?: RepositoryAuditEventOmit
     personalAccessToken?: PersonalAccessTokenOmit
+    userSshKey?: UserSshKeyOmit
   }
 
   /* Types for Logging */
@@ -4765,9 +4856,11 @@ export namespace Prisma {
     pullRequestsMerged: number
     pullRequestReviews: number
     pullRequestComments: number
+    resolvedPrComments: number
     repositoryReleases: number
     repositoryAuditEvents: number
     personalAccessTokens: number
+    sshKeys: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4800,9 +4893,11 @@ export namespace Prisma {
     pullRequestsMerged?: boolean | UserCountOutputTypeCountPullRequestsMergedArgs
     pullRequestReviews?: boolean | UserCountOutputTypeCountPullRequestReviewsArgs
     pullRequestComments?: boolean | UserCountOutputTypeCountPullRequestCommentsArgs
+    resolvedPrComments?: boolean | UserCountOutputTypeCountResolvedPrCommentsArgs
     repositoryReleases?: boolean | UserCountOutputTypeCountRepositoryReleasesArgs
     repositoryAuditEvents?: boolean | UserCountOutputTypeCountRepositoryAuditEventsArgs
     personalAccessTokens?: boolean | UserCountOutputTypeCountPersonalAccessTokensArgs
+    sshKeys?: boolean | UserCountOutputTypeCountSshKeysArgs
   }
 
   // Custom InputTypes
@@ -5022,6 +5117,13 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
+  export type UserCountOutputTypeCountResolvedPrCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PullRequestCommentWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
   export type UserCountOutputTypeCountRepositoryReleasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RepositoryReleaseWhereInput
   }
@@ -5038,6 +5140,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountPersonalAccessTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PersonalAccessTokenWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSshKeysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserSshKeyWhereInput
   }
 
 
@@ -5555,6 +5664,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type PullRequestCommentCountOutputType
+   */
+
+  export type PullRequestCommentCountOutputType = {
+    replies: number
+  }
+
+  export type PullRequestCommentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    replies?: boolean | PullRequestCommentCountOutputTypeCountRepliesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PullRequestCommentCountOutputType without action
+   */
+  export type PullRequestCommentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PullRequestCommentCountOutputType
+     */
+    select?: PullRequestCommentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PullRequestCommentCountOutputType without action
+   */
+  export type PullRequestCommentCountOutputTypeCountRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PullRequestCommentWhereInput
+  }
+
+
+  /**
    * Count Type RepositoryWebhookCountOutputType
    */
 
@@ -5953,9 +6093,11 @@ export namespace Prisma {
     pullRequestsMerged?: boolean | User$pullRequestsMergedArgs<ExtArgs>
     pullRequestReviews?: boolean | User$pullRequestReviewsArgs<ExtArgs>
     pullRequestComments?: boolean | User$pullRequestCommentsArgs<ExtArgs>
+    resolvedPrComments?: boolean | User$resolvedPrCommentsArgs<ExtArgs>
     repositoryReleases?: boolean | User$repositoryReleasesArgs<ExtArgs>
     repositoryAuditEvents?: boolean | User$repositoryAuditEventsArgs<ExtArgs>
     personalAccessTokens?: boolean | User$personalAccessTokensArgs<ExtArgs>
+    sshKeys?: boolean | User$sshKeysArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -6066,9 +6208,11 @@ export namespace Prisma {
     pullRequestsMerged?: boolean | User$pullRequestsMergedArgs<ExtArgs>
     pullRequestReviews?: boolean | User$pullRequestReviewsArgs<ExtArgs>
     pullRequestComments?: boolean | User$pullRequestCommentsArgs<ExtArgs>
+    resolvedPrComments?: boolean | User$resolvedPrCommentsArgs<ExtArgs>
     repositoryReleases?: boolean | User$repositoryReleasesArgs<ExtArgs>
     repositoryAuditEvents?: boolean | User$repositoryAuditEventsArgs<ExtArgs>
     personalAccessTokens?: boolean | User$personalAccessTokensArgs<ExtArgs>
+    sshKeys?: boolean | User$sshKeysArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6107,9 +6251,11 @@ export namespace Prisma {
       pullRequestsMerged: Prisma.$PullRequestPayload<ExtArgs>[]
       pullRequestReviews: Prisma.$PullRequestReviewPayload<ExtArgs>[]
       pullRequestComments: Prisma.$PullRequestCommentPayload<ExtArgs>[]
+      resolvedPrComments: Prisma.$PullRequestCommentPayload<ExtArgs>[]
       repositoryReleases: Prisma.$RepositoryReleasePayload<ExtArgs>[]
       repositoryAuditEvents: Prisma.$RepositoryAuditEventPayload<ExtArgs>[]
       personalAccessTokens: Prisma.$PersonalAccessTokenPayload<ExtArgs>[]
+      sshKeys: Prisma.$UserSshKeyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6558,9 +6704,11 @@ export namespace Prisma {
     pullRequestsMerged<T extends User$pullRequestsMergedArgs<ExtArgs> = {}>(args?: Subset<T, User$pullRequestsMergedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pullRequestReviews<T extends User$pullRequestReviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$pullRequestReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pullRequestComments<T extends User$pullRequestCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$pullRequestCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    resolvedPrComments<T extends User$resolvedPrCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$resolvedPrCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     repositoryReleases<T extends User$repositoryReleasesArgs<ExtArgs> = {}>(args?: Subset<T, User$repositoryReleasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     repositoryAuditEvents<T extends User$repositoryAuditEventsArgs<ExtArgs> = {}>(args?: Subset<T, User$repositoryAuditEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     personalAccessTokens<T extends User$personalAccessTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$personalAccessTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PersonalAccessTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sshKeys<T extends User$sshKeysArgs<ExtArgs> = {}>(args?: Subset<T, User$sshKeysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7715,6 +7863,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.resolvedPrComments
+   */
+  export type User$resolvedPrCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PullRequestComment
+     */
+    select?: PullRequestCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PullRequestComment
+     */
+    omit?: PullRequestCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PullRequestCommentInclude<ExtArgs> | null
+    where?: PullRequestCommentWhereInput
+    orderBy?: PullRequestCommentOrderByWithRelationInput | PullRequestCommentOrderByWithRelationInput[]
+    cursor?: PullRequestCommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PullRequestCommentScalarFieldEnum | PullRequestCommentScalarFieldEnum[]
+  }
+
+  /**
    * User.repositoryReleases
    */
   export type User$repositoryReleasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7784,6 +7956,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PersonalAccessTokenScalarFieldEnum | PersonalAccessTokenScalarFieldEnum[]
+  }
+
+  /**
+   * User.sshKeys
+   */
+  export type User$sshKeysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+    where?: UserSshKeyWhereInput
+    orderBy?: UserSshKeyOrderByWithRelationInput | UserSshKeyOrderByWithRelationInput[]
+    cursor?: UserSshKeyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserSshKeyScalarFieldEnum | UserSshKeyScalarFieldEnum[]
   }
 
   /**
@@ -45337,6 +45533,11 @@ export namespace Prisma {
     body: string | null
     diffPath: string | null
     diffLine: number | null
+    side: string | null
+    commitId: string | null
+    parentId: string | null
+    resolvedAt: Date | null
+    resolvedById: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -45348,6 +45549,11 @@ export namespace Prisma {
     body: string | null
     diffPath: string | null
     diffLine: number | null
+    side: string | null
+    commitId: string | null
+    parentId: string | null
+    resolvedAt: Date | null
+    resolvedById: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -45359,6 +45565,11 @@ export namespace Prisma {
     body: number
     diffPath: number
     diffLine: number
+    side: number
+    commitId: number
+    parentId: number
+    resolvedAt: number
+    resolvedById: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -45380,6 +45591,11 @@ export namespace Prisma {
     body?: true
     diffPath?: true
     diffLine?: true
+    side?: true
+    commitId?: true
+    parentId?: true
+    resolvedAt?: true
+    resolvedById?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -45391,6 +45607,11 @@ export namespace Prisma {
     body?: true
     diffPath?: true
     diffLine?: true
+    side?: true
+    commitId?: true
+    parentId?: true
+    resolvedAt?: true
+    resolvedById?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -45402,6 +45623,11 @@ export namespace Prisma {
     body?: true
     diffPath?: true
     diffLine?: true
+    side?: true
+    commitId?: true
+    parentId?: true
+    resolvedAt?: true
+    resolvedById?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -45500,6 +45726,11 @@ export namespace Prisma {
     body: string
     diffPath: string | null
     diffLine: number | null
+    side: string | null
+    commitId: string | null
+    parentId: string | null
+    resolvedAt: Date | null
+    resolvedById: string | null
     createdAt: Date
     updatedAt: Date
     _count: PullRequestCommentCountAggregateOutputType | null
@@ -45530,10 +45761,19 @@ export namespace Prisma {
     body?: boolean
     diffPath?: boolean
     diffLine?: boolean
+    side?: boolean
+    commitId?: boolean
+    parentId?: boolean
+    resolvedAt?: boolean
+    resolvedById?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     pullRequest?: boolean | PullRequestDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | PullRequestComment$parentArgs<ExtArgs>
+    replies?: boolean | PullRequestComment$repliesArgs<ExtArgs>
+    resolvedBy?: boolean | PullRequestComment$resolvedByArgs<ExtArgs>
+    _count?: boolean | PullRequestCommentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pullRequestComment"]>
 
   export type PullRequestCommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -45543,10 +45783,17 @@ export namespace Prisma {
     body?: boolean
     diffPath?: boolean
     diffLine?: boolean
+    side?: boolean
+    commitId?: boolean
+    parentId?: boolean
+    resolvedAt?: boolean
+    resolvedById?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     pullRequest?: boolean | PullRequestDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | PullRequestComment$parentArgs<ExtArgs>
+    resolvedBy?: boolean | PullRequestComment$resolvedByArgs<ExtArgs>
   }, ExtArgs["result"]["pullRequestComment"]>
 
   export type PullRequestCommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -45556,10 +45803,17 @@ export namespace Prisma {
     body?: boolean
     diffPath?: boolean
     diffLine?: boolean
+    side?: boolean
+    commitId?: boolean
+    parentId?: boolean
+    resolvedAt?: boolean
+    resolvedById?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     pullRequest?: boolean | PullRequestDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | PullRequestComment$parentArgs<ExtArgs>
+    resolvedBy?: boolean | PullRequestComment$resolvedByArgs<ExtArgs>
   }, ExtArgs["result"]["pullRequestComment"]>
 
   export type PullRequestCommentSelectScalar = {
@@ -45569,22 +45823,35 @@ export namespace Prisma {
     body?: boolean
     diffPath?: boolean
     diffLine?: boolean
+    side?: boolean
+    commitId?: boolean
+    parentId?: boolean
+    resolvedAt?: boolean
+    resolvedById?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PullRequestCommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pullRequestId" | "authorId" | "body" | "diffPath" | "diffLine" | "createdAt" | "updatedAt", ExtArgs["result"]["pullRequestComment"]>
+  export type PullRequestCommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pullRequestId" | "authorId" | "body" | "diffPath" | "diffLine" | "side" | "commitId" | "parentId" | "resolvedAt" | "resolvedById" | "createdAt" | "updatedAt", ExtArgs["result"]["pullRequestComment"]>
   export type PullRequestCommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pullRequest?: boolean | PullRequestDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | PullRequestComment$parentArgs<ExtArgs>
+    replies?: boolean | PullRequestComment$repliesArgs<ExtArgs>
+    resolvedBy?: boolean | PullRequestComment$resolvedByArgs<ExtArgs>
+    _count?: boolean | PullRequestCommentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PullRequestCommentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pullRequest?: boolean | PullRequestDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | PullRequestComment$parentArgs<ExtArgs>
+    resolvedBy?: boolean | PullRequestComment$resolvedByArgs<ExtArgs>
   }
   export type PullRequestCommentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pullRequest?: boolean | PullRequestDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | PullRequestComment$parentArgs<ExtArgs>
+    resolvedBy?: boolean | PullRequestComment$resolvedByArgs<ExtArgs>
   }
 
   export type $PullRequestCommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -45592,6 +45859,9 @@ export namespace Prisma {
     objects: {
       pullRequest: Prisma.$PullRequestPayload<ExtArgs>
       author: Prisma.$UserPayload<ExtArgs>
+      parent: Prisma.$PullRequestCommentPayload<ExtArgs> | null
+      replies: Prisma.$PullRequestCommentPayload<ExtArgs>[]
+      resolvedBy: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -45600,6 +45870,11 @@ export namespace Prisma {
       body: string
       diffPath: string | null
       diffLine: number | null
+      side: string | null
+      commitId: string | null
+      parentId: string | null
+      resolvedAt: Date | null
+      resolvedById: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["pullRequestComment"]>
@@ -45998,6 +46273,9 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     pullRequest<T extends PullRequestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PullRequestDefaultArgs<ExtArgs>>): Prisma__PullRequestClient<$Result.GetResult<Prisma.$PullRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parent<T extends PullRequestComment$parentArgs<ExtArgs> = {}>(args?: Subset<T, PullRequestComment$parentArgs<ExtArgs>>): Prisma__PullRequestCommentClient<$Result.GetResult<Prisma.$PullRequestCommentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    replies<T extends PullRequestComment$repliesArgs<ExtArgs> = {}>(args?: Subset<T, PullRequestComment$repliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    resolvedBy<T extends PullRequestComment$resolvedByArgs<ExtArgs> = {}>(args?: Subset<T, PullRequestComment$resolvedByArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -46033,6 +46311,11 @@ export namespace Prisma {
     readonly body: FieldRef<"PullRequestComment", 'String'>
     readonly diffPath: FieldRef<"PullRequestComment", 'String'>
     readonly diffLine: FieldRef<"PullRequestComment", 'Int'>
+    readonly side: FieldRef<"PullRequestComment", 'String'>
+    readonly commitId: FieldRef<"PullRequestComment", 'String'>
+    readonly parentId: FieldRef<"PullRequestComment", 'String'>
+    readonly resolvedAt: FieldRef<"PullRequestComment", 'DateTime'>
+    readonly resolvedById: FieldRef<"PullRequestComment", 'String'>
     readonly createdAt: FieldRef<"PullRequestComment", 'DateTime'>
     readonly updatedAt: FieldRef<"PullRequestComment", 'DateTime'>
   }
@@ -46428,6 +46711,68 @@ export namespace Prisma {
      * Limit how many PullRequestComments to delete.
      */
     limit?: number
+  }
+
+  /**
+   * PullRequestComment.parent
+   */
+  export type PullRequestComment$parentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PullRequestComment
+     */
+    select?: PullRequestCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PullRequestComment
+     */
+    omit?: PullRequestCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PullRequestCommentInclude<ExtArgs> | null
+    where?: PullRequestCommentWhereInput
+  }
+
+  /**
+   * PullRequestComment.replies
+   */
+  export type PullRequestComment$repliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PullRequestComment
+     */
+    select?: PullRequestCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PullRequestComment
+     */
+    omit?: PullRequestCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PullRequestCommentInclude<ExtArgs> | null
+    where?: PullRequestCommentWhereInput
+    orderBy?: PullRequestCommentOrderByWithRelationInput | PullRequestCommentOrderByWithRelationInput[]
+    cursor?: PullRequestCommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PullRequestCommentScalarFieldEnum | PullRequestCommentScalarFieldEnum[]
+  }
+
+  /**
+   * PullRequestComment.resolvedBy
+   */
+  export type PullRequestComment$resolvedByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
   /**
@@ -53264,6 +53609,1103 @@ export namespace Prisma {
 
 
   /**
+   * Model UserSshKey
+   */
+
+  export type AggregateUserSshKey = {
+    _count: UserSshKeyCountAggregateOutputType | null
+    _min: UserSshKeyMinAggregateOutputType | null
+    _max: UserSshKeyMaxAggregateOutputType | null
+  }
+
+  export type UserSshKeyMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    title: string | null
+    publicKey: string | null
+    fingerprint: string | null
+    keyType: string | null
+    lastUsedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type UserSshKeyMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    title: string | null
+    publicKey: string | null
+    fingerprint: string | null
+    keyType: string | null
+    lastUsedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type UserSshKeyCountAggregateOutputType = {
+    id: number
+    userId: number
+    title: number
+    publicKey: number
+    fingerprint: number
+    keyType: number
+    lastUsedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type UserSshKeyMinAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    publicKey?: true
+    fingerprint?: true
+    keyType?: true
+    lastUsedAt?: true
+    createdAt?: true
+  }
+
+  export type UserSshKeyMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    publicKey?: true
+    fingerprint?: true
+    keyType?: true
+    lastUsedAt?: true
+    createdAt?: true
+  }
+
+  export type UserSshKeyCountAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    publicKey?: true
+    fingerprint?: true
+    keyType?: true
+    lastUsedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type UserSshKeyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserSshKey to aggregate.
+     */
+    where?: UserSshKeyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSshKeys to fetch.
+     */
+    orderBy?: UserSshKeyOrderByWithRelationInput | UserSshKeyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserSshKeyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSshKeys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSshKeys.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserSshKeys
+    **/
+    _count?: true | UserSshKeyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserSshKeyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserSshKeyMaxAggregateInputType
+  }
+
+  export type GetUserSshKeyAggregateType<T extends UserSshKeyAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserSshKey]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserSshKey[P]>
+      : GetScalarType<T[P], AggregateUserSshKey[P]>
+  }
+
+
+
+
+  export type UserSshKeyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserSshKeyWhereInput
+    orderBy?: UserSshKeyOrderByWithAggregationInput | UserSshKeyOrderByWithAggregationInput[]
+    by: UserSshKeyScalarFieldEnum[] | UserSshKeyScalarFieldEnum
+    having?: UserSshKeyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserSshKeyCountAggregateInputType | true
+    _min?: UserSshKeyMinAggregateInputType
+    _max?: UserSshKeyMaxAggregateInputType
+  }
+
+  export type UserSshKeyGroupByOutputType = {
+    id: string
+    userId: string
+    title: string
+    publicKey: string
+    fingerprint: string
+    keyType: string
+    lastUsedAt: Date | null
+    createdAt: Date
+    _count: UserSshKeyCountAggregateOutputType | null
+    _min: UserSshKeyMinAggregateOutputType | null
+    _max: UserSshKeyMaxAggregateOutputType | null
+  }
+
+  type GetUserSshKeyGroupByPayload<T extends UserSshKeyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserSshKeyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserSshKeyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserSshKeyGroupByOutputType[P]>
+            : GetScalarType<T[P], UserSshKeyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserSshKeySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    publicKey?: boolean
+    fingerprint?: boolean
+    keyType?: boolean
+    lastUsedAt?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userSshKey"]>
+
+  export type UserSshKeySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    publicKey?: boolean
+    fingerprint?: boolean
+    keyType?: boolean
+    lastUsedAt?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userSshKey"]>
+
+  export type UserSshKeySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    publicKey?: boolean
+    fingerprint?: boolean
+    keyType?: boolean
+    lastUsedAt?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userSshKey"]>
+
+  export type UserSshKeySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    publicKey?: boolean
+    fingerprint?: boolean
+    keyType?: boolean
+    lastUsedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type UserSshKeyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "publicKey" | "fingerprint" | "keyType" | "lastUsedAt" | "createdAt", ExtArgs["result"]["userSshKey"]>
+  export type UserSshKeyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserSshKeyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserSshKeyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserSshKeyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserSshKey"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      title: string
+      publicKey: string
+      fingerprint: string
+      keyType: string
+      lastUsedAt: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["userSshKey"]>
+    composites: {}
+  }
+
+  type UserSshKeyGetPayload<S extends boolean | null | undefined | UserSshKeyDefaultArgs> = $Result.GetResult<Prisma.$UserSshKeyPayload, S>
+
+  type UserSshKeyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserSshKeyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserSshKeyCountAggregateInputType | true
+    }
+
+  export interface UserSshKeyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserSshKey'], meta: { name: 'UserSshKey' } }
+    /**
+     * Find zero or one UserSshKey that matches the filter.
+     * @param {UserSshKeyFindUniqueArgs} args - Arguments to find a UserSshKey
+     * @example
+     * // Get one UserSshKey
+     * const userSshKey = await prisma.userSshKey.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserSshKeyFindUniqueArgs>(args: SelectSubset<T, UserSshKeyFindUniqueArgs<ExtArgs>>): Prisma__UserSshKeyClient<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserSshKey that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserSshKeyFindUniqueOrThrowArgs} args - Arguments to find a UserSshKey
+     * @example
+     * // Get one UserSshKey
+     * const userSshKey = await prisma.userSshKey.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserSshKeyFindUniqueOrThrowArgs>(args: SelectSubset<T, UserSshKeyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserSshKeyClient<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserSshKey that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSshKeyFindFirstArgs} args - Arguments to find a UserSshKey
+     * @example
+     * // Get one UserSshKey
+     * const userSshKey = await prisma.userSshKey.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserSshKeyFindFirstArgs>(args?: SelectSubset<T, UserSshKeyFindFirstArgs<ExtArgs>>): Prisma__UserSshKeyClient<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserSshKey that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSshKeyFindFirstOrThrowArgs} args - Arguments to find a UserSshKey
+     * @example
+     * // Get one UserSshKey
+     * const userSshKey = await prisma.userSshKey.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserSshKeyFindFirstOrThrowArgs>(args?: SelectSubset<T, UserSshKeyFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserSshKeyClient<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserSshKeys that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSshKeyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserSshKeys
+     * const userSshKeys = await prisma.userSshKey.findMany()
+     * 
+     * // Get first 10 UserSshKeys
+     * const userSshKeys = await prisma.userSshKey.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userSshKeyWithIdOnly = await prisma.userSshKey.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserSshKeyFindManyArgs>(args?: SelectSubset<T, UserSshKeyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserSshKey.
+     * @param {UserSshKeyCreateArgs} args - Arguments to create a UserSshKey.
+     * @example
+     * // Create one UserSshKey
+     * const UserSshKey = await prisma.userSshKey.create({
+     *   data: {
+     *     // ... data to create a UserSshKey
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserSshKeyCreateArgs>(args: SelectSubset<T, UserSshKeyCreateArgs<ExtArgs>>): Prisma__UserSshKeyClient<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserSshKeys.
+     * @param {UserSshKeyCreateManyArgs} args - Arguments to create many UserSshKeys.
+     * @example
+     * // Create many UserSshKeys
+     * const userSshKey = await prisma.userSshKey.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserSshKeyCreateManyArgs>(args?: SelectSubset<T, UserSshKeyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserSshKeys and returns the data saved in the database.
+     * @param {UserSshKeyCreateManyAndReturnArgs} args - Arguments to create many UserSshKeys.
+     * @example
+     * // Create many UserSshKeys
+     * const userSshKey = await prisma.userSshKey.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserSshKeys and only return the `id`
+     * const userSshKeyWithIdOnly = await prisma.userSshKey.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserSshKeyCreateManyAndReturnArgs>(args?: SelectSubset<T, UserSshKeyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserSshKey.
+     * @param {UserSshKeyDeleteArgs} args - Arguments to delete one UserSshKey.
+     * @example
+     * // Delete one UserSshKey
+     * const UserSshKey = await prisma.userSshKey.delete({
+     *   where: {
+     *     // ... filter to delete one UserSshKey
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserSshKeyDeleteArgs>(args: SelectSubset<T, UserSshKeyDeleteArgs<ExtArgs>>): Prisma__UserSshKeyClient<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserSshKey.
+     * @param {UserSshKeyUpdateArgs} args - Arguments to update one UserSshKey.
+     * @example
+     * // Update one UserSshKey
+     * const userSshKey = await prisma.userSshKey.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserSshKeyUpdateArgs>(args: SelectSubset<T, UserSshKeyUpdateArgs<ExtArgs>>): Prisma__UserSshKeyClient<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserSshKeys.
+     * @param {UserSshKeyDeleteManyArgs} args - Arguments to filter UserSshKeys to delete.
+     * @example
+     * // Delete a few UserSshKeys
+     * const { count } = await prisma.userSshKey.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserSshKeyDeleteManyArgs>(args?: SelectSubset<T, UserSshKeyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserSshKeys.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSshKeyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserSshKeys
+     * const userSshKey = await prisma.userSshKey.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserSshKeyUpdateManyArgs>(args: SelectSubset<T, UserSshKeyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserSshKeys and returns the data updated in the database.
+     * @param {UserSshKeyUpdateManyAndReturnArgs} args - Arguments to update many UserSshKeys.
+     * @example
+     * // Update many UserSshKeys
+     * const userSshKey = await prisma.userSshKey.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserSshKeys and only return the `id`
+     * const userSshKeyWithIdOnly = await prisma.userSshKey.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserSshKeyUpdateManyAndReturnArgs>(args: SelectSubset<T, UserSshKeyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserSshKey.
+     * @param {UserSshKeyUpsertArgs} args - Arguments to update or create a UserSshKey.
+     * @example
+     * // Update or create a UserSshKey
+     * const userSshKey = await prisma.userSshKey.upsert({
+     *   create: {
+     *     // ... data to create a UserSshKey
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserSshKey we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserSshKeyUpsertArgs>(args: SelectSubset<T, UserSshKeyUpsertArgs<ExtArgs>>): Prisma__UserSshKeyClient<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserSshKeys.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSshKeyCountArgs} args - Arguments to filter UserSshKeys to count.
+     * @example
+     * // Count the number of UserSshKeys
+     * const count = await prisma.userSshKey.count({
+     *   where: {
+     *     // ... the filter for the UserSshKeys we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserSshKeyCountArgs>(
+      args?: Subset<T, UserSshKeyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserSshKeyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserSshKey.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSshKeyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserSshKeyAggregateArgs>(args: Subset<T, UserSshKeyAggregateArgs>): Prisma.PrismaPromise<GetUserSshKeyAggregateType<T>>
+
+    /**
+     * Group by UserSshKey.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSshKeyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserSshKeyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserSshKeyGroupByArgs['orderBy'] }
+        : { orderBy?: UserSshKeyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserSshKeyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserSshKeyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserSshKey model
+   */
+  readonly fields: UserSshKeyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserSshKey.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserSshKeyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserSshKey model
+   */
+  interface UserSshKeyFieldRefs {
+    readonly id: FieldRef<"UserSshKey", 'String'>
+    readonly userId: FieldRef<"UserSshKey", 'String'>
+    readonly title: FieldRef<"UserSshKey", 'String'>
+    readonly publicKey: FieldRef<"UserSshKey", 'String'>
+    readonly fingerprint: FieldRef<"UserSshKey", 'String'>
+    readonly keyType: FieldRef<"UserSshKey", 'String'>
+    readonly lastUsedAt: FieldRef<"UserSshKey", 'DateTime'>
+    readonly createdAt: FieldRef<"UserSshKey", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserSshKey findUnique
+   */
+  export type UserSshKeyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSshKey to fetch.
+     */
+    where: UserSshKeyWhereUniqueInput
+  }
+
+  /**
+   * UserSshKey findUniqueOrThrow
+   */
+  export type UserSshKeyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSshKey to fetch.
+     */
+    where: UserSshKeyWhereUniqueInput
+  }
+
+  /**
+   * UserSshKey findFirst
+   */
+  export type UserSshKeyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSshKey to fetch.
+     */
+    where?: UserSshKeyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSshKeys to fetch.
+     */
+    orderBy?: UserSshKeyOrderByWithRelationInput | UserSshKeyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserSshKeys.
+     */
+    cursor?: UserSshKeyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSshKeys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSshKeys.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserSshKeys.
+     */
+    distinct?: UserSshKeyScalarFieldEnum | UserSshKeyScalarFieldEnum[]
+  }
+
+  /**
+   * UserSshKey findFirstOrThrow
+   */
+  export type UserSshKeyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSshKey to fetch.
+     */
+    where?: UserSshKeyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSshKeys to fetch.
+     */
+    orderBy?: UserSshKeyOrderByWithRelationInput | UserSshKeyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserSshKeys.
+     */
+    cursor?: UserSshKeyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSshKeys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSshKeys.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserSshKeys.
+     */
+    distinct?: UserSshKeyScalarFieldEnum | UserSshKeyScalarFieldEnum[]
+  }
+
+  /**
+   * UserSshKey findMany
+   */
+  export type UserSshKeyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSshKeys to fetch.
+     */
+    where?: UserSshKeyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSshKeys to fetch.
+     */
+    orderBy?: UserSshKeyOrderByWithRelationInput | UserSshKeyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserSshKeys.
+     */
+    cursor?: UserSshKeyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSshKeys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSshKeys.
+     */
+    skip?: number
+    distinct?: UserSshKeyScalarFieldEnum | UserSshKeyScalarFieldEnum[]
+  }
+
+  /**
+   * UserSshKey create
+   */
+  export type UserSshKeyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserSshKey.
+     */
+    data: XOR<UserSshKeyCreateInput, UserSshKeyUncheckedCreateInput>
+  }
+
+  /**
+   * UserSshKey createMany
+   */
+  export type UserSshKeyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserSshKeys.
+     */
+    data: UserSshKeyCreateManyInput | UserSshKeyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserSshKey createManyAndReturn
+   */
+  export type UserSshKeyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserSshKeys.
+     */
+    data: UserSshKeyCreateManyInput | UserSshKeyCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserSshKey update
+   */
+  export type UserSshKeyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserSshKey.
+     */
+    data: XOR<UserSshKeyUpdateInput, UserSshKeyUncheckedUpdateInput>
+    /**
+     * Choose, which UserSshKey to update.
+     */
+    where: UserSshKeyWhereUniqueInput
+  }
+
+  /**
+   * UserSshKey updateMany
+   */
+  export type UserSshKeyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserSshKeys.
+     */
+    data: XOR<UserSshKeyUpdateManyMutationInput, UserSshKeyUncheckedUpdateManyInput>
+    /**
+     * Filter which UserSshKeys to update
+     */
+    where?: UserSshKeyWhereInput
+    /**
+     * Limit how many UserSshKeys to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserSshKey updateManyAndReturn
+   */
+  export type UserSshKeyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * The data used to update UserSshKeys.
+     */
+    data: XOR<UserSshKeyUpdateManyMutationInput, UserSshKeyUncheckedUpdateManyInput>
+    /**
+     * Filter which UserSshKeys to update
+     */
+    where?: UserSshKeyWhereInput
+    /**
+     * Limit how many UserSshKeys to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserSshKey upsert
+   */
+  export type UserSshKeyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserSshKey to update in case it exists.
+     */
+    where: UserSshKeyWhereUniqueInput
+    /**
+     * In case the UserSshKey found by the `where` argument doesn't exist, create a new UserSshKey with this data.
+     */
+    create: XOR<UserSshKeyCreateInput, UserSshKeyUncheckedCreateInput>
+    /**
+     * In case the UserSshKey was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserSshKeyUpdateInput, UserSshKeyUncheckedUpdateInput>
+  }
+
+  /**
+   * UserSshKey delete
+   */
+  export type UserSshKeyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+    /**
+     * Filter which UserSshKey to delete.
+     */
+    where: UserSshKeyWhereUniqueInput
+  }
+
+  /**
+   * UserSshKey deleteMany
+   */
+  export type UserSshKeyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserSshKeys to delete
+     */
+    where?: UserSshKeyWhereInput
+    /**
+     * Limit how many UserSshKeys to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserSshKey without action
+   */
+  export type UserSshKeyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSshKey
+     */
+    select?: UserSshKeySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSshKey
+     */
+    omit?: UserSshKeyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSshKeyInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -53763,6 +55205,11 @@ export namespace Prisma {
     body: 'body',
     diffPath: 'diffPath',
     diffLine: 'diffLine',
+    side: 'side',
+    commitId: 'commitId',
+    parentId: 'parentId',
+    resolvedAt: 'resolvedAt',
+    resolvedById: 'resolvedById',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -53862,6 +55309,20 @@ export namespace Prisma {
   };
 
   export type PersonalAccessTokenScalarFieldEnum = (typeof PersonalAccessTokenScalarFieldEnum)[keyof typeof PersonalAccessTokenScalarFieldEnum]
+
+
+  export const UserSshKeyScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    title: 'title',
+    publicKey: 'publicKey',
+    fingerprint: 'fingerprint',
+    keyType: 'keyType',
+    lastUsedAt: 'lastUsedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type UserSshKeyScalarFieldEnum = (typeof UserSshKeyScalarFieldEnum)[keyof typeof UserSshKeyScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -54263,9 +55724,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestListRelationFilter
     pullRequestReviews?: PullRequestReviewListRelationFilter
     pullRequestComments?: PullRequestCommentListRelationFilter
+    resolvedPrComments?: PullRequestCommentListRelationFilter
     repositoryReleases?: RepositoryReleaseListRelationFilter
     repositoryAuditEvents?: RepositoryAuditEventListRelationFilter
     personalAccessTokens?: PersonalAccessTokenListRelationFilter
+    sshKeys?: UserSshKeyListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -54321,9 +55784,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestOrderByRelationAggregateInput
     pullRequestReviews?: PullRequestReviewOrderByRelationAggregateInput
     pullRequestComments?: PullRequestCommentOrderByRelationAggregateInput
+    resolvedPrComments?: PullRequestCommentOrderByRelationAggregateInput
     repositoryReleases?: RepositoryReleaseOrderByRelationAggregateInput
     repositoryAuditEvents?: RepositoryAuditEventOrderByRelationAggregateInput
     personalAccessTokens?: PersonalAccessTokenOrderByRelationAggregateInput
+    sshKeys?: UserSshKeyOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -54382,9 +55847,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestListRelationFilter
     pullRequestReviews?: PullRequestReviewListRelationFilter
     pullRequestComments?: PullRequestCommentListRelationFilter
+    resolvedPrComments?: PullRequestCommentListRelationFilter
     repositoryReleases?: RepositoryReleaseListRelationFilter
     repositoryAuditEvents?: RepositoryAuditEventListRelationFilter
     personalAccessTokens?: PersonalAccessTokenListRelationFilter
+    sshKeys?: UserSshKeyListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -56917,10 +58384,18 @@ export namespace Prisma {
     body?: StringFilter<"PullRequestComment"> | string
     diffPath?: StringNullableFilter<"PullRequestComment"> | string | null
     diffLine?: IntNullableFilter<"PullRequestComment"> | number | null
+    side?: StringNullableFilter<"PullRequestComment"> | string | null
+    commitId?: StringNullableFilter<"PullRequestComment"> | string | null
+    parentId?: StringNullableFilter<"PullRequestComment"> | string | null
+    resolvedAt?: DateTimeNullableFilter<"PullRequestComment"> | Date | string | null
+    resolvedById?: StringNullableFilter<"PullRequestComment"> | string | null
     createdAt?: DateTimeFilter<"PullRequestComment"> | Date | string
     updatedAt?: DateTimeFilter<"PullRequestComment"> | Date | string
     pullRequest?: XOR<PullRequestScalarRelationFilter, PullRequestWhereInput>
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    parent?: XOR<PullRequestCommentNullableScalarRelationFilter, PullRequestCommentWhereInput> | null
+    replies?: PullRequestCommentListRelationFilter
+    resolvedBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type PullRequestCommentOrderByWithRelationInput = {
@@ -56930,10 +58405,18 @@ export namespace Prisma {
     body?: SortOrder
     diffPath?: SortOrderInput | SortOrder
     diffLine?: SortOrderInput | SortOrder
+    side?: SortOrderInput | SortOrder
+    commitId?: SortOrderInput | SortOrder
+    parentId?: SortOrderInput | SortOrder
+    resolvedAt?: SortOrderInput | SortOrder
+    resolvedById?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     pullRequest?: PullRequestOrderByWithRelationInput
     author?: UserOrderByWithRelationInput
+    parent?: PullRequestCommentOrderByWithRelationInput
+    replies?: PullRequestCommentOrderByRelationAggregateInput
+    resolvedBy?: UserOrderByWithRelationInput
   }
 
   export type PullRequestCommentWhereUniqueInput = Prisma.AtLeast<{
@@ -56946,10 +58429,18 @@ export namespace Prisma {
     body?: StringFilter<"PullRequestComment"> | string
     diffPath?: StringNullableFilter<"PullRequestComment"> | string | null
     diffLine?: IntNullableFilter<"PullRequestComment"> | number | null
+    side?: StringNullableFilter<"PullRequestComment"> | string | null
+    commitId?: StringNullableFilter<"PullRequestComment"> | string | null
+    parentId?: StringNullableFilter<"PullRequestComment"> | string | null
+    resolvedAt?: DateTimeNullableFilter<"PullRequestComment"> | Date | string | null
+    resolvedById?: StringNullableFilter<"PullRequestComment"> | string | null
     createdAt?: DateTimeFilter<"PullRequestComment"> | Date | string
     updatedAt?: DateTimeFilter<"PullRequestComment"> | Date | string
     pullRequest?: XOR<PullRequestScalarRelationFilter, PullRequestWhereInput>
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    parent?: XOR<PullRequestCommentNullableScalarRelationFilter, PullRequestCommentWhereInput> | null
+    replies?: PullRequestCommentListRelationFilter
+    resolvedBy?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type PullRequestCommentOrderByWithAggregationInput = {
@@ -56959,6 +58450,11 @@ export namespace Prisma {
     body?: SortOrder
     diffPath?: SortOrderInput | SortOrder
     diffLine?: SortOrderInput | SortOrder
+    side?: SortOrderInput | SortOrder
+    commitId?: SortOrderInput | SortOrder
+    parentId?: SortOrderInput | SortOrder
+    resolvedAt?: SortOrderInput | SortOrder
+    resolvedById?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PullRequestCommentCountOrderByAggregateInput
@@ -56978,6 +58474,11 @@ export namespace Prisma {
     body?: StringWithAggregatesFilter<"PullRequestComment"> | string
     diffPath?: StringNullableWithAggregatesFilter<"PullRequestComment"> | string | null
     diffLine?: IntNullableWithAggregatesFilter<"PullRequestComment"> | number | null
+    side?: StringNullableWithAggregatesFilter<"PullRequestComment"> | string | null
+    commitId?: StringNullableWithAggregatesFilter<"PullRequestComment"> | string | null
+    parentId?: StringNullableWithAggregatesFilter<"PullRequestComment"> | string | null
+    resolvedAt?: DateTimeNullableWithAggregatesFilter<"PullRequestComment"> | Date | string | null
+    resolvedById?: StringNullableWithAggregatesFilter<"PullRequestComment"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"PullRequestComment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PullRequestComment"> | Date | string
   }
@@ -57466,6 +58967,76 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"PersonalAccessToken"> | Date | string
   }
 
+  export type UserSshKeyWhereInput = {
+    AND?: UserSshKeyWhereInput | UserSshKeyWhereInput[]
+    OR?: UserSshKeyWhereInput[]
+    NOT?: UserSshKeyWhereInput | UserSshKeyWhereInput[]
+    id?: StringFilter<"UserSshKey"> | string
+    userId?: StringFilter<"UserSshKey"> | string
+    title?: StringFilter<"UserSshKey"> | string
+    publicKey?: StringFilter<"UserSshKey"> | string
+    fingerprint?: StringFilter<"UserSshKey"> | string
+    keyType?: StringFilter<"UserSshKey"> | string
+    lastUsedAt?: DateTimeNullableFilter<"UserSshKey"> | Date | string | null
+    createdAt?: DateTimeFilter<"UserSshKey"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UserSshKeyOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    publicKey?: SortOrder
+    fingerprint?: SortOrder
+    keyType?: SortOrder
+    lastUsedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type UserSshKeyWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    fingerprint?: string
+    AND?: UserSshKeyWhereInput | UserSshKeyWhereInput[]
+    OR?: UserSshKeyWhereInput[]
+    NOT?: UserSshKeyWhereInput | UserSshKeyWhereInput[]
+    userId?: StringFilter<"UserSshKey"> | string
+    title?: StringFilter<"UserSshKey"> | string
+    publicKey?: StringFilter<"UserSshKey"> | string
+    keyType?: StringFilter<"UserSshKey"> | string
+    lastUsedAt?: DateTimeNullableFilter<"UserSshKey"> | Date | string | null
+    createdAt?: DateTimeFilter<"UserSshKey"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "fingerprint">
+
+  export type UserSshKeyOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    publicKey?: SortOrder
+    fingerprint?: SortOrder
+    keyType?: SortOrder
+    lastUsedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: UserSshKeyCountOrderByAggregateInput
+    _max?: UserSshKeyMaxOrderByAggregateInput
+    _min?: UserSshKeyMinOrderByAggregateInput
+  }
+
+  export type UserSshKeyScalarWhereWithAggregatesInput = {
+    AND?: UserSshKeyScalarWhereWithAggregatesInput | UserSshKeyScalarWhereWithAggregatesInput[]
+    OR?: UserSshKeyScalarWhereWithAggregatesInput[]
+    NOT?: UserSshKeyScalarWhereWithAggregatesInput | UserSshKeyScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserSshKey"> | string
+    userId?: StringWithAggregatesFilter<"UserSshKey"> | string
+    title?: StringWithAggregatesFilter<"UserSshKey"> | string
+    publicKey?: StringWithAggregatesFilter<"UserSshKey"> | string
+    fingerprint?: StringWithAggregatesFilter<"UserSshKey"> | string
+    keyType?: StringWithAggregatesFilter<"UserSshKey"> | string
+    lastUsedAt?: DateTimeNullableWithAggregatesFilter<"UserSshKey"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"UserSshKey"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -57519,9 +59090,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -57577,9 +59150,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -57635,9 +59210,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -57693,9 +59270,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -60324,10 +61903,16 @@ export namespace Prisma {
     body: string
     diffPath?: string | null
     diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    resolvedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     pullRequest: PullRequestCreateNestedOneWithoutCommentsInput
     author: UserCreateNestedOneWithoutPullRequestCommentsInput
+    parent?: PullRequestCommentCreateNestedOneWithoutRepliesInput
+    replies?: PullRequestCommentCreateNestedManyWithoutParentInput
+    resolvedBy?: UserCreateNestedOneWithoutResolvedPrCommentsInput
   }
 
   export type PullRequestCommentUncheckedCreateInput = {
@@ -60337,8 +61922,14 @@ export namespace Prisma {
     body: string
     diffPath?: string | null
     diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    parentId?: string | null
+    resolvedAt?: Date | string | null
+    resolvedById?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    replies?: PullRequestCommentUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type PullRequestCommentUpdateInput = {
@@ -60346,10 +61937,16 @@ export namespace Prisma {
     body?: StringFieldUpdateOperationsInput | string
     diffPath?: NullableStringFieldUpdateOperationsInput | string | null
     diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pullRequest?: PullRequestUpdateOneRequiredWithoutCommentsNestedInput
     author?: UserUpdateOneRequiredWithoutPullRequestCommentsNestedInput
+    parent?: PullRequestCommentUpdateOneWithoutRepliesNestedInput
+    replies?: PullRequestCommentUpdateManyWithoutParentNestedInput
+    resolvedBy?: UserUpdateOneWithoutResolvedPrCommentsNestedInput
   }
 
   export type PullRequestCommentUncheckedUpdateInput = {
@@ -60359,8 +61956,14 @@ export namespace Prisma {
     body?: StringFieldUpdateOperationsInput | string
     diffPath?: NullableStringFieldUpdateOperationsInput | string | null
     diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: PullRequestCommentUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type PullRequestCommentCreateManyInput = {
@@ -60370,6 +61973,11 @@ export namespace Prisma {
     body: string
     diffPath?: string | null
     diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    parentId?: string | null
+    resolvedAt?: Date | string | null
+    resolvedById?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -60379,6 +61987,9 @@ export namespace Prisma {
     body?: StringFieldUpdateOperationsInput | string
     diffPath?: NullableStringFieldUpdateOperationsInput | string | null
     diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -60390,6 +62001,11 @@ export namespace Prisma {
     body?: StringFieldUpdateOperationsInput | string
     diffPath?: NullableStringFieldUpdateOperationsInput | string | null
     diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -60922,6 +62538,82 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserSshKeyCreateInput = {
+    id?: string
+    title: string
+    publicKey: string
+    fingerprint: string
+    keyType: string
+    lastUsedAt?: Date | string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutSshKeysInput
+  }
+
+  export type UserSshKeyUncheckedCreateInput = {
+    id?: string
+    userId: string
+    title: string
+    publicKey: string
+    fingerprint: string
+    keyType: string
+    lastUsedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type UserSshKeyUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
+    keyType?: StringFieldUpdateOperationsInput | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSshKeysNestedInput
+  }
+
+  export type UserSshKeyUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
+    keyType?: StringFieldUpdateOperationsInput | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSshKeyCreateManyInput = {
+    id?: string
+    userId: string
+    title: string
+    publicKey: string
+    fingerprint: string
+    keyType: string
+    lastUsedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type UserSshKeyUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
+    keyType?: StringFieldUpdateOperationsInput | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSshKeyUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
+    keyType?: StringFieldUpdateOperationsInput | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -61196,6 +62888,12 @@ export namespace Prisma {
     none?: PersonalAccessTokenWhereInput
   }
 
+  export type UserSshKeyListRelationFilter = {
+    every?: UserSshKeyWhereInput
+    some?: UserSshKeyWhereInput
+    none?: UserSshKeyWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -61318,6 +63016,10 @@ export namespace Prisma {
   }
 
   export type PersonalAccessTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserSshKeyOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -63126,6 +64828,11 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type PullRequestCommentNullableScalarRelationFilter = {
+    is?: PullRequestCommentWhereInput | null
+    isNot?: PullRequestCommentWhereInput | null
+  }
+
   export type PullRequestCommentCountOrderByAggregateInput = {
     id?: SortOrder
     pullRequestId?: SortOrder
@@ -63133,6 +64840,11 @@ export namespace Prisma {
     body?: SortOrder
     diffPath?: SortOrder
     diffLine?: SortOrder
+    side?: SortOrder
+    commitId?: SortOrder
+    parentId?: SortOrder
+    resolvedAt?: SortOrder
+    resolvedById?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -63148,6 +64860,11 @@ export namespace Prisma {
     body?: SortOrder
     diffPath?: SortOrder
     diffLine?: SortOrder
+    side?: SortOrder
+    commitId?: SortOrder
+    parentId?: SortOrder
+    resolvedAt?: SortOrder
+    resolvedById?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -63159,6 +64876,11 @@ export namespace Prisma {
     body?: SortOrder
     diffPath?: SortOrder
     diffLine?: SortOrder
+    side?: SortOrder
+    commitId?: SortOrder
+    parentId?: SortOrder
+    resolvedAt?: SortOrder
+    resolvedById?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -63441,6 +65163,39 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type UserSshKeyCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    publicKey?: SortOrder
+    fingerprint?: SortOrder
+    keyType?: SortOrder
+    lastUsedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserSshKeyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    publicKey?: SortOrder
+    fingerprint?: SortOrder
+    keyType?: SortOrder
+    lastUsedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserSshKeyMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    publicKey?: SortOrder
+    fingerprint?: SortOrder
+    keyType?: SortOrder
+    lastUsedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type OAuthAccountCreateNestedManyWithoutUserInput = {
     create?: XOR<OAuthAccountCreateWithoutUserInput, OAuthAccountUncheckedCreateWithoutUserInput> | OAuthAccountCreateWithoutUserInput[] | OAuthAccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OAuthAccountCreateOrConnectWithoutUserInput | OAuthAccountCreateOrConnectWithoutUserInput[]
@@ -63650,6 +65405,13 @@ export namespace Prisma {
     connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
   }
 
+  export type PullRequestCommentCreateNestedManyWithoutResolvedByInput = {
+    create?: XOR<PullRequestCommentCreateWithoutResolvedByInput, PullRequestCommentUncheckedCreateWithoutResolvedByInput> | PullRequestCommentCreateWithoutResolvedByInput[] | PullRequestCommentUncheckedCreateWithoutResolvedByInput[]
+    connectOrCreate?: PullRequestCommentCreateOrConnectWithoutResolvedByInput | PullRequestCommentCreateOrConnectWithoutResolvedByInput[]
+    createMany?: PullRequestCommentCreateManyResolvedByInputEnvelope
+    connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+  }
+
   export type RepositoryReleaseCreateNestedManyWithoutAuthorInput = {
     create?: XOR<RepositoryReleaseCreateWithoutAuthorInput, RepositoryReleaseUncheckedCreateWithoutAuthorInput> | RepositoryReleaseCreateWithoutAuthorInput[] | RepositoryReleaseUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: RepositoryReleaseCreateOrConnectWithoutAuthorInput | RepositoryReleaseCreateOrConnectWithoutAuthorInput[]
@@ -63669,6 +65431,13 @@ export namespace Prisma {
     connectOrCreate?: PersonalAccessTokenCreateOrConnectWithoutUserInput | PersonalAccessTokenCreateOrConnectWithoutUserInput[]
     createMany?: PersonalAccessTokenCreateManyUserInputEnvelope
     connect?: PersonalAccessTokenWhereUniqueInput | PersonalAccessTokenWhereUniqueInput[]
+  }
+
+  export type UserSshKeyCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserSshKeyCreateWithoutUserInput, UserSshKeyUncheckedCreateWithoutUserInput> | UserSshKeyCreateWithoutUserInput[] | UserSshKeyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSshKeyCreateOrConnectWithoutUserInput | UserSshKeyCreateOrConnectWithoutUserInput[]
+    createMany?: UserSshKeyCreateManyUserInputEnvelope
+    connect?: UserSshKeyWhereUniqueInput | UserSshKeyWhereUniqueInput[]
   }
 
   export type OAuthAccountUncheckedCreateNestedManyWithoutUserInput = {
@@ -63880,6 +65649,13 @@ export namespace Prisma {
     connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
   }
 
+  export type PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput = {
+    create?: XOR<PullRequestCommentCreateWithoutResolvedByInput, PullRequestCommentUncheckedCreateWithoutResolvedByInput> | PullRequestCommentCreateWithoutResolvedByInput[] | PullRequestCommentUncheckedCreateWithoutResolvedByInput[]
+    connectOrCreate?: PullRequestCommentCreateOrConnectWithoutResolvedByInput | PullRequestCommentCreateOrConnectWithoutResolvedByInput[]
+    createMany?: PullRequestCommentCreateManyResolvedByInputEnvelope
+    connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+  }
+
   export type RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput = {
     create?: XOR<RepositoryReleaseCreateWithoutAuthorInput, RepositoryReleaseUncheckedCreateWithoutAuthorInput> | RepositoryReleaseCreateWithoutAuthorInput[] | RepositoryReleaseUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: RepositoryReleaseCreateOrConnectWithoutAuthorInput | RepositoryReleaseCreateOrConnectWithoutAuthorInput[]
@@ -63899,6 +65675,13 @@ export namespace Prisma {
     connectOrCreate?: PersonalAccessTokenCreateOrConnectWithoutUserInput | PersonalAccessTokenCreateOrConnectWithoutUserInput[]
     createMany?: PersonalAccessTokenCreateManyUserInputEnvelope
     connect?: PersonalAccessTokenWhereUniqueInput | PersonalAccessTokenWhereUniqueInput[]
+  }
+
+  export type UserSshKeyUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserSshKeyCreateWithoutUserInput, UserSshKeyUncheckedCreateWithoutUserInput> | UserSshKeyCreateWithoutUserInput[] | UserSshKeyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSshKeyCreateOrConnectWithoutUserInput | UserSshKeyCreateOrConnectWithoutUserInput[]
+    createMany?: UserSshKeyCreateManyUserInputEnvelope
+    connect?: UserSshKeyWhereUniqueInput | UserSshKeyWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -64357,6 +66140,20 @@ export namespace Prisma {
     deleteMany?: PullRequestCommentScalarWhereInput | PullRequestCommentScalarWhereInput[]
   }
 
+  export type PullRequestCommentUpdateManyWithoutResolvedByNestedInput = {
+    create?: XOR<PullRequestCommentCreateWithoutResolvedByInput, PullRequestCommentUncheckedCreateWithoutResolvedByInput> | PullRequestCommentCreateWithoutResolvedByInput[] | PullRequestCommentUncheckedCreateWithoutResolvedByInput[]
+    connectOrCreate?: PullRequestCommentCreateOrConnectWithoutResolvedByInput | PullRequestCommentCreateOrConnectWithoutResolvedByInput[]
+    upsert?: PullRequestCommentUpsertWithWhereUniqueWithoutResolvedByInput | PullRequestCommentUpsertWithWhereUniqueWithoutResolvedByInput[]
+    createMany?: PullRequestCommentCreateManyResolvedByInputEnvelope
+    set?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    disconnect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    delete?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    update?: PullRequestCommentUpdateWithWhereUniqueWithoutResolvedByInput | PullRequestCommentUpdateWithWhereUniqueWithoutResolvedByInput[]
+    updateMany?: PullRequestCommentUpdateManyWithWhereWithoutResolvedByInput | PullRequestCommentUpdateManyWithWhereWithoutResolvedByInput[]
+    deleteMany?: PullRequestCommentScalarWhereInput | PullRequestCommentScalarWhereInput[]
+  }
+
   export type RepositoryReleaseUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<RepositoryReleaseCreateWithoutAuthorInput, RepositoryReleaseUncheckedCreateWithoutAuthorInput> | RepositoryReleaseCreateWithoutAuthorInput[] | RepositoryReleaseUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: RepositoryReleaseCreateOrConnectWithoutAuthorInput | RepositoryReleaseCreateOrConnectWithoutAuthorInput[]
@@ -64397,6 +66194,20 @@ export namespace Prisma {
     update?: PersonalAccessTokenUpdateWithWhereUniqueWithoutUserInput | PersonalAccessTokenUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: PersonalAccessTokenUpdateManyWithWhereWithoutUserInput | PersonalAccessTokenUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: PersonalAccessTokenScalarWhereInput | PersonalAccessTokenScalarWhereInput[]
+  }
+
+  export type UserSshKeyUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserSshKeyCreateWithoutUserInput, UserSshKeyUncheckedCreateWithoutUserInput> | UserSshKeyCreateWithoutUserInput[] | UserSshKeyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSshKeyCreateOrConnectWithoutUserInput | UserSshKeyCreateOrConnectWithoutUserInput[]
+    upsert?: UserSshKeyUpsertWithWhereUniqueWithoutUserInput | UserSshKeyUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserSshKeyCreateManyUserInputEnvelope
+    set?: UserSshKeyWhereUniqueInput | UserSshKeyWhereUniqueInput[]
+    disconnect?: UserSshKeyWhereUniqueInput | UserSshKeyWhereUniqueInput[]
+    delete?: UserSshKeyWhereUniqueInput | UserSshKeyWhereUniqueInput[]
+    connect?: UserSshKeyWhereUniqueInput | UserSshKeyWhereUniqueInput[]
+    update?: UserSshKeyUpdateWithWhereUniqueWithoutUserInput | UserSshKeyUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserSshKeyUpdateManyWithWhereWithoutUserInput | UserSshKeyUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserSshKeyScalarWhereInput | UserSshKeyScalarWhereInput[]
   }
 
   export type OAuthAccountUncheckedUpdateManyWithoutUserNestedInput = {
@@ -64815,6 +66626,20 @@ export namespace Prisma {
     deleteMany?: PullRequestCommentScalarWhereInput | PullRequestCommentScalarWhereInput[]
   }
 
+  export type PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput = {
+    create?: XOR<PullRequestCommentCreateWithoutResolvedByInput, PullRequestCommentUncheckedCreateWithoutResolvedByInput> | PullRequestCommentCreateWithoutResolvedByInput[] | PullRequestCommentUncheckedCreateWithoutResolvedByInput[]
+    connectOrCreate?: PullRequestCommentCreateOrConnectWithoutResolvedByInput | PullRequestCommentCreateOrConnectWithoutResolvedByInput[]
+    upsert?: PullRequestCommentUpsertWithWhereUniqueWithoutResolvedByInput | PullRequestCommentUpsertWithWhereUniqueWithoutResolvedByInput[]
+    createMany?: PullRequestCommentCreateManyResolvedByInputEnvelope
+    set?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    disconnect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    delete?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    update?: PullRequestCommentUpdateWithWhereUniqueWithoutResolvedByInput | PullRequestCommentUpdateWithWhereUniqueWithoutResolvedByInput[]
+    updateMany?: PullRequestCommentUpdateManyWithWhereWithoutResolvedByInput | PullRequestCommentUpdateManyWithWhereWithoutResolvedByInput[]
+    deleteMany?: PullRequestCommentScalarWhereInput | PullRequestCommentScalarWhereInput[]
+  }
+
   export type RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<RepositoryReleaseCreateWithoutAuthorInput, RepositoryReleaseUncheckedCreateWithoutAuthorInput> | RepositoryReleaseCreateWithoutAuthorInput[] | RepositoryReleaseUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: RepositoryReleaseCreateOrConnectWithoutAuthorInput | RepositoryReleaseCreateOrConnectWithoutAuthorInput[]
@@ -64855,6 +66680,20 @@ export namespace Prisma {
     update?: PersonalAccessTokenUpdateWithWhereUniqueWithoutUserInput | PersonalAccessTokenUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: PersonalAccessTokenUpdateManyWithWhereWithoutUserInput | PersonalAccessTokenUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: PersonalAccessTokenScalarWhereInput | PersonalAccessTokenScalarWhereInput[]
+  }
+
+  export type UserSshKeyUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserSshKeyCreateWithoutUserInput, UserSshKeyUncheckedCreateWithoutUserInput> | UserSshKeyCreateWithoutUserInput[] | UserSshKeyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSshKeyCreateOrConnectWithoutUserInput | UserSshKeyCreateOrConnectWithoutUserInput[]
+    upsert?: UserSshKeyUpsertWithWhereUniqueWithoutUserInput | UserSshKeyUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserSshKeyCreateManyUserInputEnvelope
+    set?: UserSshKeyWhereUniqueInput | UserSshKeyWhereUniqueInput[]
+    disconnect?: UserSshKeyWhereUniqueInput | UserSshKeyWhereUniqueInput[]
+    delete?: UserSshKeyWhereUniqueInput | UserSshKeyWhereUniqueInput[]
+    connect?: UserSshKeyWhereUniqueInput | UserSshKeyWhereUniqueInput[]
+    update?: UserSshKeyUpdateWithWhereUniqueWithoutUserInput | UserSshKeyUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserSshKeyUpdateManyWithWhereWithoutUserInput | UserSshKeyUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserSshKeyScalarWhereInput | UserSshKeyScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutUsernameHistoryInput = {
@@ -67243,6 +69082,32 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type PullRequestCommentCreateNestedOneWithoutRepliesInput = {
+    create?: XOR<PullRequestCommentCreateWithoutRepliesInput, PullRequestCommentUncheckedCreateWithoutRepliesInput>
+    connectOrCreate?: PullRequestCommentCreateOrConnectWithoutRepliesInput
+    connect?: PullRequestCommentWhereUniqueInput
+  }
+
+  export type PullRequestCommentCreateNestedManyWithoutParentInput = {
+    create?: XOR<PullRequestCommentCreateWithoutParentInput, PullRequestCommentUncheckedCreateWithoutParentInput> | PullRequestCommentCreateWithoutParentInput[] | PullRequestCommentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: PullRequestCommentCreateOrConnectWithoutParentInput | PullRequestCommentCreateOrConnectWithoutParentInput[]
+    createMany?: PullRequestCommentCreateManyParentInputEnvelope
+    connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+  }
+
+  export type UserCreateNestedOneWithoutResolvedPrCommentsInput = {
+    create?: XOR<UserCreateWithoutResolvedPrCommentsInput, UserUncheckedCreateWithoutResolvedPrCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutResolvedPrCommentsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PullRequestCommentUncheckedCreateNestedManyWithoutParentInput = {
+    create?: XOR<PullRequestCommentCreateWithoutParentInput, PullRequestCommentUncheckedCreateWithoutParentInput> | PullRequestCommentCreateWithoutParentInput[] | PullRequestCommentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: PullRequestCommentCreateOrConnectWithoutParentInput | PullRequestCommentCreateOrConnectWithoutParentInput[]
+    createMany?: PullRequestCommentCreateManyParentInputEnvelope
+    connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -67265,6 +69130,54 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutPullRequestCommentsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPullRequestCommentsInput, UserUpdateWithoutPullRequestCommentsInput>, UserUncheckedUpdateWithoutPullRequestCommentsInput>
+  }
+
+  export type PullRequestCommentUpdateOneWithoutRepliesNestedInput = {
+    create?: XOR<PullRequestCommentCreateWithoutRepliesInput, PullRequestCommentUncheckedCreateWithoutRepliesInput>
+    connectOrCreate?: PullRequestCommentCreateOrConnectWithoutRepliesInput
+    upsert?: PullRequestCommentUpsertWithoutRepliesInput
+    disconnect?: PullRequestCommentWhereInput | boolean
+    delete?: PullRequestCommentWhereInput | boolean
+    connect?: PullRequestCommentWhereUniqueInput
+    update?: XOR<XOR<PullRequestCommentUpdateToOneWithWhereWithoutRepliesInput, PullRequestCommentUpdateWithoutRepliesInput>, PullRequestCommentUncheckedUpdateWithoutRepliesInput>
+  }
+
+  export type PullRequestCommentUpdateManyWithoutParentNestedInput = {
+    create?: XOR<PullRequestCommentCreateWithoutParentInput, PullRequestCommentUncheckedCreateWithoutParentInput> | PullRequestCommentCreateWithoutParentInput[] | PullRequestCommentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: PullRequestCommentCreateOrConnectWithoutParentInput | PullRequestCommentCreateOrConnectWithoutParentInput[]
+    upsert?: PullRequestCommentUpsertWithWhereUniqueWithoutParentInput | PullRequestCommentUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: PullRequestCommentCreateManyParentInputEnvelope
+    set?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    disconnect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    delete?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    update?: PullRequestCommentUpdateWithWhereUniqueWithoutParentInput | PullRequestCommentUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: PullRequestCommentUpdateManyWithWhereWithoutParentInput | PullRequestCommentUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: PullRequestCommentScalarWhereInput | PullRequestCommentScalarWhereInput[]
+  }
+
+  export type UserUpdateOneWithoutResolvedPrCommentsNestedInput = {
+    create?: XOR<UserCreateWithoutResolvedPrCommentsInput, UserUncheckedCreateWithoutResolvedPrCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutResolvedPrCommentsInput
+    upsert?: UserUpsertWithoutResolvedPrCommentsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutResolvedPrCommentsInput, UserUpdateWithoutResolvedPrCommentsInput>, UserUncheckedUpdateWithoutResolvedPrCommentsInput>
+  }
+
+  export type PullRequestCommentUncheckedUpdateManyWithoutParentNestedInput = {
+    create?: XOR<PullRequestCommentCreateWithoutParentInput, PullRequestCommentUncheckedCreateWithoutParentInput> | PullRequestCommentCreateWithoutParentInput[] | PullRequestCommentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: PullRequestCommentCreateOrConnectWithoutParentInput | PullRequestCommentCreateOrConnectWithoutParentInput[]
+    upsert?: PullRequestCommentUpsertWithWhereUniqueWithoutParentInput | PullRequestCommentUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: PullRequestCommentCreateManyParentInputEnvelope
+    set?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    disconnect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    delete?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    connect?: PullRequestCommentWhereUniqueInput | PullRequestCommentWhereUniqueInput[]
+    update?: PullRequestCommentUpdateWithWhereUniqueWithoutParentInput | PullRequestCommentUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: PullRequestCommentUpdateManyWithWhereWithoutParentInput | PullRequestCommentUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: PullRequestCommentScalarWhereInput | PullRequestCommentScalarWhereInput[]
   }
 
   export type RepositoryCreateNestedOneWithoutReleasesInput = {
@@ -67437,6 +69350,20 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutPersonalAccessTokensInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPersonalAccessTokensInput, UserUpdateWithoutPersonalAccessTokensInput>, UserUncheckedUpdateWithoutPersonalAccessTokensInput>
+  }
+
+  export type UserCreateNestedOneWithoutSshKeysInput = {
+    create?: XOR<UserCreateWithoutSshKeysInput, UserUncheckedCreateWithoutSshKeysInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSshKeysInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutSshKeysNestedInput = {
+    create?: XOR<UserCreateWithoutSshKeysInput, UserUncheckedCreateWithoutSshKeysInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSshKeysInput
+    upsert?: UserUpsertWithoutSshKeysInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSshKeysInput, UserUpdateWithoutSshKeysInput>, UserUncheckedUpdateWithoutSshKeysInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -68883,9 +70810,15 @@ export namespace Prisma {
     body: string
     diffPath?: string | null
     diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    resolvedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     pullRequest: PullRequestCreateNestedOneWithoutCommentsInput
+    parent?: PullRequestCommentCreateNestedOneWithoutRepliesInput
+    replies?: PullRequestCommentCreateNestedManyWithoutParentInput
+    resolvedBy?: UserCreateNestedOneWithoutResolvedPrCommentsInput
   }
 
   export type PullRequestCommentUncheckedCreateWithoutAuthorInput = {
@@ -68894,8 +70827,14 @@ export namespace Prisma {
     body: string
     diffPath?: string | null
     diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    parentId?: string | null
+    resolvedAt?: Date | string | null
+    resolvedById?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    replies?: PullRequestCommentUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type PullRequestCommentCreateOrConnectWithoutAuthorInput = {
@@ -68905,6 +70844,48 @@ export namespace Prisma {
 
   export type PullRequestCommentCreateManyAuthorInputEnvelope = {
     data: PullRequestCommentCreateManyAuthorInput | PullRequestCommentCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PullRequestCommentCreateWithoutResolvedByInput = {
+    id?: string
+    body: string
+    diffPath?: string | null
+    diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    resolvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    pullRequest: PullRequestCreateNestedOneWithoutCommentsInput
+    author: UserCreateNestedOneWithoutPullRequestCommentsInput
+    parent?: PullRequestCommentCreateNestedOneWithoutRepliesInput
+    replies?: PullRequestCommentCreateNestedManyWithoutParentInput
+  }
+
+  export type PullRequestCommentUncheckedCreateWithoutResolvedByInput = {
+    id?: string
+    pullRequestId: string
+    authorId: string
+    body: string
+    diffPath?: string | null
+    diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    parentId?: string | null
+    resolvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    replies?: PullRequestCommentUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type PullRequestCommentCreateOrConnectWithoutResolvedByInput = {
+    where: PullRequestCommentWhereUniqueInput
+    create: XOR<PullRequestCommentCreateWithoutResolvedByInput, PullRequestCommentUncheckedCreateWithoutResolvedByInput>
+  }
+
+  export type PullRequestCommentCreateManyResolvedByInputEnvelope = {
+    data: PullRequestCommentCreateManyResolvedByInput | PullRequestCommentCreateManyResolvedByInput[]
     skipDuplicates?: boolean
   }
 
@@ -69007,6 +70988,36 @@ export namespace Prisma {
 
   export type PersonalAccessTokenCreateManyUserInputEnvelope = {
     data: PersonalAccessTokenCreateManyUserInput | PersonalAccessTokenCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserSshKeyCreateWithoutUserInput = {
+    id?: string
+    title: string
+    publicKey: string
+    fingerprint: string
+    keyType: string
+    lastUsedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type UserSshKeyUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    publicKey: string
+    fingerprint: string
+    keyType: string
+    lastUsedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type UserSshKeyCreateOrConnectWithoutUserInput = {
+    where: UserSshKeyWhereUniqueInput
+    create: XOR<UserSshKeyCreateWithoutUserInput, UserSshKeyUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserSshKeyCreateManyUserInputEnvelope = {
+    data: UserSshKeyCreateManyUserInput | UserSshKeyCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -69869,8 +71880,29 @@ export namespace Prisma {
     body?: StringFilter<"PullRequestComment"> | string
     diffPath?: StringNullableFilter<"PullRequestComment"> | string | null
     diffLine?: IntNullableFilter<"PullRequestComment"> | number | null
+    side?: StringNullableFilter<"PullRequestComment"> | string | null
+    commitId?: StringNullableFilter<"PullRequestComment"> | string | null
+    parentId?: StringNullableFilter<"PullRequestComment"> | string | null
+    resolvedAt?: DateTimeNullableFilter<"PullRequestComment"> | Date | string | null
+    resolvedById?: StringNullableFilter<"PullRequestComment"> | string | null
     createdAt?: DateTimeFilter<"PullRequestComment"> | Date | string
     updatedAt?: DateTimeFilter<"PullRequestComment"> | Date | string
+  }
+
+  export type PullRequestCommentUpsertWithWhereUniqueWithoutResolvedByInput = {
+    where: PullRequestCommentWhereUniqueInput
+    update: XOR<PullRequestCommentUpdateWithoutResolvedByInput, PullRequestCommentUncheckedUpdateWithoutResolvedByInput>
+    create: XOR<PullRequestCommentCreateWithoutResolvedByInput, PullRequestCommentUncheckedCreateWithoutResolvedByInput>
+  }
+
+  export type PullRequestCommentUpdateWithWhereUniqueWithoutResolvedByInput = {
+    where: PullRequestCommentWhereUniqueInput
+    data: XOR<PullRequestCommentUpdateWithoutResolvedByInput, PullRequestCommentUncheckedUpdateWithoutResolvedByInput>
+  }
+
+  export type PullRequestCommentUpdateManyWithWhereWithoutResolvedByInput = {
+    where: PullRequestCommentScalarWhereInput
+    data: XOR<PullRequestCommentUpdateManyMutationInput, PullRequestCommentUncheckedUpdateManyWithoutResolvedByInput>
   }
 
   export type RepositoryReleaseUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -69969,6 +72001,36 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"PersonalAccessToken"> | Date | string
   }
 
+  export type UserSshKeyUpsertWithWhereUniqueWithoutUserInput = {
+    where: UserSshKeyWhereUniqueInput
+    update: XOR<UserSshKeyUpdateWithoutUserInput, UserSshKeyUncheckedUpdateWithoutUserInput>
+    create: XOR<UserSshKeyCreateWithoutUserInput, UserSshKeyUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserSshKeyUpdateWithWhereUniqueWithoutUserInput = {
+    where: UserSshKeyWhereUniqueInput
+    data: XOR<UserSshKeyUpdateWithoutUserInput, UserSshKeyUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserSshKeyUpdateManyWithWhereWithoutUserInput = {
+    where: UserSshKeyScalarWhereInput
+    data: XOR<UserSshKeyUpdateManyMutationInput, UserSshKeyUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type UserSshKeyScalarWhereInput = {
+    AND?: UserSshKeyScalarWhereInput | UserSshKeyScalarWhereInput[]
+    OR?: UserSshKeyScalarWhereInput[]
+    NOT?: UserSshKeyScalarWhereInput | UserSshKeyScalarWhereInput[]
+    id?: StringFilter<"UserSshKey"> | string
+    userId?: StringFilter<"UserSshKey"> | string
+    title?: StringFilter<"UserSshKey"> | string
+    publicKey?: StringFilter<"UserSshKey"> | string
+    fingerprint?: StringFilter<"UserSshKey"> | string
+    keyType?: StringFilter<"UserSshKey"> | string
+    lastUsedAt?: DateTimeNullableFilter<"UserSshKey"> | Date | string | null
+    createdAt?: DateTimeFilter<"UserSshKey"> | Date | string
+  }
+
   export type UserCreateWithoutUsernameHistoryInput = {
     id?: string
     email: string
@@ -70021,9 +72083,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUsernameHistoryInput = {
@@ -70078,9 +72142,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUsernameHistoryInput = {
@@ -70151,9 +72217,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUsernameHistoryInput = {
@@ -70208,9 +72276,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutOauthAccountsInput = {
@@ -70265,9 +72335,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOauthAccountsInput = {
@@ -70322,9 +72394,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOauthAccountsInput = {
@@ -70395,9 +72469,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOauthAccountsInput = {
@@ -70452,9 +72528,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -70509,9 +72587,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -70566,9 +72646,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -70639,9 +72721,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -70696,9 +72780,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SkillOnUserCreateWithoutSkillInput = {
@@ -70789,9 +72875,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSkillsInput = {
@@ -70846,9 +72934,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSkillsInput = {
@@ -70936,9 +73026,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSkillsInput = {
@@ -70993,9 +73085,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SkillUpsertWithoutUsersInput = {
@@ -71073,9 +73167,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectsOwnedInput = {
@@ -71130,9 +73226,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectsOwnedInput = {
@@ -71683,9 +73781,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectsOwnedInput = {
@@ -71740,9 +73840,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RoleUpsertWithWhereUniqueWithoutProjectInput = {
@@ -72380,9 +74482,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -72437,9 +74541,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -72614,9 +74720,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -72671,9 +74779,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RoleUpsertWithoutMembersInput = {
@@ -72857,9 +74967,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutApplicationsInput = {
@@ -72914,9 +75026,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutApplicationsInput = {
@@ -73097,9 +75211,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutApplicationsInput = {
@@ -73154,9 +75270,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutMilestonesInput = {
@@ -73758,9 +75876,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAssignedTasksInput = {
@@ -73815,9 +75935,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAssignedTasksInput = {
@@ -73927,9 +76049,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignedTasksInput = {
@@ -73984,9 +76108,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutThreadsInput = {
@@ -74114,9 +76240,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionThreadsInput = {
@@ -74171,9 +76299,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionThreadsInput = {
@@ -74349,9 +76479,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionThreadsInput = {
@@ -74406,9 +76538,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type DiscussionCommentUpsertWithWhereUniqueWithoutThreadInput = {
@@ -74508,9 +76642,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionCommentsInput = {
@@ -74565,9 +76701,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionCommentsInput = {
@@ -74673,9 +76811,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionCommentsInput = {
@@ -74730,9 +76870,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutFilesInput = {
@@ -74860,9 +77002,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUploadedFilesInput = {
@@ -74917,9 +77061,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUploadedFilesInput = {
@@ -75069,9 +77215,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUploadedFilesInput = {
@@ -75126,9 +77274,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutContributionRecordsInput = {
@@ -75183,9 +77333,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutContributionRecordsInput = {
@@ -75240,9 +77392,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutContributionRecordsInput = {
@@ -75417,9 +77571,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutContributionRecordsInput = {
@@ -75474,9 +77630,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutContributionRecordsInput = {
@@ -75647,9 +77805,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -75704,9 +77864,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -75777,9 +77939,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -75834,9 +77998,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPlatformAdminInput = {
@@ -75891,9 +78057,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPlatformAdminInput = {
@@ -75948,9 +78116,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPlatformAdminInput = {
@@ -76021,9 +78191,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlatformAdminInput = {
@@ -76078,9 +78250,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutActivityEventsInput = {
@@ -76135,9 +78309,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutActivityEventsInput = {
@@ -76192,9 +78368,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutActivityEventsInput = {
@@ -76338,9 +78516,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutActivityEventsInput = {
@@ -76395,9 +78575,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutActivityEventsInput = {
@@ -76531,9 +78713,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFollowedProjectsInput = {
@@ -76588,9 +78772,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFollowedProjectsInput = {
@@ -76734,9 +78920,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFollowedProjectsInput = {
@@ -76791,9 +78979,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutFollowersInput = {
@@ -76927,9 +79117,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStarredProjectsInput = {
@@ -76984,9 +79176,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStarredProjectsInput = {
@@ -77130,9 +79324,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStarredProjectsInput = {
@@ -77187,9 +79383,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutStarsInput = {
@@ -77396,9 +79594,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReleasesAuthoredInput = {
@@ -77453,9 +79653,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReleasesAuthoredInput = {
@@ -77605,9 +79807,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReleasesAuthoredInput = {
@@ -77662,9 +79866,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutUpdatesInput = {
@@ -77792,9 +79998,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectUpdatesInput = {
@@ -77849,9 +80057,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectUpdatesInput = {
@@ -78001,9 +80211,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectUpdatesInput = {
@@ -78058,9 +80270,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutRepositoriesOwnedInput = {
@@ -78115,9 +80329,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepositoriesOwnedInput = {
@@ -78172,9 +80388,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepositoriesOwnedInput = {
@@ -78793,9 +81011,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoriesOwnedInput = {
@@ -78850,9 +81070,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutRepositoriesInput = {
@@ -79286,9 +81508,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryStarsInput = {
@@ -79343,9 +81567,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryStarsInput = {
@@ -79489,9 +81715,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryStarsInput = {
@@ -79546,9 +81774,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RepositoryUpsertWithoutStarsInput = {
@@ -79682,9 +81912,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryWatchersInput = {
@@ -79739,9 +81971,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryWatchersInput = {
@@ -79885,9 +82119,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryWatchersInput = {
@@ -79942,9 +82178,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RepositoryUpsertWithoutWatchersInput = {
@@ -80151,9 +82389,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryCollaboratorsInput = {
@@ -80208,9 +82448,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryCollaboratorsInput = {
@@ -80360,9 +82602,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryCollaboratorsInput = {
@@ -80417,9 +82661,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RepositoryCreateWithoutBranchRulesInput = {
@@ -80699,9 +82945,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryIssuesInput = {
@@ -80756,9 +83004,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryIssuesInput = {
@@ -80818,9 +83068,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAssignedRepositoryIssuesInput = {
@@ -80875,9 +83127,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAssignedRepositoryIssuesInput = {
@@ -81053,9 +83307,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryIssuesInput = {
@@ -81110,9 +83366,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutAssignedRepositoryIssuesInput = {
@@ -81178,9 +83436,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignedRepositoryIssuesInput = {
@@ -81235,9 +83495,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RepositoryIssueCommentUpsertWithWhereUniqueWithoutIssueInput = {
@@ -81343,9 +83605,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryIssueCommentsInput = {
@@ -81400,9 +83664,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryIssueCommentsInput = {
@@ -81514,9 +83780,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryIssueCommentsInput = {
@@ -81571,9 +83839,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RepositoryCreateWithoutPullRequestsInput = {
@@ -81701,9 +83971,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPullRequestsAuthoredInput = {
@@ -81758,9 +84030,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPullRequestsAuthoredInput = {
@@ -81820,9 +84094,11 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPullRequestsMergedInput = {
@@ -81877,9 +84153,11 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPullRequestsMergedInput = {
@@ -81918,9 +84196,15 @@ export namespace Prisma {
     body: string
     diffPath?: string | null
     diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    resolvedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     author: UserCreateNestedOneWithoutPullRequestCommentsInput
+    parent?: PullRequestCommentCreateNestedOneWithoutRepliesInput
+    replies?: PullRequestCommentCreateNestedManyWithoutParentInput
+    resolvedBy?: UserCreateNestedOneWithoutResolvedPrCommentsInput
   }
 
   export type PullRequestCommentUncheckedCreateWithoutPullRequestInput = {
@@ -81929,8 +84213,14 @@ export namespace Prisma {
     body: string
     diffPath?: string | null
     diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    parentId?: string | null
+    resolvedAt?: Date | string | null
+    resolvedById?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    replies?: PullRequestCommentUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type PullRequestCommentCreateOrConnectWithoutPullRequestInput = {
@@ -82085,9 +84375,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPullRequestsAuthoredInput = {
@@ -82142,9 +84434,11 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutPullRequestsMergedInput = {
@@ -82210,9 +84504,11 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPullRequestsMergedInput = {
@@ -82267,9 +84563,11 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PullRequestReviewUpsertWithWhereUniqueWithoutPullRequestInput = {
@@ -82397,9 +84695,11 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPullRequestReviewsInput = {
@@ -82454,9 +84754,11 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPullRequestReviewsInput = {
@@ -82574,9 +84876,11 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPullRequestReviewsInput = {
@@ -82631,9 +84935,11 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PullRequestCreateWithoutCommentsInput = {
@@ -82729,9 +85035,11 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPullRequestCommentsInput = {
@@ -82786,14 +85094,218 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPullRequestCommentsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutPullRequestCommentsInput, UserUncheckedCreateWithoutPullRequestCommentsInput>
+  }
+
+  export type PullRequestCommentCreateWithoutRepliesInput = {
+    id?: string
+    body: string
+    diffPath?: string | null
+    diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    resolvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    pullRequest: PullRequestCreateNestedOneWithoutCommentsInput
+    author: UserCreateNestedOneWithoutPullRequestCommentsInput
+    parent?: PullRequestCommentCreateNestedOneWithoutRepliesInput
+    resolvedBy?: UserCreateNestedOneWithoutResolvedPrCommentsInput
+  }
+
+  export type PullRequestCommentUncheckedCreateWithoutRepliesInput = {
+    id?: string
+    pullRequestId: string
+    authorId: string
+    body: string
+    diffPath?: string | null
+    diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    parentId?: string | null
+    resolvedAt?: Date | string | null
+    resolvedById?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PullRequestCommentCreateOrConnectWithoutRepliesInput = {
+    where: PullRequestCommentWhereUniqueInput
+    create: XOR<PullRequestCommentCreateWithoutRepliesInput, PullRequestCommentUncheckedCreateWithoutRepliesInput>
+  }
+
+  export type PullRequestCommentCreateWithoutParentInput = {
+    id?: string
+    body: string
+    diffPath?: string | null
+    diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    resolvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    pullRequest: PullRequestCreateNestedOneWithoutCommentsInput
+    author: UserCreateNestedOneWithoutPullRequestCommentsInput
+    replies?: PullRequestCommentCreateNestedManyWithoutParentInput
+    resolvedBy?: UserCreateNestedOneWithoutResolvedPrCommentsInput
+  }
+
+  export type PullRequestCommentUncheckedCreateWithoutParentInput = {
+    id?: string
+    pullRequestId: string
+    authorId: string
+    body: string
+    diffPath?: string | null
+    diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    resolvedAt?: Date | string | null
+    resolvedById?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    replies?: PullRequestCommentUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type PullRequestCommentCreateOrConnectWithoutParentInput = {
+    where: PullRequestCommentWhereUniqueInput
+    create: XOR<PullRequestCommentCreateWithoutParentInput, PullRequestCommentUncheckedCreateWithoutParentInput>
+  }
+
+  export type PullRequestCommentCreateManyParentInputEnvelope = {
+    data: PullRequestCommentCreateManyParentInput | PullRequestCommentCreateManyParentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutResolvedPrCommentsInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    applications?: ApplicationCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
+    repositoriesOwned?: RepositoryCreateNestedManyWithoutOwnerInput
+    repositoryStars?: RepositoryStarCreateNestedManyWithoutUserInput
+    repositoryWatchers?: RepositoryWatcherCreateNestedManyWithoutUserInput
+    repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
+    repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
+    assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
+    pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
+    pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
+    pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
+    pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
+    personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutResolvedPrCommentsInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentUncheckedCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetUncheckedCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
+    repositoriesOwned?: RepositoryUncheckedCreateNestedManyWithoutOwnerInput
+    repositoryStars?: RepositoryStarUncheckedCreateNestedManyWithoutUserInput
+    repositoryWatchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutUserInput
+    repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
+    repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
+    assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
+    pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
+    pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
+    pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
+    pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
+    personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutResolvedPrCommentsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutResolvedPrCommentsInput, UserUncheckedCreateWithoutResolvedPrCommentsInput>
   }
 
   export type PullRequestUpsertWithoutCommentsInput = {
@@ -82906,9 +85418,11 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPullRequestCommentsInput = {
@@ -82963,9 +85477,199 @@ export namespace Prisma {
     pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PullRequestCommentUpsertWithoutRepliesInput = {
+    update: XOR<PullRequestCommentUpdateWithoutRepliesInput, PullRequestCommentUncheckedUpdateWithoutRepliesInput>
+    create: XOR<PullRequestCommentCreateWithoutRepliesInput, PullRequestCommentUncheckedCreateWithoutRepliesInput>
+    where?: PullRequestCommentWhereInput
+  }
+
+  export type PullRequestCommentUpdateToOneWithWhereWithoutRepliesInput = {
+    where?: PullRequestCommentWhereInput
+    data: XOR<PullRequestCommentUpdateWithoutRepliesInput, PullRequestCommentUncheckedUpdateWithoutRepliesInput>
+  }
+
+  export type PullRequestCommentUpdateWithoutRepliesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    diffPath?: NullableStringFieldUpdateOperationsInput | string | null
+    diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pullRequest?: PullRequestUpdateOneRequiredWithoutCommentsNestedInput
+    author?: UserUpdateOneRequiredWithoutPullRequestCommentsNestedInput
+    parent?: PullRequestCommentUpdateOneWithoutRepliesNestedInput
+    resolvedBy?: UserUpdateOneWithoutResolvedPrCommentsNestedInput
+  }
+
+  export type PullRequestCommentUncheckedUpdateWithoutRepliesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pullRequestId?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    diffPath?: NullableStringFieldUpdateOperationsInput | string | null
+    diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PullRequestCommentUpsertWithWhereUniqueWithoutParentInput = {
+    where: PullRequestCommentWhereUniqueInput
+    update: XOR<PullRequestCommentUpdateWithoutParentInput, PullRequestCommentUncheckedUpdateWithoutParentInput>
+    create: XOR<PullRequestCommentCreateWithoutParentInput, PullRequestCommentUncheckedCreateWithoutParentInput>
+  }
+
+  export type PullRequestCommentUpdateWithWhereUniqueWithoutParentInput = {
+    where: PullRequestCommentWhereUniqueInput
+    data: XOR<PullRequestCommentUpdateWithoutParentInput, PullRequestCommentUncheckedUpdateWithoutParentInput>
+  }
+
+  export type PullRequestCommentUpdateManyWithWhereWithoutParentInput = {
+    where: PullRequestCommentScalarWhereInput
+    data: XOR<PullRequestCommentUpdateManyMutationInput, PullRequestCommentUncheckedUpdateManyWithoutParentInput>
+  }
+
+  export type UserUpsertWithoutResolvedPrCommentsInput = {
+    update: XOR<UserUpdateWithoutResolvedPrCommentsInput, UserUncheckedUpdateWithoutResolvedPrCommentsInput>
+    create: XOR<UserCreateWithoutResolvedPrCommentsInput, UserUncheckedCreateWithoutResolvedPrCommentsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutResolvedPrCommentsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutResolvedPrCommentsInput, UserUncheckedUpdateWithoutResolvedPrCommentsInput>
+  }
+
+  export type UserUpdateWithoutResolvedPrCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
+    repositoriesOwned?: RepositoryUpdateManyWithoutOwnerNestedInput
+    repositoryStars?: RepositoryStarUpdateManyWithoutUserNestedInput
+    repositoryWatchers?: RepositoryWatcherUpdateManyWithoutUserNestedInput
+    repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
+    repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
+    assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
+    pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
+    pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
+    pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
+    pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
+    personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutResolvedPrCommentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoriesOwned?: RepositoryUncheckedUpdateManyWithoutOwnerNestedInput
+    repositoryStars?: RepositoryStarUncheckedUpdateManyWithoutUserNestedInput
+    repositoryWatchers?: RepositoryWatcherUncheckedUpdateManyWithoutUserNestedInput
+    repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
+    repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
+    assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
+    pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
+    pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
+    pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
+    personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RepositoryCreateWithoutReleasesInput = {
@@ -83094,8 +85798,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryReleasesInput = {
@@ -83151,8 +85857,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryReleasesInput = {
@@ -83303,8 +86011,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryReleasesInput = {
@@ -83360,8 +86070,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RepositoryCreateWithoutWebhooksInput = {
@@ -83913,8 +86625,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepositoryAuditEventsInput = {
@@ -83970,8 +86684,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepositoryAuditEventsInput = {
@@ -84122,8 +86838,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepositoryAuditEventsInput = {
@@ -84179,8 +86897,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPersonalAccessTokensInput = {
@@ -84236,8 +86956,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPersonalAccessTokensInput = {
@@ -84293,8 +87015,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPersonalAccessTokensInput = {
@@ -84366,8 +87090,10 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPersonalAccessTokensInput = {
@@ -84423,8 +87149,262 @@ export namespace Prisma {
     pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutSshKeysInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    applications?: ApplicationCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
+    repositoriesOwned?: RepositoryCreateNestedManyWithoutOwnerInput
+    repositoryStars?: RepositoryStarCreateNestedManyWithoutUserInput
+    repositoryWatchers?: RepositoryWatcherCreateNestedManyWithoutUserInput
+    repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
+    repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
+    assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
+    pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
+    pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
+    pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
+    pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
+    repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
+    personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSshKeysInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentUncheckedCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetUncheckedCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
+    repositoriesOwned?: RepositoryUncheckedCreateNestedManyWithoutOwnerInput
+    repositoryStars?: RepositoryStarUncheckedCreateNestedManyWithoutUserInput
+    repositoryWatchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutUserInput
+    repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
+    repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
+    assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
+    pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
+    pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
+    pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
+    pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
+    repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
+    personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSshKeysInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSshKeysInput, UserUncheckedCreateWithoutSshKeysInput>
+  }
+
+  export type UserUpsertWithoutSshKeysInput = {
+    update: XOR<UserUpdateWithoutSshKeysInput, UserUncheckedUpdateWithoutSshKeysInput>
+    create: XOR<UserCreateWithoutSshKeysInput, UserUncheckedCreateWithoutSshKeysInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSshKeysInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSshKeysInput, UserUncheckedUpdateWithoutSshKeysInput>
+  }
+
+  export type UserUpdateWithoutSshKeysInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
+    repositoriesOwned?: RepositoryUpdateManyWithoutOwnerNestedInput
+    repositoryStars?: RepositoryStarUpdateManyWithoutUserNestedInput
+    repositoryWatchers?: RepositoryWatcherUpdateManyWithoutUserNestedInput
+    repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
+    repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
+    assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
+    pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
+    pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
+    pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
+    pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
+    repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
+    personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSshKeysInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoriesOwned?: RepositoryUncheckedUpdateManyWithoutOwnerNestedInput
+    repositoryStars?: RepositoryStarUncheckedUpdateManyWithoutUserNestedInput
+    repositoryWatchers?: RepositoryWatcherUncheckedUpdateManyWithoutUserNestedInput
+    repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
+    repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
+    assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
+    pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
+    pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
+    pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
+    repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
+    personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OAuthAccountCreateManyUserInput = {
@@ -84721,6 +87701,26 @@ export namespace Prisma {
     body: string
     diffPath?: string | null
     diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    parentId?: string | null
+    resolvedAt?: Date | string | null
+    resolvedById?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PullRequestCommentCreateManyResolvedByInput = {
+    id?: string
+    pullRequestId: string
+    authorId: string
+    body: string
+    diffPath?: string | null
+    diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    parentId?: string | null
+    resolvedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -84757,6 +87757,16 @@ export namespace Prisma {
     tokenHash: string
     scopes?: PersonalAccessTokenCreatescopesInput | string[]
     expiresAt?: Date | string | null
+    lastUsedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type UserSshKeyCreateManyUserInput = {
+    id?: string
+    title: string
+    publicKey: string
+    fingerprint: string
+    keyType: string
     lastUsedAt?: Date | string | null
     createdAt?: Date | string
   }
@@ -85694,9 +88704,15 @@ export namespace Prisma {
     body?: StringFieldUpdateOperationsInput | string
     diffPath?: NullableStringFieldUpdateOperationsInput | string | null
     diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pullRequest?: PullRequestUpdateOneRequiredWithoutCommentsNestedInput
+    parent?: PullRequestCommentUpdateOneWithoutRepliesNestedInput
+    replies?: PullRequestCommentUpdateManyWithoutParentNestedInput
+    resolvedBy?: UserUpdateOneWithoutResolvedPrCommentsNestedInput
   }
 
   export type PullRequestCommentUncheckedUpdateWithoutAuthorInput = {
@@ -85705,8 +88721,14 @@ export namespace Prisma {
     body?: StringFieldUpdateOperationsInput | string
     diffPath?: NullableStringFieldUpdateOperationsInput | string | null
     diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: PullRequestCommentUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type PullRequestCommentUncheckedUpdateManyWithoutAuthorInput = {
@@ -85715,6 +88737,58 @@ export namespace Prisma {
     body?: StringFieldUpdateOperationsInput | string
     diffPath?: NullableStringFieldUpdateOperationsInput | string | null
     diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PullRequestCommentUpdateWithoutResolvedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    diffPath?: NullableStringFieldUpdateOperationsInput | string | null
+    diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pullRequest?: PullRequestUpdateOneRequiredWithoutCommentsNestedInput
+    author?: UserUpdateOneRequiredWithoutPullRequestCommentsNestedInput
+    parent?: PullRequestCommentUpdateOneWithoutRepliesNestedInput
+    replies?: PullRequestCommentUpdateManyWithoutParentNestedInput
+  }
+
+  export type PullRequestCommentUncheckedUpdateWithoutResolvedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pullRequestId?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    diffPath?: NullableStringFieldUpdateOperationsInput | string | null
+    diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: PullRequestCommentUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type PullRequestCommentUncheckedUpdateManyWithoutResolvedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pullRequestId?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    diffPath?: NullableStringFieldUpdateOperationsInput | string | null
+    diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -85823,6 +88897,36 @@ export namespace Prisma {
     tokenHash?: StringFieldUpdateOperationsInput | string
     scopes?: PersonalAccessTokenUpdatescopesInput | string[]
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSshKeyUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
+    keyType?: StringFieldUpdateOperationsInput | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSshKeyUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
+    keyType?: StringFieldUpdateOperationsInput | string
+    lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSshKeyUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    publicKey?: StringFieldUpdateOperationsInput | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
+    keyType?: StringFieldUpdateOperationsInput | string
     lastUsedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -87327,6 +90431,11 @@ export namespace Prisma {
     body: string
     diffPath?: string | null
     diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    parentId?: string | null
+    resolvedAt?: Date | string | null
+    resolvedById?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -87360,9 +90469,15 @@ export namespace Prisma {
     body?: StringFieldUpdateOperationsInput | string
     diffPath?: NullableStringFieldUpdateOperationsInput | string | null
     diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutPullRequestCommentsNestedInput
+    parent?: PullRequestCommentUpdateOneWithoutRepliesNestedInput
+    replies?: PullRequestCommentUpdateManyWithoutParentNestedInput
+    resolvedBy?: UserUpdateOneWithoutResolvedPrCommentsNestedInput
   }
 
   export type PullRequestCommentUncheckedUpdateWithoutPullRequestInput = {
@@ -87371,8 +90486,14 @@ export namespace Prisma {
     body?: StringFieldUpdateOperationsInput | string
     diffPath?: NullableStringFieldUpdateOperationsInput | string | null
     diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: PullRequestCommentUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type PullRequestCommentUncheckedUpdateManyWithoutPullRequestInput = {
@@ -87381,6 +90502,73 @@ export namespace Prisma {
     body?: StringFieldUpdateOperationsInput | string
     diffPath?: NullableStringFieldUpdateOperationsInput | string | null
     diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PullRequestCommentCreateManyParentInput = {
+    id?: string
+    pullRequestId: string
+    authorId: string
+    body: string
+    diffPath?: string | null
+    diffLine?: number | null
+    side?: string | null
+    commitId?: string | null
+    resolvedAt?: Date | string | null
+    resolvedById?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PullRequestCommentUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    diffPath?: NullableStringFieldUpdateOperationsInput | string | null
+    diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pullRequest?: PullRequestUpdateOneRequiredWithoutCommentsNestedInput
+    author?: UserUpdateOneRequiredWithoutPullRequestCommentsNestedInput
+    replies?: PullRequestCommentUpdateManyWithoutParentNestedInput
+    resolvedBy?: UserUpdateOneWithoutResolvedPrCommentsNestedInput
+  }
+
+  export type PullRequestCommentUncheckedUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pullRequestId?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    diffPath?: NullableStringFieldUpdateOperationsInput | string | null
+    diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: PullRequestCommentUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type PullRequestCommentUncheckedUpdateManyWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pullRequestId?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    body?: StringFieldUpdateOperationsInput | string
+    diffPath?: NullableStringFieldUpdateOperationsInput | string | null
+    diffLine?: NullableIntFieldUpdateOperationsInput | number | null
+    side?: NullableStringFieldUpdateOperationsInput | string | null
+    commitId?: NullableStringFieldUpdateOperationsInput | string | null
+    resolvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

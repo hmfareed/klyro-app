@@ -35,7 +35,12 @@ export async function createSession(userId: string, meta?: { userAgent?: string;
 }
 
 export async function getSessionUserId(): Promise<string | null> {
-  const store = await cookies();
+  let store;
+  try {
+    store = await cookies();
+  } catch {
+    return null;
+  }
   const token = store.get(COOKIE)?.value;
   if (!token) return null;
   // Fail closed (deny) when the DB is unreachable: treat as unauthenticated

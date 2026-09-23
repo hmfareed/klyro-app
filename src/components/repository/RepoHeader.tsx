@@ -267,16 +267,28 @@ export function RepoHeader({
                   </button>
                 </div>
 
-                <div className="mb-3 rounded-xl border border-indigo-500/20 bg-indigo-950/30 p-2.5 text-[11px] text-indigo-300">
-                  <p className="font-semibold text-white mb-0.5">Authentication:</p>
-                  <p className="text-slate-400 text-[10px] leading-relaxed">
-                    Use your Klyro username and a{" "}
-                    <Link href="/settings/tokens" className="text-indigo-400 underline hover:text-indigo-300 font-medium">
-                      Personal Access Token (PAT)
-                    </Link>{" "}
-                    as your password when pushing or cloning private repos.
-                  </p>
-                </div>
+                {cloneMode === "https" ? (
+                  <div className="mb-3 rounded-xl border border-indigo-500/20 bg-indigo-950/30 p-2.5 text-[11px] text-indigo-300">
+                    <p className="font-semibold text-white mb-0.5">HTTPS Authentication:</p>
+                    <p className="text-slate-400 text-[10px] leading-relaxed">
+                      Use your Klyro username and a{" "}
+                      <Link href="/settings/tokens" className="text-indigo-400 underline hover:text-indigo-300 font-medium">
+                        Personal Access Token (PAT)
+                      </Link>{" "}
+                      as your password when pushing or cloning private repos.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="mb-3 rounded-xl border border-emerald-500/20 bg-emerald-950/30 p-2.5 text-[11px] text-emerald-300">
+                    <p className="font-semibold text-white mb-0.5">SSH Authentication:</p>
+                    <p className="text-slate-400 text-[10px] leading-relaxed">
+                      Requires an SSH key added to your profile. Manage keys in{" "}
+                      <Link href="/settings/ssh-keys" className="text-emerald-400 underline hover:text-emerald-300 font-medium">
+                        SSH Key Settings
+                      </Link>.
+                    </p>
+                  </div>
+                )}
 
                 <a
                   href={`/api/v1/repositories/${repository.owner.username}/${repository.slug}/archive-zip?ref=${repository.defaultBranch}`}

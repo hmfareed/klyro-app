@@ -14,8 +14,14 @@ import {
   FileText,
   User,
   Sparkles,
+  AlertOctagon,
+  CornerDownRight,
+  FileCode,
+  Send,
 } from "lucide-react";
 import { MarkdownViewer } from "./MarkdownViewer";
+import { RepoDiffViewer } from "./RepoDiffViewer";
+import { RepoReviewModal } from "./RepoReviewModal";
 
 interface RepoPullRequestsViewProps {
   owner: string;
@@ -24,6 +30,72 @@ interface RepoPullRequestsViewProps {
   viewer: any;
   selectedPRNumber?: number | null;
   onSelectPR: (number: number | null) => void;
+}
+
+function InlineTimelineReply({
+  parentId,
+  onReply,
+}: {
+  parentId: string;
+  onReply: (parentId: string, body: string) => Promise<void>;
+}) {
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  if (!open) {
+    return (
+      <button
+        onClick={() => setOpen(true)}
+        className="text-xs text-indigo-400 hover:text-indigo-300 hover:underline flex items-center gap-1 cursor-pointer"
+      >
+        <MessageSquare size={12} /> Reply to thread…
+      </button>
+    );
+  }
+
+  const handleSubmit = async () => {
+    if (!text.trim()) return;
+    setSubmitting(true);
+    try {
+      await onReply(parentId, text.trim());
+      setText("");
+      setOpen(false);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="rounded-xl border border-white/10 bg-zinc-950 p-3 space-y-2">
+      <textarea
+        rows={2}
+        autoFocus
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Reply to this thread…"
+        className="w-full rounded-lg border border-white/10 bg-white/5 p-2 text-xs text-white placeholder:text-zinc-500 focus:border-indigo-500 focus:outline-none"
+      />
+      <div className="flex items-center justify-end gap-2">
+        <button
+          onClick={() => {
+            setOpen(false);
+            setText("");
+          }}
+          className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300 hover:text-white"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleSubmit}
+          disabled={submitting || !text.trim()}
+          className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-1 text-xs font-semibold text-white hover:bg-indigo-500 disabled:opacity-40"
+        >
+          <Send size={12} /> {submitting ? "Replying…" : "Reply"}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export function RepoPullRequestsView({
@@ -54,6 +126,7 @@ export function RepoPullRequestsView({
   // PR Detail state
   const [prDetail, setPrDetail] = useState<any>(null);
   const [prComparison, setPrComparison] = useState<any>(null);
+  const [reviewStats, setReviewStats] = useState<any>(null);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailTab, setDetailTab] = useState<"conversation" | "commits" | "files">("conversation");
   const [newComment, setNewComment] = useState("");
@@ -61,6 +134,7 @@ export function RepoPullRequestsView({
   const [submittingComment, setSubmittingComment] = useState(false);
   const [merging, setMerging] = useState(false);
   const [mergeError, setMergeError] = useState<string | null>(null);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
   // Load PR list
   const loadPulls = () => {
@@ -124,6 +198,7 @@ export function RepoPullRequestsView({
     if (!selectedPRNumber) {
       setPrDetail(null);
       setPrComparison(null);
+      setReviewStats(null);
       return;
     }
 
@@ -135,6 +210,7 @@ export function RepoPullRequestsView({
         if (d?.data?.pullRequest) {
           setPrDetail(d.data.pullRequest);
           setPrComparison(d.data.comparison);
+          if (d.data.reviewStats) setReviewStats(d.data.reviewStats);
         }
       })
       .catch(() => {})
@@ -220,7 +296,7 @@ export function RepoPullRequestsView({
     } catch {}
   };
 
-  // Add Comment / Review
+  // Add Comment / Review from Conversation Tab
   const handleAddComment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newComment.trim() || !prDetail) return;
@@ -248,6 +324,113 @@ export function RepoPullRequestsView({
       }
     } catch {} finally {
       setSubmittingComment(false);
+    }
+  };
+
+  // Add Line-Level Diff Comment
+  const handleAddDiffComment = async (data: {
+    diffPath: string;
+    diffLine: number;
+    side: "LEFT" | "RIGHT";
+    body: string;
+  }) => {
+    if (!prDetail) return;
+    try {
+      const res = await fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${prDetail.number}/comments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const d = await res.json().catch(() => null);
+      if (res.ok && d?.data?.comment) {
+        setPrDetail((prev: any) => ({
+          ...prev,
+          comments: [...(prev.comments || []), d.data.comment],
+        }));
+      }
+    } catch {}
+  };
+
+  // Reply to Comment Thread
+  const handleReplyComment = async (parentId: string, body: string) => {
+    if (!prDetail) return;
+    try {
+      const res = await fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${prDetail.number}/comments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ parentId, body }),
+      });
+      const d = await res.json().catch(() => null);
+      if (res.ok && d?.data?.comment) {
+        setPrDetail((prev: any) => ({
+          ...prev,
+          comments: prev.comments.map((c: any) =>
+            c.id === parentId
+              ? { ...c, replies: [...(c.replies || []), d.data.comment] }
+              : c
+          ),
+        }));
+      }
+    } catch {}
+  };
+
+  // Resolve / Unresolve Thread
+  const handleResolveThread = async (commentId: string, resolved: boolean) => {
+    if (!prDetail) return;
+    try {
+      const res = await fetch(
+        `/api/v1/repositories/${owner}/${repo}/pulls/${prDetail.number}/comments/${commentId}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ resolved }),
+        }
+      );
+      const d = await res.json().catch(() => null);
+      if (res.ok && d?.data?.comment) {
+        setPrDetail((prev: any) => ({
+          ...prev,
+          comments: prev.comments.map((c: any) =>
+            c.id === commentId
+              ? {
+                  ...c,
+                  resolvedAt: d.data.comment.resolvedAt,
+                  resolvedBy: d.data.comment.resolvedBy,
+                }
+              : c
+          ),
+        }));
+      }
+    } catch {}
+  };
+
+  // Submit Formal Review
+  const handleSubmitReview = async (
+    state: "APPROVED" | "CHANGES_REQUESTED" | "COMMENTED",
+    body: string
+  ): Promise<boolean> => {
+    if (!prDetail) return false;
+    try {
+      const res = await fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${prDetail.number}/reviews`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ state, body: body || undefined }),
+      });
+      const d = await res.json().catch(() => null);
+      if (res.ok && d?.data?.review) {
+        // Refresh PR detail
+        const fresh = await fetch(`/api/v1/repositories/${owner}/${repo}/pulls/${prDetail.number}`)
+          .then((r) => r.json())
+          .catch(() => null);
+        if (fresh?.data?.pullRequest) {
+          setPrDetail(fresh.data.pullRequest);
+          if (fresh.data.reviewStats) setReviewStats(fresh.data.reviewStats);
+        }
+        return true;
+      }
+      return false;
+    } catch {
+      return false;
     }
   };
 
@@ -397,8 +580,30 @@ export function RepoPullRequestsView({
     const isClosed = prDetail.status === "CLOSED";
     const isOpen = prDetail.status === "OPEN";
 
+    // Build unified chronological timeline (reviews + comments)
+    const timelineItems: any[] = [];
+    if (prDetail.reviews) {
+      for (const r of prDetail.reviews) {
+        timelineItems.push({ type: "review", data: r, createdAt: new Date(r.createdAt).getTime() });
+      }
+    }
+    if (prDetail.comments) {
+      for (const c of prDetail.comments) {
+        timelineItems.push({ type: "comment", data: c, createdAt: new Date(c.createdAt).getTime() });
+      }
+    }
+    timelineItems.sort((a, b) => a.createdAt - b.createdAt);
+
     return (
       <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        {/* Review Modal */}
+        <RepoReviewModal
+          isOpen={isReviewModalOpen}
+          onClose={() => setIsReviewModalOpen(false)}
+          onSubmitReview={handleSubmitReview}
+          isAuthor={prDetail.authorId === (viewer?.userId || "")}
+        />
+
         {/* Back navigation */}
         <button
           onClick={() => onSelectPR(null)}
@@ -464,6 +669,33 @@ export function RepoPullRequestsView({
         {/* Tab Content: Conversation */}
         {detailTab === "conversation" && (
           <div className="space-y-6">
+            {/* Review Status Banner */}
+            {reviewStats && (reviewStats.approvedCount > 0 || reviewStats.changesRequestedCount > 0) && (
+              <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <div className="flex items-center gap-3 text-xs">
+                  {reviewStats.approvedCount > 0 && (
+                    <span className="flex items-center gap-1.5 rounded-full bg-emerald-950/80 border border-emerald-800/40 px-3 py-1 font-semibold text-emerald-300">
+                      <CheckCircle2 size={13} /> {reviewStats.approvedCount} approval{reviewStats.approvedCount > 1 ? "s" : ""}
+                    </span>
+                  )}
+                  {reviewStats.changesRequestedCount > 0 && (
+                    <span className="flex items-center gap-1.5 rounded-full bg-rose-950/80 border border-rose-800/40 px-3 py-1 font-semibold text-rose-300">
+                      <AlertOctagon size={13} /> {reviewStats.changesRequestedCount} change request{reviewStats.changesRequestedCount > 1 ? "s" : ""}
+                    </span>
+                  )}
+                </div>
+
+                {isOpen && (
+                  <button
+                    onClick={() => setIsReviewModalOpen(true)}
+                    className="rounded-xl border border-indigo-500/40 bg-indigo-600/10 px-3 py-1.5 text-xs font-semibold text-indigo-300 hover:bg-indigo-600 hover:text-white transition-colors cursor-pointer"
+                  >
+                    Review changes
+                  </button>
+                )}
+              </div>
+            )}
+
             {/* PR Description Box */}
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 shadow-sm">
               <div className="flex items-center gap-2 border-b border-white/10 pb-3 mb-3 text-xs text-slate-400">
@@ -477,16 +709,144 @@ export function RepoPullRequestsView({
               )}
             </div>
 
-            {/* Comments List */}
-            {prDetail.comments?.map((c: any) => (
-              <div key={c.id} className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 shadow-sm">
-                <div className="flex items-center gap-2 border-b border-white/10 pb-3 mb-3 text-xs text-slate-400">
-                  <span className="font-semibold text-white">{c.author.displayName || c.author.username}</span>
-                  <span>commented</span>
+            {/* Timeline: Formal Reviews & Comments */}
+            {timelineItems.map((item) => {
+              if (item.type === "review") {
+                const r = item.data;
+                const isApproved = r.state === "APPROVED";
+                const isChangesRequested = r.state === "CHANGES_REQUESTED";
+
+                return (
+                  <div
+                    key={`review-${r.id}`}
+                    className={`rounded-2xl border p-4 shadow-sm space-y-2 ${
+                      isApproved
+                        ? "border-emerald-500/40 bg-emerald-950/15"
+                        : isChangesRequested
+                        ? "border-rose-500/40 bg-rose-950/15"
+                        : "border-white/10 bg-white/[0.02]"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-2">
+                        {isApproved ? (
+                          <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+                        ) : isChangesRequested ? (
+                          <AlertOctagon size={16} className="text-rose-400 shrink-0" />
+                        ) : (
+                          <MessageSquare size={16} className="text-slate-400 shrink-0" />
+                        )}
+                        <span className="font-semibold text-white">
+                          {r.reviewer?.displayName || r.reviewer?.username}
+                        </span>
+                        <span
+                          className={
+                            isApproved
+                              ? "text-emerald-300 font-semibold"
+                              : isChangesRequested
+                              ? "text-rose-300 font-semibold"
+                              : "text-slate-400"
+                          }
+                        >
+                          {isApproved
+                            ? "approved these changes"
+                            : isChangesRequested
+                            ? "requested changes"
+                            : "left a review"}
+                        </span>
+                      </div>
+                    </div>
+
+                    {r.body && (
+                      <div className="pt-2 border-t border-white/10 text-slate-200">
+                        <MarkdownViewer content={r.body} />
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              // Comment item
+              const c = item.data;
+              const isDiffComment = !!c.diffPath;
+              const isResolved = !!c.resolvedAt;
+
+              if (isDiffComment) {
+                return (
+                  <div
+                    key={`comment-${c.id}`}
+                    className="rounded-2xl border border-indigo-500/30 bg-[#090d1f] p-5 shadow-sm space-y-3 font-sans"
+                  >
+                    {/* Diff Location Header */}
+                    <div className="flex items-center justify-between border-b border-white/10 pb-2 text-xs">
+                      <div className="flex items-center gap-2">
+                        <FileCode size={14} className="text-indigo-400" />
+                        <span className="font-mono font-semibold text-white">{c.diffPath}</span>
+                        <span className="font-mono text-slate-400">
+                          (line {c.diffLine}, {c.side || "RIGHT"})
+                        </span>
+                      </div>
+
+                      {isResolved ? (
+                        <span className="flex items-center gap-1 text-[11px] text-emerald-400 font-semibold">
+                          <CheckCircle2 size={12} /> Resolved
+                        </span>
+                      ) : (
+                        <button
+                          onClick={() => handleResolveThread(c.id, true)}
+                          className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-[11px] text-emerald-400 hover:bg-emerald-950/40 transition-colors cursor-pointer"
+                        >
+                          <CheckCircle2 size={12} /> Resolve
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Root Comment Author & Body */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-xs text-slate-400">
+                        <span className="font-semibold text-white">
+                          {c.author?.displayName || c.author?.username}
+                        </span>
+                        <span>commented</span>
+                      </div>
+                      <MarkdownViewer content={c.body} />
+                    </div>
+
+                    {/* Replies */}
+                    {c.replies?.map((reply: any) => (
+                      <div key={reply.id} className="ml-4 rounded-xl border border-white/5 bg-white/[0.02] p-3 space-y-1 text-xs">
+                        <div className="flex items-center gap-2 text-slate-400 text-[11px]">
+                          <CornerDownRight size={12} className="text-slate-500 shrink-0" />
+                          <span className="font-semibold text-white">
+                            {reply.author?.displayName || reply.author?.username}
+                          </span>
+                        </div>
+                        <MarkdownViewer content={reply.body} />
+                      </div>
+                    ))}
+
+                    {/* Quick Inline Reply */}
+                    <div className="pt-2">
+                      <InlineTimelineReply
+                        parentId={c.id}
+                        onReply={handleReplyComment}
+                      />
+                    </div>
+                  </div>
+                );
+              }
+
+              // General Comment
+              return (
+                <div key={`comment-${c.id}`} className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 shadow-sm">
+                  <div className="flex items-center gap-2 border-b border-white/10 pb-3 mb-3 text-xs text-slate-400">
+                    <span className="font-semibold text-white">{c.author.displayName || c.author.username}</span>
+                    <span>commented</span>
+                  </div>
+                  <MarkdownViewer content={c.body} />
                 </div>
-                <MarkdownViewer content={c.body} />
-              </div>
-            ))}
+              );
+            })}
 
             {/* Merge Card (if OPEN) */}
             {isOpen && (
@@ -512,7 +872,7 @@ export function RepoPullRequestsView({
                     </div>
                   </div>
 
-                  {viewer.canWrite && (
+                  {viewer?.canWrite && (
                     <div className="flex items-center gap-2">
                       <button
                         onClick={handleToggleClose}
@@ -544,9 +904,9 @@ export function RepoPullRequestsView({
               </div>
             )}
 
-            {/* Add Comment / Review Form */}
+            {/* Add General Comment Form */}
             <form onSubmit={handleAddComment} className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 space-y-3">
-              <h4 className="text-xs font-bold text-white">Add a comment or review</h4>
+              <h4 className="text-xs font-bold text-white">Add a comment</h4>
               <textarea
                 rows={3}
                 required
@@ -557,15 +917,13 @@ export function RepoPullRequestsView({
               />
 
               <div className="flex items-center justify-between">
-                <select
-                  value={reviewState}
-                  onChange={(e: any) => setReviewState(e.target.value)}
-                  className="rounded-xl border border-white/10 bg-zinc-900 px-3 py-1.5 text-xs text-white"
+                <button
+                  type="button"
+                  onClick={() => setIsReviewModalOpen(true)}
+                  className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-300 hover:text-white transition-colors"
                 >
-                  <option value="COMMENTED">Comment</option>
-                  <option value="APPROVED">Approve changes</option>
-                  <option value="CHANGES_REQUESTED">Request changes</option>
-                </select>
+                  Review changes…
+                </button>
 
                 <button
                   type="submit"
@@ -596,23 +954,42 @@ export function RepoPullRequestsView({
           </div>
         )}
 
-        {/* Tab Content: Files Changed */}
+        {/* Tab Content: Files Changed (Interactive Diff Viewer) */}
         {detailTab === "files" && (
           <div className="space-y-4">
-            {prComparison?.files?.map((f: any, idx: number) => (
-              <div key={idx} className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 font-mono text-xs shadow-md">
-                <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-2 font-semibold text-white">
-                  <span>{f.newPath}</span>
-                  <div className="flex items-center gap-2 text-[11px]">
-                    <span className="text-emerald-400">+{f.additions}</span>
-                    <span className="text-rose-400">-{f.deletions}</span>
-                  </div>
-                </div>
-                <pre className="overflow-x-auto p-4 text-[11px] leading-relaxed text-slate-300 whitespace-pre">
-                  {f.patch}
-                </pre>
+            {/* Action Bar */}
+            <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-[#0c1022] p-3">
+              <div className="flex items-center gap-3 text-xs text-slate-300">
+                <span className="font-semibold text-white">
+                  Showing {prComparison?.files?.length || 0} changed file{prComparison?.files?.length === 1 ? "" : "s"}
+                </span>
+                <span className="text-emerald-400 font-semibold">+{prComparison?.stats?.additions || 0}</span>
+                <span className="text-rose-400 font-semibold">-{prComparison?.stats?.deletions || 0}</span>
               </div>
-            ))}
+
+              {isOpen && (
+                <button
+                  onClick={() => setIsReviewModalOpen(true)}
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow hover:bg-indigo-500 transition-all cursor-pointer"
+                >
+                  <CheckCircle2 size={14} /> Review changes
+                </button>
+              )}
+            </div>
+
+            {/* Interactive Diff Viewer */}
+            {prComparison?.files?.length > 0 ? (
+              <RepoDiffViewer
+                files={prComparison.files}
+                comments={prDetail.comments || []}
+                onAddComment={handleAddDiffComment}
+                onReplyComment={handleReplyComment}
+                onResolveThread={handleResolveThread}
+                canComment={viewer?.canRead}
+              />
+            ) : (
+              <div className="p-8 text-center text-xs text-slate-500 italic">No files changed.</div>
+            )}
           </div>
         )}
       </div>

@@ -38,8 +38,17 @@ export async function GET(req: Request, context: RouteContext) {
           orderBy: { createdAt: "asc" },
         },
         comments: {
+          where: { parentId: null },
           include: {
             author: { select: { id: true, username: true, displayName: true, avatarUrl: true } },
+            resolvedBy: { select: { id: true, username: true, displayName: true, avatarUrl: true } },
+            replies: {
+              include: {
+                author: { select: { id: true, username: true, displayName: true, avatarUrl: true } },
+                resolvedBy: { select: { id: true, username: true, displayName: true, avatarUrl: true } },
+              },
+              orderBy: { createdAt: "asc" },
+            },
           },
           orderBy: { createdAt: "asc" },
         },
@@ -47,6 +56,18 @@ export async function GET(req: Request, context: RouteContext) {
     });
 
     if (!pullRequest) return apiError("NOT_FOUND", "Pull request not found", null, 404);
+
+    // Compute review summary
+    const latestByReviewer: Record<string, string> = {};
+    for (const r of pullRequest.reviews) {
+      latestByReviewer[r.reviewerId] = r.state;
+    }
+    const latestStates = Object.values(latestByReviewer);
+    const reviewStats = {
+      approvedCount: latestStates.filter((s) => s === "APPROVED").length,
+      changesRequestedCount: latestStates.filter((s) => s === "CHANGES_REQUESTED").length,
+      commentedCount: latestStates.filter((s) => s === "COMMENTED").length,
+    };
 
     // Compute live Git comparison (commits, files, conflicts)
     let comparison = null;
@@ -63,6 +84,7 @@ export async function GET(req: Request, context: RouteContext) {
     return apiOk({
       pullRequest,
       comparison,
+      reviewStats,
       viewer,
     });
   } catch (err: any) {

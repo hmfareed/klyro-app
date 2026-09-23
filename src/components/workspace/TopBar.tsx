@@ -14,6 +14,7 @@ import {
   LogOut,
   Sparkles,
   Key,
+  KeyRound,
 } from "lucide-react";
 import { BrandMark } from "@/components/Brand";
 import { NotificationBell } from "@/components/workspace/NotificationBell";
@@ -232,6 +233,15 @@ export function TopBar() {
                 >
                   <Key size={15} className="text-amber-400" />
                   <span>Developer Tokens</span>
+                </Link>
+
+                <Link
+                  href="/settings/ssh-keys"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-zinc-300 hover:bg-zinc-900 hover:text-white transition-colors"
+                >
+                  <KeyRound size={15} className="text-emerald-400" />
+                  <span>SSH Keys</span>
                 </Link>
 
                 <Link

@@ -59,6 +59,26 @@ export async function initBareRepo(storagePath: string, defaultBranch = "main"):
 }
 
 /**
+ * Ensures a bare repository exists on disk, initializing it if absent
+ */
+export async function ensureBareRepository(
+  repoIdOrPath: string,
+  _repoName?: string,
+  defaultBranch = "main"
+): Promise<string> {
+  const storagePath = repoIdOrPath.includes("/") || repoIdOrPath.includes("\\")
+    ? repoIdOrPath
+    : getRepoStoragePath(repoIdOrPath);
+
+  try {
+    await fs.access(path.join(storagePath, "HEAD"));
+  } catch {
+    await initBareRepo(storagePath, defaultBranch);
+  }
+  return storagePath;
+}
+
+/**
  * Seed initial commit with files (README.md, .gitignore, LICENSE, etc.) directly using Git plumbing
  */
 export async function seedInitialCommit(

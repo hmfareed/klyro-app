@@ -8,7 +8,7 @@ export interface PostPushEventParams {
   repositoryId: string;
   storagePath: string;
   actorId: string;
-  refUpdates: Array<{ oldSha: string; newSha: string; refName: string }>;
+  refUpdates?: Array<{ oldSha: string; newSha: string; refName: string }>;
 }
 
 /**
@@ -38,7 +38,8 @@ export async function handlePostPushEvent(params: PostPushEventParams): Promise<
       data: { updatedAt: new Date() },
     });
 
-    for (const update of refUpdates) {
+    const updates = refUpdates || [];
+    for (const update of updates) {
       const isDeletion = update.newSha === "0000000000000000000000000000000000000000";
       const branchName = update.refName.replace("refs/heads/", "");
 

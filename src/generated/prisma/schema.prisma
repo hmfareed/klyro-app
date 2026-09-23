@@ -166,10 +166,12 @@ model User {
   pullRequestsAuthored     PullRequest[]            @relation("PRAuthor")
   pullRequestsMerged       PullRequest[]            @relation("PRMergedBy")
   pullRequestReviews       PullRequestReview[]
-  pullRequestComments      PullRequestComment[]
+  pullRequestComments      PullRequestComment[]     @relation("PRCommentAuthor")
+  resolvedPrComments       PullRequestComment[]     @relation("PRCommentResolvedBy")
   repositoryReleases       RepositoryRelease[]
   repositoryAuditEvents    RepositoryAuditEvent[]
   personalAccessTokens     PersonalAccessToken[]
+  sshKeys                  UserSshKey[]
 
   @@index([username])
 }
@@ -784,20 +786,30 @@ model PullRequestReview {
 }
 
 model PullRequestComment {
-  id            String   @id @default(cuid())
+  id            String    @id @default(cuid())
   pullRequestId String
   authorId      String
-  body          String   @db.Text
+  body          String    @db.Text
   diffPath      String?
   diffLine      Int?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  side          String?   @default("RIGHT") // LEFT, RIGHT
+  commitId      String?
+  parentId      String?
+  resolvedAt    DateTime?
+  resolvedById  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
-  pullRequest PullRequest @relation(fields: [pullRequestId], references: [id], onDelete: Cascade)
-  author      User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  pullRequest PullRequest          @relation(fields: [pullRequestId], references: [id], onDelete: Cascade)
+  author      User                 @relation("PRCommentAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  parent      PullRequestComment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies     PullRequestComment[] @relation("CommentReplies")
+  resolvedBy  User?                @relation("PRCommentResolvedBy", fields: [resolvedById], references: [id], onDelete: SetNull)
 
   @@index([pullRequestId, createdAt])
   @@index([authorId])
+  @@index([parentId])
+  @@index([diffPath, diffLine])
 }
 
 model RepositoryRelease {
@@ -905,4 +917,20 @@ model PersonalAccessToken {
 
   @@index([userId])
   @@index([tokenHash])
+}
+
+model UserSshKey {
+  id          String    @id @default(cuid())
+  userId      String
+  title       String
+  publicKey   String    @db.Text
+  fingerprint String    @unique // SHA256:<base64-fingerprint>
+  keyType     String // e.g. ssh-ed25519, ssh-rsa, ecdsa-sha2-nistp256
+  lastUsedAt  DateTime?
+  createdAt   DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([fingerprint])
 }

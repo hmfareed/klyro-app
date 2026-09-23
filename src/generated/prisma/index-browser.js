@@ -505,6 +505,11 @@ exports.Prisma.PullRequestCommentScalarFieldEnum = {
   body: 'body',
   diffPath: 'diffPath',
   diffLine: 'diffLine',
+  side: 'side',
+  commitId: 'commitId',
+  parentId: 'parentId',
+  resolvedAt: 'resolvedAt',
+  resolvedById: 'resolvedById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -581,6 +586,17 @@ exports.Prisma.PersonalAccessTokenScalarFieldEnum = {
   tokenHash: 'tokenHash',
   scopes: 'scopes',
   expiresAt: 'expiresAt',
+  lastUsedAt: 'lastUsedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UserSshKeyScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  publicKey: 'publicKey',
+  fingerprint: 'fingerprint',
+  keyType: 'keyType',
   lastUsedAt: 'lastUsedAt',
   createdAt: 'createdAt'
 };
@@ -780,7 +796,8 @@ exports.Prisma.ModelName = {
   RepositoryWebhookDelivery: 'RepositoryWebhookDelivery',
   RepositoryActionRun: 'RepositoryActionRun',
   RepositoryAuditEvent: 'RepositoryAuditEvent',
-  PersonalAccessToken: 'PersonalAccessToken'
+  PersonalAccessToken: 'PersonalAccessToken',
+  UserSshKey: 'UserSshKey'
 };
 
 /**
