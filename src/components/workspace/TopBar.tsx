@@ -1,6 +1,8 @@
 "use client";
+
 import { useEffect, useState, useRef } from "react";
 import {
+  Menu,
   Search,
   Users,
   Calendar,
@@ -12,29 +14,40 @@ import {
   LogOut,
   Sparkles,
 } from "lucide-react";
-import { BrandLockup } from "@/components/Brand";
+import { BrandMark } from "@/components/Brand";
 import { NotificationBell } from "@/components/workspace/NotificationBell";
 import { openCreateProjectModal } from "@/components/workspace/WorkspaceCreateProjectModal";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useWorkspace } from "@/context/WorkspaceContext";
 
-type Me = { username: string; displayName: string | null; avatarUrl?: string | null };
+function getPageTitle(pathname: string): string {
+  if (pathname === "/" || pathname === "/home") return "Home";
+  if (pathname.startsWith("/repositories/")) {
+    const parts = pathname.split("/").filter(Boolean);
+    return parts[1] || "Repository";
+  }
+  if (pathname.startsWith("/repositories")) return "Repositories";
+  if (pathname.startsWith("/pull-requests")) return "Pull Requests";
+  if (pathname.startsWith("/issues")) return "Issues";
+  if (pathname.startsWith("/projects")) return "Projects";
+  if (pathname.startsWith("/teams")) return "Teams";
+  if (pathname.startsWith("/chat")) return "Chat";
+  if (pathname.startsWith("/meetings")) return "Meetings";
+  if (pathname.startsWith("/drive")) return "Drive";
+  if (pathname.startsWith("/ai-assistant")) return "AI Assistant";
+  if (pathname.startsWith("/u/")) return "Profile";
+  return "Workspace";
+}
 
 export function TopBar() {
   const router = useRouter();
-  const [me, setMe] = useState<Me | null>(null);
+  const pathname = usePathname();
+  const { user, initials, toggleSidebar } = useWorkspace();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    fetch("/api/v1/users/me")
-      .then(async (r) => {
-        if (!r.ok) return;
-        const d = await r.json();
-        if (d?.user) setMe(d.user);
-      })
-      .catch(() => {});
-  }, []);
+  const pageTitle = getPageTitle(pathname);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -53,18 +66,44 @@ export function TopBar() {
     router.push("/login");
   }
 
-  const name = me?.displayName || me?.username || "…";
-  const initials = name.trim().slice(0, 2).toUpperCase();
-  const profileUrl = me ? `/u/${me.username}` : "/login";
+  const name = user?.displayName || user?.username || "…";
+  const profileUrl = user ? `/u/${user.username}` : "/login";
 
   return (
     <header className="sticky top-0 z-40 flex h-16 w-full items-center justify-between border-b border-zinc-800 bg-black px-4 sm:px-6">
-      <div className="flex items-center gap-4">
-        <Link href="/repositories" className="hover:opacity-90 transition-opacity">
-          <BrandLockup />
+      <div className="flex items-center gap-2.5 sm:gap-3">
+        {/* Hamburger Menu button before the Klyro logo */}
+        <button
+          type="button"
+          onClick={toggleSidebar}
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-zinc-400 hover:bg-zinc-900 hover:text-white transition-colors focus:outline-none"
+          aria-label="Toggle navigation drawer"
+          title="Open navigation"
+        >
+          <Menu size={20} />
+        </button>
+
+        {/* Klyro Brand Mark symbol only (no text) */}
+        <Link href="/home" className="flex items-center hover:opacity-85 transition-opacity">
+          <BrandMark size={28} />
         </Link>
+
+        {/* Separator */}
+        <span className="text-zinc-700 font-light text-xs">/</span>
+
+        {/* Current page name that toggles sidebar drawer */}
+        <button
+          type="button"
+          onClick={toggleSidebar}
+          className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm font-semibold text-white hover:bg-zinc-900 transition-colors focus:outline-none"
+          title="Toggle workspace navigation"
+        >
+          <span>{pageTitle}</span>
+          <ChevronDown size={14} className="text-zinc-500" />
+        </button>
       </div>
 
+      {/* Global Search Bar */}
       <div className="mx-4 hidden max-w-md flex-1 md:flex items-center">
         <div className="flex w-full items-center gap-2 rounded-xl border border-zinc-800/80 bg-zinc-950 px-3.5 py-2 text-xs text-zinc-400 transition-colors focus-within:border-indigo-500/60 focus-within:text-zinc-200">
           <Search size={15} className="text-zinc-500" />
@@ -79,6 +118,7 @@ export function TopBar() {
         </div>
       </div>
 
+      {/* Right Actions */}
       <div className="flex items-center gap-2 sm:gap-3 text-zinc-400">
         <button
           type="button"
@@ -88,7 +128,7 @@ export function TopBar() {
           + New Project
         </button>
 
-        {/* Action icons from reference UI */}
+        {/* Action icons */}
         <div className="flex items-center gap-1">
           <NotificationBell />
 
@@ -126,9 +166,9 @@ export function TopBar() {
             aria-expanded={menuOpen}
           >
             <div className="relative">
-              {me?.avatarUrl ? (
+              {user?.avatarUrl ? (
                 <img
-                  src={me.avatarUrl}
+                  src={user.avatarUrl}
                   alt={name}
                   className="h-8 w-8 rounded-full object-cover ring-1 ring-zinc-700"
                 />
@@ -153,7 +193,7 @@ export function TopBar() {
             <div className="absolute right-0 mt-2 w-64 origin-top-right rounded-2xl border border-zinc-800 bg-black p-2 text-sm text-zinc-200 shadow-2xl ring-1 ring-black/5 animate-in fade-in zoom-in-95 duration-150">
               <div className="border-b border-zinc-800/80 px-3 py-2.5">
                 <p className="truncate font-semibold text-white">{name}</p>
-                <p className="truncate text-xs text-zinc-500">{me ? `@${me.username}` : ""}</p>
+                <p className="truncate text-xs text-zinc-500">{user ? `@${user.username}` : ""}</p>
               </div>
 
               <div className="py-1">

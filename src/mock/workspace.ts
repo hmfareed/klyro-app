@@ -3,9 +3,9 @@
 // Kept in one file so swapping to fetch() calls is a single diff per component.
 
 export const workspace = {
-  name: "Fareed's Workspace",
+  name: "Workspace",
   tagline: "Build. Collaborate. Ship.",
-  user: { name: "Mohammed Fareed", role: "Developer", initials: "MF" },
+  user: { name: "Developer", role: "Developer", initials: "DV" },
 };
 
 export const navCounts: Record<string, number | string> = {

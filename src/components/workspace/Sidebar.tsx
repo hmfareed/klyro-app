@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { openCreateProjectModal } from "@/components/workspace/WorkspaceCreateProjectModal";
+import { useWorkspace } from "@/context/WorkspaceContext";
 
 type Project = { slug: string; title: string };
 
@@ -58,8 +59,7 @@ export function Sidebar() {
     return () => window.removeEventListener("refresh-workspace-projects", handleRefresh);
   }, [loadProjects]);
 
-  const workspaceName = me ? `${me.displayName || me.username}'s Workspace` : "Fareed's Workspace";
-  const initial = (me?.displayName || me?.username || "F").trim().slice(0, 1).toUpperCase();
+  const { workspaceName, sidebarInitial: initial } = useWorkspace();
 
   // The 10 canonical workspace sections from UI specification
   const NAV = [

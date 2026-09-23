@@ -1,21 +1,23 @@
-import { Suspense } from "react";
-import { Sidebar } from "@/components/workspace/Sidebar";
 import { TopBar } from "@/components/workspace/TopBar";
+import { SidebarDrawer } from "@/components/workspace/SidebarDrawer";
 import { WorkspaceCreateProjectModal } from "@/components/workspace/WorkspaceCreateProjectModal";
+import { WorkspaceProvider } from "@/context/WorkspaceContext";
 
-// Authenticated workspace shell: TopBar + Sidebar persistent,
-// with integrated in-workspace modals.
+// Authenticated workspace shell: Full-width layout with TopBar header,
+// on-demand SidebarDrawer navigation, and integrated modals.
 export default function WorkspaceLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen flex-col bg-black text-white">
-      <TopBar />
-      <div className="flex min-h-0 flex-1">
-        <Suspense fallback={<aside className="w-56 shrink-0 bg-black border-r border-zinc-800" />}>
-          <Sidebar />
-        </Suspense>
-        <div className="flex min-w-0 flex-1">{children}</div>
+    <WorkspaceProvider>
+      <div className="flex h-screen flex-col bg-black text-white">
+        <TopBar />
+        <div className="flex min-h-0 flex-1 w-full">
+          <main className="flex min-w-0 flex-1 w-full overflow-hidden">
+            {children}
+          </main>
+        </div>
+        <SidebarDrawer />
+        <WorkspaceCreateProjectModal />
       </div>
-      <WorkspaceCreateProjectModal />
-    </div>
+    </WorkspaceProvider>
   );
 }
