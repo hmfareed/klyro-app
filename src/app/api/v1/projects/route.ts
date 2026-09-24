@@ -3,7 +3,7 @@ import { prisma } from "@/shared/db/prisma";
 import { getSessionUserId } from "@/shared/auth/session";
 import { apiError, apiOk } from "@/shared/api/errors";
 import { recordActivityEvent } from "@/server/events";
-import { ActivityEventType } from "@/generated/prisma";
+import { ActivityEventType, Visibility } from "@/generated/prisma";
 import {
   initBareRepo,
   seedInitialCommit,
@@ -66,17 +66,46 @@ export async function GET(req: Request) {
           _count: { select: { members: true, tasks: true, threads: true } },
         },
       });
-      return apiOk({ projects });
+      return apiOk({ success: true, data: { projects } });
     } catch {
-      return apiOk({ projects: [] });
+      return apiOk({ success: true, data: { projects: [] } });
     }
   }
 
   const userId = await getSessionUserId();
   if (!userId) return apiError("UNAUTHENTICATED", "Sign in required.", null, 401);
+  const scope = url.searchParams.get("scope") ?? "all"; // mine | shared | archived | all
+  const wsSearch = url.searchParams.get("q")?.trim();
   try {
+    const baseOr =
+      scope === "mine"
+        ? [{ ownerId: userId }]
+        : scope === "shared"
+          ? [{ members: { some: { userId } } }, ]
+          : scope === "archived"
+            ? [
+                { ownerId: userId, status: { in: ["ARCHIVED", "COMPLETED"] } },
+                { members: { some: { userId } }, status: { in: ["ARCHIVED", "COMPLETED"] } },
+              ]
+            : [{ ownerId: userId }, { members: { some: { userId } } }];
+    const whereClause: Record<string, unknown> = { OR: baseOr };
+    if (scope !== "archived") {
+      // archived tab shows only archived/completed; other tabs hide them
+      whereClause.status = { notIn: ["ARCHIVED", "COMPLETED"] };
+    }
+    if (wsSearch) {
+      (whereClause as { AND: unknown[] }).AND = [
+        {
+          OR: [
+            { title: { contains: wsSearch, mode: "insensitive" } },
+            { tagline: { contains: wsSearch, mode: "insensitive" } },
+            { description: { contains: wsSearch, mode: "insensitive" } },
+          ],
+        },
+      ];
+    }
     const projects = await prisma.project.findMany({
-      where: { OR: [{ ownerId: userId }, { members: { some: { userId } } }] },
+      where: whereClause,
       orderBy: { updatedAt: "desc" },
       select: {
         id: true,
@@ -86,14 +115,25 @@ export async function GET(req: Request) {
         status: true,
         visibility: true,
         ipModel: true,
+        ownerId: true,
         updatedAt: true,
         createdAt: true,
         _count: { select: { members: true, roles: true, tasks: true, threads: true } },
       },
     });
-    return apiOk({ projects });
+    // Attach lightweight progress (done/total) per project for cards
+    const withProgress = await Promise.all(
+      projects.map(async (p) => {
+        const [total, done] = await Promise.all([
+          prisma.task.count({ where: { projectId: p.id } }),
+          prisma.task.count({ where: { projectId: p.id, status: "DONE" } }),
+        ]);
+        return { ...p, progress: { total, done, percent: total > 0 ? Math.round((done / total) * 100) : 0 } };
+      }),
+    );
+    return apiOk({ success: true, data: { projects: withProgress } });
   } catch {
-    return apiOk({ projects: [] });
+    return apiOk({ success: true, data: { projects: [] } });
   }
 }
 
@@ -180,7 +220,7 @@ export async function POST(req: Request) {
           name: parsed.data.title.trim(),
           slug,
           description: parsed.data.description?.trim() || parsed.data.tagline?.trim() || `Repository for ${parsed.data.title.trim()}`,
-          visibility: (parsed.data.visibility === "PRIVATE" ? "PRIVATE" : "PUBLIC") as any,
+          visibility: (parsed.data.visibility === "PRIVATE" ? "PRIVATE" : "PUBLIC") as Visibility,
           defaultBranch: "main",
           gitStoragePath: "",
         },
@@ -241,7 +281,7 @@ export async function POST(req: Request) {
       });
     }
 
-    return apiOk({ project }, 201);
+    return apiOk({ success: true, data: { project } }, 201);
   } catch (err) {
     if ((err as { code?: string }).code === "P2002") return apiError("SLUG_TAKEN", "That project URL is taken.", "slug", 409);
     throw err;

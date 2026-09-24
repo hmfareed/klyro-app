@@ -138,7 +138,7 @@ export function WorkspaceCreateProjectModal() {
       setIsOpen(false);
       // Trigger projects refresh in sidebar
       window.dispatchEvent(new CustomEvent("refresh-workspace-projects"));
-      router.push(`/repositories/${data.data.project.slug}`);
+      router.push(`/projects/${data.data.project.slug}/workspace?tab=overview`);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {

@@ -51,7 +51,7 @@ export async function GET(_req: Request, ctx: { params: Promise<{ slug: string }
     };
   });
 
-  return apiOk({ milestones: formatted });
+  return apiOk({ success: true, data: { milestones: formatted } });
 }
 
 // POST /api/v1/projects/:slug/milestones — create a new milestone
@@ -98,5 +98,5 @@ export async function POST(req: Request, ctx: { params: Promise<{ slug: string }
     },
   });
 
-  return apiOk({ milestone }, 201);
+  return apiOk({ success: true, data: { milestone } }, 201);
 }

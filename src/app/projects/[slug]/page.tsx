@@ -169,7 +169,7 @@ export default function PublicProjectPage({ params }: { params: Promise<{ slug: 
             <div className="flex items-center gap-3 shrink-0">
               {viewer.isMember ? (
                 <Link
-                  href={`/repositories/${project.slug}`}
+                  href={`/projects/${project.slug}/workspace?tab=overview`}
                   className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors"
                 >
                   <FolderGit2 size={16} /> Open Workspace

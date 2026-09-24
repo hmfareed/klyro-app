@@ -3,6 +3,8 @@ import { prisma } from "@/shared/db/prisma";
 import { getSessionUserId } from "@/shared/auth/session";
 import { requirePermission } from "@/shared/permissions/project";
 import { apiError, apiOk } from "@/shared/api/errors";
+import { recordActivityEvent } from "@/server/events";
+import { ActivityEventType } from "@/generated/prisma";
 
 const updateTaskSchema = z.object({
   status: z.enum(["TODO", "IN_PROGRESS", "IN_REVIEW", "DONE", "BLOCKED"]).optional(),
@@ -86,5 +88,16 @@ export async function PATCH(
     },
   });
 
-  return apiOk({ task: updatedTask });
+  if (parsed.data.status === "DONE") {
+    await recordActivityEvent({
+      actorId: userId,
+      projectId: project.id,
+      type: ActivityEventType.TASK_COMPLETED,
+      targetType: "Task",
+      targetId: taskId,
+      metadata: { headline: `Completed "${updatedTask.title}"`, taskTitle: updatedTask.title },
+    });
+  }
+
+  return apiOk({ success: true, data: { task: updatedTask } });
 }

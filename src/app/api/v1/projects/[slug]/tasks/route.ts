@@ -4,6 +4,8 @@ import { getSessionUserId } from "@/shared/auth/session";
 import { requirePermission } from "@/shared/permissions/project";
 import { createNotification } from "@/shared/notifications/create";
 import { apiError, apiOk } from "@/shared/api/errors";
+import { recordActivityEvent } from "@/server/events";
+import { ActivityEventType } from "@/generated/prisma";
 
 const createTaskSchema = z.object({
   title: z.string().min(2).max(120),
@@ -15,9 +17,10 @@ const createTaskSchema = z.object({
   assigneeUserIds: z.array(z.string()).optional(),
 });
 
-// GET /api/v1/projects/:slug/tasks — list project tasks
+// GET /api/v1/projects/:slug/tasks — list project tasks (with filters: status, priority, q, assignee, overdue, milestoneId)
 export async function GET(req: Request, ctx: { params: Promise<{ slug: string }> }) {
   const { slug } = await ctx.params;
+  const userId = await getSessionUserId();
   const project = await prisma.project.findUnique({
     where: { slug },
     select: { id: true },
@@ -26,9 +29,37 @@ export async function GET(req: Request, ctx: { params: Promise<{ slug: string }>
 
   const url = new URL(req.url);
   const milestoneId = url.searchParams.get("milestoneId");
+  const status = url.searchParams.get("status");
+  const priority = url.searchParams.get("priority");
+  const q = url.searchParams.get("q")?.trim();
+  const assignee = url.searchParams.get("assignee"); // "me" | userId | "unassigned"
+  const overdueOnly = url.searchParams.get("overdue") === "1";
 
   const whereClause: Record<string, unknown> = { projectId: project.id };
   if (milestoneId) whereClause.milestoneId = milestoneId;
+  if (status && ["TODO", "IN_PROGRESS", "IN_REVIEW", "DONE", "BLOCKED"].includes(status)) {
+    whereClause.status = status;
+  }
+  if (priority && ["LOW", "MEDIUM", "HIGH", "URGENT"].includes(priority)) {
+    whereClause.priority = priority;
+  }
+  if (q) {
+    whereClause.OR = [
+      { title: { contains: q, mode: "insensitive" } },
+      { description: { contains: q, mode: "insensitive" } },
+    ];
+  }
+  if (assignee === "me" && userId) {
+    whereClause.assignees = { some: { userId } };
+  } else if (assignee === "unassigned") {
+    whereClause.assignees = { none: {} };
+  } else if (assignee) {
+    whereClause.assignees = { some: { userId: assignee } };
+  }
+  if (overdueOnly) {
+    whereClause.status = { not: "DONE" };
+    whereClause.dueDate = { lt: new Date() };
+  }
 
   const tasks = await prisma.task.findMany({
     where: whereClause,
@@ -43,7 +74,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ slug: string }>
     },
   });
 
-  return apiOk({ tasks });
+  return apiOk({ success: true, data: { tasks } });
 }
 
 // POST /api/v1/projects/:slug/tasks — create a task
@@ -104,11 +135,20 @@ export async function POST(req: Request, ctx: { params: Promise<{ slug: string }
           type: "TASK_ASSIGNED",
           title: `Assigned: ${task.title}`,
           body: `You were assigned to a new task in ${project.title}.`,
-          linkUrl: `/repositories/${project.slug}?tab=tasks`,
+          linkUrl: `/projects/${project.slug}/workspace?tab=tasks`,
         });
       }
     }
   }
 
-  return apiOk({ task }, 201);
+  await recordActivityEvent({
+    actorId: userId,
+    projectId: project.id,
+    type: ActivityEventType.TASK_CREATED,
+    targetType: "Task",
+    targetId: task.id,
+    metadata: { headline: `Created task "${task.title}"`, taskTitle: task.title },
+  });
+
+  return apiOk({ success: true, data: { task } }, 201);
 }
