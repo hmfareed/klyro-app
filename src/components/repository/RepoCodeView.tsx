@@ -13,6 +13,10 @@ import {
   BookOpen,
   Plus,
   FilePlus,
+  GitFork,
+  RefreshCw,
+  Check,
+  AlertTriangle,
 } from "lucide-react";
 import { MarkdownViewer } from "./MarkdownViewer";
 import { RepoGoToFileModal } from "./RepoGoToFileModal";
@@ -112,6 +116,67 @@ export function RepoCodeView({
     loadTree();
   }, [loadTree]);
 
+  // Fork Synchronization state & handlers
+  const [syncStatus, setSyncStatus] = useState<any>(null);
+  const [syncing, setSyncing] = useState(false);
+  const [syncMenuOpen, setSyncMenuOpen] = useState(false);
+  const [syncSuccessMsg, setSyncSuccessMsg] = useState<string | null>(null);
+  const [syncErrorMsg, setSyncErrorMsg] = useState<string | null>(null);
+
+  const loadSyncStatus = useCallback(() => {
+    if (!repository?.forkedFrom) return;
+    fetch(`/api/v1/repositories/${owner}/${repo}/sync-fork?branch=${encodeURIComponent(currentBranch)}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((d) => {
+        if (d?.data?.syncStatus) setSyncStatus(d.data.syncStatus);
+      })
+      .catch(() => {});
+  }, [owner, repo, currentBranch, repository?.forkedFrom]);
+
+  useEffect(() => {
+    loadSyncStatus();
+  }, [loadSyncStatus]);
+
+  const handleSyncFork = async (mode: "AUTO" | "DISCARD") => {
+    if (mode === "DISCARD") {
+      if (
+        !confirm(
+          `Are you sure you want to discard local commits on '${currentBranch}' and reset to upstream? This action cannot be undone.`
+        )
+      ) {
+        return;
+      }
+    }
+
+    setSyncing(true);
+    setSyncMenuOpen(false);
+    setSyncSuccessMsg(null);
+    setSyncErrorMsg(null);
+
+    try {
+      const res = await fetch(`/api/v1/repositories/${owner}/${repo}/sync-fork`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ branch: currentBranch, mode }),
+      });
+
+      const d = await res.json().catch(() => null);
+      if (!res.ok || !d?.success) {
+        setSyncErrorMsg(d?.error?.message || "Failed to sync fork.");
+        return;
+      }
+
+      setSyncSuccessMsg(d?.data?.message || "Branch synchronized with upstream!");
+      setTimeout(() => setSyncSuccessMsg(null), 4000);
+      loadTree();
+      loadSyncStatus();
+    } catch {
+      setSyncErrorMsg("An unexpected error occurred during sync.");
+    } finally {
+      setSyncing(false);
+    }
+  };
+
   // Format file size
   const formatSize = (bytes?: number) => {
     if (!bytes && bytes !== 0) return "";
@@ -203,6 +268,132 @@ export function RepoCodeView({
 
   return (
     <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      {/* 0. Sync Fork Banner (when repository is a fork) */}
+      {repository.forkedFrom && syncStatus && (
+        <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <GitFork size={15} className="text-indigo-400 shrink-0" />
+            <div className="min-w-0">
+              <p className="text-slate-300">
+                {syncStatus.isUpToDate && (
+                  <span>
+                    This branch is <span className="font-semibold text-emerald-400">up to date</span> with{" "}
+                    <span className="font-semibold text-white">
+                      {repository.forkedFrom.owner?.username || "upstream"}/{repository.forkedFrom.name}:{currentBranch}
+                    </span>.
+                  </span>
+                )}
+                {!syncStatus.isUpToDate && syncStatus.behind > 0 && syncStatus.ahead === 0 && (
+                  <span>
+                    This branch is{" "}
+                    <span className="font-semibold text-amber-400">
+                      {syncStatus.behind} commit{syncStatus.behind === 1 ? "" : "s"} behind
+                    </span>{" "}
+                    <span className="font-semibold text-white">
+                      {repository.forkedFrom.owner?.username || "upstream"}/{repository.forkedFrom.name}:{currentBranch}
+                    </span>.
+                  </span>
+                )}
+                {!syncStatus.isUpToDate && syncStatus.ahead > 0 && syncStatus.behind === 0 && (
+                  <span>
+                    This branch is{" "}
+                    <span className="font-semibold text-emerald-400">
+                      {syncStatus.ahead} commit{syncStatus.ahead === 1 ? "" : "s"} ahead of
+                    </span>{" "}
+                    <span className="font-semibold text-white">
+                      {repository.forkedFrom.owner?.username || "upstream"}/{repository.forkedFrom.name}:{currentBranch}
+                    </span>.
+                  </span>
+                )}
+                {!syncStatus.isUpToDate && syncStatus.ahead > 0 && syncStatus.behind > 0 && (
+                  <span>
+                    This branch is{" "}
+                    <span className="font-semibold text-emerald-400">{syncStatus.ahead} ahead</span>,{" "}
+                    <span className="font-semibold text-amber-400">{syncStatus.behind} behind</span>{" "}
+                    <span className="font-semibold text-white">
+                      {repository.forkedFrom.owner?.username || "upstream"}/{repository.forkedFrom.name}:{currentBranch}
+                    </span>.
+                  </span>
+                )}
+              </p>
+              {syncStatus.hasConflicts && (
+                <p className="text-[11px] text-rose-400 flex items-center gap-1 mt-0.5">
+                  <AlertTriangle size={11} /> Merge conflicts detected with upstream. Resolve conflicts or discard local commits.
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Sync Fork Dropdown Actions */}
+          <div className="relative shrink-0 flex items-center gap-2 self-end sm:self-auto">
+            {syncSuccessMsg && (
+              <span className="text-[11px] text-emerald-400 font-medium animate-in fade-in">
+                {syncSuccessMsg}
+              </span>
+            )}
+            {syncErrorMsg && (
+              <span className="text-[11px] text-rose-400 font-medium animate-in fade-in">
+                {syncErrorMsg}
+              </span>
+            )}
+
+            {syncStatus.isUpToDate ? (
+              <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-400 select-none">
+                <Check size={13} className="text-emerald-400" />
+                <span>Sync fork</span>
+              </div>
+            ) : (
+              <div className="relative">
+                <button
+                  onClick={() => setSyncMenuOpen(!syncMenuOpen)}
+                  disabled={syncing}
+                  className="flex items-center gap-1.5 rounded-xl bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white shadow-lg hover:bg-indigo-500 transition-all cursor-pointer disabled:opacity-50"
+                >
+                  <RefreshCw size={13} className={syncing ? "animate-spin" : ""} />
+                  <span>Sync fork</span>
+                  <ChevronDown size={12} />
+                </button>
+
+                {syncMenuOpen && (
+                  <div
+                    className="absolute right-0 top-full mt-1.5 w-64 rounded-2xl border border-white/10 bg-zinc-950 p-2 shadow-2xl z-40 space-y-1"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <button
+                      onClick={() => handleSyncFork("AUTO")}
+                      className="w-full text-left rounded-xl p-2 hover:bg-white/5 transition-colors cursor-pointer"
+                    >
+                      <p className="text-xs font-semibold text-white flex items-center justify-between">
+                        <span>Update branch</span>
+                        <span className="text-[10px] text-indigo-400 font-normal">Pull changes</span>
+                      </p>
+                      <p className="text-[10px] text-slate-400 mt-0.5 leading-relaxed">
+                        Fast-forwards or merges upstream changes into this branch without losing your commits.
+                      </p>
+                    </button>
+
+                    {syncStatus.ahead > 0 && (
+                      <button
+                        onClick={() => handleSyncFork("DISCARD")}
+                        className="w-full text-left rounded-xl p-2 hover:bg-rose-500/10 transition-colors cursor-pointer border-t border-white/5"
+                      >
+                        <p className="text-xs font-semibold text-rose-300 flex items-center justify-between">
+                          <span>Discard commits</span>
+                          <span className="text-[10px] text-rose-400 font-normal">Reset</span>
+                        </p>
+                        <p className="text-[10px] text-rose-400/70 mt-0.5 leading-relaxed">
+                          Discards your {syncStatus.ahead} local commit{syncStatus.ahead === 1 ? "" : "s"} and resets this branch to match upstream.
+                        </p>
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Controls Bar: Branch Switcher, Breadcrumbs, Go To File button */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-3 flex-wrap">

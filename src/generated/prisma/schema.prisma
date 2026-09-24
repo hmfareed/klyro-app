@@ -921,10 +921,13 @@ model RepositoryActionRun {
   id           String    @id @default(cuid())
   repositoryId String
   workflowName String
+  workflowPath String?
   commitSha    String
   branch       String
   event        String
-  status       String    @default("SUCCESS") // QUEUED, RUNNING, SUCCESS, FAILURE, CANCELLED
+  status       String    @default("QUEUED") // QUEUED, RUNNING, SUCCESS, FAILURE, CANCELLED
+  conclusion   String? // SUCCESS, FAILURE, CANCELLED, TIMED_OUT
+  steps        Json?
   logs         String?   @db.Text
   durationMs   Int       @default(0)
   startedAt    DateTime  @default(now())
@@ -934,6 +937,7 @@ model RepositoryActionRun {
   repository Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 
   @@index([repositoryId, createdAt])
+  @@index([repositoryId, commitSha])
 }
 
 model RepositoryAuditEvent {

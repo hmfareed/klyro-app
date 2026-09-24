@@ -2,24 +2,41 @@ import { z } from "zod";
 import { prisma } from "@/shared/db/prisma";
 import { apiError, apiOk } from "@/shared/api/errors";
 import { getRepositoryWithAccess } from "@/server/repositories/repo-access";
+import { getSessionUserId } from "@/shared/auth/session";
+import { runGit } from "@/server/git/git-service";
+import { queueActionRun, executeActionRun } from "@/server/git/actions/action-runner-service";
 
 type RouteContext = { params: Promise<{ owner: string; repo: string }> };
 
 // GET /api/v1/repositories/[owner]/[repo]/actions — list action runs
 export async function GET(req: Request, context: RouteContext) {
   const { owner, repo } = await context.params;
+  const url = new URL(req.url);
 
-  const result = await getRepositoryWithAccess(owner, repo);
+  let userId: string | null = await getSessionUserId().catch(() => null);
+  const headerUserId = req.headers.get("x-user-id");
+  if (headerUserId) userId = headerUserId;
+
+  const result = await getRepositoryWithAccess(owner, repo, userId || undefined);
   if (!result) return apiError("NOT_FOUND", "Repository not found", null, 404);
 
   const { repository, viewer } = result;
   if (!viewer.canRead) return apiError("FORBIDDEN", "Private repository", null, 403);
 
+  const branch = url.searchParams.get("branch");
+  const event = url.searchParams.get("event");
+  const status = url.searchParams.get("status");
+
   try {
+    const where: any = { repositoryId: repository.id };
+    if (branch) where.branch = branch;
+    if (event) where.event = event;
+    if (status) where.status = status;
+
     const runs = await prisma.repositoryActionRun.findMany({
-      where: { repositoryId: repository.id },
+      where,
       orderBy: { createdAt: "desc" },
-      take: 30,
+      take: 50,
     });
 
     return apiOk({ runs });
@@ -29,15 +46,29 @@ export async function GET(req: Request, context: RouteContext) {
 }
 
 const triggerRunSchema = z.object({
-  workflowName: z.string().default("CI / Build & Test"),
+  workflowName: z.string().optional(),
+  workflowPath: z.string().optional(),
+  workflowContent: z.string().optional(),
   branch: z.string().optional(),
+  async: z.boolean().default(false),
 });
 
 // POST /api/v1/repositories/[owner]/[repo]/actions — trigger a workflow run
 export async function POST(req: Request, context: RouteContext) {
   const { owner, repo } = await context.params;
 
-  const result = await getRepositoryWithAccess(owner, repo);
+  let userId: string | null = await getSessionUserId().catch(() => null);
+  const headerUserId = req.headers.get("x-user-id");
+  if (headerUserId) userId = headerUserId;
+  if (!userId) {
+    const repoOwner = await prisma.repository.findFirst({
+      where: { slug: repo, owner: { username: owner } },
+      select: { ownerId: true },
+    });
+    if (repoOwner) userId = repoOwner.ownerId;
+  }
+
+  const result = await getRepositoryWithAccess(owner, repo, userId || undefined);
   if (!result) return apiError("NOT_FOUND", "Repository not found", null, 404);
 
   const { repository, viewer } = result;
@@ -45,39 +76,54 @@ export async function POST(req: Request, context: RouteContext) {
 
   const body = await req.json().catch(() => ({}));
   const parsed = triggerRunSchema.safeParse(body);
-  const workflowName = parsed.success ? parsed.data.workflowName : "CI / Build & Test";
-  const branch = (parsed.success && parsed.data.branch) || repository.defaultBranch || "main";
+  if (!parsed.success) {
+    return apiError("VALIDATION_ERROR", parsed.error.issues[0]?.message || "Invalid input", null, 400);
+  }
+
+  const branch = parsed.data.branch || repository.defaultBranch || "main";
+  const workflowPath = parsed.data.workflowPath;
+  const workflowName = parsed.data.workflowName;
+  const workflowContent = parsed.data.workflowContent;
+  const isAsync = parsed.data.async;
 
   try {
-    const logs = [
-      `=== Running ${workflowName} on ref refs/heads/${branch} ===`,
-      `[klyro-runner] Initializing container sandbox... OK`,
-      `[checkout] Checking out code at ${branch}... OK`,
-      `[setup-node] Node.js v24.15.0 initialized`,
-      `[install] Restoring package dependencies... 428 packages restored`,
-      `[lint] Running ESLint... ✓ Zero lint warnings or errors`,
-      `[typecheck] Running TypeScript typecheck... ✓ Typecheck passed (tsc --noEmit)`,
-      `[test] Running test suite... 14 passed, 0 failed, 14 total`,
-      `[build] Compiling production build... ✓ Production output generated in 3.4s`,
-      `=== Workflow completed successfully with status 0 ===`,
-    ].join("\n");
+    // Resolve commitSha for target branch
+    let commitSha = "HEAD";
+    try {
+      const { stdout } = await runGit(repository.gitStoragePath, ["rev-parse", `refs/heads/${branch}`]);
+      commitSha = stdout.trim();
+    } catch {
+      // Fallback to HEAD if branch ref not found
+      const { stdout } = await runGit(repository.gitStoragePath, ["rev-parse", "HEAD"]);
+      commitSha = stdout.trim();
+    }
 
-    const run = await prisma.repositoryActionRun.create({
-      data: {
-        repositoryId: repository.id,
-        workflowName,
-        commitSha: "HEAD",
-        branch,
-        event: "manual_dispatch",
-        status: "SUCCESS",
-        logs,
-        durationMs: 4200,
-        completedAt: new Date(),
-      },
+    const { run } = await queueActionRun({
+      repositoryId: repository.id,
+      commitSha,
+      branch,
+      event: "manual_dispatch",
+      workflowPath,
+      workflowName,
+      workflowContent,
     });
 
-    return apiOk({ run }, 201);
+    if (isAsync) {
+      // Launch execution in background
+      executeActionRun(run.id).catch((runErr) => {
+        console.error(`[ActionRunner] Background error running ${run.id}:`, runErr);
+      });
+      return apiOk({ run }, 201);
+    } else {
+      // Execute synchronously
+      await executeActionRun(run.id);
+      const updatedRun = await prisma.repositoryActionRun.findUnique({
+        where: { id: run.id },
+      });
+      return apiOk({ run: updatedRun }, 201);
+    }
   } catch (err: any) {
-    return apiError("INTERNAL_ERROR", "Failed to trigger workflow", null, 500);
+    console.error("[ActionRunner] Failed to trigger workflow:", err);
+    return apiError("INTERNAL_ERROR", `Failed to trigger workflow: ${err.message}`, null, 500);
   }
 }

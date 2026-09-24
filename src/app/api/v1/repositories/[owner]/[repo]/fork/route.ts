@@ -13,7 +13,9 @@ type RouteContext = { params: Promise<{ owner: string; repo: string }> };
 export async function POST(req: Request, context: RouteContext) {
   const { owner, repo } = await context.params;
 
-  let userId = await getSessionUserId();
+  let userId = await getSessionUserId().catch(() => null);
+  const headerUserId = req.headers.get("x-user-id");
+  if (headerUserId) userId = headerUserId;
   if (!userId) {
     const firstUser = await prisma.user.findFirst({ select: { id: true } });
     if (firstUser) userId = firstUser.id;

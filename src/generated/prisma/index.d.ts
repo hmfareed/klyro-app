@@ -53040,10 +53040,12 @@ export namespace Prisma {
     id: string | null
     repositoryId: string | null
     workflowName: string | null
+    workflowPath: string | null
     commitSha: string | null
     branch: string | null
     event: string | null
     status: string | null
+    conclusion: string | null
     logs: string | null
     durationMs: number | null
     startedAt: Date | null
@@ -53055,10 +53057,12 @@ export namespace Prisma {
     id: string | null
     repositoryId: string | null
     workflowName: string | null
+    workflowPath: string | null
     commitSha: string | null
     branch: string | null
     event: string | null
     status: string | null
+    conclusion: string | null
     logs: string | null
     durationMs: number | null
     startedAt: Date | null
@@ -53070,10 +53074,13 @@ export namespace Prisma {
     id: number
     repositoryId: number
     workflowName: number
+    workflowPath: number
     commitSha: number
     branch: number
     event: number
     status: number
+    conclusion: number
+    steps: number
     logs: number
     durationMs: number
     startedAt: number
@@ -53095,10 +53102,12 @@ export namespace Prisma {
     id?: true
     repositoryId?: true
     workflowName?: true
+    workflowPath?: true
     commitSha?: true
     branch?: true
     event?: true
     status?: true
+    conclusion?: true
     logs?: true
     durationMs?: true
     startedAt?: true
@@ -53110,10 +53119,12 @@ export namespace Prisma {
     id?: true
     repositoryId?: true
     workflowName?: true
+    workflowPath?: true
     commitSha?: true
     branch?: true
     event?: true
     status?: true
+    conclusion?: true
     logs?: true
     durationMs?: true
     startedAt?: true
@@ -53125,10 +53136,13 @@ export namespace Prisma {
     id?: true
     repositoryId?: true
     workflowName?: true
+    workflowPath?: true
     commitSha?: true
     branch?: true
     event?: true
     status?: true
+    conclusion?: true
+    steps?: true
     logs?: true
     durationMs?: true
     startedAt?: true
@@ -53227,10 +53241,13 @@ export namespace Prisma {
     id: string
     repositoryId: string
     workflowName: string
+    workflowPath: string | null
     commitSha: string
     branch: string
     event: string
     status: string
+    conclusion: string | null
+    steps: JsonValue | null
     logs: string | null
     durationMs: number
     startedAt: Date
@@ -53261,10 +53278,13 @@ export namespace Prisma {
     id?: boolean
     repositoryId?: boolean
     workflowName?: boolean
+    workflowPath?: boolean
     commitSha?: boolean
     branch?: boolean
     event?: boolean
     status?: boolean
+    conclusion?: boolean
+    steps?: boolean
     logs?: boolean
     durationMs?: boolean
     startedAt?: boolean
@@ -53277,10 +53297,13 @@ export namespace Prisma {
     id?: boolean
     repositoryId?: boolean
     workflowName?: boolean
+    workflowPath?: boolean
     commitSha?: boolean
     branch?: boolean
     event?: boolean
     status?: boolean
+    conclusion?: boolean
+    steps?: boolean
     logs?: boolean
     durationMs?: boolean
     startedAt?: boolean
@@ -53293,10 +53316,13 @@ export namespace Prisma {
     id?: boolean
     repositoryId?: boolean
     workflowName?: boolean
+    workflowPath?: boolean
     commitSha?: boolean
     branch?: boolean
     event?: boolean
     status?: boolean
+    conclusion?: boolean
+    steps?: boolean
     logs?: boolean
     durationMs?: boolean
     startedAt?: boolean
@@ -53309,10 +53335,13 @@ export namespace Prisma {
     id?: boolean
     repositoryId?: boolean
     workflowName?: boolean
+    workflowPath?: boolean
     commitSha?: boolean
     branch?: boolean
     event?: boolean
     status?: boolean
+    conclusion?: boolean
+    steps?: boolean
     logs?: boolean
     durationMs?: boolean
     startedAt?: boolean
@@ -53320,7 +53349,7 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type RepositoryActionRunOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repositoryId" | "workflowName" | "commitSha" | "branch" | "event" | "status" | "logs" | "durationMs" | "startedAt" | "completedAt" | "createdAt", ExtArgs["result"]["repositoryActionRun"]>
+  export type RepositoryActionRunOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repositoryId" | "workflowName" | "workflowPath" | "commitSha" | "branch" | "event" | "status" | "conclusion" | "steps" | "logs" | "durationMs" | "startedAt" | "completedAt" | "createdAt", ExtArgs["result"]["repositoryActionRun"]>
   export type RepositoryActionRunInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
   }
@@ -53340,10 +53369,13 @@ export namespace Prisma {
       id: string
       repositoryId: string
       workflowName: string
+      workflowPath: string | null
       commitSha: string
       branch: string
       event: string
       status: string
+      conclusion: string | null
+      steps: Prisma.JsonValue | null
       logs: string | null
       durationMs: number
       startedAt: Date
@@ -53776,10 +53808,13 @@ export namespace Prisma {
     readonly id: FieldRef<"RepositoryActionRun", 'String'>
     readonly repositoryId: FieldRef<"RepositoryActionRun", 'String'>
     readonly workflowName: FieldRef<"RepositoryActionRun", 'String'>
+    readonly workflowPath: FieldRef<"RepositoryActionRun", 'String'>
     readonly commitSha: FieldRef<"RepositoryActionRun", 'String'>
     readonly branch: FieldRef<"RepositoryActionRun", 'String'>
     readonly event: FieldRef<"RepositoryActionRun", 'String'>
     readonly status: FieldRef<"RepositoryActionRun", 'String'>
+    readonly conclusion: FieldRef<"RepositoryActionRun", 'String'>
+    readonly steps: FieldRef<"RepositoryActionRun", 'Json'>
     readonly logs: FieldRef<"RepositoryActionRun", 'String'>
     readonly durationMs: FieldRef<"RepositoryActionRun", 'Int'>
     readonly startedAt: FieldRef<"RepositoryActionRun", 'DateTime'>
@@ -58129,10 +58164,13 @@ export namespace Prisma {
     id: 'id',
     repositoryId: 'repositoryId',
     workflowName: 'workflowName',
+    workflowPath: 'workflowPath',
     commitSha: 'commitSha',
     branch: 'branch',
     event: 'event',
     status: 'status',
+    conclusion: 'conclusion',
+    steps: 'steps',
     logs: 'logs',
     durationMs: 'durationMs',
     startedAt: 'startedAt',
@@ -61809,10 +61847,13 @@ export namespace Prisma {
     id?: StringFilter<"RepositoryActionRun"> | string
     repositoryId?: StringFilter<"RepositoryActionRun"> | string
     workflowName?: StringFilter<"RepositoryActionRun"> | string
+    workflowPath?: StringNullableFilter<"RepositoryActionRun"> | string | null
     commitSha?: StringFilter<"RepositoryActionRun"> | string
     branch?: StringFilter<"RepositoryActionRun"> | string
     event?: StringFilter<"RepositoryActionRun"> | string
     status?: StringFilter<"RepositoryActionRun"> | string
+    conclusion?: StringNullableFilter<"RepositoryActionRun"> | string | null
+    steps?: JsonNullableFilter<"RepositoryActionRun">
     logs?: StringNullableFilter<"RepositoryActionRun"> | string | null
     durationMs?: IntFilter<"RepositoryActionRun"> | number
     startedAt?: DateTimeFilter<"RepositoryActionRun"> | Date | string
@@ -61825,10 +61866,13 @@ export namespace Prisma {
     id?: SortOrder
     repositoryId?: SortOrder
     workflowName?: SortOrder
+    workflowPath?: SortOrderInput | SortOrder
     commitSha?: SortOrder
     branch?: SortOrder
     event?: SortOrder
     status?: SortOrder
+    conclusion?: SortOrderInput | SortOrder
+    steps?: SortOrderInput | SortOrder
     logs?: SortOrderInput | SortOrder
     durationMs?: SortOrder
     startedAt?: SortOrder
@@ -61844,10 +61888,13 @@ export namespace Prisma {
     NOT?: RepositoryActionRunWhereInput | RepositoryActionRunWhereInput[]
     repositoryId?: StringFilter<"RepositoryActionRun"> | string
     workflowName?: StringFilter<"RepositoryActionRun"> | string
+    workflowPath?: StringNullableFilter<"RepositoryActionRun"> | string | null
     commitSha?: StringFilter<"RepositoryActionRun"> | string
     branch?: StringFilter<"RepositoryActionRun"> | string
     event?: StringFilter<"RepositoryActionRun"> | string
     status?: StringFilter<"RepositoryActionRun"> | string
+    conclusion?: StringNullableFilter<"RepositoryActionRun"> | string | null
+    steps?: JsonNullableFilter<"RepositoryActionRun">
     logs?: StringNullableFilter<"RepositoryActionRun"> | string | null
     durationMs?: IntFilter<"RepositoryActionRun"> | number
     startedAt?: DateTimeFilter<"RepositoryActionRun"> | Date | string
@@ -61860,10 +61907,13 @@ export namespace Prisma {
     id?: SortOrder
     repositoryId?: SortOrder
     workflowName?: SortOrder
+    workflowPath?: SortOrderInput | SortOrder
     commitSha?: SortOrder
     branch?: SortOrder
     event?: SortOrder
     status?: SortOrder
+    conclusion?: SortOrderInput | SortOrder
+    steps?: SortOrderInput | SortOrder
     logs?: SortOrderInput | SortOrder
     durationMs?: SortOrder
     startedAt?: SortOrder
@@ -61883,10 +61933,13 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"RepositoryActionRun"> | string
     repositoryId?: StringWithAggregatesFilter<"RepositoryActionRun"> | string
     workflowName?: StringWithAggregatesFilter<"RepositoryActionRun"> | string
+    workflowPath?: StringNullableWithAggregatesFilter<"RepositoryActionRun"> | string | null
     commitSha?: StringWithAggregatesFilter<"RepositoryActionRun"> | string
     branch?: StringWithAggregatesFilter<"RepositoryActionRun"> | string
     event?: StringWithAggregatesFilter<"RepositoryActionRun"> | string
     status?: StringWithAggregatesFilter<"RepositoryActionRun"> | string
+    conclusion?: StringNullableWithAggregatesFilter<"RepositoryActionRun"> | string | null
+    steps?: JsonNullableWithAggregatesFilter<"RepositoryActionRun">
     logs?: StringNullableWithAggregatesFilter<"RepositoryActionRun"> | string | null
     durationMs?: IntWithAggregatesFilter<"RepositoryActionRun"> | number
     startedAt?: DateTimeWithAggregatesFilter<"RepositoryActionRun"> | Date | string
@@ -65596,10 +65649,13 @@ export namespace Prisma {
   export type RepositoryActionRunCreateInput = {
     id?: string
     workflowName: string
+    workflowPath?: string | null
     commitSha: string
     branch: string
     event: string
     status?: string
+    conclusion?: string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: string | null
     durationMs?: number
     startedAt?: Date | string
@@ -65612,10 +65668,13 @@ export namespace Prisma {
     id?: string
     repositoryId: string
     workflowName: string
+    workflowPath?: string | null
     commitSha: string
     branch: string
     event: string
     status?: string
+    conclusion?: string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: string | null
     durationMs?: number
     startedAt?: Date | string
@@ -65626,10 +65685,13 @@ export namespace Prisma {
   export type RepositoryActionRunUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     workflowName?: StringFieldUpdateOperationsInput | string
+    workflowPath?: NullableStringFieldUpdateOperationsInput | string | null
     commitSha?: StringFieldUpdateOperationsInput | string
     branch?: StringFieldUpdateOperationsInput | string
     event?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    conclusion?: NullableStringFieldUpdateOperationsInput | string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: NullableStringFieldUpdateOperationsInput | string | null
     durationMs?: IntFieldUpdateOperationsInput | number
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -65642,10 +65704,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     repositoryId?: StringFieldUpdateOperationsInput | string
     workflowName?: StringFieldUpdateOperationsInput | string
+    workflowPath?: NullableStringFieldUpdateOperationsInput | string | null
     commitSha?: StringFieldUpdateOperationsInput | string
     branch?: StringFieldUpdateOperationsInput | string
     event?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    conclusion?: NullableStringFieldUpdateOperationsInput | string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: NullableStringFieldUpdateOperationsInput | string | null
     durationMs?: IntFieldUpdateOperationsInput | number
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -65657,10 +65722,13 @@ export namespace Prisma {
     id?: string
     repositoryId: string
     workflowName: string
+    workflowPath?: string | null
     commitSha: string
     branch: string
     event: string
     status?: string
+    conclusion?: string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: string | null
     durationMs?: number
     startedAt?: Date | string
@@ -65671,10 +65739,13 @@ export namespace Prisma {
   export type RepositoryActionRunUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     workflowName?: StringFieldUpdateOperationsInput | string
+    workflowPath?: NullableStringFieldUpdateOperationsInput | string | null
     commitSha?: StringFieldUpdateOperationsInput | string
     branch?: StringFieldUpdateOperationsInput | string
     event?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    conclusion?: NullableStringFieldUpdateOperationsInput | string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: NullableStringFieldUpdateOperationsInput | string | null
     durationMs?: IntFieldUpdateOperationsInput | number
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -65686,10 +65757,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     repositoryId?: StringFieldUpdateOperationsInput | string
     workflowName?: StringFieldUpdateOperationsInput | string
+    workflowPath?: NullableStringFieldUpdateOperationsInput | string | null
     commitSha?: StringFieldUpdateOperationsInput | string
     branch?: StringFieldUpdateOperationsInput | string
     event?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    conclusion?: NullableStringFieldUpdateOperationsInput | string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: NullableStringFieldUpdateOperationsInput | string | null
     durationMs?: IntFieldUpdateOperationsInput | number
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -68517,10 +68591,13 @@ export namespace Prisma {
     id?: SortOrder
     repositoryId?: SortOrder
     workflowName?: SortOrder
+    workflowPath?: SortOrder
     commitSha?: SortOrder
     branch?: SortOrder
     event?: SortOrder
     status?: SortOrder
+    conclusion?: SortOrder
+    steps?: SortOrder
     logs?: SortOrder
     durationMs?: SortOrder
     startedAt?: SortOrder
@@ -68536,10 +68613,12 @@ export namespace Prisma {
     id?: SortOrder
     repositoryId?: SortOrder
     workflowName?: SortOrder
+    workflowPath?: SortOrder
     commitSha?: SortOrder
     branch?: SortOrder
     event?: SortOrder
     status?: SortOrder
+    conclusion?: SortOrder
     logs?: SortOrder
     durationMs?: SortOrder
     startedAt?: SortOrder
@@ -68551,10 +68630,12 @@ export namespace Prisma {
     id?: SortOrder
     repositoryId?: SortOrder
     workflowName?: SortOrder
+    workflowPath?: SortOrder
     commitSha?: SortOrder
     branch?: SortOrder
     event?: SortOrder
     status?: SortOrder
+    conclusion?: SortOrder
     logs?: SortOrder
     durationMs?: SortOrder
     startedAt?: SortOrder
@@ -85014,10 +85095,13 @@ export namespace Prisma {
   export type RepositoryActionRunCreateWithoutRepositoryInput = {
     id?: string
     workflowName: string
+    workflowPath?: string | null
     commitSha: string
     branch: string
     event: string
     status?: string
+    conclusion?: string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: string | null
     durationMs?: number
     startedAt?: Date | string
@@ -85028,10 +85112,13 @@ export namespace Prisma {
   export type RepositoryActionRunUncheckedCreateWithoutRepositoryInput = {
     id?: string
     workflowName: string
+    workflowPath?: string | null
     commitSha: string
     branch: string
     event: string
     status?: string
+    conclusion?: string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: string | null
     durationMs?: number
     startedAt?: Date | string
@@ -85605,10 +85692,13 @@ export namespace Prisma {
     id?: StringFilter<"RepositoryActionRun"> | string
     repositoryId?: StringFilter<"RepositoryActionRun"> | string
     workflowName?: StringFilter<"RepositoryActionRun"> | string
+    workflowPath?: StringNullableFilter<"RepositoryActionRun"> | string | null
     commitSha?: StringFilter<"RepositoryActionRun"> | string
     branch?: StringFilter<"RepositoryActionRun"> | string
     event?: StringFilter<"RepositoryActionRun"> | string
     status?: StringFilter<"RepositoryActionRun"> | string
+    conclusion?: StringNullableFilter<"RepositoryActionRun"> | string | null
+    steps?: JsonNullableFilter<"RepositoryActionRun">
     logs?: StringNullableFilter<"RepositoryActionRun"> | string | null
     durationMs?: IntFilter<"RepositoryActionRun"> | number
     startedAt?: DateTimeFilter<"RepositoryActionRun"> | Date | string
@@ -95440,10 +95530,13 @@ export namespace Prisma {
   export type RepositoryActionRunCreateManyRepositoryInput = {
     id?: string
     workflowName: string
+    workflowPath?: string | null
     commitSha: string
     branch: string
     event: string
     status?: string
+    conclusion?: string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: string | null
     durationMs?: number
     startedAt?: Date | string
@@ -95874,10 +95967,13 @@ export namespace Prisma {
   export type RepositoryActionRunUpdateWithoutRepositoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     workflowName?: StringFieldUpdateOperationsInput | string
+    workflowPath?: NullableStringFieldUpdateOperationsInput | string | null
     commitSha?: StringFieldUpdateOperationsInput | string
     branch?: StringFieldUpdateOperationsInput | string
     event?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    conclusion?: NullableStringFieldUpdateOperationsInput | string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: NullableStringFieldUpdateOperationsInput | string | null
     durationMs?: IntFieldUpdateOperationsInput | number
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -95888,10 +95984,13 @@ export namespace Prisma {
   export type RepositoryActionRunUncheckedUpdateWithoutRepositoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     workflowName?: StringFieldUpdateOperationsInput | string
+    workflowPath?: NullableStringFieldUpdateOperationsInput | string | null
     commitSha?: StringFieldUpdateOperationsInput | string
     branch?: StringFieldUpdateOperationsInput | string
     event?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    conclusion?: NullableStringFieldUpdateOperationsInput | string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: NullableStringFieldUpdateOperationsInput | string | null
     durationMs?: IntFieldUpdateOperationsInput | number
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -95902,10 +96001,13 @@ export namespace Prisma {
   export type RepositoryActionRunUncheckedUpdateManyWithoutRepositoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     workflowName?: StringFieldUpdateOperationsInput | string
+    workflowPath?: NullableStringFieldUpdateOperationsInput | string | null
     commitSha?: StringFieldUpdateOperationsInput | string
     branch?: StringFieldUpdateOperationsInput | string
     event?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
+    conclusion?: NullableStringFieldUpdateOperationsInput | string | null
+    steps?: NullableJsonNullValueInput | InputJsonValue
     logs?: NullableStringFieldUpdateOperationsInput | string | null
     durationMs?: IntFieldUpdateOperationsInput | number
     startedAt?: DateTimeFieldUpdateOperationsInput | Date | string

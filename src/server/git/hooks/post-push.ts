@@ -3,6 +3,7 @@ import { dispatchRepositoryWebhooks } from "@/server/webhooks/webhook-dispatcher
 import { recordActivityEvent } from "@/server/events";
 import { ActivityEventType } from "@/generated/prisma";
 import { getCommits } from "@/server/git/git-service";
+import { triggerPushWorkflows } from "@/server/git/actions/action-runner-service";
 
 export interface PostPushEventParams {
   repositoryId: string;
@@ -102,22 +103,11 @@ export async function handlePostPushEvent(params: PostPushEventParams): Promise<
         });
       }
 
-      // 4. Create an Action Run for tracking CI / Workflows
-      if (!isDeletion && recentCommits.length > 0) {
-        await prisma.repositoryActionRun.create({
-          data: {
-            repositoryId,
-            workflowName: "Push Check",
-            commitSha: update.newSha,
-            branch: branchName,
-            event: "push",
-            status: "SUCCESS",
-            logs: `Triggered by push to ${update.refName}\nCommit: ${update.newSha.slice(0, 7)} — ${commitSummary}\nStatus: Verified\n`,
-            durationMs: 120,
-            startedAt: new Date(),
-            completedAt: new Date(),
-          },
-        }).catch(() => {});
+      // 4. Trigger configured CI Workflows on push
+      if (!isDeletion && update.newSha) {
+        triggerPushWorkflows(repositoryId, update.newSha, branchName).catch((err) => {
+          console.warn("[PostPushHook] triggerPushWorkflows error:", err);
+        });
       }
     }
   } catch (err) {
