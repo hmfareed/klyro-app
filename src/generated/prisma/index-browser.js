@@ -548,6 +548,19 @@ exports.Prisma.RepositoryReleaseScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.RepositoryReleaseAssetScalarFieldEnum = {
+  id: 'id',
+  releaseId: 'releaseId',
+  name: 'name',
+  size: 'size',
+  contentType: 'contentType',
+  downloadCount: 'downloadCount',
+  storagePath: 'storagePath',
+  sha256: 'sha256',
+  uploadedById: 'uploadedById',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.RepositoryWebhookScalarFieldEnum = {
   id: 'id',
   repositoryId: 'repositoryId',
@@ -813,6 +826,7 @@ exports.Prisma.ModelName = {
   PullRequestReview: 'PullRequestReview',
   PullRequestComment: 'PullRequestComment',
   RepositoryRelease: 'RepositoryRelease',
+  RepositoryReleaseAsset: 'RepositoryReleaseAsset',
   RepositoryWebhook: 'RepositoryWebhook',
   RepositoryWebhookDelivery: 'RepositoryWebhookDelivery',
   RepositoryActionRun: 'RepositoryActionRun',

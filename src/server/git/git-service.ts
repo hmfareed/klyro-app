@@ -1239,3 +1239,122 @@ export async function generateZipArchive(storagePath: string, ref: string): Prom
     });
   });
 }
+
+/**
+ * Generate a tar.gz archive buffer of the repo at ref
+ */
+export async function generateTarGzArchive(storagePath: string, ref: string): Promise<Buffer> {
+  return new Promise<Buffer>((resolve, reject) => {
+    const child = spawn("git", ["archive", "--format=tar.gz", ref], {
+      cwd: storagePath,
+      env: { ...process.env, GIT_DIR: storagePath },
+    });
+
+    const chunks: Buffer[] = [];
+    child.stdout.on("data", (chunk) => chunks.push(chunk));
+    child.stderr.on("data", (err) => reject(new Error(err.toString())));
+    child.on("close", (code) => {
+      if (code === 0) resolve(Buffer.concat(chunks));
+      else reject(new Error(`git archive failed with code ${code}`));
+    });
+  });
+}
+
+/**
+ * Generate release notes / changelog based on git commits
+ */
+export async function generateReleaseNotes(
+  storagePath: string,
+  targetRef: string,
+  previousTag?: string
+): Promise<{ notes: string; commitCount: number; previousTag?: string }> {
+  let prev = previousTag;
+
+  if (!prev) {
+    try {
+      const { stdout: descOut } = await runGit(storagePath, [
+        "describe",
+        "--tags",
+        "--abbrev=0",
+        `${targetRef}^`,
+      ]);
+      prev = descOut.trim();
+    } catch {
+      // No previous tag found, will log from inception
+    }
+  }
+
+  const logArgs = ["log", "--format=%H|%h|%s|%an|%ae"];
+  if (prev) {
+    logArgs.push(`${prev}..${targetRef}`);
+  } else {
+    logArgs.push("-n", "50", targetRef);
+  }
+
+  let lines: string[] = [];
+  try {
+    const { stdout } = await runGit(storagePath, logArgs);
+    lines = stdout.trim().split("\n").filter(Boolean);
+  } catch {
+    return {
+      notes: "Initial release.",
+      commitCount: 0,
+      previousTag: prev,
+    };
+  }
+
+  if (lines.length === 0) {
+    return {
+      notes: "No new changes detected since previous release.",
+      commitCount: 0,
+      previousTag: prev,
+    };
+  }
+
+  const features: string[] = [];
+  const fixes: string[] = [];
+  const otherChanges: string[] = [];
+  const contributors = new Set<string>();
+
+  for (const line of lines) {
+    const [, shortSha, subject, author] = line.split("|");
+    if (!subject) continue;
+    if (author) contributors.add(author);
+
+    const entry = `* ${subject} by @${author || "contributor"} in \`${shortSha}\``;
+    const lower = subject.toLowerCase();
+
+    if (lower.startsWith("feat") || lower.includes("feature") || lower.startsWith("add")) {
+      features.push(entry);
+    } else if (lower.startsWith("fix") || lower.includes("bug") || lower.includes("patch")) {
+      fixes.push(entry);
+    } else {
+      otherChanges.push(entry);
+    }
+  }
+
+  const sections: string[] = [];
+  sections.push("## What's Changed");
+
+  if (features.length > 0) {
+    sections.push("### 🚀 New Features\n" + features.join("\n"));
+  }
+
+  if (fixes.length > 0) {
+    sections.push("### 🐛 Bug Fixes\n" + fixes.join("\n"));
+  }
+
+  if (otherChanges.length > 0) {
+    sections.push("### 🛠️ Maintenance & Other Changes\n" + otherChanges.join("\n"));
+  }
+
+  if (contributors.size > 0) {
+    sections.push("### 👥 Contributors\n" + Array.from(contributors).map((c) => `@${c}`).join(", "));
+  }
+
+  return {
+    notes: sections.join("\n\n"),
+    commitCount: lines.length,
+    previousTag: prev,
+  };
+}

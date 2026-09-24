@@ -170,6 +170,7 @@ model User {
   pullRequestComments     PullRequestComment[]  @relation("PRCommentAuthor")
   resolvedPrComments      PullRequestComment[]  @relation("PRCommentResolvedBy")
   repositoryReleases      RepositoryRelease[]
+  releaseAssetsUploaded   RepositoryReleaseAsset[] @relation("ReleaseAssetUploader")
   repositoryAuditEvents   RepositoryAuditEvent[]
   personalAccessTokens    PersonalAccessToken[]
   sshKeys                 UserSshKey[]
@@ -859,10 +860,30 @@ model RepositoryRelease {
 
   repository       Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
   author           User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  assets           RepositoryReleaseAsset[]
 
   @@unique([repositoryId, tagName])
   @@index([repositoryId])
   @@index([authorId])
+}
+
+model RepositoryReleaseAsset {
+  id            String            @id @default(cuid())
+  releaseId     String
+  name          String
+  size          Int
+  contentType   String            @default("application/octet-stream")
+  downloadCount Int               @default(0)
+  storagePath   String
+  sha256        String
+  uploadedById  String
+  createdAt     DateTime          @default(now())
+
+  release       RepositoryRelease @relation(fields: [releaseId], references: [id], onDelete: Cascade)
+  uploadedBy    User              @relation("ReleaseAssetUploader", fields: [uploadedById], references: [id], onDelete: Cascade)
+
+  @@index([releaseId])
+  @@index([uploadedById])
 }
 
 model RepositoryWebhook {

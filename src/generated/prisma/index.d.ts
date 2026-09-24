@@ -199,6 +199,11 @@ export type PullRequestComment = $Result.DefaultSelection<Prisma.$PullRequestCom
  */
 export type RepositoryRelease = $Result.DefaultSelection<Prisma.$RepositoryReleasePayload>
 /**
+ * Model RepositoryReleaseAsset
+ * 
+ */
+export type RepositoryReleaseAsset = $Result.DefaultSelection<Prisma.$RepositoryReleaseAssetPayload>
+/**
  * Model RepositoryWebhook
  * 
  */
@@ -953,6 +958,16 @@ export class PrismaClient<
   get repositoryRelease(): Prisma.RepositoryReleaseDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.repositoryReleaseAsset`: Exposes CRUD operations for the **RepositoryReleaseAsset** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RepositoryReleaseAssets
+    * const repositoryReleaseAssets = await prisma.repositoryReleaseAsset.findMany()
+    * ```
+    */
+  get repositoryReleaseAsset(): Prisma.RepositoryReleaseAssetDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.repositoryWebhook`: Exposes CRUD operations for the **RepositoryWebhook** model.
     * Example usage:
     * ```ts
@@ -1489,6 +1504,7 @@ export namespace Prisma {
     PullRequestReview: 'PullRequestReview',
     PullRequestComment: 'PullRequestComment',
     RepositoryRelease: 'RepositoryRelease',
+    RepositoryReleaseAsset: 'RepositoryReleaseAsset',
     RepositoryWebhook: 'RepositoryWebhook',
     RepositoryWebhookDelivery: 'RepositoryWebhookDelivery',
     RepositoryActionRun: 'RepositoryActionRun',
@@ -1513,7 +1529,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "application" | "milestone" | "task" | "taskAssignee" | "discussionThread" | "discussionComment" | "fileAsset" | "contributionRecord" | "notification" | "platformAdmin" | "analyticsEvent" | "activityEvent" | "projectFollower" | "projectStar" | "release" | "projectUpdate" | "repository" | "repositoryStar" | "repositoryWatcher" | "repositoryCollaborator" | "branchProtectionRule" | "commitStatus" | "repositoryIssue" | "repositoryIssueComment" | "pullRequest" | "pullRequestReview" | "pullRequestComment" | "repositoryRelease" | "repositoryWebhook" | "repositoryWebhookDelivery" | "repositoryActionRun" | "repositoryAuditEvent" | "personalAccessToken" | "userSshKey"
+      modelProps: "user" | "usernameHistory" | "oAuthAccount" | "session" | "skill" | "skillOnUser" | "project" | "role" | "teamMember" | "application" | "milestone" | "task" | "taskAssignee" | "discussionThread" | "discussionComment" | "fileAsset" | "contributionRecord" | "notification" | "platformAdmin" | "analyticsEvent" | "activityEvent" | "projectFollower" | "projectStar" | "release" | "projectUpdate" | "repository" | "repositoryStar" | "repositoryWatcher" | "repositoryCollaborator" | "branchProtectionRule" | "commitStatus" | "repositoryIssue" | "repositoryIssueComment" | "pullRequest" | "pullRequestReview" | "pullRequestComment" | "repositoryRelease" | "repositoryReleaseAsset" | "repositoryWebhook" | "repositoryWebhookDelivery" | "repositoryActionRun" | "repositoryAuditEvent" | "personalAccessToken" | "userSshKey"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4255,6 +4271,80 @@ export namespace Prisma {
           }
         }
       }
+      RepositoryReleaseAsset: {
+        payload: Prisma.$RepositoryReleaseAssetPayload<ExtArgs>
+        fields: Prisma.RepositoryReleaseAssetFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RepositoryReleaseAssetFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RepositoryReleaseAssetFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload>
+          }
+          findFirst: {
+            args: Prisma.RepositoryReleaseAssetFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RepositoryReleaseAssetFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload>
+          }
+          findMany: {
+            args: Prisma.RepositoryReleaseAssetFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload>[]
+          }
+          create: {
+            args: Prisma.RepositoryReleaseAssetCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload>
+          }
+          createMany: {
+            args: Prisma.RepositoryReleaseAssetCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RepositoryReleaseAssetCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload>[]
+          }
+          delete: {
+            args: Prisma.RepositoryReleaseAssetDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload>
+          }
+          update: {
+            args: Prisma.RepositoryReleaseAssetUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload>
+          }
+          deleteMany: {
+            args: Prisma.RepositoryReleaseAssetDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RepositoryReleaseAssetUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RepositoryReleaseAssetUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload>[]
+          }
+          upsert: {
+            args: Prisma.RepositoryReleaseAssetUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepositoryReleaseAssetPayload>
+          }
+          aggregate: {
+            args: Prisma.RepositoryReleaseAssetAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRepositoryReleaseAsset>
+          }
+          groupBy: {
+            args: Prisma.RepositoryReleaseAssetGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RepositoryReleaseAssetGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RepositoryReleaseAssetCountArgs<ExtArgs>
+            result: $Utils.Optional<RepositoryReleaseAssetCountAggregateOutputType> | number
+          }
+        }
+      }
       RepositoryWebhook: {
         payload: Prisma.$RepositoryWebhookPayload<ExtArgs>
         fields: Prisma.RepositoryWebhookFieldRefs
@@ -4832,6 +4922,7 @@ export namespace Prisma {
     pullRequestReview?: PullRequestReviewOmit
     pullRequestComment?: PullRequestCommentOmit
     repositoryRelease?: RepositoryReleaseOmit
+    repositoryReleaseAsset?: RepositoryReleaseAssetOmit
     repositoryWebhook?: RepositoryWebhookOmit
     repositoryWebhookDelivery?: RepositoryWebhookDeliveryOmit
     repositoryActionRun?: RepositoryActionRunOmit
@@ -4950,6 +5041,7 @@ export namespace Prisma {
     pullRequestComments: number
     resolvedPrComments: number
     repositoryReleases: number
+    releaseAssetsUploaded: number
     repositoryAuditEvents: number
     personalAccessTokens: number
     sshKeys: number
@@ -4988,6 +5080,7 @@ export namespace Prisma {
     pullRequestComments?: boolean | UserCountOutputTypeCountPullRequestCommentsArgs
     resolvedPrComments?: boolean | UserCountOutputTypeCountResolvedPrCommentsArgs
     repositoryReleases?: boolean | UserCountOutputTypeCountRepositoryReleasesArgs
+    releaseAssetsUploaded?: boolean | UserCountOutputTypeCountReleaseAssetsUploadedArgs
     repositoryAuditEvents?: boolean | UserCountOutputTypeCountRepositoryAuditEventsArgs
     personalAccessTokens?: boolean | UserCountOutputTypeCountPersonalAccessTokensArgs
     sshKeys?: boolean | UserCountOutputTypeCountSshKeysArgs
@@ -5226,6 +5319,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountRepositoryReleasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RepositoryReleaseWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountReleaseAssetsUploadedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepositoryReleaseAssetWhereInput
   }
 
   /**
@@ -5813,6 +5913,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type RepositoryReleaseCountOutputType
+   */
+
+  export type RepositoryReleaseCountOutputType = {
+    assets: number
+  }
+
+  export type RepositoryReleaseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    assets?: boolean | RepositoryReleaseCountOutputTypeCountAssetsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RepositoryReleaseCountOutputType without action
+   */
+  export type RepositoryReleaseCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseCountOutputType
+     */
+    select?: RepositoryReleaseCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RepositoryReleaseCountOutputType without action
+   */
+  export type RepositoryReleaseCountOutputTypeCountAssetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepositoryReleaseAssetWhereInput
+  }
+
+
+  /**
    * Count Type RepositoryWebhookCountOutputType
    */
 
@@ -6214,6 +6345,7 @@ export namespace Prisma {
     pullRequestComments?: boolean | User$pullRequestCommentsArgs<ExtArgs>
     resolvedPrComments?: boolean | User$resolvedPrCommentsArgs<ExtArgs>
     repositoryReleases?: boolean | User$repositoryReleasesArgs<ExtArgs>
+    releaseAssetsUploaded?: boolean | User$releaseAssetsUploadedArgs<ExtArgs>
     repositoryAuditEvents?: boolean | User$repositoryAuditEventsArgs<ExtArgs>
     personalAccessTokens?: boolean | User$personalAccessTokensArgs<ExtArgs>
     sshKeys?: boolean | User$sshKeysArgs<ExtArgs>
@@ -6330,6 +6462,7 @@ export namespace Prisma {
     pullRequestComments?: boolean | User$pullRequestCommentsArgs<ExtArgs>
     resolvedPrComments?: boolean | User$resolvedPrCommentsArgs<ExtArgs>
     repositoryReleases?: boolean | User$repositoryReleasesArgs<ExtArgs>
+    releaseAssetsUploaded?: boolean | User$releaseAssetsUploadedArgs<ExtArgs>
     repositoryAuditEvents?: boolean | User$repositoryAuditEventsArgs<ExtArgs>
     personalAccessTokens?: boolean | User$personalAccessTokensArgs<ExtArgs>
     sshKeys?: boolean | User$sshKeysArgs<ExtArgs>
@@ -6374,6 +6507,7 @@ export namespace Prisma {
       pullRequestComments: Prisma.$PullRequestCommentPayload<ExtArgs>[]
       resolvedPrComments: Prisma.$PullRequestCommentPayload<ExtArgs>[]
       repositoryReleases: Prisma.$RepositoryReleasePayload<ExtArgs>[]
+      releaseAssetsUploaded: Prisma.$RepositoryReleaseAssetPayload<ExtArgs>[]
       repositoryAuditEvents: Prisma.$RepositoryAuditEventPayload<ExtArgs>[]
       personalAccessTokens: Prisma.$PersonalAccessTokenPayload<ExtArgs>[]
       sshKeys: Prisma.$UserSshKeyPayload<ExtArgs>[]
@@ -6828,6 +6962,7 @@ export namespace Prisma {
     pullRequestComments<T extends User$pullRequestCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$pullRequestCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     resolvedPrComments<T extends User$resolvedPrCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$resolvedPrCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     repositoryReleases<T extends User$repositoryReleasesArgs<ExtArgs> = {}>(args?: Subset<T, User$repositoryReleasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryReleasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    releaseAssetsUploaded<T extends User$releaseAssetsUploadedArgs<ExtArgs> = {}>(args?: Subset<T, User$releaseAssetsUploadedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     repositoryAuditEvents<T extends User$repositoryAuditEventsArgs<ExtArgs> = {}>(args?: Subset<T, User$repositoryAuditEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryAuditEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     personalAccessTokens<T extends User$personalAccessTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$personalAccessTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PersonalAccessTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sshKeys<T extends User$sshKeysArgs<ExtArgs> = {}>(args?: Subset<T, User$sshKeysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSshKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8054,6 +8189,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RepositoryReleaseScalarFieldEnum | RepositoryReleaseScalarFieldEnum[]
+  }
+
+  /**
+   * User.releaseAssetsUploaded
+   */
+  export type User$releaseAssetsUploadedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    where?: RepositoryReleaseAssetWhereInput
+    orderBy?: RepositoryReleaseAssetOrderByWithRelationInput | RepositoryReleaseAssetOrderByWithRelationInput[]
+    cursor?: RepositoryReleaseAssetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepositoryReleaseAssetScalarFieldEnum | RepositoryReleaseAssetScalarFieldEnum[]
   }
 
   /**
@@ -48474,6 +48633,8 @@ export namespace Prisma {
     createdAt?: boolean
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
+    assets?: boolean | RepositoryRelease$assetsArgs<ExtArgs>
+    _count?: boolean | RepositoryReleaseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["repositoryRelease"]>
 
   export type RepositoryReleaseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -48526,6 +48687,8 @@ export namespace Prisma {
   export type RepositoryReleaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
+    assets?: boolean | RepositoryRelease$assetsArgs<ExtArgs>
+    _count?: boolean | RepositoryReleaseCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RepositoryReleaseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     repository?: boolean | RepositoryDefaultArgs<ExtArgs>
@@ -48541,6 +48704,7 @@ export namespace Prisma {
     objects: {
       repository: Prisma.$RepositoryPayload<ExtArgs>
       author: Prisma.$UserPayload<ExtArgs>
+      assets: Prisma.$RepositoryReleaseAssetPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -48950,6 +49114,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     repository<T extends RepositoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryDefaultArgs<ExtArgs>>): Prisma__RepositoryClient<$Result.GetResult<Prisma.$RepositoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    assets<T extends RepositoryRelease$assetsArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryRelease$assetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -49386,6 +49551,30 @@ export namespace Prisma {
   }
 
   /**
+   * RepositoryRelease.assets
+   */
+  export type RepositoryRelease$assetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    where?: RepositoryReleaseAssetWhereInput
+    orderBy?: RepositoryReleaseAssetOrderByWithRelationInput | RepositoryReleaseAssetOrderByWithRelationInput[]
+    cursor?: RepositoryReleaseAssetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepositoryReleaseAssetScalarFieldEnum | RepositoryReleaseAssetScalarFieldEnum[]
+  }
+
+  /**
    * RepositoryRelease without action
    */
   export type RepositoryReleaseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -49401,6 +49590,1175 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: RepositoryReleaseInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RepositoryReleaseAsset
+   */
+
+  export type AggregateRepositoryReleaseAsset = {
+    _count: RepositoryReleaseAssetCountAggregateOutputType | null
+    _avg: RepositoryReleaseAssetAvgAggregateOutputType | null
+    _sum: RepositoryReleaseAssetSumAggregateOutputType | null
+    _min: RepositoryReleaseAssetMinAggregateOutputType | null
+    _max: RepositoryReleaseAssetMaxAggregateOutputType | null
+  }
+
+  export type RepositoryReleaseAssetAvgAggregateOutputType = {
+    size: number | null
+    downloadCount: number | null
+  }
+
+  export type RepositoryReleaseAssetSumAggregateOutputType = {
+    size: number | null
+    downloadCount: number | null
+  }
+
+  export type RepositoryReleaseAssetMinAggregateOutputType = {
+    id: string | null
+    releaseId: string | null
+    name: string | null
+    size: number | null
+    contentType: string | null
+    downloadCount: number | null
+    storagePath: string | null
+    sha256: string | null
+    uploadedById: string | null
+    createdAt: Date | null
+  }
+
+  export type RepositoryReleaseAssetMaxAggregateOutputType = {
+    id: string | null
+    releaseId: string | null
+    name: string | null
+    size: number | null
+    contentType: string | null
+    downloadCount: number | null
+    storagePath: string | null
+    sha256: string | null
+    uploadedById: string | null
+    createdAt: Date | null
+  }
+
+  export type RepositoryReleaseAssetCountAggregateOutputType = {
+    id: number
+    releaseId: number
+    name: number
+    size: number
+    contentType: number
+    downloadCount: number
+    storagePath: number
+    sha256: number
+    uploadedById: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type RepositoryReleaseAssetAvgAggregateInputType = {
+    size?: true
+    downloadCount?: true
+  }
+
+  export type RepositoryReleaseAssetSumAggregateInputType = {
+    size?: true
+    downloadCount?: true
+  }
+
+  export type RepositoryReleaseAssetMinAggregateInputType = {
+    id?: true
+    releaseId?: true
+    name?: true
+    size?: true
+    contentType?: true
+    downloadCount?: true
+    storagePath?: true
+    sha256?: true
+    uploadedById?: true
+    createdAt?: true
+  }
+
+  export type RepositoryReleaseAssetMaxAggregateInputType = {
+    id?: true
+    releaseId?: true
+    name?: true
+    size?: true
+    contentType?: true
+    downloadCount?: true
+    storagePath?: true
+    sha256?: true
+    uploadedById?: true
+    createdAt?: true
+  }
+
+  export type RepositoryReleaseAssetCountAggregateInputType = {
+    id?: true
+    releaseId?: true
+    name?: true
+    size?: true
+    contentType?: true
+    downloadCount?: true
+    storagePath?: true
+    sha256?: true
+    uploadedById?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type RepositoryReleaseAssetAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepositoryReleaseAsset to aggregate.
+     */
+    where?: RepositoryReleaseAssetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepositoryReleaseAssets to fetch.
+     */
+    orderBy?: RepositoryReleaseAssetOrderByWithRelationInput | RepositoryReleaseAssetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RepositoryReleaseAssetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepositoryReleaseAssets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepositoryReleaseAssets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RepositoryReleaseAssets
+    **/
+    _count?: true | RepositoryReleaseAssetCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RepositoryReleaseAssetAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RepositoryReleaseAssetSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RepositoryReleaseAssetMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RepositoryReleaseAssetMaxAggregateInputType
+  }
+
+  export type GetRepositoryReleaseAssetAggregateType<T extends RepositoryReleaseAssetAggregateArgs> = {
+        [P in keyof T & keyof AggregateRepositoryReleaseAsset]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRepositoryReleaseAsset[P]>
+      : GetScalarType<T[P], AggregateRepositoryReleaseAsset[P]>
+  }
+
+
+
+
+  export type RepositoryReleaseAssetGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepositoryReleaseAssetWhereInput
+    orderBy?: RepositoryReleaseAssetOrderByWithAggregationInput | RepositoryReleaseAssetOrderByWithAggregationInput[]
+    by: RepositoryReleaseAssetScalarFieldEnum[] | RepositoryReleaseAssetScalarFieldEnum
+    having?: RepositoryReleaseAssetScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RepositoryReleaseAssetCountAggregateInputType | true
+    _avg?: RepositoryReleaseAssetAvgAggregateInputType
+    _sum?: RepositoryReleaseAssetSumAggregateInputType
+    _min?: RepositoryReleaseAssetMinAggregateInputType
+    _max?: RepositoryReleaseAssetMaxAggregateInputType
+  }
+
+  export type RepositoryReleaseAssetGroupByOutputType = {
+    id: string
+    releaseId: string
+    name: string
+    size: number
+    contentType: string
+    downloadCount: number
+    storagePath: string
+    sha256: string
+    uploadedById: string
+    createdAt: Date
+    _count: RepositoryReleaseAssetCountAggregateOutputType | null
+    _avg: RepositoryReleaseAssetAvgAggregateOutputType | null
+    _sum: RepositoryReleaseAssetSumAggregateOutputType | null
+    _min: RepositoryReleaseAssetMinAggregateOutputType | null
+    _max: RepositoryReleaseAssetMaxAggregateOutputType | null
+  }
+
+  type GetRepositoryReleaseAssetGroupByPayload<T extends RepositoryReleaseAssetGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RepositoryReleaseAssetGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RepositoryReleaseAssetGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RepositoryReleaseAssetGroupByOutputType[P]>
+            : GetScalarType<T[P], RepositoryReleaseAssetGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RepositoryReleaseAssetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    releaseId?: boolean
+    name?: boolean
+    size?: boolean
+    contentType?: boolean
+    downloadCount?: boolean
+    storagePath?: boolean
+    sha256?: boolean
+    uploadedById?: boolean
+    createdAt?: boolean
+    release?: boolean | RepositoryReleaseDefaultArgs<ExtArgs>
+    uploadedBy?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repositoryReleaseAsset"]>
+
+  export type RepositoryReleaseAssetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    releaseId?: boolean
+    name?: boolean
+    size?: boolean
+    contentType?: boolean
+    downloadCount?: boolean
+    storagePath?: boolean
+    sha256?: boolean
+    uploadedById?: boolean
+    createdAt?: boolean
+    release?: boolean | RepositoryReleaseDefaultArgs<ExtArgs>
+    uploadedBy?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repositoryReleaseAsset"]>
+
+  export type RepositoryReleaseAssetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    releaseId?: boolean
+    name?: boolean
+    size?: boolean
+    contentType?: boolean
+    downloadCount?: boolean
+    storagePath?: boolean
+    sha256?: boolean
+    uploadedById?: boolean
+    createdAt?: boolean
+    release?: boolean | RepositoryReleaseDefaultArgs<ExtArgs>
+    uploadedBy?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["repositoryReleaseAsset"]>
+
+  export type RepositoryReleaseAssetSelectScalar = {
+    id?: boolean
+    releaseId?: boolean
+    name?: boolean
+    size?: boolean
+    contentType?: boolean
+    downloadCount?: boolean
+    storagePath?: boolean
+    sha256?: boolean
+    uploadedById?: boolean
+    createdAt?: boolean
+  }
+
+  export type RepositoryReleaseAssetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "releaseId" | "name" | "size" | "contentType" | "downloadCount" | "storagePath" | "sha256" | "uploadedById" | "createdAt", ExtArgs["result"]["repositoryReleaseAsset"]>
+  export type RepositoryReleaseAssetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    release?: boolean | RepositoryReleaseDefaultArgs<ExtArgs>
+    uploadedBy?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RepositoryReleaseAssetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    release?: boolean | RepositoryReleaseDefaultArgs<ExtArgs>
+    uploadedBy?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RepositoryReleaseAssetIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    release?: boolean | RepositoryReleaseDefaultArgs<ExtArgs>
+    uploadedBy?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $RepositoryReleaseAssetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RepositoryReleaseAsset"
+    objects: {
+      release: Prisma.$RepositoryReleasePayload<ExtArgs>
+      uploadedBy: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      releaseId: string
+      name: string
+      size: number
+      contentType: string
+      downloadCount: number
+      storagePath: string
+      sha256: string
+      uploadedById: string
+      createdAt: Date
+    }, ExtArgs["result"]["repositoryReleaseAsset"]>
+    composites: {}
+  }
+
+  type RepositoryReleaseAssetGetPayload<S extends boolean | null | undefined | RepositoryReleaseAssetDefaultArgs> = $Result.GetResult<Prisma.$RepositoryReleaseAssetPayload, S>
+
+  type RepositoryReleaseAssetCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RepositoryReleaseAssetFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RepositoryReleaseAssetCountAggregateInputType | true
+    }
+
+  export interface RepositoryReleaseAssetDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RepositoryReleaseAsset'], meta: { name: 'RepositoryReleaseAsset' } }
+    /**
+     * Find zero or one RepositoryReleaseAsset that matches the filter.
+     * @param {RepositoryReleaseAssetFindUniqueArgs} args - Arguments to find a RepositoryReleaseAsset
+     * @example
+     * // Get one RepositoryReleaseAsset
+     * const repositoryReleaseAsset = await prisma.repositoryReleaseAsset.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RepositoryReleaseAssetFindUniqueArgs>(args: SelectSubset<T, RepositoryReleaseAssetFindUniqueArgs<ExtArgs>>): Prisma__RepositoryReleaseAssetClient<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RepositoryReleaseAsset that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RepositoryReleaseAssetFindUniqueOrThrowArgs} args - Arguments to find a RepositoryReleaseAsset
+     * @example
+     * // Get one RepositoryReleaseAsset
+     * const repositoryReleaseAsset = await prisma.repositoryReleaseAsset.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RepositoryReleaseAssetFindUniqueOrThrowArgs>(args: SelectSubset<T, RepositoryReleaseAssetFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RepositoryReleaseAssetClient<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepositoryReleaseAsset that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryReleaseAssetFindFirstArgs} args - Arguments to find a RepositoryReleaseAsset
+     * @example
+     * // Get one RepositoryReleaseAsset
+     * const repositoryReleaseAsset = await prisma.repositoryReleaseAsset.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RepositoryReleaseAssetFindFirstArgs>(args?: SelectSubset<T, RepositoryReleaseAssetFindFirstArgs<ExtArgs>>): Prisma__RepositoryReleaseAssetClient<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepositoryReleaseAsset that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryReleaseAssetFindFirstOrThrowArgs} args - Arguments to find a RepositoryReleaseAsset
+     * @example
+     * // Get one RepositoryReleaseAsset
+     * const repositoryReleaseAsset = await prisma.repositoryReleaseAsset.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RepositoryReleaseAssetFindFirstOrThrowArgs>(args?: SelectSubset<T, RepositoryReleaseAssetFindFirstOrThrowArgs<ExtArgs>>): Prisma__RepositoryReleaseAssetClient<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RepositoryReleaseAssets that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryReleaseAssetFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RepositoryReleaseAssets
+     * const repositoryReleaseAssets = await prisma.repositoryReleaseAsset.findMany()
+     * 
+     * // Get first 10 RepositoryReleaseAssets
+     * const repositoryReleaseAssets = await prisma.repositoryReleaseAsset.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const repositoryReleaseAssetWithIdOnly = await prisma.repositoryReleaseAsset.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RepositoryReleaseAssetFindManyArgs>(args?: SelectSubset<T, RepositoryReleaseAssetFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RepositoryReleaseAsset.
+     * @param {RepositoryReleaseAssetCreateArgs} args - Arguments to create a RepositoryReleaseAsset.
+     * @example
+     * // Create one RepositoryReleaseAsset
+     * const RepositoryReleaseAsset = await prisma.repositoryReleaseAsset.create({
+     *   data: {
+     *     // ... data to create a RepositoryReleaseAsset
+     *   }
+     * })
+     * 
+     */
+    create<T extends RepositoryReleaseAssetCreateArgs>(args: SelectSubset<T, RepositoryReleaseAssetCreateArgs<ExtArgs>>): Prisma__RepositoryReleaseAssetClient<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RepositoryReleaseAssets.
+     * @param {RepositoryReleaseAssetCreateManyArgs} args - Arguments to create many RepositoryReleaseAssets.
+     * @example
+     * // Create many RepositoryReleaseAssets
+     * const repositoryReleaseAsset = await prisma.repositoryReleaseAsset.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RepositoryReleaseAssetCreateManyArgs>(args?: SelectSubset<T, RepositoryReleaseAssetCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RepositoryReleaseAssets and returns the data saved in the database.
+     * @param {RepositoryReleaseAssetCreateManyAndReturnArgs} args - Arguments to create many RepositoryReleaseAssets.
+     * @example
+     * // Create many RepositoryReleaseAssets
+     * const repositoryReleaseAsset = await prisma.repositoryReleaseAsset.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RepositoryReleaseAssets and only return the `id`
+     * const repositoryReleaseAssetWithIdOnly = await prisma.repositoryReleaseAsset.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RepositoryReleaseAssetCreateManyAndReturnArgs>(args?: SelectSubset<T, RepositoryReleaseAssetCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RepositoryReleaseAsset.
+     * @param {RepositoryReleaseAssetDeleteArgs} args - Arguments to delete one RepositoryReleaseAsset.
+     * @example
+     * // Delete one RepositoryReleaseAsset
+     * const RepositoryReleaseAsset = await prisma.repositoryReleaseAsset.delete({
+     *   where: {
+     *     // ... filter to delete one RepositoryReleaseAsset
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RepositoryReleaseAssetDeleteArgs>(args: SelectSubset<T, RepositoryReleaseAssetDeleteArgs<ExtArgs>>): Prisma__RepositoryReleaseAssetClient<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RepositoryReleaseAsset.
+     * @param {RepositoryReleaseAssetUpdateArgs} args - Arguments to update one RepositoryReleaseAsset.
+     * @example
+     * // Update one RepositoryReleaseAsset
+     * const repositoryReleaseAsset = await prisma.repositoryReleaseAsset.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RepositoryReleaseAssetUpdateArgs>(args: SelectSubset<T, RepositoryReleaseAssetUpdateArgs<ExtArgs>>): Prisma__RepositoryReleaseAssetClient<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RepositoryReleaseAssets.
+     * @param {RepositoryReleaseAssetDeleteManyArgs} args - Arguments to filter RepositoryReleaseAssets to delete.
+     * @example
+     * // Delete a few RepositoryReleaseAssets
+     * const { count } = await prisma.repositoryReleaseAsset.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RepositoryReleaseAssetDeleteManyArgs>(args?: SelectSubset<T, RepositoryReleaseAssetDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepositoryReleaseAssets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryReleaseAssetUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RepositoryReleaseAssets
+     * const repositoryReleaseAsset = await prisma.repositoryReleaseAsset.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RepositoryReleaseAssetUpdateManyArgs>(args: SelectSubset<T, RepositoryReleaseAssetUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepositoryReleaseAssets and returns the data updated in the database.
+     * @param {RepositoryReleaseAssetUpdateManyAndReturnArgs} args - Arguments to update many RepositoryReleaseAssets.
+     * @example
+     * // Update many RepositoryReleaseAssets
+     * const repositoryReleaseAsset = await prisma.repositoryReleaseAsset.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RepositoryReleaseAssets and only return the `id`
+     * const repositoryReleaseAssetWithIdOnly = await prisma.repositoryReleaseAsset.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RepositoryReleaseAssetUpdateManyAndReturnArgs>(args: SelectSubset<T, RepositoryReleaseAssetUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RepositoryReleaseAsset.
+     * @param {RepositoryReleaseAssetUpsertArgs} args - Arguments to update or create a RepositoryReleaseAsset.
+     * @example
+     * // Update or create a RepositoryReleaseAsset
+     * const repositoryReleaseAsset = await prisma.repositoryReleaseAsset.upsert({
+     *   create: {
+     *     // ... data to create a RepositoryReleaseAsset
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RepositoryReleaseAsset we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RepositoryReleaseAssetUpsertArgs>(args: SelectSubset<T, RepositoryReleaseAssetUpsertArgs<ExtArgs>>): Prisma__RepositoryReleaseAssetClient<$Result.GetResult<Prisma.$RepositoryReleaseAssetPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RepositoryReleaseAssets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryReleaseAssetCountArgs} args - Arguments to filter RepositoryReleaseAssets to count.
+     * @example
+     * // Count the number of RepositoryReleaseAssets
+     * const count = await prisma.repositoryReleaseAsset.count({
+     *   where: {
+     *     // ... the filter for the RepositoryReleaseAssets we want to count
+     *   }
+     * })
+    **/
+    count<T extends RepositoryReleaseAssetCountArgs>(
+      args?: Subset<T, RepositoryReleaseAssetCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RepositoryReleaseAssetCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RepositoryReleaseAsset.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryReleaseAssetAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RepositoryReleaseAssetAggregateArgs>(args: Subset<T, RepositoryReleaseAssetAggregateArgs>): Prisma.PrismaPromise<GetRepositoryReleaseAssetAggregateType<T>>
+
+    /**
+     * Group by RepositoryReleaseAsset.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepositoryReleaseAssetGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RepositoryReleaseAssetGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RepositoryReleaseAssetGroupByArgs['orderBy'] }
+        : { orderBy?: RepositoryReleaseAssetGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RepositoryReleaseAssetGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRepositoryReleaseAssetGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RepositoryReleaseAsset model
+   */
+  readonly fields: RepositoryReleaseAssetFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RepositoryReleaseAsset.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RepositoryReleaseAssetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    release<T extends RepositoryReleaseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryReleaseDefaultArgs<ExtArgs>>): Prisma__RepositoryReleaseClient<$Result.GetResult<Prisma.$RepositoryReleasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    uploadedBy<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RepositoryReleaseAsset model
+   */
+  interface RepositoryReleaseAssetFieldRefs {
+    readonly id: FieldRef<"RepositoryReleaseAsset", 'String'>
+    readonly releaseId: FieldRef<"RepositoryReleaseAsset", 'String'>
+    readonly name: FieldRef<"RepositoryReleaseAsset", 'String'>
+    readonly size: FieldRef<"RepositoryReleaseAsset", 'Int'>
+    readonly contentType: FieldRef<"RepositoryReleaseAsset", 'String'>
+    readonly downloadCount: FieldRef<"RepositoryReleaseAsset", 'Int'>
+    readonly storagePath: FieldRef<"RepositoryReleaseAsset", 'String'>
+    readonly sha256: FieldRef<"RepositoryReleaseAsset", 'String'>
+    readonly uploadedById: FieldRef<"RepositoryReleaseAsset", 'String'>
+    readonly createdAt: FieldRef<"RepositoryReleaseAsset", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RepositoryReleaseAsset findUnique
+   */
+  export type RepositoryReleaseAssetFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    /**
+     * Filter, which RepositoryReleaseAsset to fetch.
+     */
+    where: RepositoryReleaseAssetWhereUniqueInput
+  }
+
+  /**
+   * RepositoryReleaseAsset findUniqueOrThrow
+   */
+  export type RepositoryReleaseAssetFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    /**
+     * Filter, which RepositoryReleaseAsset to fetch.
+     */
+    where: RepositoryReleaseAssetWhereUniqueInput
+  }
+
+  /**
+   * RepositoryReleaseAsset findFirst
+   */
+  export type RepositoryReleaseAssetFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    /**
+     * Filter, which RepositoryReleaseAsset to fetch.
+     */
+    where?: RepositoryReleaseAssetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepositoryReleaseAssets to fetch.
+     */
+    orderBy?: RepositoryReleaseAssetOrderByWithRelationInput | RepositoryReleaseAssetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepositoryReleaseAssets.
+     */
+    cursor?: RepositoryReleaseAssetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepositoryReleaseAssets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepositoryReleaseAssets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepositoryReleaseAssets.
+     */
+    distinct?: RepositoryReleaseAssetScalarFieldEnum | RepositoryReleaseAssetScalarFieldEnum[]
+  }
+
+  /**
+   * RepositoryReleaseAsset findFirstOrThrow
+   */
+  export type RepositoryReleaseAssetFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    /**
+     * Filter, which RepositoryReleaseAsset to fetch.
+     */
+    where?: RepositoryReleaseAssetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepositoryReleaseAssets to fetch.
+     */
+    orderBy?: RepositoryReleaseAssetOrderByWithRelationInput | RepositoryReleaseAssetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepositoryReleaseAssets.
+     */
+    cursor?: RepositoryReleaseAssetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepositoryReleaseAssets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepositoryReleaseAssets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepositoryReleaseAssets.
+     */
+    distinct?: RepositoryReleaseAssetScalarFieldEnum | RepositoryReleaseAssetScalarFieldEnum[]
+  }
+
+  /**
+   * RepositoryReleaseAsset findMany
+   */
+  export type RepositoryReleaseAssetFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    /**
+     * Filter, which RepositoryReleaseAssets to fetch.
+     */
+    where?: RepositoryReleaseAssetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepositoryReleaseAssets to fetch.
+     */
+    orderBy?: RepositoryReleaseAssetOrderByWithRelationInput | RepositoryReleaseAssetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RepositoryReleaseAssets.
+     */
+    cursor?: RepositoryReleaseAssetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepositoryReleaseAssets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepositoryReleaseAssets.
+     */
+    skip?: number
+    distinct?: RepositoryReleaseAssetScalarFieldEnum | RepositoryReleaseAssetScalarFieldEnum[]
+  }
+
+  /**
+   * RepositoryReleaseAsset create
+   */
+  export type RepositoryReleaseAssetCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RepositoryReleaseAsset.
+     */
+    data: XOR<RepositoryReleaseAssetCreateInput, RepositoryReleaseAssetUncheckedCreateInput>
+  }
+
+  /**
+   * RepositoryReleaseAsset createMany
+   */
+  export type RepositoryReleaseAssetCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RepositoryReleaseAssets.
+     */
+    data: RepositoryReleaseAssetCreateManyInput | RepositoryReleaseAssetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RepositoryReleaseAsset createManyAndReturn
+   */
+  export type RepositoryReleaseAssetCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * The data used to create many RepositoryReleaseAssets.
+     */
+    data: RepositoryReleaseAssetCreateManyInput | RepositoryReleaseAssetCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RepositoryReleaseAsset update
+   */
+  export type RepositoryReleaseAssetUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RepositoryReleaseAsset.
+     */
+    data: XOR<RepositoryReleaseAssetUpdateInput, RepositoryReleaseAssetUncheckedUpdateInput>
+    /**
+     * Choose, which RepositoryReleaseAsset to update.
+     */
+    where: RepositoryReleaseAssetWhereUniqueInput
+  }
+
+  /**
+   * RepositoryReleaseAsset updateMany
+   */
+  export type RepositoryReleaseAssetUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RepositoryReleaseAssets.
+     */
+    data: XOR<RepositoryReleaseAssetUpdateManyMutationInput, RepositoryReleaseAssetUncheckedUpdateManyInput>
+    /**
+     * Filter which RepositoryReleaseAssets to update
+     */
+    where?: RepositoryReleaseAssetWhereInput
+    /**
+     * Limit how many RepositoryReleaseAssets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepositoryReleaseAsset updateManyAndReturn
+   */
+  export type RepositoryReleaseAssetUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * The data used to update RepositoryReleaseAssets.
+     */
+    data: XOR<RepositoryReleaseAssetUpdateManyMutationInput, RepositoryReleaseAssetUncheckedUpdateManyInput>
+    /**
+     * Filter which RepositoryReleaseAssets to update
+     */
+    where?: RepositoryReleaseAssetWhereInput
+    /**
+     * Limit how many RepositoryReleaseAssets to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RepositoryReleaseAsset upsert
+   */
+  export type RepositoryReleaseAssetUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RepositoryReleaseAsset to update in case it exists.
+     */
+    where: RepositoryReleaseAssetWhereUniqueInput
+    /**
+     * In case the RepositoryReleaseAsset found by the `where` argument doesn't exist, create a new RepositoryReleaseAsset with this data.
+     */
+    create: XOR<RepositoryReleaseAssetCreateInput, RepositoryReleaseAssetUncheckedCreateInput>
+    /**
+     * In case the RepositoryReleaseAsset was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RepositoryReleaseAssetUpdateInput, RepositoryReleaseAssetUncheckedUpdateInput>
+  }
+
+  /**
+   * RepositoryReleaseAsset delete
+   */
+  export type RepositoryReleaseAssetDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
+    /**
+     * Filter which RepositoryReleaseAsset to delete.
+     */
+    where: RepositoryReleaseAssetWhereUniqueInput
+  }
+
+  /**
+   * RepositoryReleaseAsset deleteMany
+   */
+  export type RepositoryReleaseAssetDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepositoryReleaseAssets to delete
+     */
+    where?: RepositoryReleaseAssetWhereInput
+    /**
+     * Limit how many RepositoryReleaseAssets to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepositoryReleaseAsset without action
+   */
+  export type RepositoryReleaseAssetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepositoryReleaseAsset
+     */
+    select?: RepositoryReleaseAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepositoryReleaseAsset
+     */
+    omit?: RepositoryReleaseAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepositoryReleaseAssetInclude<ExtArgs> | null
   }
 
 
@@ -56723,6 +58081,22 @@ export namespace Prisma {
   export type RepositoryReleaseScalarFieldEnum = (typeof RepositoryReleaseScalarFieldEnum)[keyof typeof RepositoryReleaseScalarFieldEnum]
 
 
+  export const RepositoryReleaseAssetScalarFieldEnum: {
+    id: 'id',
+    releaseId: 'releaseId',
+    name: 'name',
+    size: 'size',
+    contentType: 'contentType',
+    downloadCount: 'downloadCount',
+    storagePath: 'storagePath',
+    sha256: 'sha256',
+    uploadedById: 'uploadedById',
+    createdAt: 'createdAt'
+  };
+
+  export type RepositoryReleaseAssetScalarFieldEnum = (typeof RepositoryReleaseAssetScalarFieldEnum)[keyof typeof RepositoryReleaseAssetScalarFieldEnum]
+
+
   export const RepositoryWebhookScalarFieldEnum: {
     id: 'id',
     repositoryId: 'repositoryId',
@@ -57216,6 +58590,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentListRelationFilter
     resolvedPrComments?: PullRequestCommentListRelationFilter
     repositoryReleases?: RepositoryReleaseListRelationFilter
+    releaseAssetsUploaded?: RepositoryReleaseAssetListRelationFilter
     repositoryAuditEvents?: RepositoryAuditEventListRelationFilter
     personalAccessTokens?: PersonalAccessTokenListRelationFilter
     sshKeys?: UserSshKeyListRelationFilter
@@ -57277,6 +58652,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentOrderByRelationAggregateInput
     resolvedPrComments?: PullRequestCommentOrderByRelationAggregateInput
     repositoryReleases?: RepositoryReleaseOrderByRelationAggregateInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetOrderByRelationAggregateInput
     repositoryAuditEvents?: RepositoryAuditEventOrderByRelationAggregateInput
     personalAccessTokens?: PersonalAccessTokenOrderByRelationAggregateInput
     sshKeys?: UserSshKeyOrderByRelationAggregateInput
@@ -57341,6 +58717,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentListRelationFilter
     resolvedPrComments?: PullRequestCommentListRelationFilter
     repositoryReleases?: RepositoryReleaseListRelationFilter
+    releaseAssetsUploaded?: RepositoryReleaseAssetListRelationFilter
     repositoryAuditEvents?: RepositoryAuditEventListRelationFilter
     personalAccessTokens?: PersonalAccessTokenListRelationFilter
     sshKeys?: UserSshKeyListRelationFilter
@@ -60120,6 +61497,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RepositoryRelease"> | Date | string
     repository?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    assets?: RepositoryReleaseAssetListRelationFilter
   }
 
   export type RepositoryReleaseOrderByWithRelationInput = {
@@ -60136,6 +61514,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     repository?: RepositoryOrderByWithRelationInput
     author?: UserOrderByWithRelationInput
+    assets?: RepositoryReleaseAssetOrderByRelationAggregateInput
   }
 
   export type RepositoryReleaseWhereUniqueInput = Prisma.AtLeast<{
@@ -60156,6 +61535,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RepositoryRelease"> | Date | string
     repository?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    assets?: RepositoryReleaseAssetListRelationFilter
   }, "id" | "repositoryId_tagName">
 
   export type RepositoryReleaseOrderByWithAggregationInput = {
@@ -60190,6 +61570,91 @@ export namespace Prisma {
     authorId?: StringWithAggregatesFilter<"RepositoryRelease"> | string
     publishedAt?: DateTimeWithAggregatesFilter<"RepositoryRelease"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"RepositoryRelease"> | Date | string
+  }
+
+  export type RepositoryReleaseAssetWhereInput = {
+    AND?: RepositoryReleaseAssetWhereInput | RepositoryReleaseAssetWhereInput[]
+    OR?: RepositoryReleaseAssetWhereInput[]
+    NOT?: RepositoryReleaseAssetWhereInput | RepositoryReleaseAssetWhereInput[]
+    id?: StringFilter<"RepositoryReleaseAsset"> | string
+    releaseId?: StringFilter<"RepositoryReleaseAsset"> | string
+    name?: StringFilter<"RepositoryReleaseAsset"> | string
+    size?: IntFilter<"RepositoryReleaseAsset"> | number
+    contentType?: StringFilter<"RepositoryReleaseAsset"> | string
+    downloadCount?: IntFilter<"RepositoryReleaseAsset"> | number
+    storagePath?: StringFilter<"RepositoryReleaseAsset"> | string
+    sha256?: StringFilter<"RepositoryReleaseAsset"> | string
+    uploadedById?: StringFilter<"RepositoryReleaseAsset"> | string
+    createdAt?: DateTimeFilter<"RepositoryReleaseAsset"> | Date | string
+    release?: XOR<RepositoryReleaseScalarRelationFilter, RepositoryReleaseWhereInput>
+    uploadedBy?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type RepositoryReleaseAssetOrderByWithRelationInput = {
+    id?: SortOrder
+    releaseId?: SortOrder
+    name?: SortOrder
+    size?: SortOrder
+    contentType?: SortOrder
+    downloadCount?: SortOrder
+    storagePath?: SortOrder
+    sha256?: SortOrder
+    uploadedById?: SortOrder
+    createdAt?: SortOrder
+    release?: RepositoryReleaseOrderByWithRelationInput
+    uploadedBy?: UserOrderByWithRelationInput
+  }
+
+  export type RepositoryReleaseAssetWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RepositoryReleaseAssetWhereInput | RepositoryReleaseAssetWhereInput[]
+    OR?: RepositoryReleaseAssetWhereInput[]
+    NOT?: RepositoryReleaseAssetWhereInput | RepositoryReleaseAssetWhereInput[]
+    releaseId?: StringFilter<"RepositoryReleaseAsset"> | string
+    name?: StringFilter<"RepositoryReleaseAsset"> | string
+    size?: IntFilter<"RepositoryReleaseAsset"> | number
+    contentType?: StringFilter<"RepositoryReleaseAsset"> | string
+    downloadCount?: IntFilter<"RepositoryReleaseAsset"> | number
+    storagePath?: StringFilter<"RepositoryReleaseAsset"> | string
+    sha256?: StringFilter<"RepositoryReleaseAsset"> | string
+    uploadedById?: StringFilter<"RepositoryReleaseAsset"> | string
+    createdAt?: DateTimeFilter<"RepositoryReleaseAsset"> | Date | string
+    release?: XOR<RepositoryReleaseScalarRelationFilter, RepositoryReleaseWhereInput>
+    uploadedBy?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type RepositoryReleaseAssetOrderByWithAggregationInput = {
+    id?: SortOrder
+    releaseId?: SortOrder
+    name?: SortOrder
+    size?: SortOrder
+    contentType?: SortOrder
+    downloadCount?: SortOrder
+    storagePath?: SortOrder
+    sha256?: SortOrder
+    uploadedById?: SortOrder
+    createdAt?: SortOrder
+    _count?: RepositoryReleaseAssetCountOrderByAggregateInput
+    _avg?: RepositoryReleaseAssetAvgOrderByAggregateInput
+    _max?: RepositoryReleaseAssetMaxOrderByAggregateInput
+    _min?: RepositoryReleaseAssetMinOrderByAggregateInput
+    _sum?: RepositoryReleaseAssetSumOrderByAggregateInput
+  }
+
+  export type RepositoryReleaseAssetScalarWhereWithAggregatesInput = {
+    AND?: RepositoryReleaseAssetScalarWhereWithAggregatesInput | RepositoryReleaseAssetScalarWhereWithAggregatesInput[]
+    OR?: RepositoryReleaseAssetScalarWhereWithAggregatesInput[]
+    NOT?: RepositoryReleaseAssetScalarWhereWithAggregatesInput | RepositoryReleaseAssetScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RepositoryReleaseAsset"> | string
+    releaseId?: StringWithAggregatesFilter<"RepositoryReleaseAsset"> | string
+    name?: StringWithAggregatesFilter<"RepositoryReleaseAsset"> | string
+    size?: IntWithAggregatesFilter<"RepositoryReleaseAsset"> | number
+    contentType?: StringWithAggregatesFilter<"RepositoryReleaseAsset"> | string
+    downloadCount?: IntWithAggregatesFilter<"RepositoryReleaseAsset"> | number
+    storagePath?: StringWithAggregatesFilter<"RepositoryReleaseAsset"> | string
+    sha256?: StringWithAggregatesFilter<"RepositoryReleaseAsset"> | string
+    uploadedById?: StringWithAggregatesFilter<"RepositoryReleaseAsset"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"RepositoryReleaseAsset"> | Date | string
   }
 
   export type RepositoryWebhookWhereInput = {
@@ -60713,6 +62178,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -60774,6 +62240,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -60835,6 +62302,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -60896,6 +62364,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -63791,6 +65260,7 @@ export namespace Prisma {
     createdAt?: Date | string
     repository: RepositoryCreateNestedOneWithoutReleasesInput
     author: UserCreateNestedOneWithoutRepositoryReleasesInput
+    assets?: RepositoryReleaseAssetCreateNestedManyWithoutReleaseInput
   }
 
   export type RepositoryReleaseUncheckedCreateInput = {
@@ -63805,6 +65275,7 @@ export namespace Prisma {
     authorId: string
     publishedAt?: Date | string
     createdAt?: Date | string
+    assets?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutReleaseInput
   }
 
   export type RepositoryReleaseUpdateInput = {
@@ -63819,6 +65290,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     repository?: RepositoryUpdateOneRequiredWithoutReleasesNestedInput
     author?: UserUpdateOneRequiredWithoutRepositoryReleasesNestedInput
+    assets?: RepositoryReleaseAssetUpdateManyWithoutReleaseNestedInput
   }
 
   export type RepositoryReleaseUncheckedUpdateInput = {
@@ -63833,6 +65305,7 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assets?: RepositoryReleaseAssetUncheckedUpdateManyWithoutReleaseNestedInput
   }
 
   export type RepositoryReleaseCreateManyInput = {
@@ -63872,6 +65345,95 @@ export namespace Prisma {
     isPrerelease?: BoolFieldUpdateOperationsInput | boolean
     authorId?: StringFieldUpdateOperationsInput | string
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryReleaseAssetCreateInput = {
+    id?: string
+    name: string
+    size: number
+    contentType?: string
+    downloadCount?: number
+    storagePath: string
+    sha256: string
+    createdAt?: Date | string
+    release: RepositoryReleaseCreateNestedOneWithoutAssetsInput
+    uploadedBy: UserCreateNestedOneWithoutReleaseAssetsUploadedInput
+  }
+
+  export type RepositoryReleaseAssetUncheckedCreateInput = {
+    id?: string
+    releaseId: string
+    name: string
+    size: number
+    contentType?: string
+    downloadCount?: number
+    storagePath: string
+    sha256: string
+    uploadedById: string
+    createdAt?: Date | string
+  }
+
+  export type RepositoryReleaseAssetUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    storagePath?: StringFieldUpdateOperationsInput | string
+    sha256?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    release?: RepositoryReleaseUpdateOneRequiredWithoutAssetsNestedInput
+    uploadedBy?: UserUpdateOneRequiredWithoutReleaseAssetsUploadedNestedInput
+  }
+
+  export type RepositoryReleaseAssetUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    releaseId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    storagePath?: StringFieldUpdateOperationsInput | string
+    sha256?: StringFieldUpdateOperationsInput | string
+    uploadedById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryReleaseAssetCreateManyInput = {
+    id?: string
+    releaseId: string
+    name: string
+    size: number
+    contentType?: string
+    downloadCount?: number
+    storagePath: string
+    sha256: string
+    uploadedById: string
+    createdAt?: Date | string
+  }
+
+  export type RepositoryReleaseAssetUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    storagePath?: StringFieldUpdateOperationsInput | string
+    sha256?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryReleaseAssetUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    releaseId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    storagePath?: StringFieldUpdateOperationsInput | string
+    sha256?: StringFieldUpdateOperationsInput | string
+    uploadedById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -64645,6 +66207,12 @@ export namespace Prisma {
     none?: RepositoryReleaseWhereInput
   }
 
+  export type RepositoryReleaseAssetListRelationFilter = {
+    every?: RepositoryReleaseAssetWhereInput
+    some?: RepositoryReleaseAssetWhereInput
+    none?: RepositoryReleaseAssetWhereInput
+  }
+
   export type RepositoryAuditEventListRelationFilter = {
     every?: RepositoryAuditEventWhereInput
     some?: RepositoryAuditEventWhereInput
@@ -64777,6 +66345,10 @@ export namespace Prisma {
   }
 
   export type RepositoryReleaseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RepositoryReleaseAssetOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -66800,6 +68372,60 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type RepositoryReleaseScalarRelationFilter = {
+    is?: RepositoryReleaseWhereInput
+    isNot?: RepositoryReleaseWhereInput
+  }
+
+  export type RepositoryReleaseAssetCountOrderByAggregateInput = {
+    id?: SortOrder
+    releaseId?: SortOrder
+    name?: SortOrder
+    size?: SortOrder
+    contentType?: SortOrder
+    downloadCount?: SortOrder
+    storagePath?: SortOrder
+    sha256?: SortOrder
+    uploadedById?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RepositoryReleaseAssetAvgOrderByAggregateInput = {
+    size?: SortOrder
+    downloadCount?: SortOrder
+  }
+
+  export type RepositoryReleaseAssetMaxOrderByAggregateInput = {
+    id?: SortOrder
+    releaseId?: SortOrder
+    name?: SortOrder
+    size?: SortOrder
+    contentType?: SortOrder
+    downloadCount?: SortOrder
+    storagePath?: SortOrder
+    sha256?: SortOrder
+    uploadedById?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RepositoryReleaseAssetMinOrderByAggregateInput = {
+    id?: SortOrder
+    releaseId?: SortOrder
+    name?: SortOrder
+    size?: SortOrder
+    contentType?: SortOrder
+    downloadCount?: SortOrder
+    storagePath?: SortOrder
+    sha256?: SortOrder
+    uploadedById?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RepositoryReleaseAssetSumOrderByAggregateInput = {
+    size?: SortOrder
+    downloadCount?: SortOrder
+  }
+
   export type RepositoryWebhookDeliveryListRelationFilter = {
     every?: RepositoryWebhookDeliveryWhereInput
     some?: RepositoryWebhookDeliveryWhereInput
@@ -67274,6 +68900,13 @@ export namespace Prisma {
     connect?: RepositoryReleaseWhereUniqueInput | RepositoryReleaseWhereUniqueInput[]
   }
 
+  export type RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput = {
+    create?: XOR<RepositoryReleaseAssetCreateWithoutUploadedByInput, RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput> | RepositoryReleaseAssetCreateWithoutUploadedByInput[] | RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput[]
+    connectOrCreate?: RepositoryReleaseAssetCreateOrConnectWithoutUploadedByInput | RepositoryReleaseAssetCreateOrConnectWithoutUploadedByInput[]
+    createMany?: RepositoryReleaseAssetCreateManyUploadedByInputEnvelope
+    connect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+  }
+
   export type RepositoryAuditEventCreateNestedManyWithoutActorInput = {
     create?: XOR<RepositoryAuditEventCreateWithoutActorInput, RepositoryAuditEventUncheckedCreateWithoutActorInput> | RepositoryAuditEventCreateWithoutActorInput[] | RepositoryAuditEventUncheckedCreateWithoutActorInput[]
     connectOrCreate?: RepositoryAuditEventCreateOrConnectWithoutActorInput | RepositoryAuditEventCreateOrConnectWithoutActorInput[]
@@ -67523,6 +69156,13 @@ export namespace Prisma {
     connectOrCreate?: RepositoryReleaseCreateOrConnectWithoutAuthorInput | RepositoryReleaseCreateOrConnectWithoutAuthorInput[]
     createMany?: RepositoryReleaseCreateManyAuthorInputEnvelope
     connect?: RepositoryReleaseWhereUniqueInput | RepositoryReleaseWhereUniqueInput[]
+  }
+
+  export type RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput = {
+    create?: XOR<RepositoryReleaseAssetCreateWithoutUploadedByInput, RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput> | RepositoryReleaseAssetCreateWithoutUploadedByInput[] | RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput[]
+    connectOrCreate?: RepositoryReleaseAssetCreateOrConnectWithoutUploadedByInput | RepositoryReleaseAssetCreateOrConnectWithoutUploadedByInput[]
+    createMany?: RepositoryReleaseAssetCreateManyUploadedByInputEnvelope
+    connect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
   }
 
   export type RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput = {
@@ -68044,6 +69684,20 @@ export namespace Prisma {
     deleteMany?: RepositoryReleaseScalarWhereInput | RepositoryReleaseScalarWhereInput[]
   }
 
+  export type RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput = {
+    create?: XOR<RepositoryReleaseAssetCreateWithoutUploadedByInput, RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput> | RepositoryReleaseAssetCreateWithoutUploadedByInput[] | RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput[]
+    connectOrCreate?: RepositoryReleaseAssetCreateOrConnectWithoutUploadedByInput | RepositoryReleaseAssetCreateOrConnectWithoutUploadedByInput[]
+    upsert?: RepositoryReleaseAssetUpsertWithWhereUniqueWithoutUploadedByInput | RepositoryReleaseAssetUpsertWithWhereUniqueWithoutUploadedByInput[]
+    createMany?: RepositoryReleaseAssetCreateManyUploadedByInputEnvelope
+    set?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    disconnect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    delete?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    connect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    update?: RepositoryReleaseAssetUpdateWithWhereUniqueWithoutUploadedByInput | RepositoryReleaseAssetUpdateWithWhereUniqueWithoutUploadedByInput[]
+    updateMany?: RepositoryReleaseAssetUpdateManyWithWhereWithoutUploadedByInput | RepositoryReleaseAssetUpdateManyWithWhereWithoutUploadedByInput[]
+    deleteMany?: RepositoryReleaseAssetScalarWhereInput | RepositoryReleaseAssetScalarWhereInput[]
+  }
+
   export type RepositoryAuditEventUpdateManyWithoutActorNestedInput = {
     create?: XOR<RepositoryAuditEventCreateWithoutActorInput, RepositoryAuditEventUncheckedCreateWithoutActorInput> | RepositoryAuditEventCreateWithoutActorInput[] | RepositoryAuditEventUncheckedCreateWithoutActorInput[]
     connectOrCreate?: RepositoryAuditEventCreateOrConnectWithoutActorInput | RepositoryAuditEventCreateOrConnectWithoutActorInput[]
@@ -68542,6 +70196,20 @@ export namespace Prisma {
     update?: RepositoryReleaseUpdateWithWhereUniqueWithoutAuthorInput | RepositoryReleaseUpdateWithWhereUniqueWithoutAuthorInput[]
     updateMany?: RepositoryReleaseUpdateManyWithWhereWithoutAuthorInput | RepositoryReleaseUpdateManyWithWhereWithoutAuthorInput[]
     deleteMany?: RepositoryReleaseScalarWhereInput | RepositoryReleaseScalarWhereInput[]
+  }
+
+  export type RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput = {
+    create?: XOR<RepositoryReleaseAssetCreateWithoutUploadedByInput, RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput> | RepositoryReleaseAssetCreateWithoutUploadedByInput[] | RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput[]
+    connectOrCreate?: RepositoryReleaseAssetCreateOrConnectWithoutUploadedByInput | RepositoryReleaseAssetCreateOrConnectWithoutUploadedByInput[]
+    upsert?: RepositoryReleaseAssetUpsertWithWhereUniqueWithoutUploadedByInput | RepositoryReleaseAssetUpsertWithWhereUniqueWithoutUploadedByInput[]
+    createMany?: RepositoryReleaseAssetCreateManyUploadedByInputEnvelope
+    set?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    disconnect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    delete?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    connect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    update?: RepositoryReleaseAssetUpdateWithWhereUniqueWithoutUploadedByInput | RepositoryReleaseAssetUpdateWithWhereUniqueWithoutUploadedByInput[]
+    updateMany?: RepositoryReleaseAssetUpdateManyWithWhereWithoutUploadedByInput | RepositoryReleaseAssetUpdateManyWithWhereWithoutUploadedByInput[]
+    deleteMany?: RepositoryReleaseAssetScalarWhereInput | RepositoryReleaseAssetScalarWhereInput[]
   }
 
   export type RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput = {
@@ -71221,6 +72889,20 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type RepositoryReleaseAssetCreateNestedManyWithoutReleaseInput = {
+    create?: XOR<RepositoryReleaseAssetCreateWithoutReleaseInput, RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput> | RepositoryReleaseAssetCreateWithoutReleaseInput[] | RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput[]
+    connectOrCreate?: RepositoryReleaseAssetCreateOrConnectWithoutReleaseInput | RepositoryReleaseAssetCreateOrConnectWithoutReleaseInput[]
+    createMany?: RepositoryReleaseAssetCreateManyReleaseInputEnvelope
+    connect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+  }
+
+  export type RepositoryReleaseAssetUncheckedCreateNestedManyWithoutReleaseInput = {
+    create?: XOR<RepositoryReleaseAssetCreateWithoutReleaseInput, RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput> | RepositoryReleaseAssetCreateWithoutReleaseInput[] | RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput[]
+    connectOrCreate?: RepositoryReleaseAssetCreateOrConnectWithoutReleaseInput | RepositoryReleaseAssetCreateOrConnectWithoutReleaseInput[]
+    createMany?: RepositoryReleaseAssetCreateManyReleaseInputEnvelope
+    connect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+  }
+
   export type RepositoryUpdateOneRequiredWithoutReleasesNestedInput = {
     create?: XOR<RepositoryCreateWithoutReleasesInput, RepositoryUncheckedCreateWithoutReleasesInput>
     connectOrCreate?: RepositoryCreateOrConnectWithoutReleasesInput
@@ -71235,6 +72917,62 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutRepositoryReleasesInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRepositoryReleasesInput, UserUpdateWithoutRepositoryReleasesInput>, UserUncheckedUpdateWithoutRepositoryReleasesInput>
+  }
+
+  export type RepositoryReleaseAssetUpdateManyWithoutReleaseNestedInput = {
+    create?: XOR<RepositoryReleaseAssetCreateWithoutReleaseInput, RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput> | RepositoryReleaseAssetCreateWithoutReleaseInput[] | RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput[]
+    connectOrCreate?: RepositoryReleaseAssetCreateOrConnectWithoutReleaseInput | RepositoryReleaseAssetCreateOrConnectWithoutReleaseInput[]
+    upsert?: RepositoryReleaseAssetUpsertWithWhereUniqueWithoutReleaseInput | RepositoryReleaseAssetUpsertWithWhereUniqueWithoutReleaseInput[]
+    createMany?: RepositoryReleaseAssetCreateManyReleaseInputEnvelope
+    set?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    disconnect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    delete?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    connect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    update?: RepositoryReleaseAssetUpdateWithWhereUniqueWithoutReleaseInput | RepositoryReleaseAssetUpdateWithWhereUniqueWithoutReleaseInput[]
+    updateMany?: RepositoryReleaseAssetUpdateManyWithWhereWithoutReleaseInput | RepositoryReleaseAssetUpdateManyWithWhereWithoutReleaseInput[]
+    deleteMany?: RepositoryReleaseAssetScalarWhereInput | RepositoryReleaseAssetScalarWhereInput[]
+  }
+
+  export type RepositoryReleaseAssetUncheckedUpdateManyWithoutReleaseNestedInput = {
+    create?: XOR<RepositoryReleaseAssetCreateWithoutReleaseInput, RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput> | RepositoryReleaseAssetCreateWithoutReleaseInput[] | RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput[]
+    connectOrCreate?: RepositoryReleaseAssetCreateOrConnectWithoutReleaseInput | RepositoryReleaseAssetCreateOrConnectWithoutReleaseInput[]
+    upsert?: RepositoryReleaseAssetUpsertWithWhereUniqueWithoutReleaseInput | RepositoryReleaseAssetUpsertWithWhereUniqueWithoutReleaseInput[]
+    createMany?: RepositoryReleaseAssetCreateManyReleaseInputEnvelope
+    set?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    disconnect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    delete?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    connect?: RepositoryReleaseAssetWhereUniqueInput | RepositoryReleaseAssetWhereUniqueInput[]
+    update?: RepositoryReleaseAssetUpdateWithWhereUniqueWithoutReleaseInput | RepositoryReleaseAssetUpdateWithWhereUniqueWithoutReleaseInput[]
+    updateMany?: RepositoryReleaseAssetUpdateManyWithWhereWithoutReleaseInput | RepositoryReleaseAssetUpdateManyWithWhereWithoutReleaseInput[]
+    deleteMany?: RepositoryReleaseAssetScalarWhereInput | RepositoryReleaseAssetScalarWhereInput[]
+  }
+
+  export type RepositoryReleaseCreateNestedOneWithoutAssetsInput = {
+    create?: XOR<RepositoryReleaseCreateWithoutAssetsInput, RepositoryReleaseUncheckedCreateWithoutAssetsInput>
+    connectOrCreate?: RepositoryReleaseCreateOrConnectWithoutAssetsInput
+    connect?: RepositoryReleaseWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutReleaseAssetsUploadedInput = {
+    create?: XOR<UserCreateWithoutReleaseAssetsUploadedInput, UserUncheckedCreateWithoutReleaseAssetsUploadedInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReleaseAssetsUploadedInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type RepositoryReleaseUpdateOneRequiredWithoutAssetsNestedInput = {
+    create?: XOR<RepositoryReleaseCreateWithoutAssetsInput, RepositoryReleaseUncheckedCreateWithoutAssetsInput>
+    connectOrCreate?: RepositoryReleaseCreateOrConnectWithoutAssetsInput
+    upsert?: RepositoryReleaseUpsertWithoutAssetsInput
+    connect?: RepositoryReleaseWhereUniqueInput
+    update?: XOR<XOR<RepositoryReleaseUpdateToOneWithWhereWithoutAssetsInput, RepositoryReleaseUpdateWithoutAssetsInput>, RepositoryReleaseUncheckedUpdateWithoutAssetsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutReleaseAssetsUploadedNestedInput = {
+    create?: XOR<UserCreateWithoutReleaseAssetsUploadedInput, UserUncheckedCreateWithoutReleaseAssetsUploadedInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReleaseAssetsUploadedInput
+    upsert?: UserUpsertWithoutReleaseAssetsUploadedInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReleaseAssetsUploadedInput, UserUpdateWithoutReleaseAssetsUploadedInput>, UserUncheckedUpdateWithoutReleaseAssetsUploadedInput>
   }
 
   export type RepositoryWebhookCreateeventsInput = {
@@ -72995,6 +74733,7 @@ export namespace Prisma {
     publishedAt?: Date | string
     createdAt?: Date | string
     repository: RepositoryCreateNestedOneWithoutReleasesInput
+    assets?: RepositoryReleaseAssetCreateNestedManyWithoutReleaseInput
   }
 
   export type RepositoryReleaseUncheckedCreateWithoutAuthorInput = {
@@ -73008,6 +74747,7 @@ export namespace Prisma {
     isPrerelease?: boolean
     publishedAt?: Date | string
     createdAt?: Date | string
+    assets?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutReleaseInput
   }
 
   export type RepositoryReleaseCreateOrConnectWithoutAuthorInput = {
@@ -73017,6 +74757,40 @@ export namespace Prisma {
 
   export type RepositoryReleaseCreateManyAuthorInputEnvelope = {
     data: RepositoryReleaseCreateManyAuthorInput | RepositoryReleaseCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RepositoryReleaseAssetCreateWithoutUploadedByInput = {
+    id?: string
+    name: string
+    size: number
+    contentType?: string
+    downloadCount?: number
+    storagePath: string
+    sha256: string
+    createdAt?: Date | string
+    release: RepositoryReleaseCreateNestedOneWithoutAssetsInput
+  }
+
+  export type RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput = {
+    id?: string
+    releaseId: string
+    name: string
+    size: number
+    contentType?: string
+    downloadCount?: number
+    storagePath: string
+    sha256: string
+    createdAt?: Date | string
+  }
+
+  export type RepositoryReleaseAssetCreateOrConnectWithoutUploadedByInput = {
+    where: RepositoryReleaseAssetWhereUniqueInput
+    create: XOR<RepositoryReleaseAssetCreateWithoutUploadedByInput, RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput>
+  }
+
+  export type RepositoryReleaseAssetCreateManyUploadedByInputEnvelope = {
+    data: RepositoryReleaseAssetCreateManyUploadedByInput | RepositoryReleaseAssetCreateManyUploadedByInput[]
     skipDuplicates?: boolean
   }
 
@@ -74053,6 +75827,38 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RepositoryRelease"> | Date | string
   }
 
+  export type RepositoryReleaseAssetUpsertWithWhereUniqueWithoutUploadedByInput = {
+    where: RepositoryReleaseAssetWhereUniqueInput
+    update: XOR<RepositoryReleaseAssetUpdateWithoutUploadedByInput, RepositoryReleaseAssetUncheckedUpdateWithoutUploadedByInput>
+    create: XOR<RepositoryReleaseAssetCreateWithoutUploadedByInput, RepositoryReleaseAssetUncheckedCreateWithoutUploadedByInput>
+  }
+
+  export type RepositoryReleaseAssetUpdateWithWhereUniqueWithoutUploadedByInput = {
+    where: RepositoryReleaseAssetWhereUniqueInput
+    data: XOR<RepositoryReleaseAssetUpdateWithoutUploadedByInput, RepositoryReleaseAssetUncheckedUpdateWithoutUploadedByInput>
+  }
+
+  export type RepositoryReleaseAssetUpdateManyWithWhereWithoutUploadedByInput = {
+    where: RepositoryReleaseAssetScalarWhereInput
+    data: XOR<RepositoryReleaseAssetUpdateManyMutationInput, RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByInput>
+  }
+
+  export type RepositoryReleaseAssetScalarWhereInput = {
+    AND?: RepositoryReleaseAssetScalarWhereInput | RepositoryReleaseAssetScalarWhereInput[]
+    OR?: RepositoryReleaseAssetScalarWhereInput[]
+    NOT?: RepositoryReleaseAssetScalarWhereInput | RepositoryReleaseAssetScalarWhereInput[]
+    id?: StringFilter<"RepositoryReleaseAsset"> | string
+    releaseId?: StringFilter<"RepositoryReleaseAsset"> | string
+    name?: StringFilter<"RepositoryReleaseAsset"> | string
+    size?: IntFilter<"RepositoryReleaseAsset"> | number
+    contentType?: StringFilter<"RepositoryReleaseAsset"> | string
+    downloadCount?: IntFilter<"RepositoryReleaseAsset"> | number
+    storagePath?: StringFilter<"RepositoryReleaseAsset"> | string
+    sha256?: StringFilter<"RepositoryReleaseAsset"> | string
+    uploadedById?: StringFilter<"RepositoryReleaseAsset"> | string
+    createdAt?: DateTimeFilter<"RepositoryReleaseAsset"> | Date | string
+  }
+
   export type RepositoryAuditEventUpsertWithWhereUniqueWithoutActorInput = {
     where: RepositoryAuditEventWhereUniqueInput
     update: XOR<RepositoryAuditEventUpdateWithoutActorInput, RepositoryAuditEventUncheckedUpdateWithoutActorInput>
@@ -74201,6 +76007,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -74261,6 +76068,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -74337,6 +76145,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -74397,6 +76206,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -74457,6 +76267,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -74517,6 +76328,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -74593,6 +76405,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -74653,6 +76466,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -74713,6 +76527,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -74773,6 +76588,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -74849,6 +76665,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -74909,6 +76726,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -75005,6 +76823,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -75065,6 +76884,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -75158,6 +76978,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -75218,6 +77039,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -75301,6 +77123,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -75361,6 +77184,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -75919,6 +77743,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -75979,6 +77804,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -76622,6 +78448,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -76682,6 +78509,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -76862,6 +78690,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -76922,6 +78751,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -77111,6 +78941,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -77171,6 +79002,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -77357,6 +79189,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -77417,6 +79250,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -78024,6 +79858,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -78084,6 +79919,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -78199,6 +80035,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -78259,6 +80096,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -78392,6 +80230,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -78452,6 +80291,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -78633,6 +80473,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -78693,6 +80534,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -78798,6 +80640,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -78858,6 +80701,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -78969,6 +80813,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -79029,6 +80874,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -79162,6 +81008,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -79222,6 +81069,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -79377,6 +81225,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -79437,6 +81286,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -79497,6 +81347,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -79557,6 +81408,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -79737,6 +81589,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -79797,6 +81650,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -79973,6 +81827,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -80033,6 +81888,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -80109,6 +81965,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -80169,6 +82026,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -80229,6 +82087,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -80289,6 +82148,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -80365,6 +82225,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -80425,6 +82286,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -80485,6 +82347,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -80545,6 +82408,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -80694,6 +82558,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -80754,6 +82619,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -80893,6 +82759,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -80953,6 +82820,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -81102,6 +82970,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -81162,6 +83031,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -81301,6 +83171,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -81361,6 +83232,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -81510,6 +83382,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -81570,6 +83443,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -81782,6 +83656,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -81842,6 +83717,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -81997,6 +83873,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -82057,6 +83934,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -82190,6 +84068,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -82250,6 +84129,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -82405,6 +84285,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -82465,6 +84346,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -82525,6 +84407,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -82585,6 +84468,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -83070,6 +84954,7 @@ export namespace Prisma {
     publishedAt?: Date | string
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutRepositoryReleasesInput
+    assets?: RepositoryReleaseAssetCreateNestedManyWithoutReleaseInput
   }
 
   export type RepositoryReleaseUncheckedCreateWithoutRepositoryInput = {
@@ -83083,6 +84968,7 @@ export namespace Prisma {
     authorId: string
     publishedAt?: Date | string
     createdAt?: Date | string
+    assets?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutReleaseInput
   }
 
   export type RepositoryReleaseCreateOrConnectWithoutRepositoryInput = {
@@ -83263,6 +85149,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -83323,6 +85210,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -83799,6 +85687,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -83859,6 +85748,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -84010,6 +85900,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -84070,6 +85961,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -84211,6 +86103,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -84271,6 +86164,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -84422,6 +86316,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -84482,6 +86377,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -84698,6 +86594,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -84758,6 +86655,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -84915,6 +86813,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -84975,6 +86874,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -85422,6 +87322,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -85482,6 +87383,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -85547,6 +87449,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -85607,6 +87510,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -85672,6 +87576,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -85732,6 +87637,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -85962,6 +87868,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -86022,6 +87929,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -86093,6 +88001,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -86153,6 +88062,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -86224,6 +88134,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -86284,6 +88195,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -86452,6 +88364,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -86512,6 +88425,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -86633,6 +88547,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -86693,6 +88608,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -86828,6 +88744,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -86888,6 +88805,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -86953,6 +88871,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -87013,6 +88932,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -87282,6 +89202,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -87342,6 +89263,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -87413,6 +89335,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -87473,6 +89396,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -87628,6 +89552,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -87688,6 +89613,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -87817,6 +89743,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -87877,6 +89804,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -87984,6 +89912,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -88044,6 +89973,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -88188,6 +90118,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -88248,6 +90179,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -88377,6 +90309,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -88437,6 +90370,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -88567,6 +90501,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -88627,6 +90562,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -88762,6 +90698,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
@@ -88822,6 +90759,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
@@ -88830,6 +90768,40 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutRepositoryReleasesInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutRepositoryReleasesInput, UserUncheckedCreateWithoutRepositoryReleasesInput>
+  }
+
+  export type RepositoryReleaseAssetCreateWithoutReleaseInput = {
+    id?: string
+    name: string
+    size: number
+    contentType?: string
+    downloadCount?: number
+    storagePath: string
+    sha256: string
+    createdAt?: Date | string
+    uploadedBy: UserCreateNestedOneWithoutReleaseAssetsUploadedInput
+  }
+
+  export type RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput = {
+    id?: string
+    name: string
+    size: number
+    contentType?: string
+    downloadCount?: number
+    storagePath: string
+    sha256: string
+    uploadedById: string
+    createdAt?: Date | string
+  }
+
+  export type RepositoryReleaseAssetCreateOrConnectWithoutReleaseInput = {
+    where: RepositoryReleaseAssetWhereUniqueInput
+    create: XOR<RepositoryReleaseAssetCreateWithoutReleaseInput, RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput>
+  }
+
+  export type RepositoryReleaseAssetCreateManyReleaseInputEnvelope = {
+    data: RepositoryReleaseAssetCreateManyReleaseInput | RepositoryReleaseAssetCreateManyReleaseInput[]
+    skipDuplicates?: boolean
   }
 
   export type RepositoryUpsertWithoutReleasesInput = {
@@ -88979,6 +90951,7 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
@@ -89039,6 +91012,355 @@ export namespace Prisma {
     pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
+    personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type RepositoryReleaseAssetUpsertWithWhereUniqueWithoutReleaseInput = {
+    where: RepositoryReleaseAssetWhereUniqueInput
+    update: XOR<RepositoryReleaseAssetUpdateWithoutReleaseInput, RepositoryReleaseAssetUncheckedUpdateWithoutReleaseInput>
+    create: XOR<RepositoryReleaseAssetCreateWithoutReleaseInput, RepositoryReleaseAssetUncheckedCreateWithoutReleaseInput>
+  }
+
+  export type RepositoryReleaseAssetUpdateWithWhereUniqueWithoutReleaseInput = {
+    where: RepositoryReleaseAssetWhereUniqueInput
+    data: XOR<RepositoryReleaseAssetUpdateWithoutReleaseInput, RepositoryReleaseAssetUncheckedUpdateWithoutReleaseInput>
+  }
+
+  export type RepositoryReleaseAssetUpdateManyWithWhereWithoutReleaseInput = {
+    where: RepositoryReleaseAssetScalarWhereInput
+    data: XOR<RepositoryReleaseAssetUpdateManyMutationInput, RepositoryReleaseAssetUncheckedUpdateManyWithoutReleaseInput>
+  }
+
+  export type RepositoryReleaseCreateWithoutAssetsInput = {
+    id?: string
+    tagName: string
+    targetCommitish?: string
+    name: string
+    body?: string | null
+    isDraft?: boolean
+    isPrerelease?: boolean
+    publishedAt?: Date | string
+    createdAt?: Date | string
+    repository: RepositoryCreateNestedOneWithoutReleasesInput
+    author: UserCreateNestedOneWithoutRepositoryReleasesInput
+  }
+
+  export type RepositoryReleaseUncheckedCreateWithoutAssetsInput = {
+    id?: string
+    repositoryId: string
+    tagName: string
+    targetCommitish?: string
+    name: string
+    body?: string | null
+    isDraft?: boolean
+    isPrerelease?: boolean
+    authorId: string
+    publishedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type RepositoryReleaseCreateOrConnectWithoutAssetsInput = {
+    where: RepositoryReleaseWhereUniqueInput
+    create: XOR<RepositoryReleaseCreateWithoutAssetsInput, RepositoryReleaseUncheckedCreateWithoutAssetsInput>
+  }
+
+  export type UserCreateWithoutReleaseAssetsUploadedInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberCreateNestedManyWithoutUserInput
+    applications?: ApplicationCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateCreateNestedManyWithoutAuthorInput
+    repositoriesOwned?: RepositoryCreateNestedManyWithoutOwnerInput
+    repositoryStars?: RepositoryStarCreateNestedManyWithoutUserInput
+    repositoryWatchers?: RepositoryWatcherCreateNestedManyWithoutUserInput
+    repositoryCollaborators?: RepositoryCollaboratorCreateNestedManyWithoutUserInput
+    repositoryIssues?: RepositoryIssueCreateNestedManyWithoutAuthorInput
+    assignedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueCreateNestedManyWithoutClosedByInput
+    repositoryIssueComments?: RepositoryIssueCommentCreateNestedManyWithoutAuthorInput
+    pullRequestsAuthored?: PullRequestCreateNestedManyWithoutAuthorInput
+    pullRequestsMerged?: PullRequestCreateNestedManyWithoutMergedByInput
+    pullRequestReviews?: PullRequestReviewCreateNestedManyWithoutReviewerInput
+    pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
+    repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
+    personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutReleaseAssetsUploadedInput = {
+    id?: string
+    email: string
+    emailVerifiedAt?: Date | string | null
+    username: string
+    passwordHash?: string | null
+    displayName?: string | null
+    avatarUrl?: string | null
+    bio?: string | null
+    about?: string | null
+    location?: string | null
+    websiteUrl?: string | null
+    githubUsername?: string | null
+    isVerifiedEmail?: boolean
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    onboardingEntryPoint?: $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: $Enums.OnboardingIntent | null
+    onboardingStep?: number
+    onboardingCompletedAt?: Date | string | null
+    acceptedTermsAt?: Date | string | null
+    community?: string | null
+    oauthAccounts?: OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    skills?: SkillOnUserUncheckedCreateNestedManyWithoutUserInput
+    projectsOwned?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    memberships?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    applications?: ApplicationUncheckedCreateNestedManyWithoutApplicantInput
+    assignedTasks?: TaskAssigneeUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionComments?: DiscussionCommentUncheckedCreateNestedManyWithoutAuthorInput
+    uploadedFiles?: FileAssetUncheckedCreateNestedManyWithoutUploadedByInput
+    contributionRecords?: ContributionRecordUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    usernameHistory?: UsernameHistoryUncheckedCreateNestedManyWithoutUserInput
+    platformAdmin?: PlatformAdminUncheckedCreateNestedOneWithoutUserInput
+    activityEvents?: ActivityEventUncheckedCreateNestedManyWithoutActorInput
+    followedProjects?: ProjectFollowerUncheckedCreateNestedManyWithoutUserInput
+    starredProjects?: ProjectStarUncheckedCreateNestedManyWithoutUserInput
+    releasesAuthored?: ReleaseUncheckedCreateNestedManyWithoutCreatedByInput
+    projectUpdates?: ProjectUpdateUncheckedCreateNestedManyWithoutAuthorInput
+    repositoriesOwned?: RepositoryUncheckedCreateNestedManyWithoutOwnerInput
+    repositoryStars?: RepositoryStarUncheckedCreateNestedManyWithoutUserInput
+    repositoryWatchers?: RepositoryWatcherUncheckedCreateNestedManyWithoutUserInput
+    repositoryCollaborators?: RepositoryCollaboratorUncheckedCreateNestedManyWithoutUserInput
+    repositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAuthorInput
+    assignedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutAssigneeInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedCreateNestedManyWithoutClosedByInput
+    repositoryIssueComments?: RepositoryIssueCommentUncheckedCreateNestedManyWithoutAuthorInput
+    pullRequestsAuthored?: PullRequestUncheckedCreateNestedManyWithoutAuthorInput
+    pullRequestsMerged?: PullRequestUncheckedCreateNestedManyWithoutMergedByInput
+    pullRequestReviews?: PullRequestReviewUncheckedCreateNestedManyWithoutReviewerInput
+    pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
+    resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
+    repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
+    personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
+    sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutReleaseAssetsUploadedInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutReleaseAssetsUploadedInput, UserUncheckedCreateWithoutReleaseAssetsUploadedInput>
+  }
+
+  export type RepositoryReleaseUpsertWithoutAssetsInput = {
+    update: XOR<RepositoryReleaseUpdateWithoutAssetsInput, RepositoryReleaseUncheckedUpdateWithoutAssetsInput>
+    create: XOR<RepositoryReleaseCreateWithoutAssetsInput, RepositoryReleaseUncheckedCreateWithoutAssetsInput>
+    where?: RepositoryReleaseWhereInput
+  }
+
+  export type RepositoryReleaseUpdateToOneWithWhereWithoutAssetsInput = {
+    where?: RepositoryReleaseWhereInput
+    data: XOR<RepositoryReleaseUpdateWithoutAssetsInput, RepositoryReleaseUncheckedUpdateWithoutAssetsInput>
+  }
+
+  export type RepositoryReleaseUpdateWithoutAssetsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tagName?: StringFieldUpdateOperationsInput | string
+    targetCommitish?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    isDraft?: BoolFieldUpdateOperationsInput | boolean
+    isPrerelease?: BoolFieldUpdateOperationsInput | boolean
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repository?: RepositoryUpdateOneRequiredWithoutReleasesNestedInput
+    author?: UserUpdateOneRequiredWithoutRepositoryReleasesNestedInput
+  }
+
+  export type RepositoryReleaseUncheckedUpdateWithoutAssetsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repositoryId?: StringFieldUpdateOperationsInput | string
+    tagName?: StringFieldUpdateOperationsInput | string
+    targetCommitish?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    isDraft?: BoolFieldUpdateOperationsInput | boolean
+    isPrerelease?: BoolFieldUpdateOperationsInput | boolean
+    authorId?: StringFieldUpdateOperationsInput | string
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutReleaseAssetsUploadedInput = {
+    update: XOR<UserUpdateWithoutReleaseAssetsUploadedInput, UserUncheckedUpdateWithoutReleaseAssetsUploadedInput>
+    create: XOR<UserCreateWithoutReleaseAssetsUploadedInput, UserUncheckedCreateWithoutReleaseAssetsUploadedInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutReleaseAssetsUploadedInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutReleaseAssetsUploadedInput, UserUncheckedUpdateWithoutReleaseAssetsUploadedInput>
+  }
+
+  export type UserUpdateWithoutReleaseAssetsUploadedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUpdateManyWithoutAuthorNestedInput
+    repositoriesOwned?: RepositoryUpdateManyWithoutOwnerNestedInput
+    repositoryStars?: RepositoryStarUpdateManyWithoutUserNestedInput
+    repositoryWatchers?: RepositoryWatcherUpdateManyWithoutUserNestedInput
+    repositoryCollaborators?: RepositoryCollaboratorUpdateManyWithoutUserNestedInput
+    repositoryIssues?: RepositoryIssueUpdateManyWithoutAuthorNestedInput
+    assignedRepositoryIssues?: RepositoryIssueUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUpdateManyWithoutClosedByNestedInput
+    repositoryIssueComments?: RepositoryIssueCommentUpdateManyWithoutAuthorNestedInput
+    pullRequestsAuthored?: PullRequestUpdateManyWithoutAuthorNestedInput
+    pullRequestsMerged?: PullRequestUpdateManyWithoutMergedByNestedInput
+    pullRequestReviews?: PullRequestReviewUpdateManyWithoutReviewerNestedInput
+    pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
+    repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
+    personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
+    sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutReleaseAssetsUploadedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: NullableStringFieldUpdateOperationsInput | string | null
+    displayName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    about?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerifiedEmail?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingEntryPoint?: NullableEnumOnboardingEntryPointFieldUpdateOperationsInput | $Enums.OnboardingEntryPoint | null
+    onboardingIntent?: NullableEnumOnboardingIntentFieldUpdateOperationsInput | $Enums.OnboardingIntent | null
+    onboardingStep?: IntFieldUpdateOperationsInput | number
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    acceptedTermsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    community?: NullableStringFieldUpdateOperationsInput | string | null
+    oauthAccounts?: OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    skills?: SkillOnUserUncheckedUpdateManyWithoutUserNestedInput
+    projectsOwned?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    memberships?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    applications?: ApplicationUncheckedUpdateManyWithoutApplicantNestedInput
+    assignedTasks?: TaskAssigneeUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionComments?: DiscussionCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    uploadedFiles?: FileAssetUncheckedUpdateManyWithoutUploadedByNestedInput
+    contributionRecords?: ContributionRecordUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    usernameHistory?: UsernameHistoryUncheckedUpdateManyWithoutUserNestedInput
+    platformAdmin?: PlatformAdminUncheckedUpdateOneWithoutUserNestedInput
+    activityEvents?: ActivityEventUncheckedUpdateManyWithoutActorNestedInput
+    followedProjects?: ProjectFollowerUncheckedUpdateManyWithoutUserNestedInput
+    starredProjects?: ProjectStarUncheckedUpdateManyWithoutUserNestedInput
+    releasesAuthored?: ReleaseUncheckedUpdateManyWithoutCreatedByNestedInput
+    projectUpdates?: ProjectUpdateUncheckedUpdateManyWithoutAuthorNestedInput
+    repositoriesOwned?: RepositoryUncheckedUpdateManyWithoutOwnerNestedInput
+    repositoryStars?: RepositoryStarUncheckedUpdateManyWithoutUserNestedInput
+    repositoryWatchers?: RepositoryWatcherUncheckedUpdateManyWithoutUserNestedInput
+    repositoryCollaborators?: RepositoryCollaboratorUncheckedUpdateManyWithoutUserNestedInput
+    repositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAuthorNestedInput
+    assignedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutAssigneeNestedInput
+    closedRepositoryIssues?: RepositoryIssueUncheckedUpdateManyWithoutClosedByNestedInput
+    repositoryIssueComments?: RepositoryIssueCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    pullRequestsAuthored?: PullRequestUncheckedUpdateManyWithoutAuthorNestedInput
+    pullRequestsMerged?: PullRequestUncheckedUpdateManyWithoutMergedByNestedInput
+    pullRequestReviews?: PullRequestReviewUncheckedUpdateManyWithoutReviewerNestedInput
+    pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
+    resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
+    repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
@@ -89606,6 +91928,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
@@ -89666,6 +91989,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
@@ -89823,6 +92147,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
@@ -89883,6 +92208,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -89943,6 +92269,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     sshKeys?: UserSshKeyCreateNestedManyWithoutUserInput
   }
@@ -90003,6 +92330,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     sshKeys?: UserSshKeyUncheckedCreateNestedManyWithoutUserInput
   }
@@ -90079,6 +92407,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     sshKeys?: UserSshKeyUpdateManyWithoutUserNestedInput
   }
@@ -90139,6 +92468,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     sshKeys?: UserSshKeyUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -90199,6 +92529,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenCreateNestedManyWithoutUserInput
   }
@@ -90259,6 +92590,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedCreateNestedManyWithoutAuthorInput
     resolvedPrComments?: PullRequestCommentUncheckedCreateNestedManyWithoutResolvedByInput
     repositoryReleases?: RepositoryReleaseUncheckedCreateNestedManyWithoutAuthorInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedCreateNestedManyWithoutUploadedByInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedCreateNestedManyWithoutActorInput
     personalAccessTokens?: PersonalAccessTokenUncheckedCreateNestedManyWithoutUserInput
   }
@@ -90335,6 +92667,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUpdateManyWithoutUserNestedInput
   }
@@ -90395,6 +92728,7 @@ export namespace Prisma {
     pullRequestComments?: PullRequestCommentUncheckedUpdateManyWithoutAuthorNestedInput
     resolvedPrComments?: PullRequestCommentUncheckedUpdateManyWithoutResolvedByNestedInput
     repositoryReleases?: RepositoryReleaseUncheckedUpdateManyWithoutAuthorNestedInput
+    releaseAssetsUploaded?: RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByNestedInput
     repositoryAuditEvents?: RepositoryAuditEventUncheckedUpdateManyWithoutActorNestedInput
     personalAccessTokens?: PersonalAccessTokenUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -90751,6 +93085,18 @@ export namespace Prisma {
     isDraft?: boolean
     isPrerelease?: boolean
     publishedAt?: Date | string
+    createdAt?: Date | string
+  }
+
+  export type RepositoryReleaseAssetCreateManyUploadedByInput = {
+    id?: string
+    releaseId: string
+    name: string
+    size: number
+    contentType?: string
+    downloadCount?: number
+    storagePath: string
+    sha256: string
     createdAt?: Date | string
   }
 
@@ -91900,6 +94246,7 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     repository?: RepositoryUpdateOneRequiredWithoutReleasesNestedInput
+    assets?: RepositoryReleaseAssetUpdateManyWithoutReleaseNestedInput
   }
 
   export type RepositoryReleaseUncheckedUpdateWithoutAuthorInput = {
@@ -91913,6 +94260,7 @@ export namespace Prisma {
     isPrerelease?: BoolFieldUpdateOperationsInput | boolean
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assets?: RepositoryReleaseAssetUncheckedUpdateManyWithoutReleaseNestedInput
   }
 
   export type RepositoryReleaseUncheckedUpdateManyWithoutAuthorInput = {
@@ -91925,6 +94273,42 @@ export namespace Prisma {
     isDraft?: BoolFieldUpdateOperationsInput | boolean
     isPrerelease?: BoolFieldUpdateOperationsInput | boolean
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryReleaseAssetUpdateWithoutUploadedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    storagePath?: StringFieldUpdateOperationsInput | string
+    sha256?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    release?: RepositoryReleaseUpdateOneRequiredWithoutAssetsNestedInput
+  }
+
+  export type RepositoryReleaseAssetUncheckedUpdateWithoutUploadedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    releaseId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    storagePath?: StringFieldUpdateOperationsInput | string
+    sha256?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryReleaseAssetUncheckedUpdateManyWithoutUploadedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    releaseId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    storagePath?: StringFieldUpdateOperationsInput | string
+    sha256?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -93428,6 +95812,7 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutRepositoryReleasesNestedInput
+    assets?: RepositoryReleaseAssetUpdateManyWithoutReleaseNestedInput
   }
 
   export type RepositoryReleaseUncheckedUpdateWithoutRepositoryInput = {
@@ -93441,6 +95826,7 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assets?: RepositoryReleaseAssetUncheckedUpdateManyWithoutReleaseNestedInput
   }
 
   export type RepositoryReleaseUncheckedUpdateManyWithoutRepositoryInput = {
@@ -93815,6 +96201,54 @@ export namespace Prisma {
     resolvedById?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryReleaseAssetCreateManyReleaseInput = {
+    id?: string
+    name: string
+    size: number
+    contentType?: string
+    downloadCount?: number
+    storagePath: string
+    sha256: string
+    uploadedById: string
+    createdAt?: Date | string
+  }
+
+  export type RepositoryReleaseAssetUpdateWithoutReleaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    storagePath?: StringFieldUpdateOperationsInput | string
+    sha256?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    uploadedBy?: UserUpdateOneRequiredWithoutReleaseAssetsUploadedNestedInput
+  }
+
+  export type RepositoryReleaseAssetUncheckedUpdateWithoutReleaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    storagePath?: StringFieldUpdateOperationsInput | string
+    sha256?: StringFieldUpdateOperationsInput | string
+    uploadedById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepositoryReleaseAssetUncheckedUpdateManyWithoutReleaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    contentType?: StringFieldUpdateOperationsInput | string
+    downloadCount?: IntFieldUpdateOperationsInput | number
+    storagePath?: StringFieldUpdateOperationsInput | string
+    sha256?: StringFieldUpdateOperationsInput | string
+    uploadedById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RepositoryWebhookDeliveryCreateManyWebhookInput = {

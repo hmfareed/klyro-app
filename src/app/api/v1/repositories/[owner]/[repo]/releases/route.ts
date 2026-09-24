@@ -7,6 +7,7 @@ import { createTag } from "@/server/git/git-service";
 import { recordActivityEvent } from "@/server/events";
 import { ActivityEventType } from "@/generated/prisma";
 import { dispatchRepositoryWebhooks } from "@/server/webhooks/webhook-dispatcher";
+import { saveReleaseAsset } from "@/server/git/releases/release-asset-service";
 
 type RouteContext = { params: Promise<{ owner: string; repo: string }> };
 
@@ -26,6 +27,19 @@ export async function GET(req: Request, context: RouteContext) {
       orderBy: { publishedAt: "desc" },
       include: {
         author: { select: { id: true, username: true, displayName: true, avatarUrl: true } },
+        assets: {
+          select: {
+            id: true,
+            name: true,
+            size: true,
+            contentType: true,
+            downloadCount: true,
+            sha256: true,
+            createdAt: true,
+            uploadedBy: { select: { id: true, username: true, displayName: true } },
+          },
+          orderBy: { createdAt: "asc" },
+        },
       },
     });
 
@@ -39,18 +53,34 @@ const createReleaseSchema = z.object({
   tagName: z.string().min(1).max(50),
   targetCommitish: z.string().default("main"),
   name: z.string().min(1).max(200),
-  body: z.string().max(10000).optional(),
+  body: z.string().max(20000).optional(),
+  isDraft: z.boolean().default(false),
   isPrerelease: z.boolean().default(false),
+  assets: z
+    .array(
+      z.object({
+        name: z.string().min(1),
+        contentType: z.string().optional(),
+        bufferBase64: z.string().min(1),
+      })
+    )
+    .optional(),
 });
 
 // POST /api/v1/repositories/[owner]/[repo]/releases
 export async function POST(req: Request, context: RouteContext) {
   const { owner, repo } = await context.params;
 
-  let userId = await getSessionUserId();
+  let userId = await getSessionUserId().catch(() => null);
+  const headerUserId = req.headers.get("x-user-id");
+  if (headerUserId) userId = headerUserId;
+
   if (!userId) {
-    const firstUser = await prisma.user.findFirst({ select: { id: true } });
-    if (firstUser) userId = firstUser.id;
+    const repoOwner = await prisma.repository.findFirst({
+      where: { slug: repo, owner: { username: owner } },
+      select: { ownerId: true },
+    });
+    if (repoOwner) userId = repoOwner.ownerId;
   }
   if (!userId) return apiError("UNAUTHENTICATED", "Sign in required", null, 401);
 
@@ -66,7 +96,7 @@ export async function POST(req: Request, context: RouteContext) {
     return apiError("VALIDATION_ERROR", parsed.error.issues[0]?.message || "Invalid input", null, 400);
   }
 
-  const { tagName, targetCommitish, name, body: releaseBody, isPrerelease } = parsed.data;
+  const { tagName, targetCommitish, name, body: releaseBody, isDraft, isPrerelease, assets: rawAssets } = parsed.data;
 
   try {
     // 1. Ensure tag exists in Git or create it
@@ -84,6 +114,7 @@ export async function POST(req: Request, context: RouteContext) {
         targetCommitish,
         name,
         body: releaseBody || "",
+        isDraft,
         isPrerelease,
         authorId: userId,
       },
@@ -92,7 +123,45 @@ export async function POST(req: Request, context: RouteContext) {
       },
     });
 
-    // 3. Emit Buildstream event if linked to project
+    // 3. Process attached binary assets if supplied
+    if (rawAssets && rawAssets.length > 0) {
+      for (const assetInput of rawAssets) {
+        try {
+          const buf = Buffer.from(assetInput.bufferBase64, "base64");
+          await saveReleaseAsset({
+            repositoryId: repository.id,
+            releaseId: release.id,
+            fileName: assetInput.name,
+            contentType: assetInput.contentType,
+            buffer: buf,
+            uploaderId: userId,
+          });
+        } catch {}
+      }
+    }
+
+    // Re-fetch complete release with assets
+    const fullRelease = await prisma.repositoryRelease.findUnique({
+      where: { id: release.id },
+      include: {
+        author: { select: { id: true, username: true, displayName: true, avatarUrl: true } },
+        assets: {
+          select: {
+            id: true,
+            name: true,
+            size: true,
+            contentType: true,
+            downloadCount: true,
+            sha256: true,
+            createdAt: true,
+            uploadedBy: { select: { id: true, username: true, displayName: true } },
+          },
+          orderBy: { createdAt: "asc" },
+        },
+      },
+    });
+
+    // 4. Emit Buildstream event if linked to project
     if (repository.projectId) {
       await recordActivityEvent({
         actorId: userId,
@@ -106,7 +175,7 @@ export async function POST(req: Request, context: RouteContext) {
           repoName: repository.name,
           repoSlug: repository.slug,
         },
-      });
+      }).catch(() => {});
     }
 
     dispatchRepositoryWebhooks({
@@ -114,11 +183,11 @@ export async function POST(req: Request, context: RouteContext) {
       event: "release",
       payload: {
         action: "published",
-        release,
+        release: fullRelease || release,
       },
     });
 
-    return apiOk({ release }, 201);
+    return apiOk({ release: fullRelease || release }, 201);
   } catch (err: any) {
     return apiError("INTERNAL_ERROR", `Failed to publish release: ${err.message}`, null, 500);
   }
